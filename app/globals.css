@@ -29,3 +29,7 @@ body {
 p {
   margin: 0 !important;
 }
+
+.ant-table .ant-table-title {
+  padding-left: 0 !important;
+}

@@ -1,10 +1,37 @@
 "use client";
 import Dragger from "antd/es/upload/Dragger";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { InboxOutlined } from "@ant-design/icons";
-import { Button, message, Table, TableColumnsType, Upload, UploadFile, UploadProps } from "antd";
+import {
+  Card,
+  Collapse,
+  CollapseProps,
+  message,
+  Table,
+  TableColumnsType,
+  Upload,
+  UploadFile,
+  UploadProps,
+} from "antd";
 import { FaFacebookSquare } from "react-icons/fa";
-import { data } from "@/app/utils/dataUltis";
+import {
+  convertTimeStampToDate,
+  convertTimeToWholeHour,
+  data,
+  decode,
+} from "@/app/utils/dataUltis";
+
+import { Bar } from "react-chartjs-2";
+
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 
 interface callLogType {
   call_duration: string;
@@ -22,20 +49,75 @@ const validateFileType = (file: UploadFile, allowedTypes?: string[]) => {
   return allowedTypes.includes(file.type);
 };
 
-function decode(s: string) {
-  const decoder = new TextDecoder();
-  const charCodes = Array.from(s).map((char) => char.charCodeAt(0));
-  return decoder.decode(new Uint8Array(charCodes));
-}
 const sample = data;
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const HomePage = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const [name1, setName1] = useState("");
   const [name2, setName2] = useState("");
-  const [files, setFiles] = useState([]);
-  const ref1 = useRef(null);
-  const ref2 = useRef(null);
+  const [rawCallLogs, setRawCallLogs] = useState([]);
+  const [dataToShow, setDataToShow] = useState([]);
+  const [dataStatictic, setDataStatistic] = useState({
+    totalSuccessCall: {
+      total: 0,
+      totalDuration: "",
+    },
+    totalCallFromNameA: {
+      total: 0,
+      totalDuration: "",
+    },
+    totalCallFromNameB: {
+      total: 0,
+      totalDuration: "",
+    },
+    totalMissedCall: {
+      total: 0,
+      fromNameA: 0,
+      fromNameB: 0,
+    },
+  });
+  const [dataHourCall, setDataHourCall] = useState<any>({
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: "top" as const,
+        },
+        title: {
+          display: true,
+          text: "Number Of Hours Called",
+          position: "bottom" as const,
+        },
+      },
+    },
+    data: {
+      labels: [], // Empty labels array
+      datasets: [], // Empty datasets array
+    },
+  });
+
+  const [dataMissedCall, setDataMissedCall] = useState<any>({
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: "top" as const,
+        },
+        title: {
+          display: true,
+          text: "Number Of Missed Call",
+          position: "bottom" as const,
+        },
+      },
+    },
+    data: {
+      labels: [], // Empty labels array
+      datasets: [], // Empty datasets array
+    },
+  });
+
   const props: UploadProps = {
     name: "file",
     multiple: false,
@@ -61,56 +143,23 @@ const HomePage = () => {
           reader.onload = (e) => {
             try {
               const jsonData = JSON.parse(e?.target?.result as string);
+
               const messages = jsonData.messages || [];
+
               const participants = jsonData.participants || [];
+              const nameA = decode(participants[0]?.name || "");
+              const nameB = decode(participants[1]?.name || "");
 
-              const callLogs = messages
-                .filter((obj: any) => obj.hasOwnProperty("call_duration"))
-                .map((item: any) => {
-                  item.sender_name = decode(item.sender_name || "");
-                  item.content = decode(item.content || "");
+              setName1(nameA);
+              setName2(nameB);
 
-                  const date = new Date(item.timestamp_ms);
-                  const formattedDate = date.toLocaleDateString("en-US", {
-                    month: "long",
-                    day: "2-digit",
-                    year: "numeric",
-                  });
-                  const formattedTime = date.toLocaleTimeString("en-US", {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                    second: "2-digit",
-                    hour12: true,
-                  });
-
-                  const duration = item.call_duration || 0;
-                  const hours = Math.floor(duration / 3600);
-                  const minutes = Math.floor((duration % 3600) / 60);
-                  const seconds = duration % 60;
-                  const formattedDuration = `${hours.toString().padStart(2, "0")}:${minutes
-                    .toString()
-                    .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
-
-                  return {
-                    ...item,
-                    date: formattedDate,
-                    time: formattedTime,
-                    call_duration: formattedDuration,
-                  };
-                })
-                .reverse();
-
-              setName1(decode(participants[0]?.name || ""));
-              setName2(decode(participants[1]?.name || ""));
+              const callLogs = messages.filter((obj: callLogType) =>
+                obj.hasOwnProperty("call_duration")
+              );
 
               console.log(callLogs);
 
-              // save to sessionStorage
-              sessionStorage.setItem("myData", JSON.stringify(callLogs));
-              sessionStorage.setItem("name1", decode(participants[0]?.name || ""));
-              sessionStorage.setItem("name2", decode(participants[1]?.name || ""));
-
-              setFiles(callLogs);
+              setRawCallLogs(callLogs);
             } catch (error) {
               messageApi.error("Failed to parse the file. Please ensure it's valid JSON.");
             }
@@ -125,7 +174,8 @@ const HomePage = () => {
     },
 
     onRemove() {
-      setFiles([]);
+      setRawCallLogs([]);
+      setDataToShow([]);
     },
   };
 
@@ -188,13 +238,7 @@ const HomePage = () => {
       ],
       onFilter: (value: any, record: callLogType) => record.date.startsWith(value),
     },
-    {
-      title: <span className="font-bold text-base">Time</span>,
-      dataIndex: "time",
-      key: "time",
-      align: "center",
-      width: "20%",
-    },
+
     {
       title: <span className="font-bold text-base">Sender</span>,
       dataIndex: "sender_name",
@@ -210,35 +254,42 @@ const HomePage = () => {
       width: "20%",
     },
     {
+      title: <span className="font-bold text-base">Call End Time At</span>,
+      dataIndex: "time",
+      key: "time",
+      align: "center",
+      width: "20%",
+      render: (text: string) => <p className="text-base tracking-wide">{text}</p>,
+    },
+    {
       title: <span className="font-bold text-base">Call Duration</span>,
       dataIndex: "call_duration",
       key: "call_duration",
       width: "18%",
       align: "center",
-      render: (text: string) => <p className="font-bold text-base">{text}</p>,
+      render: (text: string) => <p className="font-bold text-base tracking-wide">{text}</p>,
     },
+
     {
       title: <span className="font-bold text-base">Action</span>,
       key: "action",
       align: "center",
       width: "15%",
-      render: (value, record, index) => {
+      render: (value, record) => {
         return (
           <p
-            ref={index === 0 ? ref2 : null}
             className="text-[red] cursor-pointer"
             onClick={() => {
+              console.log(record);
               if (window.confirm("Do you really delete this time ?")) {
                 const objectToRemove = record;
-                let initalFile = files;
+                const rawLogs = [...rawCallLogs];
 
-                initalFile = initalFile.filter((obj: callLogType) => {
+                const rawLogsFiltered = rawLogs.filter((obj: callLogType) => {
                   return obj.timestamp_ms !== objectToRemove.timestamp_ms;
                 });
 
-                // save to sessionStorage
-                sessionStorage.setItem("myData", JSON.stringify(initalFile));
-                setFiles(initalFile);
+                setRawCallLogs(rawLogsFiltered);
               } else {
                 return;
               }
@@ -251,28 +302,274 @@ const HomePage = () => {
     },
   ];
 
+  const items: CollapseProps["items"] = [
+    {
+      key: "1",
+      label: "Call log history statistics",
+      children: (
+        <>
+          <div className="grid grid-cols-1 gap-5 xl:grid-cols-2 3xl:grid-cols-3">
+            <Card title="Total success call and duration" hoverable={true} className="">
+              <div className="flex flex-col gap-y-3">
+                <p>
+                  {dataStatictic?.totalSuccessCall?.total
+                    ? dataStatictic.totalSuccessCall.total
+                    : 0}{" "}
+                  times
+                </p>
+                <p className="tracking-[.1em]">
+                  {dataStatictic?.totalSuccessCall?.totalDuration
+                    ? dataStatictic.totalSuccessCall.totalDuration
+                    : 0}
+                </p>
+              </div>
+            </Card>
+            <Card title={`Total call from ${name1} and duration:`} hoverable={true} className="">
+              <div className="flex flex-col gap-y-3">
+                <p>
+                  {dataStatictic?.totalCallFromNameA?.total
+                    ? dataStatictic.totalCallFromNameA.total
+                    : 0}{" "}
+                  times
+                </p>
+                <p className="tracking-[.1em]">
+                  {dataStatictic?.totalCallFromNameA?.totalDuration
+                    ? dataStatictic.totalCallFromNameA.totalDuration
+                    : 0}
+                </p>
+              </div>
+            </Card>
+            <Card title={`Total call from ${name2} and duration:`} hoverable={true} className="">
+              <div className="flex flex-col gap-y-3">
+                <p>
+                  {dataStatictic?.totalCallFromNameB?.total
+                    ? dataStatictic.totalCallFromNameB.total
+                    : 0}{" "}
+                  times
+                </p>
+                <p className="tracking-[.1em]">
+                  {dataStatictic?.totalCallFromNameB?.totalDuration
+                    ? dataStatictic.totalCallFromNameB.totalDuration
+                    : 0}
+                </p>
+              </div>
+            </Card>
+            <Card title="Total missed call" hoverable={true} className="">
+              <div className="flex flex-col gap-y-3">
+                <p>
+                  {dataStatictic?.totalMissedCall?.total ? dataStatictic.totalMissedCall.total : 0}{" "}
+                  times
+                </p>
+              </div>
+            </Card>
+            <Card title={`Total missed call from ${name1}:`} hoverable={true} className="">
+              <p>
+                {dataStatictic?.totalMissedCall?.fromNameA
+                  ? dataStatictic.totalMissedCall.fromNameA
+                  : 0}{" "}
+                times
+              </p>
+            </Card>
+            <Card title={`Total missed call from ${name2}: `} hoverable={true} className="">
+              <p>
+                {dataStatictic?.totalMissedCall?.fromNameB
+                  ? dataStatictic.totalMissedCall.fromNameB
+                  : 0}{" "}
+                times
+              </p>
+            </Card>
+          </div>
+          <div className="flex flex-col gap-y-6 justify-evenly w-auto mt-5 lg:flex-row ">
+            <div className="w-[100%] lg:w-[40%]">
+              <Bar options={dataHourCall?.options} data={dataHourCall?.data} />
+            </div>
+            <div className="w-[100%] lg:w-[40%]">
+              <Bar options={dataMissedCall?.options} data={dataMissedCall?.data} />
+            </div>
+          </div>
+        </>
+      ),
+    },
+  ];
+
+  // useEffect(() => {
+  //   const storedData = sessionStorage.getItem("myData");
+  //   const name1 = sessionStorage.getItem("name1");
+  //   const name2 = sessionStorage.getItem("name2");
+  //   if (storedData && name1 && name2) {
+  //     try {
+  //       const callLogsObject = JSON.parse(storedData);
+  //       setName1(name1);
+  //       setName2(name2);
+  //       setFiles(callLogsObject);
+  //     } catch (error) {
+  //       console.error("Failed to parse JSON:", error);
+  //     }
+  //   }
+  // }, []);
+
+  // Clean data when new Raw Data is detected
+  // Decode string
+  // Calculate statistic
+  // Convert timestamps to human hour
   useEffect(() => {
-    const storedData = sessionStorage.getItem("myData");
-    const name1 = sessionStorage.getItem("name1");
-    const name2 = sessionStorage.getItem("name2");
-    if (storedData && name1 && name2) {
-      try {
-        const callLogsObject = JSON.parse(storedData);
-        setName1(name1);
-        setName2(name2);
-        setFiles(callLogsObject);
-      } catch (error) {
-        console.error("Failed to parse JSON:", error);
-      }
-    }
-  }, []);
+    // recalculate the statistic
+    const nameA = name1;
+    const nameB = name2;
+    const rawLogs = rawCallLogs;
+    let totalCallDuration = 0;
+    let totalCallFromNameA = 0;
+    let totalCallDurationFromNameA = 0;
+    let totalCallFromNameB = 0;
+    let totalCallDurationFromNameB = 0;
+    let totalMissedCallFromNameA = 0;
+    let totalMissedCallFromNameB = 0;
+
+    const modifiedCallLogs = rawLogs
+      .map((item: any) => {
+        const sender = decode(item.sender_name || "");
+        const content = decode(item.content || "");
+
+        // calculate total call hour
+        totalCallDuration = totalCallDuration + item.call_duration;
+
+        // calculate total missed called from name A
+        if (sender === nameA && item.call_duration === 0) {
+          totalMissedCallFromNameA += 1;
+        }
+
+        // calculate total called from name A
+        if (sender === nameA && item.call_duration > 0) {
+          totalCallFromNameA += 1;
+          totalCallDurationFromNameA += item.call_duration;
+        }
+
+        // calculate total missed called from name B
+        if (sender === nameB && item.call_duration === 0) {
+          totalMissedCallFromNameB += 1;
+        }
+
+        // calculate total called from name A
+        if (sender === nameB && item.call_duration > 0) {
+          totalCallFromNameB += 1;
+          totalCallDurationFromNameB += item.call_duration;
+        }
+
+        // convert timestamp to date and hour
+        const date = new Date(item.timestamp_ms);
+        const formattedDate = date.toLocaleDateString("en-US", {
+          month: "long",
+          day: "2-digit",
+          year: "numeric",
+        });
+        const formattedTime = date.toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: true,
+        });
+
+        const duration = item.call_duration || 0;
+        const hours = Math.floor(duration / 3600);
+        const minutes = Math.floor((duration % 3600) / 60);
+        const seconds = duration % 60;
+        const formattedDuration = `${hours.toString().padStart(2, "0")}:${minutes
+          .toString()
+          .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+
+        return {
+          ...item,
+          sender_name: sender,
+          content: content,
+          date: formattedDate,
+          time: formattedTime,
+          call_duration: formattedDuration,
+        };
+      })
+      .reverse();
+
+    // convert total call duration
+    const totalCallHours = Math.floor(totalCallDuration / 3600);
+    const totalCallMinutes = Math.floor((totalCallDuration % 3600) / 60);
+    const totalCallSeconds = totalCallDuration % 60;
+    const formattedTotalCallDuration = `${totalCallHours
+      .toString()
+      .padStart(2, "0")}:${totalCallMinutes.toString().padStart(2, "0")}:${totalCallSeconds
+      .toString()
+      .padStart(2, "0")}`;
+
+    setDataStatistic({
+      totalSuccessCall: {
+        total: totalCallFromNameA + totalCallFromNameB,
+        totalDuration: formattedTotalCallDuration,
+      },
+      totalCallFromNameA: {
+        total: totalCallFromNameA,
+        totalDuration: convertTimeStampToDate(totalCallDurationFromNameA),
+      },
+      totalCallFromNameB: {
+        total: totalCallFromNameB,
+        totalDuration: convertTimeStampToDate(totalCallDurationFromNameB),
+      },
+      totalMissedCall: {
+        total: totalMissedCallFromNameA + totalMissedCallFromNameB,
+        fromNameA: totalMissedCallFromNameA,
+        fromNameB: totalMissedCallFromNameB,
+      },
+    });
+
+    // save to sessionStorage
+    // sessionStorage.setItem("myData", JSON.stringify(modifiedCallLogs));
+    // sessionStorage.setItem("name1", decode(participants[0]?.name || ""));
+    // sessionStorage.setItem("name2", decode(participants[1]?.name || ""));
+
+    setDataToShow(modifiedCallLogs as any);
+  }, [rawCallLogs]);
+
+  useEffect(() => {
+    const statistic = dataStatictic;
+    const nameA = name1;
+    const nameB = name2;
+
+    const totalHourFromNameA = convertTimeToWholeHour(statistic?.totalCallFromNameA?.totalDuration);
+    const totalHourFromNameB = convertTimeToWholeHour(statistic?.totalCallFromNameB?.totalDuration);
+
+    const dataChartHour = {
+      labels: [nameA, nameB],
+      datasets: [
+        {
+          label: "Video call duration in hours",
+          data: [totalHourFromNameA, totalHourFromNameB],
+          backgroundColor: "rgba(24, 74, 182, 0.5)",
+        },
+      ],
+    };
+
+    setDataHourCall({ ...dataHourCall, data: dataChartHour });
+
+    const totalMissedCallFromNameA = statistic?.totalMissedCall?.fromNameA;
+    const totalMissedCallFromNameB = statistic?.totalMissedCall?.fromNameB;
+
+    const dataChartMissedCall = {
+      labels: [nameA, nameB],
+      datasets: [
+        {
+          label: "Number of Missed Call",
+          data: [totalMissedCallFromNameA, totalMissedCallFromNameB],
+          backgroundColor: "rgba(226, 18, 167, 0.5)",
+        },
+      ],
+    };
+
+    setDataMissedCall({ ...dataMissedCall, data: dataChartMissedCall });
+  }, [dataStatictic]);
 
   return (
     <>
       {contextHolder}
       <div className="mt-10 w-[80%] m-auto">
         <div className="mt-5">
-          <Dragger className="block w-[70%] m-auto mt-20" {...props}>
+          <Dragger className="block m-auto mt-20 lg:w-[70%] 2xl:w-[60%] 3xl:w-[40%]" {...props}>
             <p className="ant-upload-drag-icon">
               <InboxOutlined />
             </p>
@@ -280,8 +577,11 @@ const HomePage = () => {
             <p className="ant-upload-hint">Support for a single upload. Only support JSON file</p>
           </Dragger>
         </div>
+        <div className="flex flex-col gap-y-10 mt-5">
+          <Collapse items={items} />
+        </div>
 
-        {files && files.length > 0 ? (
+        {dataToShow && dataToShow.length > 0 ? (
           <Table
             size="large"
             title={() => (
@@ -293,7 +593,7 @@ const HomePage = () => {
               </div>
             )}
             columns={columns}
-            dataSource={files}
+            dataSource={dataToShow}
             className="mt-5"
           />
         ) : (
@@ -308,6 +608,7 @@ const HomePage = () => {
               columns={columns}
               dataSource={sample}
               className="mt-5"
+              scroll={{ x: "max-content" }}
             />
           </>
         )}
