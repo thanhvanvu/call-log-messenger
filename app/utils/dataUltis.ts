@@ -10,7 +10,7 @@ const data = [
     time: "05:14:47 PM",
   },
   {
-    sender_name: "Anh Vu",
+    sender_name: "Anh Nguyen",
     timestamp_ms: 1736465438445,
     content: "The video call ended.",
     call_duration: "00:15:34",
@@ -30,7 +30,7 @@ const data = [
     time: "03:14:41 PM",
   },
   {
-    sender_name: "Anh Vu",
+    sender_name: "Anh Nguyen",
     timestamp_ms: 1736547251801,
     content: "The video call ended.",
     call_duration: "00:59:18",
@@ -40,7 +40,7 @@ const data = [
     time: "04:14:11 PM",
   },
   {
-    sender_name: "Anh Vu",
+    sender_name: "Anh Nguyen",
     timestamp_ms: 1736547656293,
     content: "The video call ended.",
     call_duration: "00:04:30",
@@ -50,7 +50,7 @@ const data = [
     time: "04:20:56 PM",
   },
   {
-    sender_name: "Anh Vu",
+    sender_name: "Anh Nguyen",
     timestamp_ms: 1736548897456,
     content: "Khanh Nguyen missed your video call.",
     call_duration: "00:00:00",
@@ -60,7 +60,7 @@ const data = [
     time: "04:41:37 PM",
   },
   {
-    sender_name: "Anh Vu",
+    sender_name: "Anh Nguyen",
     timestamp_ms: 1736549603502,
     content: "The video call ended.",
     call_duration: "00:10:41",

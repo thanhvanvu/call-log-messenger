@@ -85,31 +85,6 @@ const HomePage = () => {
         legend: {
           position: "top" as const,
         },
-        title: {
-          display: true,
-          text: "Number Of Hours Called",
-          position: "bottom" as const,
-        },
-      },
-    },
-    data: {
-      labels: [], // Empty labels array
-      datasets: [], // Empty datasets array
-    },
-  });
-
-  const [dataMissedCall, setDataMissedCall] = useState<any>({
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: "top" as const,
-        },
-        title: {
-          display: true,
-          text: "Number Of Missed Call",
-          position: "bottom" as const,
-        },
       },
     },
     data: {
@@ -324,7 +299,7 @@ const HomePage = () => {
                 </p>
               </div>
             </Card>
-            <Card title={`Total call from ${name1} and duration:`} hoverable={true} className="">
+            <Card title={`Total call from ${name1} and duration`} hoverable={true} className="">
               <div className="flex flex-col gap-y-3">
                 <p>
                   {dataStatictic?.totalCallFromNameA?.total
@@ -339,7 +314,7 @@ const HomePage = () => {
                 </p>
               </div>
             </Card>
-            <Card title={`Total call from ${name2} and duration:`} hoverable={true} className="">
+            <Card title={`Total call from ${name2} and duration`} hoverable={true} className="">
               <div className="flex flex-col gap-y-3">
                 <p>
                   {dataStatictic?.totalCallFromNameB?.total
@@ -362,7 +337,7 @@ const HomePage = () => {
                 </p>
               </div>
             </Card>
-            <Card title={`Total missed call from ${name1}:`} hoverable={true} className="">
+            <Card title={`Total missed call from ${name1}`} hoverable={true} className="">
               <p>
                 {dataStatictic?.totalMissedCall?.fromNameA
                   ? dataStatictic.totalMissedCall.fromNameA
@@ -370,7 +345,7 @@ const HomePage = () => {
                 times
               </p>
             </Card>
-            <Card title={`Total missed call from ${name2}: `} hoverable={true} className="">
+            <Card title={`Total missed call from ${name2}`} hoverable={true} className="">
               <p>
                 {dataStatictic?.totalMissedCall?.fromNameB
                   ? dataStatictic.totalMissedCall.fromNameB
@@ -380,33 +355,14 @@ const HomePage = () => {
             </Card>
           </div>
           <div className="flex flex-col gap-y-6 justify-evenly w-auto mt-5 lg:flex-row ">
-            <div className="w-[100%] lg:w-[40%]">
+            <div className="w-[100%] 2xl:w-[60%]">
               <Bar options={dataHourCall?.options} data={dataHourCall?.data} />
-            </div>
-            <div className="w-[100%] lg:w-[40%]">
-              <Bar options={dataMissedCall?.options} data={dataMissedCall?.data} />
             </div>
           </div>
         </>
       ),
     },
   ];
-
-  // useEffect(() => {
-  //   const storedData = sessionStorage.getItem("myData");
-  //   const name1 = sessionStorage.getItem("name1");
-  //   const name2 = sessionStorage.getItem("name2");
-  //   if (storedData && name1 && name2) {
-  //     try {
-  //       const callLogsObject = JSON.parse(storedData);
-  //       setName1(name1);
-  //       setName2(name2);
-  //       setFiles(callLogsObject);
-  //     } catch (error) {
-  //       console.error("Failed to parse JSON:", error);
-  //     }
-  //   }
-  // }, []);
 
   // Clean data when new Raw Data is detected
   // Decode string
@@ -534,34 +490,29 @@ const HomePage = () => {
     const totalHourFromNameA = convertTimeToWholeHour(statistic?.totalCallFromNameA?.totalDuration);
     const totalHourFromNameB = convertTimeToWholeHour(statistic?.totalCallFromNameB?.totalDuration);
 
-    const dataChartHour = {
-      labels: [nameA, nameB],
-      datasets: [
-        {
-          label: "Video call duration in hours",
-          data: [totalHourFromNameA, totalHourFromNameB],
-          backgroundColor: "rgba(24, 74, 182, 0.5)",
-        },
-      ],
-    };
-
-    setDataHourCall({ ...dataHourCall, data: dataChartHour });
-
     const totalMissedCallFromNameA = statistic?.totalMissedCall?.fromNameA;
     const totalMissedCallFromNameB = statistic?.totalMissedCall?.fromNameB;
 
-    const dataChartMissedCall = {
-      labels: [nameA, nameB],
+    const totalSuccessCallFromNameA = statistic?.totalCallFromNameA?.total;
+    const totalSuccessCallFromNameB = statistic?.totalCallFromNameB?.total;
+
+    const dataChartHour = {
+      labels: ["Total Call Hour", "Number Success Call", "Number Missed Call"],
       datasets: [
         {
-          label: "Number of Missed Call",
-          data: [totalMissedCallFromNameA, totalMissedCallFromNameB],
+          label: nameA,
+          data: [totalHourFromNameA, totalSuccessCallFromNameA, totalMissedCallFromNameA],
+          backgroundColor: "rgba(24, 74, 182, 0.5)",
+        },
+        {
+          label: nameB,
+          data: [totalHourFromNameB, totalSuccessCallFromNameB, totalMissedCallFromNameB],
           backgroundColor: "rgba(226, 18, 167, 0.5)",
         },
       ],
     };
 
-    setDataMissedCall({ ...dataMissedCall, data: dataChartMissedCall });
+    setDataHourCall({ ...dataHourCall, data: dataChartHour });
   }, [dataStatictic]);
 
   return (
@@ -583,6 +534,7 @@ const HomePage = () => {
 
         {dataToShow && dataToShow.length > 0 ? (
           <Table
+            pagination={{ showSizeChanger: true }}
             size="large"
             title={() => (
               <div className="flex text-center font-bold text-2xl py-2">
@@ -602,7 +554,7 @@ const HomePage = () => {
               size="middle"
               title={() => (
                 <div className="flex text-center font-bold text-2xl py-2">
-                  This is sample data table
+                  This is a sample data table
                 </div>
               )}
               columns={columns}
