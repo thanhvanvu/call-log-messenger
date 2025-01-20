@@ -547,6 +547,7 @@ const HomePage = () => {
             columns={columns}
             dataSource={dataToShow}
             className="mt-5"
+            scroll={{ x: "max-content" }}
           />
         ) : (
           <>
