@@ -34,7 +34,7 @@ import {
 } from "chart.js";
 
 interface callLogType {
-  call_duration: string;
+  call_duration: number;
   content: string;
   date: string;
   sender_name: string;
@@ -59,7 +59,7 @@ const HomePage = () => {
   const [name2, setName2] = useState("");
   const [rawCallLogs, setRawCallLogs] = useState([]);
   const [dataToShow, setDataToShow] = useState([]);
-  const [dataStatictic, setDataStatistic] = useState({
+  const [dataStatistic, setDataStatistic] = useState({
     totalSuccessCall: {
       total: 0,
       totalDuration: "",
@@ -95,8 +95,7 @@ const HomePage = () => {
 
   const props: UploadProps = {
     name: "file",
-    multiple: false,
-    maxCount: 1,
+    multiple: true,
     accept: ".json",
     beforeUpload: (file: UploadFile) => {
       const allowedTypes: string[] = ["application/json"];
@@ -110,36 +109,61 @@ const HomePage = () => {
     onChange(info) {
       const { status } = info.file;
       if (status === "done") {
-        messageApi.success(`${info.file.name} file uploaded successfully.`);
-        const file = info.fileList[0]?.originFileObj;
-        if (file) {
-          const reader = new FileReader();
-          reader.readAsText(file, "UTF-8");
-          reader.onload = (e) => {
-            try {
-              const jsonData = JSON.parse(e?.target?.result as string);
+        // Helper function to read a file as text
+        const readFileAsText = (file: File): Promise<string> => {
+          return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsText(file, "UTF-8");
+            reader.onload = (e) => resolve(e?.target?.result as string);
+            reader.onerror = () => reject(new Error("Failed to read the file."));
+          });
+        };
 
-              const messages = jsonData.messages || [];
+        const processFiles = async () => {
+          try {
+            const callLogsObject: callLogType[] = [];
 
-              const participants = jsonData.participants || [];
-              const nameA = decode(participants[0]?.name || "");
-              const nameB = decode(participants[1]?.name || "");
+            // Process each file in the fileList
+            await Promise.all(
+              info.fileList.map(async (fileItem) => {
+                const file = fileItem.originFileObj;
+                if (file) {
+                  const fileContent = await readFileAsText(file); // Read file as text
+                  const jsonData = JSON.parse(fileContent); // Parse JSON data
 
-              setName1(nameA);
-              setName2(nameB);
+                  const messages = jsonData.messages || [];
+                  const participants = jsonData.participants || [];
+                  const nameA = decode(participants[0]?.name || "");
+                  const nameB = decode(participants[1]?.name || "");
 
-              const callLogs = messages.filter((obj: callLogType) =>
-                obj.hasOwnProperty("call_duration")
-              );
+                  // Set names for participants
+                  if (!name1 && !name2) {
+                    setName1(nameA);
+                    setName2(nameB);
+                  }
 
-              console.log(callLogs);
+                  // Filter and add call logs with call duration
+                  messages.forEach((item: callLogType) => {
+                    if (item?.call_duration >= 0) {
+                      callLogsObject.push(item);
+                    }
+                  });
+                }
+              })
+            );
 
-              setRawCallLogs(callLogs);
-            } catch (error) {
-              messageApi.error("Failed to parse the file. Please ensure it's valid JSON.");
-            }
-          };
-        }
+            // Set raw call logs after processing all files
+            setRawCallLogs(callLogsObject as any);
+
+            // Display success message after processing is complete
+            messageApi.success(`${info.file.name} file uploaded successfully.`);
+          } catch (error) {
+            messageApi.error("Failed to process the file. Please ensure it contains valid JSON.");
+          }
+        };
+
+        // Start processing files
+        processFiles();
       } else if (status === "error") {
         messageApi.error(`${info.file.name} file upload failed.`);
       }
@@ -287,14 +311,14 @@ const HomePage = () => {
             <Card title="Total success call and duration" hoverable={true} className="">
               <div className="flex flex-col gap-y-3">
                 <p>
-                  {dataStatictic?.totalSuccessCall?.total
-                    ? dataStatictic.totalSuccessCall.total
+                  {dataStatistic?.totalSuccessCall?.total
+                    ? dataStatistic.totalSuccessCall.total
                     : 0}{" "}
                   times
                 </p>
                 <p className="tracking-[.1em]">
-                  {dataStatictic?.totalSuccessCall?.totalDuration
-                    ? dataStatictic.totalSuccessCall.totalDuration
+                  {dataStatistic?.totalSuccessCall?.totalDuration
+                    ? dataStatistic.totalSuccessCall.totalDuration
                     : 0}
                 </p>
               </div>
@@ -302,14 +326,14 @@ const HomePage = () => {
             <Card title={`Total call from ${name1} and duration`} hoverable={true} className="">
               <div className="flex flex-col gap-y-3">
                 <p>
-                  {dataStatictic?.totalCallFromNameA?.total
-                    ? dataStatictic.totalCallFromNameA.total
+                  {dataStatistic?.totalCallFromNameA?.total
+                    ? dataStatistic.totalCallFromNameA.total
                     : 0}{" "}
                   times
                 </p>
                 <p className="tracking-[.1em]">
-                  {dataStatictic?.totalCallFromNameA?.totalDuration
-                    ? dataStatictic.totalCallFromNameA.totalDuration
+                  {dataStatistic?.totalCallFromNameA?.totalDuration
+                    ? dataStatistic.totalCallFromNameA.totalDuration
                     : 0}
                 </p>
               </div>
@@ -317,14 +341,14 @@ const HomePage = () => {
             <Card title={`Total call from ${name2} and duration`} hoverable={true} className="">
               <div className="flex flex-col gap-y-3">
                 <p>
-                  {dataStatictic?.totalCallFromNameB?.total
-                    ? dataStatictic.totalCallFromNameB.total
+                  {dataStatistic?.totalCallFromNameB?.total
+                    ? dataStatistic.totalCallFromNameB.total
                     : 0}{" "}
                   times
                 </p>
                 <p className="tracking-[.1em]">
-                  {dataStatictic?.totalCallFromNameB?.totalDuration
-                    ? dataStatictic.totalCallFromNameB.totalDuration
+                  {dataStatistic?.totalCallFromNameB?.totalDuration
+                    ? dataStatistic.totalCallFromNameB.totalDuration
                     : 0}
                 </p>
               </div>
@@ -332,23 +356,23 @@ const HomePage = () => {
             <Card title="Total missed call" hoverable={true} className="">
               <div className="flex flex-col gap-y-3">
                 <p>
-                  {dataStatictic?.totalMissedCall?.total ? dataStatictic.totalMissedCall.total : 0}{" "}
+                  {dataStatistic?.totalMissedCall?.total ? dataStatistic.totalMissedCall.total : 0}{" "}
                   times
                 </p>
               </div>
             </Card>
             <Card title={`Total missed call from ${name1}`} hoverable={true} className="">
               <p>
-                {dataStatictic?.totalMissedCall?.fromNameA
-                  ? dataStatictic.totalMissedCall.fromNameA
+                {dataStatistic?.totalMissedCall?.fromNameA
+                  ? dataStatistic.totalMissedCall.fromNameA
                   : 0}{" "}
                 times
               </p>
             </Card>
             <Card title={`Total missed call from ${name2}`} hoverable={true} className="">
               <p>
-                {dataStatictic?.totalMissedCall?.fromNameB
-                  ? dataStatictic.totalMissedCall.fromNameB
+                {dataStatistic?.totalMissedCall?.fromNameB
+                  ? dataStatistic.totalMissedCall.fromNameB
                   : 0}{" "}
                 times
               </p>
@@ -373,6 +397,7 @@ const HomePage = () => {
     const nameA = name1;
     const nameB = name2;
     const rawLogs = rawCallLogs;
+
     let totalCallDuration = 0;
     let totalCallFromNameA = 0;
     let totalCallDurationFromNameA = 0;
@@ -381,68 +406,71 @@ const HomePage = () => {
     let totalMissedCallFromNameA = 0;
     let totalMissedCallFromNameB = 0;
 
-    const modifiedCallLogs = rawLogs
-      .map((item: any) => {
-        const sender = decode(item.sender_name || "");
-        const content = decode(item.content || "");
+    const modifiedCallLogs = rawLogs.map((item: any) => {
+      const sender = decode(item.sender_name || "");
+      const content = decode(item.content || "");
 
-        // calculate total call hour
-        totalCallDuration = totalCallDuration + item.call_duration;
+      // calculate total call hour
+      totalCallDuration = totalCallDuration + item.call_duration;
 
-        // calculate total missed called from name A
-        if (sender === nameA && item.call_duration === 0) {
-          totalMissedCallFromNameA += 1;
-        }
+      // calculate total missed called from name A
+      if (sender === nameA && item.call_duration === 0) {
+        totalMissedCallFromNameA += 1;
+      }
 
-        // calculate total called from name A
-        if (sender === nameA && item.call_duration > 0) {
-          totalCallFromNameA += 1;
-          totalCallDurationFromNameA += item.call_duration;
-        }
+      // calculate total called from name A
+      if (sender === nameA && item.call_duration > 0) {
+        totalCallFromNameA += 1;
+        totalCallDurationFromNameA += item.call_duration;
+      }
 
-        // calculate total missed called from name B
-        if (sender === nameB && item.call_duration === 0) {
-          totalMissedCallFromNameB += 1;
-        }
+      // calculate total missed called from name B
+      if (sender === nameB && item.call_duration === 0) {
+        totalMissedCallFromNameB += 1;
+      }
 
-        // calculate total called from name A
-        if (sender === nameB && item.call_duration > 0) {
-          totalCallFromNameB += 1;
-          totalCallDurationFromNameB += item.call_duration;
-        }
+      // calculate total called from name A
+      if (sender === nameB && item.call_duration > 0) {
+        totalCallFromNameB += 1;
+        totalCallDurationFromNameB += item.call_duration;
+      }
 
-        // convert timestamp to date and hour
-        const date = new Date(item.timestamp_ms);
-        const formattedDate = date.toLocaleDateString("en-US", {
-          month: "long",
-          day: "2-digit",
-          year: "numeric",
-        });
-        const formattedTime = date.toLocaleTimeString("en-US", {
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-          hour12: true,
-        });
+      // convert timestamp to date and hour
+      const date = new Date(item.timestamp_ms);
+      const formattedDate = date.toLocaleDateString("en-US", {
+        month: "long",
+        day: "2-digit",
+        year: "numeric",
+      });
+      const formattedTime = date.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      });
 
-        const duration = item.call_duration || 0;
-        const hours = Math.floor(duration / 3600);
-        const minutes = Math.floor((duration % 3600) / 60);
-        const seconds = duration % 60;
-        const formattedDuration = `${hours.toString().padStart(2, "0")}:${minutes
-          .toString()
-          .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+      const duration = item.call_duration || 0;
+      const hours = Math.floor(duration / 3600);
+      const minutes = Math.floor((duration % 3600) / 60);
+      const seconds = duration % 60;
+      const formattedDuration = `${hours.toString().padStart(2, "0")}:${minutes
+        .toString()
+        .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
 
-        return {
-          ...item,
-          sender_name: sender,
-          content: content,
-          date: formattedDate,
-          time: formattedTime,
-          call_duration: formattedDuration,
-        };
-      })
-      .reverse();
+      return {
+        ...item,
+        sender_name: sender,
+        content: content,
+        date: formattedDate,
+        time: formattedTime,
+        call_duration: formattedDuration,
+      };
+    });
+
+    console.log("modified", modifiedCallLogs);
+
+    // Sort call logs by date
+    modifiedCallLogs.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
     // convert total call duration
     const totalCallHours = Math.floor(totalCallDuration / 3600);
@@ -483,7 +511,7 @@ const HomePage = () => {
   }, [rawCallLogs]);
 
   useEffect(() => {
-    const statistic = dataStatictic;
+    const statistic = dataStatistic;
     const nameA = name1;
     const nameB = name2;
 
@@ -513,7 +541,7 @@ const HomePage = () => {
     };
 
     setDataHourCall({ ...dataHourCall, data: dataChartHour });
-  }, [dataStatictic]);
+  }, [dataStatistic]);
 
   return (
     <>
@@ -547,7 +575,7 @@ const HomePage = () => {
             columns={columns}
             dataSource={dataToShow}
             className="mt-5"
-            scroll={{ x: "max-content" }}
+            scroll={{ x: "max-content", y: 55 * 20 }}
           />
         ) : (
           <>
@@ -558,7 +586,7 @@ const HomePage = () => {
                   This is a sample data table
                 </div>
               )}
-              columns={columns}
+              columns={columns as any}
               dataSource={sample}
               className="mt-5"
               scroll={{ x: "max-content" }}
