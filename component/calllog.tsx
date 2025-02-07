@@ -33,6 +33,7 @@ import {
   Legend,
 } from "chart.js";
 import { ExportAsPdf } from "react-export-table";
+import Link from "next/link";
 
 interface callLogType {
   call_duration: number;
@@ -554,7 +555,16 @@ const CallLog = () => {
               <InboxOutlined />
             </p>
             <p className="ant-upload-text">Click to this area to upload</p>
-            <p className="ant-upload-hint">Support for a single upload. Only support JSON file</p>
+            <p className="ant-upload-hint">Support for a multiple upload. Only support JSON file</p>
+            <Link
+              href="/guide"
+              className="ant-upload-hint"
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+            >
+              Do not have JSON file? Go here to find it
+            </Link>
           </Dragger>
         </div>
         <div className="flex flex-col gap-y-10 mt-5">
