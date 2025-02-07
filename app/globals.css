@@ -20,6 +20,9 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+a {
+  text-decoration: none !important;
+}
 .ant-table-thead {
   .ant-table-cell {
     background-color: #5295ff !important;
@@ -32,4 +35,12 @@ p {
 
 .ant-table .ant-table-title {
   padding-left: 0 !important;
+}
+
+.ant-btn-primary {
+  background-color: #5295ff;
+}
+
+.nav-link:focus {
+  color: #5295ff !important;
 }

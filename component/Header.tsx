@@ -1,27 +1,50 @@
 "use client";
 
-import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Link from "next/link";
+import icon from "@/app/favicon.ico";
+import Image from "next/image";
+import { Button } from "antd";
+import { redirect } from "next/navigation";
 
 const Header = () => {
   return (
-    <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
-      <Container>
-        <Link href="/" className="navbar-brand">
-          CallLog
+    <div className="bg-body-tertiary">
+      <Navbar collapseOnSelect expand="lg" className=" w-[90%] mx-auto 3xl:w-[70%]">
+        <Link href="/" className="navbar-brand font-bold flex gap-2">
+          <Image src={icon} alt="" width={30} height={30}></Image>
+          Call-Logs
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            <Link href="/guide" className="nav-link">
-              Guide how to find JSON file
-            </Link>
+          <Nav className="me-auto ">
+            <div className="py-2">
+              <Link href="/guide" className="nav-link focus:text-[#0866FF]">
+                Guide how to find JSON file
+              </Link>
+            </div>
+
+            <span className=" py-1 border px-4 rounded-xl bg-[#0866FF] w-fit 992:hidden mt-2">
+              <Link href="/calllog" className="nav-link text-white  ">
+                GET STARTED
+              </Link>
+            </span>
           </Nav>
         </Navbar.Collapse>
-      </Container>
-    </Navbar>
+        <div className=" hidden 992:block">
+          <Button
+            type="primary"
+            size="large"
+            onClick={() => {
+              redirect("/calllog");
+            }}
+          >
+            GET STARTED
+          </Button>
+        </div>
+      </Navbar>
+    </div>
   );
 };
 
