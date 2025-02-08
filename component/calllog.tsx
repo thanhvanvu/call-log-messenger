@@ -271,36 +271,36 @@ const CallLog = () => {
       render: (text: string) => <p className="font-bold text-base tracking-wide">{text}</p>,
     },
 
-    // {
-    //   title: <span className="font-bold text-base">Action</span>,
-    //   key: "action",
-    //   align: "center",
-    //   width: "15%",
-    //   render: (value, record) => {
-    //     return (
-    //       <p
-    //         className="text-[red] cursor-pointer"
-    //         onClick={() => {
-    //           console.log(record);
-    //           if (window.confirm("Do you really delete this time ?")) {
-    //             const objectToRemove = record;
-    //             const rawLogs = [...rawCallLogs];
+    {
+      title: <span className="font-bold text-base">Action</span>,
+      key: "action",
+      align: "center",
+      width: "15%",
+      render: (value, record) => {
+        return (
+          <p
+            className="text-[red] cursor-pointer"
+            onClick={() => {
+              console.log(record);
+              if (window.confirm("Do you really delete this time ?")) {
+                const objectToRemove = record;
+                const rawLogs = [...rawCallLogs];
 
-    //             const rawLogsFiltered = rawLogs.filter((obj: callLogType) => {
-    //               return obj.timestamp_ms !== objectToRemove.timestamp_ms;
-    //             });
+                const rawLogsFiltered = rawLogs.filter((obj: callLogType) => {
+                  return obj.timestamp_ms !== objectToRemove.timestamp_ms;
+                });
 
-    //             setRawCallLogs(rawLogsFiltered);
-    //           } else {
-    //             return;
-    //           }
-    //         }}
-    //       >
-    //         Delete
-    //       </p>
-    //     );
-    //   },
-    // },
+                setRawCallLogs(rawLogsFiltered);
+              } else {
+                return;
+              }
+            }}
+          >
+            Delete
+          </p>
+        );
+      },
+    },
   ];
 
   const items: CollapseProps["items"] = [
@@ -548,7 +548,7 @@ const CallLog = () => {
   return (
     <>
       {contextHolder}
-      <div className="mt-10 w-[80%] m-auto">
+      <div className="mt-10 w-[90%] m-auto 3xl:w-[80%]">
         <div className="mt-5">
           <Dragger className="block m-auto mt-20 lg:w-[70%] 2xl:w-[60%] 3xl:w-[40%]" {...props}>
             <p className="ant-upload-drag-icon">
