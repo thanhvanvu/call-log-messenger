@@ -139,11 +139,10 @@ const CallLog = () => {
             reader.onerror = () => reject(new Error("Failed to read the file."));
           });
         };
-        console.log(info);
 
         const processFiles = async () => {
           try {
-            const rawCallLogsObject: IRawLogType[] = [...rawCallLogs];
+            const rawCallLogsObject: IRawLogType[] = [];
 
             // Process each file in the fileList
             for (const fileItem of info.fileList) {
