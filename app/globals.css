@@ -44,3 +44,7 @@ p {
 .nav-link:focus {
   color: #5295ff !important;
 }
+
+.call-logs-table-row {
+  height: 80px;
+}

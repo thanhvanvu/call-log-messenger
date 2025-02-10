@@ -11,7 +11,7 @@ import { redirect } from "next/navigation";
 const Header = () => {
   return (
     <div className="bg-body-tertiary">
-      <Navbar collapseOnSelect expand="lg" className=" w-[90%] mx-auto 3xl:w-[70%]">
+      <Navbar collapseOnSelect expand="lg" className=" w-[90%] mx-auto 3xl:w-[80%]">
         <Link href="/" className="navbar-brand font-bold flex gap-2">
           <Image src={icon} alt="" width={30} height={30}></Image>
           Call-Logs

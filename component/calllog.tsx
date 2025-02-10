@@ -9,6 +9,7 @@ import {
   message,
   Table,
   TableColumnsType,
+  TablePaginationConfig,
   Upload,
   UploadFile,
   UploadProps,
@@ -32,16 +33,30 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { ExportAsPdf } from "react-export-table";
 import Link from "next/link";
+import { FilterValue } from "antd/es/table/interface";
 
-interface callLogType {
+interface IRawLogType {
   call_duration: number;
   content: string;
   date: string;
   sender_name: string;
   time: string;
   timestamp_ms: number;
+}
+
+interface ICallLogType {
+  call_duration: string;
+  content: string;
+  date: string;
+  sender_name: string;
+  time: string;
+  timestamp_ms: number;
+}
+
+interface IDateFilterType {
+  text: string;
+  value: string;
 }
 
 const validateFileType = (file: UploadFile, allowedTypes?: string[]) => {
@@ -59,8 +74,9 @@ const CallLog = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const [name1, setName1] = useState("");
   const [name2, setName2] = useState("");
-  const [rawCallLogs, setRawCallLogs] = useState([]);
-  const [dataToShow, setDataToShow] = useState([]);
+  const [rawCallLogs, setRawCallLogs] = useState<IRawLogType[]>([]);
+  const [rawCallLogsNotModify, setRawCallLogsNotModify] = useState<IRawLogType[]>([]);
+  const [dataToShow, setDataToShow] = useState<ICallLogType[]>([]);
   const [dataStatistic, setDataStatistic] = useState({
     totalSuccessCall: {
       total: 0,
@@ -80,6 +96,7 @@ const CallLog = () => {
       fromNameB: 0,
     },
   });
+  const [dateFilter, setDateFilter] = useState<IDateFilterType[]>([]);
   const [dataHourCall, setDataHourCall] = useState<any>({
     options: {
       responsive: true,
@@ -94,6 +111,8 @@ const CallLog = () => {
       datasets: [], // Empty datasets array
     },
   });
+
+  const [test, setTest] = useState<number>(1);
 
   const props: UploadProps = {
     name: "file",
@@ -120,52 +139,93 @@ const CallLog = () => {
             reader.onerror = () => reject(new Error("Failed to read the file."));
           });
         };
+        console.log(info);
 
         const processFiles = async () => {
           try {
-            const callLogsObject: callLogType[] = [];
+            const rawCallLogsObject: IRawLogType[] = [...rawCallLogs];
 
             // Process each file in the fileList
-            await Promise.all(
-              info.fileList.map(async (fileItem) => {
-                const file = fileItem.originFileObj;
-                if (file) {
-                  const fileContent = await readFileAsText(file); // Read file as text
-                  const jsonData = JSON.parse(fileContent); // Parse JSON data
+            for (const fileItem of info.fileList) {
+              const file = fileItem.originFileObj;
+              if (file) {
+                const fileContent = await readFileAsText(file); // Read file as text
+                const jsonData = JSON.parse(fileContent); // Parse JSON data
 
-                  const messages = jsonData.messages || [];
-                  const participants = jsonData.participants || [];
-                  const nameA = decode(participants[0]?.name || "");
-                  const nameB = decode(participants[1]?.name || "");
+                const messages = jsonData.messages || [];
+                const participants = jsonData.participants || [];
+                const nameA = decode(participants[0]?.name || "");
+                const nameB = decode(participants[1]?.name || "");
 
-                  // Set names for participants
-                  if (!name1 && !name2) {
-                    setName1(nameA);
-                    setName2(nameB);
-                  }
-
-                  // Filter and add call logs with call duration
-                  messages.forEach((item: callLogType) => {
-                    if (item?.call_duration >= 0) {
-                      callLogsObject.push(item);
-                    }
-                  });
+                // Set names for participants
+                if (!name1 && !name2) {
+                  setName1(nameA);
+                  setName2(nameB);
                 }
-              })
+
+                // Filter and add call logs with call duration
+                for (const item of messages) {
+                  if (item?.call_duration >= 0) {
+                    // Convert timestamp to date and hour
+                    const date = new Date(item.timestamp_ms);
+                    const formattedDate = date.toLocaleDateString("en-US", {
+                      month: "long",
+                      day: "2-digit",
+                      year: "numeric",
+                    });
+
+                    //  build date filter object
+
+                    rawCallLogsObject.push({ ...item, date: formattedDate });
+                  }
+                }
+              }
+            }
+
+            // Sort call logs by timestamp
+            rawCallLogsObject.sort(
+              (a: IRawLogType, b: IRawLogType) => a.timestamp_ms - b.timestamp_ms
             );
 
-            // Set raw call logs after processing all files
-            setRawCallLogs(callLogsObject as any);
+            // build date filter object
+            const filter: IDateFilterType[] = [];
+            rawCallLogsObject.forEach((callLog) => {
+              const date = new Date(callLog.timestamp_ms);
+              const month = date.toLocaleString("default", { month: "long" });
+              const year = date.toLocaleString("default", { year: "numeric" });
 
-            // Display success message after processing is complete
-            messageApi.success(`${info.file.name} file uploaded successfully.`);
+              const FilterObject: IDateFilterType = {
+                text: `${month}, ${year}`,
+                value: `${month}, ${year}`,
+              };
+
+              // Check if filter array already contains this object
+              const exists = filter.some(
+                (f) => f.text === FilterObject.text && f.value === FilterObject.value
+              );
+
+              if (!exists) {
+                filter.push(FilterObject);
+              }
+            });
+
+            // Update date filter
+            setDateFilter(filter);
+
+            // Set raw call logs after processing all files
+            setRawCallLogs(rawCallLogsObject);
+            setRawCallLogsNotModify(rawCallLogsObject);
           } catch (error) {
+            console.log(error);
             messageApi.error("Failed to process the file. Please ensure it contains valid JSON.");
           }
         };
 
         // Start processing files
         processFiles();
+
+        // Display success message after processing is complete
+        messageApi.success(`${info.file.name} file uploaded successfully.`);
       } else if (status === "error") {
         messageApi.error(`${info.file.name} file upload failed.`);
       }
@@ -180,64 +240,28 @@ const CallLog = () => {
     },
   };
 
-  const columns: TableColumnsType<callLogType> = [
+  useEffect(() => {
+    console.log("date filter", dateFilter);
+  }, dateFilter);
+
+  const columns: TableColumnsType<ICallLogType> = [
     {
       title: <span className="block font-bold text-base text-center">Date</span>,
       dataIndex: "date",
       key: "date",
       width: "15%",
       align: "center",
-      filters: [
-        {
-          text: "January ",
-          value: "January ",
-        },
-        {
-          text: "February",
-          value: "February",
-        },
-        {
-          text: "March",
-          value: "March",
-        },
-        {
-          text: "April",
-          value: "April",
-        },
-        {
-          text: "May",
-          value: "May",
-        },
-        {
-          text: "June",
-          value: "June",
-        },
-        {
-          text: "July",
-          value: "July",
-        },
-        {
-          text: "August",
-          value: "August",
-        },
-        {
-          text: "September",
-          value: "September",
-        },
-        {
-          text: "October",
-          value: "October",
-        },
-        {
-          text: "November",
-          value: "November",
-        },
-        {
-          text: "December",
-          value: "December",
-        },
-      ],
-      onFilter: (value: any, record: callLogType) => record.date.startsWith(value),
+      filters: dateFilter,
+      // onFilter: (value, record: ICallLogType) => {
+      //   const date = value as string;
+      //   const splitDate = date.split(",");
+      //   const month = splitDate[0];
+      //   const year = splitDate[1];
+
+      //   if (record.date.includes(month) && record.date.includes(year)) {
+      //     return true;
+      //   }
+      // },
     },
 
     {
@@ -281,12 +305,11 @@ const CallLog = () => {
           <p
             className="text-[red] cursor-pointer"
             onClick={() => {
-              console.log(record);
               if (window.confirm("Do you really delete this time ?")) {
                 const objectToRemove = record;
                 const rawLogs = [...rawCallLogs];
 
-                const rawLogsFiltered = rawLogs.filter((obj: callLogType) => {
+                const rawLogsFiltered = rawLogs.filter((obj: IRawLogType) => {
                   return obj.timestamp_ms !== objectToRemove.timestamp_ms;
                 });
 
@@ -390,6 +413,45 @@ const CallLog = () => {
     },
   ];
 
+  const handleTableChange = (
+    pagination: TablePaginationConfig,
+    filters: Record<string, FilterValue | null>
+  ) => {
+    console.log(filters);
+    if (filters && filters.date) {
+      console.log(filters);
+
+      const filterCallLogs: IRawLogType[] = [];
+
+      const dateArray = filters?.date;
+
+      // filter could be an array, so need to use forEach
+      // get month, year from the filter from the table
+      // filter it from the initial data raw call logs
+      dateArray.forEach((item) => {
+        const date = item as string;
+        const splitDate = date.split(",");
+        const month = splitDate[0];
+        const year = splitDate[1];
+
+        const filterRawLogs = rawCallLogsNotModify.filter((item) => {
+          return item.date.includes(month) && item?.date.includes(year);
+        });
+
+        // push filtered data in empty array
+        filterCallLogs.push(...filterRawLogs);
+      });
+
+      // after getting filtered data, set state and continue processing
+      setRawCallLogs(filterCallLogs);
+    } else {
+      // if filter is null
+      // set raw call logs with initial raw call logs
+      const rawCallLogsCopied = [...rawCallLogsNotModify];
+      setRawCallLogs(rawCallLogsCopied);
+    }
+  };
+
   // Clean data when new Raw Data is detected
   // Decode string
   // Calculate statistic
@@ -408,7 +470,7 @@ const CallLog = () => {
     let totalMissedCallFromNameA = 0;
     let totalMissedCallFromNameB = 0;
 
-    const modifiedCallLogs = rawLogs.map((item: any) => {
+    const modifiedCallLogs = rawLogs.map((item: IRawLogType) => {
       const sender = decode(item.sender_name || "");
       const content = decode(item.content || "");
 
@@ -439,11 +501,7 @@ const CallLog = () => {
 
       // convert timestamp to date and hour
       const date = new Date(item.timestamp_ms);
-      const formattedDate = date.toLocaleDateString("en-US", {
-        month: "long",
-        day: "2-digit",
-        year: "numeric",
-      });
+
       const formattedTime = date.toLocaleTimeString("en-US", {
         hour: "2-digit",
         minute: "2-digit",
@@ -463,16 +521,10 @@ const CallLog = () => {
         ...item,
         sender_name: sender,
         content: content,
-        date: formattedDate,
         time: formattedTime,
         call_duration: formattedDuration,
       };
     });
-
-    console.log("modified", modifiedCallLogs);
-
-    // Sort call logs by date
-    modifiedCallLogs.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
     // convert total call duration
     const totalCallHours = Math.floor(totalCallDuration / 3600);
@@ -505,12 +557,12 @@ const CallLog = () => {
     });
 
     // save to sessionStorage
-    // sessionStorage.setItem("myData", JSON.stringify(modifiedCallLogs));
-    // sessionStorage.setItem("name1", decode(participants[0]?.name || ""));
-    // sessionStorage.setItem("name2", decode(participants[1]?.name || ""));
+    sessionStorage.setItem("myData", JSON.stringify(modifiedCallLogs));
+    sessionStorage.setItem("name1", nameA);
+    sessionStorage.setItem("name2", nameB);
 
-    setDataToShow(modifiedCallLogs as any);
-  }, [rawCallLogs]);
+    setDataToShow(modifiedCallLogs);
+  }, [rawCallLogs, name1, name2]);
 
   useEffect(() => {
     const statistic = dataStatistic;
@@ -548,7 +600,7 @@ const CallLog = () => {
   return (
     <>
       {contextHolder}
-      <div className="mt-10 w-[90%] m-auto 3xl:w-[80%]">
+      <div className="mt-10 w-[90%] m-auto 3xl:w-[80%] pb-14">
         <div className="mt-5">
           <Dragger className="block m-auto mt-20 lg:w-[70%] 2xl:w-[60%] 3xl:w-[40%]" {...props}>
             <p className="ant-upload-drag-icon">
@@ -593,9 +645,11 @@ const CallLog = () => {
               </div>
             )}
             columns={columns}
+            onChange={handleTableChange}
             dataSource={dataToShow}
             className="mt-5"
             scroll={{ x: "max-content", y: 55 * 20 }}
+            rowClassName="call-logs-table-row"
           />
         ) : (
           <>
@@ -606,7 +660,7 @@ const CallLog = () => {
                   This is a sample data table
                 </div>
               )}
-              columns={columns as any}
+              columns={columns}
               dataSource={sample}
               className="mt-5"
               scroll={{ x: "max-content" }}
