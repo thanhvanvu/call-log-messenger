@@ -1,15 +1,18 @@
 "use client";
 import Dragger from "antd/es/upload/Dragger";
 import React, { useEffect, useState } from "react";
-import { InboxOutlined } from "@ant-design/icons";
+import { InboxOutlined, RedoOutlined } from "@ant-design/icons";
 import {
+  Button,
   Card,
   Collapse,
   CollapseProps,
   message,
+  Popover,
   Table,
   TableColumnsType,
   TablePaginationConfig,
+  TableProps,
   Upload,
   UploadFile,
   UploadProps,
@@ -70,6 +73,12 @@ const sample = data;
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
+type OnChange = NonNullable<TableProps<ICallLogType>["onChange"]>;
+type Filters = Parameters<OnChange>[1];
+
+type GetSingle<T> = T extends (infer U)[] ? U : never;
+type Sorts = GetSingle<Parameters<OnChange>[2]>;
+
 const CallLog = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const [name1, setName1] = useState("");
@@ -112,7 +121,9 @@ const CallLog = () => {
     },
   });
 
-  const [test, setTest] = useState<number>(1);
+  const [filteredInfo, setFilteredInfo] = useState<Filters>({});
+  const [sortedInfo, setSortedInfo] = useState<Sorts>({});
+  const [isShowDeleteAction, setIsShowDeleteAction] = useState<boolean>(true);
 
   const props: UploadProps = {
     name: "file",
@@ -239,10 +250,6 @@ const CallLog = () => {
     },
   };
 
-  useEffect(() => {
-    console.log("date filter", dateFilter);
-  }, dateFilter);
-
   const columns: TableColumnsType<ICallLogType> = [
     {
       title: <span className="block font-bold text-base text-center">Date</span>,
@@ -250,17 +257,16 @@ const CallLog = () => {
       key: "date",
       width: "15%",
       align: "center",
+      filteredValue: filteredInfo.date || null,
       filters: dateFilter,
-      // onFilter: (value, record: ICallLogType) => {
-      //   const date = value as string;
-      //   const splitDate = date.split(",");
-      //   const month = splitDate[0];
-      //   const year = splitDate[1];
+      onFilter: (value, record: ICallLogType) => {
+        const date = value as string;
+        const splitDate = date.split(",");
+        const month = splitDate[0];
+        const year = splitDate[1];
 
-      //   if (record.date.includes(month) && record.date.includes(year)) {
-      //     return true;
-      //   }
-      // },
+        return record.date.includes(month) && record.date.includes(year);
+      },
     },
 
     {
@@ -269,6 +275,8 @@ const CallLog = () => {
       key: "sender_name",
       align: "center",
       width: "20%",
+      sortOrder: sortedInfo.columnKey === "sender_name" ? sortedInfo.order : null,
+      sorter: (a: ICallLogType, b: ICallLogType) => a.sender_name.length - b.sender_name.length,
     },
     {
       title: <span className="font-bold text-base">Content</span>,
@@ -291,39 +299,32 @@ const CallLog = () => {
       key: "call_duration",
       width: "15%",
       align: "center",
+      sortOrder: sortedInfo.columnKey === "call_duration" ? sortedInfo.order : null,
+      sorter: (a: ICallLogType, b: ICallLogType) => a.call_duration.localeCompare(b.call_duration),
       render: (text: string) => <p className="font-bold text-base tracking-wide">{text}</p>,
     },
 
-    {
+    isShowDeleteAction && {
       title: <span className="font-bold text-base">Action</span>,
       key: "action",
       align: "center",
       width: "15%",
-      render: (value, record) => {
-        return (
-          <p
-            className="text-[red] cursor-pointer"
-            onClick={() => {
-              if (window.confirm("Do you really delete this time ?")) {
-                const objectToRemove = record;
-                const rawLogs = [...rawCallLogs];
-
-                const rawLogsFiltered = rawLogs.filter((obj: IRawLogType) => {
-                  return obj.timestamp_ms !== objectToRemove.timestamp_ms;
-                });
-
-                setRawCallLogs(rawLogsFiltered);
-              } else {
-                return;
-              }
-            }}
-          >
-            Delete
-          </p>
-        );
-      },
+      render: (record: ICallLogType) => (
+        <p
+          className="text-[red] cursor-pointer"
+          onClick={() => {
+            if (window.confirm("Do you really want to delete this time?")) {
+              setRawCallLogs((prevLogs) =>
+                prevLogs.filter((obj) => obj.timestamp_ms !== record.timestamp_ms)
+              );
+            }
+          }}
+        >
+          Delete
+        </p>
+      ),
     },
-  ];
+  ].filter(Boolean); // Removes `false` or `undefined` values
 
   const items: CollapseProps["items"] = [
     {
@@ -414,41 +415,47 @@ const CallLog = () => {
 
   const handleTableChange = (
     pagination: TablePaginationConfig,
-    filters: Record<string, FilterValue | null>
+    filters: Record<string, FilterValue | null>,
+    sorter: any
   ) => {
     console.log(filters);
-    if (filters && filters.date) {
-      console.log(filters);
+    console.log(sorter);
 
-      const filterCallLogs: IRawLogType[] = [];
+    setFilteredInfo(filters);
+    setSortedInfo(sorter as Sorts);
 
-      const dateArray = filters?.date;
+    // if (filters && filters.date) {
+    //   console.log(filters);
 
-      // filter could be an array, so need to use forEach
-      // get month, year from the filter from the table
-      // filter it from the initial data raw call logs
-      dateArray.forEach((item) => {
-        const date = item as string;
-        const splitDate = date.split(",");
-        const month = splitDate[0];
-        const year = splitDate[1];
+    //   const filterCallLogs: IRawLogType[] = [];
 
-        const filterRawLogs = rawCallLogsNotModify.filter((item) => {
-          return item.date.includes(month) && item?.date.includes(year);
-        });
+    //   const dateArray = filters?.date;
 
-        // push filtered data in empty array
-        filterCallLogs.push(...filterRawLogs);
-      });
+    //   // filter could be an array, so need to use forEach
+    //   // get month, year from the filter from the table
+    //   // filter it from the initial data raw call logs
+    //   dateArray.forEach((item) => {
+    //     const date = item as string;
+    //     const splitDate = date.split(",");
+    //     const month = splitDate[0];
+    //     const year = splitDate[1];
 
-      // after getting filtered data, set state and continue processing
-      setRawCallLogs(filterCallLogs);
-    } else {
-      // if filter is null
-      // set raw call logs with initial raw call logs
-      const rawCallLogsCopied = [...rawCallLogsNotModify];
-      setRawCallLogs(rawCallLogsCopied);
-    }
+    //     const filterRawLogs = rawCallLogsNotModify.filter((item) => {
+    //       return item.date.includes(month) && item?.date.includes(year);
+    //     });
+
+    //     // push filtered data in empty array
+    //     filterCallLogs.push(...filterRawLogs);
+    //   });
+
+    //   // after getting filtered data, set state and continue processing
+    //   setRawCallLogs(filterCallLogs);
+    // } else {
+    //   // if filter is null
+    //   // set raw call logs with initial raw call logs
+    //   const rawCallLogsCopied = [...rawCallLogsNotModify];
+    //   setRawCallLogs(rawCallLogsCopied);
+    // }
   };
 
   // Clean data when new Raw Data is detected
@@ -627,12 +634,13 @@ const CallLog = () => {
             pagination={{ showSizeChanger: true }}
             size="large"
             title={() => (
-              <div className="flex text-center items-center font-bold text-2xl py-2">
-                Call logs between {name1} and {name2} on{" "}
-                <span>
-                  <FaFacebookSquare style={{ color: "#0866FF", marginLeft: 12, fontSize: 30 }} />{" "}
-                </span>
-                {/* <ExportAsPdf
+              <div className="flex items-center justify-between">
+                <div className="flex text-center items-center font-bold text-2xl py-2 ">
+                  Call logs between {name1} and {name2} on{" "}
+                  <span>
+                    <FaFacebookSquare style={{ color: "#0866FF", marginLeft: 12, fontSize: 30 }} />
+                  </span>
+                  {/* <ExportAsPdf
                   data={dataToShow}
                   headers={["Date", "Sender", "Content", "Call End Time At", "Call Duration"]}
                   headerStyles={{ fillColor: "red" }}
@@ -641,6 +649,40 @@ const CallLog = () => {
                 >
                   {(props) => <button {...props}>Export as PDF</button>}
                 </ExportAsPdf> */}
+                </div>
+                <div className="hidden lg:block">
+                  <Popover
+                    placement="topRight"
+                    title={"Action"}
+                    content={
+                      <div className="flex flex-col gap-2">
+                        <Button
+                          type="primary"
+                          onClick={() => {
+                            setFilteredInfo({});
+                            setSortedInfo({});
+                            setRawCallLogs(rawCallLogsNotModify);
+                          }}
+                        >
+                          <RedoOutlined />
+                          Reset Filter
+                        </Button>
+                        <Button
+                          type="primary"
+                          danger
+                          onClick={() => setIsShowDeleteAction(!isShowDeleteAction)}
+                        >
+                          Hide/Show Delete action
+                        </Button>
+                      </div>
+                    }
+                  >
+                    <Button type="primary">
+                      <RedoOutlined />
+                      Reset Filter
+                    </Button>
+                  </Popover>
+                </div>
               </div>
             )}
             columns={columns}
