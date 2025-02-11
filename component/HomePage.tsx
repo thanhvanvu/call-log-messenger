@@ -7,7 +7,7 @@ import Link from "next/link";
 function Homepage() {
   return (
     <div className="w-[90%] mx-auto h-screen mt-4 bg-gray 3xl:w-[70%] 3xl:flex gap-20">
-      <div className=" 3xl:mt-[150px] 3xl:w-[70%]">
+      <div className=" 3xl:mt-[150px] 3xl:w-[60%]">
         <p className="text-4xl font-bold 3xl:text-6xl">
           Can not find <span className="text-[#0866FF]">Call Logs</span> ? View Them Here
         </p>

@@ -471,6 +471,8 @@ const CallLog = () => {
     filters: Record<string, FilterValue | null>,
     sorter: any
   ) => {
+    console.log(pagination);
+
     setFilteredInfo(filters);
     setSortedInfo(sorter as Sorts);
     if (filters && filters.date) {
@@ -656,7 +658,7 @@ const CallLog = () => {
     <>
       {contextHolder}
       <div className="mt-10 w-[90%] m-auto 3xl:w-[80%] pb-14">
-        <div className="mt-5">
+        <div className="mt-4">
           <Dragger className="block m-auto mt-20 lg:w-[70%] 2xl:w-[60%] 3xl:w-[40%]" {...props}>
             <p className="ant-upload-drag-icon">
               <InboxOutlined />
@@ -680,7 +682,12 @@ const CallLog = () => {
 
         {dataToShow && dataToShow.length > 0 && isLoadingFileFinish === true ? (
           <Table
-            pagination={{ showSizeChanger: true }}
+            pagination={{
+              showSizeChanger: true,
+              showTotal: (total, range) => {
+                return <p>{range[0] + "-" + range[1] + " out of " + total}</p>;
+              },
+            }}
             size="large"
             title={() => (
               <div className="flex items-center justify-between">
@@ -737,7 +744,7 @@ const CallLog = () => {
             columns={columns}
             onChange={handleTableChange}
             dataSource={dataToShow}
-            className="mt-5"
+            className="mt-4"
             scroll={{ x: "max-content", y: 55 * 20 }}
             rowClassName="call-logs-table-row"
           />
@@ -752,7 +759,7 @@ const CallLog = () => {
               )}
               columns={columns}
               dataSource={sample}
-              className="mt-5"
+              className="mt-4"
               scroll={{ x: "max-content" }}
             />
           </>
