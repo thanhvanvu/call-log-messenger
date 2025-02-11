@@ -155,6 +155,7 @@ const CallLog = () => {
           try {
             const rawCallLogsObject: IRawLogType[] = [];
 
+            console.log(info);
             // Process each file in the fileList
             for (const fileItem of info.fileList) {
               const file = fileItem.originFileObj;
@@ -219,12 +220,18 @@ const CallLog = () => {
               }
             });
 
+            // remove duplicate object in case user upload the same file
+            const uniqueRawCallLogsObject = rawCallLogsObject.filter(
+              (o, index, arr) =>
+                arr.findIndex((item) => JSON.stringify(item) === JSON.stringify(o)) === index
+            );
+
             // Update date filter
             setDateFilter(filter);
 
             // Set raw call logs after processing all files
-            setRawCallLogs(rawCallLogsObject);
-            setRawCallLogsNotModify(rawCallLogsObject);
+            setRawCallLogs(uniqueRawCallLogsObject);
+            setRawCallLogsNotModify(uniqueRawCallLogsObject);
           } catch (error) {
             console.log(error);
             messageApi.error("Failed to process the file. Please ensure it contains valid JSON.");
@@ -244,13 +251,34 @@ const CallLog = () => {
       console.log("Dropped files", e.dataTransfer.files);
     },
 
-    onRemove() {
+    onRemove(file) {
+      console.log("file", file);
+      const readFileAsText = (file: File): Promise<string> => {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.readAsText(file, "UTF-8");
+          reader.onload = (e) => resolve(e?.target?.result as string);
+          reader.onerror = () => reject(new Error("Failed to read the file."));
+        });
+      };
+
+      const process = async () => {
+        const fileTest = file.originFileObj;
+        if (fileTest) {
+          const fileContent = await readFileAsText(fileTest); // Read file as text
+          const jsonData = JSON.parse(fileContent); // Parse JSON data
+          console.log(jsonData);
+        }
+      };
+
+      process();
+
       setRawCallLogs([]);
       setDataToShow([]);
     },
   };
 
-  const columns: TableColumnsType<ICallLogType> = [
+  const columns: any = [
     {
       title: <span className="block font-bold text-base text-center">Date</span>,
       dataIndex: "date",
@@ -259,7 +287,7 @@ const CallLog = () => {
       align: "center",
       filteredValue: filteredInfo.date || null,
       filters: dateFilter,
-      onFilter: (value, record: ICallLogType) => {
+      onFilter: (value: string, record: ICallLogType) => {
         const date = value as string;
         const splitDate = date.split(",");
         const month = splitDate[0];
@@ -418,44 +446,8 @@ const CallLog = () => {
     filters: Record<string, FilterValue | null>,
     sorter: any
   ) => {
-    console.log(filters);
-    console.log(sorter);
-
     setFilteredInfo(filters);
     setSortedInfo(sorter as Sorts);
-
-    // if (filters && filters.date) {
-    //   console.log(filters);
-
-    //   const filterCallLogs: IRawLogType[] = [];
-
-    //   const dateArray = filters?.date;
-
-    //   // filter could be an array, so need to use forEach
-    //   // get month, year from the filter from the table
-    //   // filter it from the initial data raw call logs
-    //   dateArray.forEach((item) => {
-    //     const date = item as string;
-    //     const splitDate = date.split(",");
-    //     const month = splitDate[0];
-    //     const year = splitDate[1];
-
-    //     const filterRawLogs = rawCallLogsNotModify.filter((item) => {
-    //       return item.date.includes(month) && item?.date.includes(year);
-    //     });
-
-    //     // push filtered data in empty array
-    //     filterCallLogs.push(...filterRawLogs);
-    //   });
-
-    //   // after getting filtered data, set state and continue processing
-    //   setRawCallLogs(filterCallLogs);
-    // } else {
-    //   // if filter is null
-    //   // set raw call logs with initial raw call logs
-    //   const rawCallLogsCopied = [...rawCallLogsNotModify];
-    //   setRawCallLogs(rawCallLogsCopied);
-    // }
   };
 
   // Clean data when new Raw Data is detected
@@ -570,6 +562,7 @@ const CallLog = () => {
     setDataToShow(modifiedCallLogs);
   }, [rawCallLogs, name1, name2]);
 
+  // build data for chart
   useEffect(() => {
     const statistic = dataStatistic;
     const nameA = name1;
