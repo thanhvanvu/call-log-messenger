@@ -39,6 +39,7 @@ import {
 import Link from "next/link";
 import { FilterValue } from "antd/es/table/interface";
 import { readFileAsText } from "@/app/utils/helper";
+import dayjs from "dayjs";
 
 interface IRawLogType {
   call_duration: number;
@@ -266,6 +267,30 @@ const CallLog = () => {
 
             rawCallLogsCopied = [...rawCallLogsFiltered];
           });
+
+          // build date filter object
+          const filter: IDateFilterType[] = [];
+          rawCallLogsCopied.forEach((callLog) => {
+            const date = new Date(callLog.timestamp_ms);
+            const month = date.toLocaleString("default", { month: "long" });
+            const year = date.toLocaleString("default", { year: "numeric" });
+
+            const FilterObject: IDateFilterType = {
+              text: `${month}, ${year}`,
+              value: `${month}, ${year}`,
+            };
+
+            // Check if filter array already contains this object
+            const exists = filter.some(
+              (f) => f.text === FilterObject.text && f.value === FilterObject.value
+            );
+
+            if (!exists) {
+              filter.push(FilterObject);
+            }
+          });
+          // Update date filter
+          setDateFilter(filter);
           setRawCallLogs(rawCallLogsCopied);
         }
       };
@@ -283,6 +308,10 @@ const CallLog = () => {
       align: "center",
       filteredValue: filteredInfo.date || null,
       filters: dateFilter,
+      sortOrder: sortedInfo.columnKey === "date" ? sortedInfo.order : null,
+      sorter: (a: ICallLogType, b: ICallLogType) => {
+        return a.timestamp_ms - b.timestamp_ms;
+      },
       // onFilter: (value: string, record: ICallLogType) => {
       //   const date = value as string;
       //   const splitDate = date.split(",");
