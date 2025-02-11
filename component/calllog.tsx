@@ -38,6 +38,7 @@ import {
 } from "chart.js";
 import Link from "next/link";
 import { FilterValue } from "antd/es/table/interface";
+import { readFileAsText } from "@/app/utils/helper";
 
 interface IRawLogType {
   call_duration: number;
@@ -124,6 +125,7 @@ const CallLog = () => {
   const [filteredInfo, setFilteredInfo] = useState<Filters>({});
   const [sortedInfo, setSortedInfo] = useState<Sorts>({});
   const [isShowDeleteAction, setIsShowDeleteAction] = useState<boolean>(true);
+  const [isLoadingFileFinish, setIsLoadingFileFinish] = useState<boolean>(false);
 
   const props: UploadProps = {
     name: "file",
@@ -139,23 +141,17 @@ const CallLog = () => {
       return true;
     },
     onChange(info) {
-      const { status } = info.file;
-      if (status === "done") {
-        // Helper function to read a file as text
-        const readFileAsText = (file: File): Promise<string> => {
-          return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsText(file, "UTF-8");
-            reader.onload = (e) => resolve(e?.target?.result as string);
-            reader.onerror = () => reject(new Error("Failed to read the file."));
-          });
-        };
+      const newFileList = [...info.fileList];
 
+      // Check if all files are uploaded
+      const allDone = newFileList.every((file) => file.status === "done");
+      const { status } = info.file;
+
+      if (allDone && status == "done") {
         const processFiles = async () => {
           try {
             const rawCallLogsObject: IRawLogType[] = [];
 
-            console.log(info);
             // Process each file in the fileList
             for (const fileItem of info.fileList) {
               const file = fileItem.originFileObj;
@@ -232,6 +228,9 @@ const CallLog = () => {
             // Set raw call logs after processing all files
             setRawCallLogs(uniqueRawCallLogsObject);
             setRawCallLogsNotModify(uniqueRawCallLogsObject);
+
+            // Display success message after processing is complete
+            messageApi.success(`${newFileList.length} files uploaded successfully.`);
           } catch (error) {
             console.log(error);
             messageApi.error("Failed to process the file. Please ensure it contains valid JSON.");
@@ -240,41 +239,38 @@ const CallLog = () => {
 
         // Start processing files
         processFiles();
-
-        // Display success message after processing is complete
-        messageApi.success(`${info.file.name} file uploaded successfully.`);
       } else if (status === "error") {
         messageApi.error(`${info.file.name} file upload failed.`);
       }
     },
+
     onDrop(e) {
       console.log("Dropped files", e.dataTransfer.files);
     },
 
     onRemove(file) {
-      console.log("file", file);
-      const readFileAsText = (file: File): Promise<string> => {
-        return new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.readAsText(file, "UTF-8");
-          reader.onload = (e) => resolve(e?.target?.result as string);
-          reader.onerror = () => reject(new Error("Failed to read the file."));
-        });
-      };
-
-      const process = async () => {
+      const removeFileProcess = async () => {
         const fileTest = file.originFileObj;
+        let rawCallLogsCopied = [...rawCallLogs];
+
         if (fileTest) {
           const fileContent = await readFileAsText(fileTest); // Read file as text
           const jsonData = JSON.parse(fileContent); // Parse JSON data
-          console.log(jsonData);
+
+          const messages = jsonData.messages || [];
+
+          messages.forEach((item: ICallLogType) => {
+            const rawCallLogsFiltered = rawCallLogsCopied.filter(
+              (callLog) => callLog.timestamp_ms != item.timestamp_ms
+            );
+
+            rawCallLogsCopied = [...rawCallLogsFiltered];
+          });
+          setRawCallLogs(rawCallLogsCopied);
         }
       };
 
-      process();
-
-      setRawCallLogs([]);
-      setDataToShow([]);
+      removeFileProcess();
     },
   };
 
@@ -287,14 +283,14 @@ const CallLog = () => {
       align: "center",
       filteredValue: filteredInfo.date || null,
       filters: dateFilter,
-      onFilter: (value: string, record: ICallLogType) => {
-        const date = value as string;
-        const splitDate = date.split(",");
-        const month = splitDate[0];
-        const year = splitDate[1];
+      // onFilter: (value: string, record: ICallLogType) => {
+      //   const date = value as string;
+      //   const splitDate = date.split(",");
+      //   const month = splitDate[0];
+      //   const year = splitDate[1];
 
-        return record.date.includes(month) && record.date.includes(year);
-      },
+      //   return record.date.includes(month) && record.date.includes(year);
+      // },
     },
 
     {
@@ -448,6 +444,36 @@ const CallLog = () => {
   ) => {
     setFilteredInfo(filters);
     setSortedInfo(sorter as Sorts);
+    if (filters && filters.date) {
+      const filterCallLogs: IRawLogType[] = [];
+
+      const dateArray = filters?.date;
+
+      // filter could be an array, so need to use forEach
+      // get month, year from the filter from the table
+      // filter it from the initial data raw call logs
+      dateArray.forEach((item) => {
+        const date = item as string;
+        const splitDate = date.split(",");
+        const month = splitDate[0];
+        const year = splitDate[1];
+
+        const filterRawLogs = rawCallLogsNotModify.filter((item) => {
+          return item.date.includes(month) && item?.date.includes(year);
+        });
+
+        // push filtered data in empty array
+        filterCallLogs.push(...filterRawLogs);
+      });
+
+      // after getting filtered data, set state and continue processing
+      setRawCallLogs(filterCallLogs);
+    } else {
+      // if filter is null
+      // set raw call logs with initial raw call logs
+      const rawCallLogsCopied = [...rawCallLogsNotModify];
+      setRawCallLogs(rawCallLogsCopied);
+    }
   };
 
   // Clean data when new Raw Data is detected
@@ -559,6 +585,7 @@ const CallLog = () => {
     sessionStorage.setItem("name1", nameA);
     sessionStorage.setItem("name2", nameB);
 
+    setIsLoadingFileFinish(true);
     setDataToShow(modifiedCallLogs);
   }, [rawCallLogs, name1, name2]);
 
@@ -622,7 +649,7 @@ const CallLog = () => {
           <Collapse items={items} />
         </div>
 
-        {dataToShow && dataToShow.length > 0 ? (
+        {dataToShow && dataToShow.length > 0 && isLoadingFileFinish === true ? (
           <Table
             pagination={{ showSizeChanger: true }}
             size="large"
