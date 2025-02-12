@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "antd/dist/reset.css";
 import Header from "@/component/Header";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
+import AppProvider from "@/context/app.context";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,13 +15,15 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Header />
-        <div className="">
-          <AntdRegistry>{children}</AntdRegistry>
-        </div>
-      </body>
-    </html>
+    <AppProvider>
+      <html lang="en">
+        <body className={inter.className}>
+          <Header />
+          <div className="">
+            <AntdRegistry>{children}</AntdRegistry>
+          </div>
+        </body>
+      </html>
+    </AppProvider>
   );
 }
