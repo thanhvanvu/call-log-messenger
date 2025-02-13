@@ -1,65 +1,67 @@
 import React from "react";
 import Image from "next/image";
-
-const steps = [
-  {
-    text: "In your Facebook page, click the top-right icon to open the dropdown menu.",
-    image: "/guide/1.jpg",
-  },
-  {
-    text: 'Click on "Settings & Privacy".',
-    image: "/guide/2.jpg",
-  },
-  {
-    text: 'Click on "Download your information".',
-    image: "/guide/3.jpg",
-  },
-  {
-    text: "Facebook will take you to another page.",
-    image: "/guide/4.jpg",
-  },
-  {
-    text: 'Click on "Download or transfer information".',
-    image: "/guide/5.jpg",
-  },
-  {
-    text: "Choose Facebook and then Next.",
-    image: "/guide/6.jpg",
-  },
-  {
-    text: 'Click on "Specific types of information".',
-    image: "/guide/7.jpg",
-  },
-  {
-    text: 'Select only "Messages" from the list.',
-    image: "/guide/8.jpg",
-  },
-  {
-    text: "Choose where you want to save the file.",
-    image: "/guide/9.jpg",
-  },
-  {
-    text: "Important: Choose **Format: JSON** and **Media quality: Low**.",
-    image: "/guide/10.jpg",
-  },
-  {
-    text: "Wait for the download. Once extracted, your files will look like this.",
-    image: "/guide/11.jpg",
-  },
-  {
-    text: "Follow this path to find your JSON file:",
-    image: "/guide/12.jpg",
-    list: [
-      "/your_facebook_activity",
-      "/messages",
-      "/inbox",
-      "/messenger name (e.g., kssf_3333222060082022)",
-      "/Your JSON file will be here.",
-    ],
-  },
-];
+import { useTranslations } from "next-intl";
 
 function Guide() {
+  const t = useTranslations();
+
+  const steps = [
+    {
+      text: t("json-guide.step1"),
+      image: "/guide/1.jpg",
+    },
+    {
+      text: t("json-guide.step2"),
+      image: "/guide/2.jpg",
+    },
+    {
+      text: t("json-guide.step3"),
+      image: "/guide/3.jpg",
+    },
+    {
+      text: t("json-guide.step4"),
+      image: "/guide/4.jpg",
+    },
+    {
+      text: t("json-guide.step5"),
+      image: "/guide/5.jpg",
+    },
+    {
+      text: t("json-guide.step6"),
+      image: "/guide/6.jpg",
+    },
+    {
+      text: t("json-guide.step7"),
+      image: "/guide/7.jpg",
+    },
+    {
+      text: t("json-guide.step8"),
+      image: "/guide/8.jpg",
+    },
+    {
+      text: t("json-guide.step9"),
+      image: "/guide/9.jpg",
+    },
+    {
+      text: t("json-guide.step10"),
+      image: "/guide/10.jpg",
+    },
+    {
+      text: t("json-guide.step11"),
+      image: "/guide/11.jpg",
+    },
+    {
+      text: t("json-guide.step12"),
+      image: "/guide/12.jpg",
+      list: [
+        "/your_facebook_activity",
+        "/messages",
+        "/inbox",
+        "/messenger name (e.g., kssf_3333222060082022)",
+        "/Your JSON file will be here.",
+      ],
+    },
+  ];
   return (
     <div className=" max-w-2xl bg-white mx-auto md:p-5  ">
       <h1 className="text-2xl font-bold text-center text-blue-600 mb-6">

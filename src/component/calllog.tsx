@@ -17,12 +17,7 @@ import {
   UploadProps,
 } from "antd";
 import { FaFacebookSquare } from "react-icons/fa";
-import {
-  convertTimeStampToDate,
-  convertTimeToWholeHour,
-  data,
-  decode,
-} from "@/app/utils/dataUltis";
+import { data } from "@/app/utils/dataUtils";
 
 import { Bar } from "react-chartjs-2";
 
@@ -37,7 +32,13 @@ import {
 } from "chart.js";
 import Link from "next/link";
 import { FilterValue } from "antd/es/table/interface";
-import { readFileAsText } from "@/app/utils/helper";
+import {
+  convertTimeStampToDate,
+  convertTimeToWholeHour,
+  decode,
+  readFileAsText,
+} from "@/app/utils/helper";
+import { useTranslations } from "next-intl";
 
 interface IRawLogType {
   call_duration: number;
@@ -126,7 +127,7 @@ const CallLog = () => {
   const [isShowDeleteAction, setIsShowDeleteAction] = useState<boolean>(true);
   const [fileList, setFileList] = useState<UploadFile[]>([]);
   const [isLoadingTable, setIsLoadingTable] = useState<boolean>(false);
-
+  const t = useTranslations();
   const props: UploadProps = {
     name: "file",
     multiple: true,
@@ -169,7 +170,7 @@ const CallLog = () => {
 
   const columns: any = [
     {
-      title: <span className="block font-bold text-base text-center">Date</span>,
+      title: <span className="block font-bold text-base text-center">{t("call-logs.date")}</span>,
       dataIndex: "date",
       key: "date",
       width: "15%",
@@ -180,18 +181,10 @@ const CallLog = () => {
       sorter: (a: ICallLogType, b: ICallLogType) => {
         return a.timestamp_ms - b.timestamp_ms;
       },
-      // onFilter: (value: string, record: ICallLogType) => {
-      //   const date = value as string;
-      //   const splitDate = date.split(",");
-      //   const month = splitDate[0];
-      //   const year = splitDate[1];
-
-      //   return record.date.includes(month) && record.date.includes(year);
-      // },
     },
 
     {
-      title: <span className="font-bold text-base">Sender</span>,
+      title: <span className="font-bold text-base">{t("call-logs.sender")}</span>,
       dataIndex: "sender_name",
       key: "sender_name",
       align: "center",
@@ -200,14 +193,14 @@ const CallLog = () => {
       sorter: (a: ICallLogType, b: ICallLogType) => a.sender_name.length - b.sender_name.length,
     },
     {
-      title: <span className="font-bold text-base">Content</span>,
+      title: <span className="font-bold text-base">{t("call-logs.content")}</span>,
       dataIndex: "content",
       key: "content",
       align: "center",
       width: "20%",
     },
     {
-      title: <span className="font-bold text-base">Call End Time At</span>,
+      title: <span className="font-bold text-base">{t("call-logs.call-end")}</span>,
       dataIndex: "time",
       key: "time",
       align: "center",
@@ -215,7 +208,7 @@ const CallLog = () => {
       render: (text: string) => <p className="text-base tracking-wide">{text}</p>,
     },
     {
-      title: <span className="font-bold text-base">Call Duration</span>,
+      title: <span className="font-bold text-base">{t("call-logs.call-duration")}</span>,
       dataIndex: "call_duration",
       key: "call_duration",
       width: "15%",
@@ -226,7 +219,7 @@ const CallLog = () => {
     },
 
     isShowDeleteAction && {
-      title: <span className="font-bold text-base">Action</span>,
+      title: <span className="font-bold text-base">{t("call-logs.action")}</span>,
       key: "action",
       align: "center",
       width: "15%",
@@ -250,17 +243,17 @@ const CallLog = () => {
   const items: CollapseProps["items"] = [
     {
       key: "1",
-      label: "Call log history statistics",
+      label: t("call-logs.statistic"),
       children: (
         <>
           <div className="grid grid-cols-1 gap-5 xl:grid-cols-2 3xl:grid-cols-3">
-            <Card title="Total success call and duration" hoverable={true} className="">
+            <Card title={t("call-logs.success")} hoverable={true} className="">
               <div className="flex flex-col gap-y-3">
                 <p>
                   {dataStatistic?.totalSuccessCall?.total
                     ? dataStatistic.totalSuccessCall.total
                     : 0}{" "}
-                  times
+                  {t("call-logs.time")}
                 </p>
                 <p className="tracking-[.1em]">
                   {dataStatistic?.totalSuccessCall?.totalDuration
@@ -269,13 +262,17 @@ const CallLog = () => {
                 </p>
               </div>
             </Card>
-            <Card title={`Total call from ${name1} and duration`} hoverable={true} className="">
+            <Card
+              title={t("call-logs.success-from-A", { nameA: name1 })}
+              hoverable={true}
+              className=""
+            >
               <div className="flex flex-col gap-y-3">
                 <p>
                   {dataStatistic?.totalCallFromNameA?.total
                     ? dataStatistic.totalCallFromNameA.total
                     : 0}{" "}
-                  times
+                  {t("call-logs.time")}
                 </p>
                 <p className="tracking-[.1em]">
                   {dataStatistic?.totalCallFromNameA?.totalDuration
@@ -284,13 +281,17 @@ const CallLog = () => {
                 </p>
               </div>
             </Card>
-            <Card title={`Total call from ${name2} and duration`} hoverable={true} className="">
+            <Card
+              title={t("call-logs.success-from-B", { nameB: name2 })}
+              hoverable={true}
+              className=""
+            >
               <div className="flex flex-col gap-y-3">
                 <p>
                   {dataStatistic?.totalCallFromNameB?.total
                     ? dataStatistic.totalCallFromNameB.total
                     : 0}{" "}
-                  times
+                  {t("call-logs.time")}
                 </p>
                 <p className="tracking-[.1em]">
                   {dataStatistic?.totalCallFromNameB?.totalDuration
@@ -299,28 +300,36 @@ const CallLog = () => {
                 </p>
               </div>
             </Card>
-            <Card title="Total missed call" hoverable={true} className="">
+            <Card title={t("call-logs.missed")} hoverable={true} className="">
               <div className="flex flex-col gap-y-3">
                 <p>
                   {dataStatistic?.totalMissedCall?.total ? dataStatistic.totalMissedCall.total : 0}{" "}
-                  times
+                  {t("call-logs.time")}
                 </p>
               </div>
             </Card>
-            <Card title={`Total missed call from ${name1}`} hoverable={true} className="">
+            <Card
+              title={t("call-logs.missed-from-A", { nameA: name1 })}
+              hoverable={true}
+              className=""
+            >
               <p>
                 {dataStatistic?.totalMissedCall?.fromNameA
                   ? dataStatistic.totalMissedCall.fromNameA
                   : 0}{" "}
-                times
+                {t("call-logs.time")}
               </p>
             </Card>
-            <Card title={`Total missed call from ${name2}`} hoverable={true} className="">
+            <Card
+              title={t("call-logs.missed-from-B", { nameB: name2 })}
+              hoverable={true}
+              className=""
+            >
               <p>
                 {dataStatistic?.totalMissedCall?.fromNameB
                   ? dataStatistic.totalMissedCall.fromNameB
                   : 0}{" "}
-                times
+                {t("call-logs.time")}
               </p>
             </Card>
           </div>
@@ -620,8 +629,8 @@ const CallLog = () => {
             <p className="ant-upload-drag-icon">
               <InboxOutlined />
             </p>
-            <p className="ant-upload-text">Click to this area to upload</p>
-            <p className="ant-upload-hint">Support for a multiple upload. Only support JSON file</p>
+            <p className="ant-upload-text">{t("call-logs.click-upload")}</p>
+            <p className="ant-upload-hint">{t("call-logs.upload-note")}</p>
             <Link
               href="/guide"
               className="ant-upload-hint"
@@ -629,7 +638,7 @@ const CallLog = () => {
                 e.stopPropagation();
               }}
             >
-              Do not have JSON file? Go here to find it
+              {t("call-logs.guide")}
             </Link>
           </Dragger>
         </div>
@@ -642,7 +651,11 @@ const CallLog = () => {
           pagination={{
             showSizeChanger: true,
             showTotal: (total, range) => {
-              return <p>{range[0] + "-" + range[1] + " out of " + total}</p>;
+              return (
+                <p>
+                  {range[0]} - {range[1]} {t("call-logs.pagination")} {total}
+                </p>
+              );
             },
           }}
           size="large"
@@ -650,8 +663,8 @@ const CallLog = () => {
             <div className="flex items-center justify-between">
               <div className="flex text-center items-center font-bold text-2xl py-2 ">
                 {dataToShow && dataToShow.length > 0 === true
-                  ? `Call logs between ${name1} and ${name2} on`
-                  : "This is a sample data for call logs on"}
+                  ? t("call-logs.data-title", { nameA: name1, nameB: name2 })
+                  : t("call-logs.sample-data-title")}
 
                 <span>
                   <FaFacebookSquare style={{ color: "#0866FF", marginLeft: 12, fontSize: 30 }} />
@@ -681,21 +694,21 @@ const CallLog = () => {
                         }}
                       >
                         <RedoOutlined />
-                        Reset Filter
+                        {t("call-logs.reset-filter")}
                       </Button>
                       <Button
                         type="primary"
                         danger
                         onClick={() => setIsShowDeleteAction(!isShowDeleteAction)}
                       >
-                        Hide/Show Delete action
+                        {t("call-logs.delete-action")}
                       </Button>
                     </div>
                   }
                 >
                   <Button type="primary">
                     <RedoOutlined />
-                    Reset Filter
+                    {t("call-logs.reset-filter")}
                   </Button>
                 </Popover>
               </div>

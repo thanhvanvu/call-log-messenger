@@ -2,12 +2,13 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import picture from "../../public/combined_stylized.jpg";
-import { Button } from "antd";
-import Link from "next/link";
+import { Button, Popover } from "antd";
 import MobileModal from "./mobile.modal";
-import { useCurrentApp } from "@/context/app.context";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 function Homepage() {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+  const t = useTranslations();
   // Check screen size
   useEffect(() => {
     const handleSetMobileModal = () => {
@@ -46,23 +47,21 @@ function Homepage() {
 
       <div className="3xl:mt-[150px] 3xl:w-[60%]">
         <p className="text-4xl font-bold 3xl:text-6xl">
-          Can not find <span className="text-[#0866FF]">Call Logs</span> ? View Them Here
+          {t.rich("homepage.title", {
+            callLogs: (chunk) => <span className="text-[#0866FF]">{chunk}</span>,
+          })}
         </p>
-        <p className="mt-4">
-          Gain comprehensive insights into your communication patterns with detailed call logs and
-          statistics. Effortlessly monitor call durations, track missed calls, and analyze overall
-          communication activity to optimize efficiency and stay connected.
-        </p>
+        <p className="mt-4">{t("homepage.description")}</p>
         <div className="mt-4 gap-4 flex flex-col sm:flex-row sm:gap-5">
           <Link href={"/calllog"}>
             <Button className="shadow-sm" type="primary" size="large">
-              GET STARTED
+              {t("common.get-started")}
             </Button>
           </Link>
 
           <Link href={"/guide"}>
             <Button className="shadow-sm" type="dashed" size="large">
-              Guide how to find JSON file
+              {t("common.guide")}
             </Button>
           </Link>
         </div>

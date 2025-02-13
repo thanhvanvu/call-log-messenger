@@ -1,0 +1,57 @@
+{
+  "homepage": {
+    "title": "¿No encuentras <callLogs>Registros de Llamadas</callLogs>? Míralos aquí",
+    "description": "Obtén información detallada sobre tus patrones de comunicación con registros de llamadas y estadísticas. Monitorea fácilmente la duración de las llamadas, sigue las llamadas perdidas y analiza la actividad general de la comunicación para optimizar la eficiencia y mantener la conexión."
+  },
+  "header": {
+    "get-started": "EMPEZAR",
+    "guide": "Guía sobre cómo encontrar el archivo JSON"
+  },
+  "call-logs": {
+    "click-upload": "Haz clic en esta área para subir",
+    "upload-note": "Soporta múltiples subidas. Solo soporta archivos JSON",
+    "guide": "¿No tienes un archivo JSON? Ve aquí para encontrarlo",
+    "data-title": "Registros de llamadas entre {nameA} y {nameB} el",
+    "sample-data-title": "Este es un ejemplo de datos de registros de llamadas el",
+    "reset-filter": "Restablecer filtro",
+    "delete-action": "Ocultar/Mostrar acción de eliminar",
+    "date": "Fecha",
+    "sender": "Remitente",
+    "content": "Contenido",
+    "call-end": "Hora de fin de llamada en",
+    "call-duration": "Duración de la llamada",
+    "action": "Acción",
+    "pagination": "de",
+    "statistic": "Estadísticas del historial de registros de llamadas",
+    "success": "Total de llamadas exitosas y duración",
+    "success-from-A": "Total de llamadas de {nameA} y duración",
+    "success-from-B": "Total de llamadas de {nameB} y duración",
+    "missed": "Total de llamadas perdidas",
+    "missed-from-A": "Total de llamadas perdidas de {nameA}",
+    "missed-from-B": "Total de llamadas perdidas de {nameB}",
+    "time": "veces"
+  },
+  "json-guide": {
+    "step1": "En tu página de Facebook, haz clic en el icono de la esquina superior derecha para abrir el menú desplegable.",
+    "step2": "Haz clic en 'Configuración y privacidad'.",
+    "step3": "Haz clic en 'Descargar tu información'.",
+    "step4": "Facebook te llevará a otra página.",
+    "step5": "Haz clic en 'Descargar o transferir información'.",
+    "step6": "Elige Facebook y luego haz clic en Siguiente.",
+    "step7": "Haz clic en 'Tipos específicos de información'.",
+    "step8": "Selecciona solo 'Mensajes' de la lista.",
+    "step9": "Elige dónde deseas guardar el archivo.",
+    "step10": "Importante: Elige **Formato: JSON** y **Calidad de los medios: Baja**.",
+    "step11": "Espera a que termine la descarga. Una vez extraídos, tus archivos se verán así.",
+    "step12": "Sigue esta ruta para encontrar tu archivo JSON:"
+  },
+  "mobile-modal": {
+    "title": "Se recomienda usar Desktop",
+    "line1": "Para una mejor experiencia, recomendamos usar una PC o laptop.",
+    "line2": "O puedes activar la opción 'Sitio de escritorio' en la configuración de tu navegador móvil."
+  },
+  "common": {
+    "get-started": "EMPEZAR",
+    "guide": "Guía sobre cómo encontrar el archivo JSON"
+  }
+}

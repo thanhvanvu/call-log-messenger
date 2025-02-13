@@ -1,0 +1,57 @@
+{
+  "homepage": {
+    "title": "找不到<callLogs>通话记录</callLogs>？在这里查看",
+    "description": "通过详细的通话记录和统计数据，全面了解您的通信模式。轻松监控通话时长、跟踪未接来电，并分析整体通信活动，以优化效率并保持连接。"
+  },
+  "header": {
+    "get-started": "开始使用",
+    "guide": "如何找到 JSON 文件"
+  },
+  "call-logs": {
+    "click-upload": "点击此区域上传",
+    "upload-note": "支持多次上传，仅支持 JSON 文件",
+    "guide": "没有 JSON 文件？点击这里查找",
+    "data-title": "在 {nameA} 和 {nameB} 之间的通话记录",
+    "sample-data-title": "这是一个通话记录的示例数据",
+    "reset-filter": "重置筛选",
+    "delete-action": "隐藏/显示删除操作",
+    "date": "日期",
+    "sender": "发送者",
+    "content": "内容",
+    "call-end": "通话结束时间",
+    "call-duration": "通话时长",
+    "action": "操作",
+    "pagination": "共",
+    "statistic": "通话记录历史统计",
+    "success": "总成功通话和时长",
+    "success-from-A": "来自 {nameA} 的总通话和时长",
+    "success-from-B": "来自 {nameB} 的总通话和时长",
+    "missed": "总未接来电",
+    "missed-from-A": "来自 {nameA} 的总未接来电",
+    "missed-from-B": "来自 {nameB} 的总未接来电",
+    "time": "次"
+  },
+  "json-guide": {
+    "step1": "在您的 Facebook 页面，点击右上角的图标以打开下拉菜单。",
+    "step2": "点击“设置与隐私”。",
+    "step3": "点击“下载您的信息”。",
+    "step4": "Facebook 会带您到另一个页面。",
+    "step5": "点击“下载或转移信息”。",
+    "step6": "选择 Facebook 然后点击下一步。",
+    "step7": "点击“特定类型的信息”。",
+    "step8": "仅选择“消息”选项。",
+    "step9": "选择您要保存文件的位置。",
+    "step10": "重要：选择 **格式：JSON** 和 **媒体质量：低**。",
+    "step11": "等待下载完成。一旦解压，您的文件将如下所示。",
+    "step12": "按照此路径找到您的 JSON 文件："
+  },
+  "mobile-modal": {
+    "title": "建议使用桌面版",
+    "line1": "为了获得最佳体验，我们建议使用 PC 或笔记本电脑。",
+    "line2": "或者您可以在手机浏览器设置中开启“桌面站点”模式。"
+  },
+  "common": {
+    "get-started": "开始使用",
+    "guide": "如何找到 JSON 文件"
+  }
+}

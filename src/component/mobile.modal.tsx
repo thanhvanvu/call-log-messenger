@@ -3,6 +3,7 @@ import React from "react";
 import android from "public/android.gif";
 import safari from "public/safari.gif";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 interface IProps {
   open: boolean;
   setOpen: (open: boolean) => void;
@@ -10,10 +11,11 @@ interface IProps {
 // onOk={handleOk} onCancel={handleCancel}
 function MobileModal(props: IProps) {
   const { open, setOpen } = props;
+  const t = useTranslations();
   return (
     <div className="w-72">
       <Modal
-        title="Best Viewed on Desktop"
+        title={t("mobile-modal.title")}
         style={{ top: 20 }}
         open={open}
         onOk={() => {
@@ -27,8 +29,8 @@ function MobileModal(props: IProps) {
           sessionStorage.setItem("mobileModal", "false");
         }}
       >
-        <p>For an optimal experience, we recommend using a PC or laptop.</p>
-        <p>Or enable &ldquo;Desktop site&ldquo; on your mobile browser settings.</p>
+        <p>{t("mobile-modal.line1")}</p>
+        <p>{t("mobile-modal.line2")}</p>
         <div className="flex justify-around mt-4 mb-4">
           <div>
             <Image

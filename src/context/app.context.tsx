@@ -1,9 +1,11 @@
 "use client";
-import { createContext, useState, use } from "react";
+import { createContext, useState, use, useEffect } from "react";
 
 interface AppContextType {
   callLogs: string;
   setCallLogs: (v: string) => void;
+  language: string;
+  setLanguage: (v: string) => void;
 }
 
 // Create a ThemeContext
@@ -15,12 +17,19 @@ interface IAppProvideProps {
 
 const AppProvider = (props: IAppProvideProps) => {
   const [callLogs, setCallLogs] = useState<string>("test");
+  const [language, setLanguage] = useState<string>("en");
+
+  useEffect(() => {
+    localStorage.setItem("language", language);
+  }, [language]);
 
   return (
     <AppContext
       value={{
         callLogs,
         setCallLogs,
+        language,
+        setLanguage,
       }}
     >
       {props.children}
