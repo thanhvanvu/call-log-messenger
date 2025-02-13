@@ -37,7 +37,7 @@ function MobileModal(props: IProps) {
               height={325}
               width={150}
               objectFit="cover"
-              className="h-[325px] w-auto object-cover"
+              className="h-[325px] w-auto object-cover border border-black"
             />
             <p className="text-center mt-2">Android browser.</p>
           </div>
@@ -48,7 +48,7 @@ function MobileModal(props: IProps) {
               src={safari}
               height={325}
               width={150}
-              className="h-[325px] w-auto object-cover border"
+              className="h-[325px] w-auto object-cover border border-black"
             />
             <p className="text-center mt-2">Safari browser.</p>
           </div>
