@@ -39,6 +39,7 @@ import {
 import Link from "next/link";
 import { FilterValue } from "antd/es/table/interface";
 import { readFileAsText } from "@/app/utils/helper";
+import dayjs from "dayjs";
 
 interface IRawLogType {
   call_duration: number;
@@ -121,7 +122,6 @@ const CallLog = () => {
       datasets: [], // Empty datasets array
     },
   });
-  const [fileList, setFileList] = useState<UploadFile[]>([]);
 
   const [filteredInfo, setFilteredInfo] = useState<Filters>({});
   const [sortedInfo, setSortedInfo] = useState<Sorts>({});
@@ -149,10 +149,97 @@ const CallLog = () => {
       const { status } = info.file;
 
       if (allDone && status == "done") {
-        setFileList(newFileList);
+        const processFiles = async () => {
+          try {
+            const rawCallLogsObject: IRawLogType[] = [];
 
-        // Display success message after processing is complete
-        messageApi.success(`${newFileList.length} files uploaded successfully.`);
+            // Process each file in the fileList
+            for (const fileItem of info.fileList) {
+              const file = fileItem.originFileObj;
+              if (file) {
+                const fileContent = await readFileAsText(file); // Read file as text
+                const jsonData = JSON.parse(fileContent); // Parse JSON data
+
+                const messages = jsonData.messages || [];
+                const participants = jsonData.participants || [];
+                const nameA = decode(participants[0]?.name || "");
+                const nameB = decode(participants[1]?.name || "");
+
+                // Set names for participants
+                if (!name1 && !name2) {
+                  setName1(nameA);
+                  setName2(nameB);
+                }
+
+                // Filter and add call logs with call duration
+                for (const item of messages) {
+                  if (item?.call_duration >= 0) {
+                    // Convert timestamp to date and hour
+                    const date = new Date(item.timestamp_ms);
+                    const formattedDate = date.toLocaleDateString("en-US", {
+                      month: "long",
+                      day: "2-digit",
+                      year: "numeric",
+                    });
+
+                    //  build date filter object
+
+                    rawCallLogsObject.push({ ...item, date: formattedDate });
+                  }
+                }
+              }
+            }
+
+            // Sort call logs by timestamp
+            rawCallLogsObject.sort(
+              (a: IRawLogType, b: IRawLogType) => a.timestamp_ms - b.timestamp_ms
+            );
+
+            // build date filter object
+            const filter: IDateFilterType[] = [];
+            rawCallLogsObject.forEach((callLog) => {
+              const date = new Date(callLog.timestamp_ms);
+              const month = date.toLocaleString("default", { month: "long" });
+              const year = date.toLocaleString("default", { year: "numeric" });
+
+              const FilterObject: IDateFilterType = {
+                text: `${month}, ${year}`,
+                value: `${month}, ${year}`,
+              };
+
+              // Check if filter array already contains this object
+              const exists = filter.some(
+                (f) => f.text === FilterObject.text && f.value === FilterObject.value
+              );
+
+              if (!exists) {
+                filter.push(FilterObject);
+              }
+            });
+
+            // remove duplicate object in case user upload the same file
+            const uniqueRawCallLogsObject = rawCallLogsObject.filter(
+              (o, index, arr) =>
+                arr.findIndex((item) => JSON.stringify(item) === JSON.stringify(o)) === index
+            );
+
+            // Update date filter
+            setDateFilter(filter);
+
+            // Set raw call logs after processing all files
+            setRawCallLogs(uniqueRawCallLogsObject);
+            setRawCallLogsNotModify(uniqueRawCallLogsObject);
+
+            // Display success message after processing is complete
+            messageApi.success(`${newFileList.length} files uploaded successfully.`);
+          } catch (error) {
+            console.log(error);
+            messageApi.error("Failed to process the file. Please ensure it contains valid JSON.");
+          }
+        };
+
+        // Start processing files
+        processFiles();
       } else if (status === "error") {
         messageApi.error(`${info.file.name} file upload failed.`);
       }
@@ -163,54 +250,52 @@ const CallLog = () => {
     },
 
     onRemove(file) {
-      const fileListFiltered = fileList.filter((item) => item.uid != file.uid);
-      setFileList(fileListFiltered);
+      const removeFileProcess = async () => {
+        const fileTest = file.originFileObj;
+        let rawCallLogsCopied = [...rawCallLogs];
 
-      //   const fileTest = file.originFileObj;
-      //   let rawCallLogsCopied = [...rawCallLogs];
+        if (fileTest) {
+          const fileContent = await readFileAsText(fileTest); // Read file as text
+          const jsonData = JSON.parse(fileContent); // Parse JSON data
 
-      //   if (fileTest) {
-      //     const fileContent = await readFileAsText(fileTest); // Read file as text
-      //     const jsonData = JSON.parse(fileContent); // Parse JSON data
+          const messages = jsonData.messages || [];
 
-      //     const messages = jsonData.messages || [];
+          messages.forEach((item: ICallLogType) => {
+            const rawCallLogsFiltered = rawCallLogsCopied.filter(
+              (callLog) => callLog.timestamp_ms != item.timestamp_ms
+            );
 
-      //     messages.forEach((item: ICallLogType) => {
-      //       const rawCallLogsFiltered = rawCallLogsCopied.filter(
-      //         (callLog) => callLog.timestamp_ms != item.timestamp_ms
-      //       );
+            rawCallLogsCopied = [...rawCallLogsFiltered];
+          });
 
-      //       rawCallLogsCopied = [...rawCallLogsFiltered];
-      //     });
+          // build date filter object
+          const filter: IDateFilterType[] = [];
+          rawCallLogsCopied.forEach((callLog) => {
+            const date = new Date(callLog.timestamp_ms);
+            const month = date.toLocaleString("default", { month: "long" });
+            const year = date.toLocaleString("default", { year: "numeric" });
 
-      //     // build date filter object
-      //     const filter: IDateFilterType[] = [];
-      //     rawCallLogsCopied.forEach((callLog) => {
-      //       const date = new Date(callLog.timestamp_ms);
-      //       const month = date.toLocaleString("default", { month: "long" });
-      //       const year = date.toLocaleString("default", { year: "numeric" });
+            const FilterObject: IDateFilterType = {
+              text: `${month}, ${year}`,
+              value: `${month}, ${year}`,
+            };
 
-      //       const FilterObject: IDateFilterType = {
-      //         text: `${month}, ${year}`,
-      //         value: `${month}, ${year}`,
-      //       };
+            // Check if filter array already contains this object
+            const exists = filter.some(
+              (f) => f.text === FilterObject.text && f.value === FilterObject.value
+            );
 
-      //       // Check if filter array already contains this object
-      //       const exists = filter.some(
-      //         (f) => f.text === FilterObject.text && f.value === FilterObject.value
-      //       );
+            if (!exists) {
+              filter.push(FilterObject);
+            }
+          });
+          // Update date filter
+          setDateFilter(filter);
+          setRawCallLogs(rawCallLogsCopied);
+        }
+      };
 
-      //       if (!exists) {
-      //         filter.push(FilterObject);
-      //       }
-      //     });
-      //     // Update date filter
-      //     setDateFilter(filter);
-      //     setRawCallLogs(rawCallLogsCopied);
-      //   }
-      // };
-
-      // removeFileProcess();
+      removeFileProcess();
     },
   };
 
@@ -421,97 +506,6 @@ const CallLog = () => {
       setRawCallLogs(rawCallLogsCopied);
     }
   };
-
-  // process file
-  // filter call logs, sort, remove duplicate
-  useEffect(() => {
-    const processFiles = async () => {
-      try {
-        const rawCallLogsObject: IRawLogType[] = [];
-
-        // Process each file in the fileList
-        for (const fileItem of fileList) {
-          const file = fileItem.originFileObj;
-          if (file) {
-            const fileContent = await readFileAsText(file); // Read file as text
-            const jsonData = JSON.parse(fileContent); // Parse JSON data
-
-            const messages = jsonData.messages || [];
-            const participants = jsonData.participants || [];
-            const nameA = decode(participants[0]?.name || "");
-            const nameB = decode(participants[1]?.name || "");
-
-            // Set names for participants
-            if (!name1 && !name2) {
-              setName1(nameA);
-              setName2(nameB);
-            }
-
-            // Filter and add call logs with call duration
-            for (const item of messages) {
-              if (item?.call_duration >= 0) {
-                // Convert timestamp to date and hour
-                const date = new Date(item.timestamp_ms);
-                const formattedDate = date.toLocaleDateString("en-US", {
-                  month: "long",
-                  day: "2-digit",
-                  year: "numeric",
-                });
-
-                //  build date filter object
-
-                rawCallLogsObject.push({ ...item, date: formattedDate });
-              }
-            }
-          }
-        }
-
-        // Sort call logs by timestamp
-        rawCallLogsObject.sort((a: IRawLogType, b: IRawLogType) => a.timestamp_ms - b.timestamp_ms);
-
-        // build date filter object
-        const filter: IDateFilterType[] = [];
-        rawCallLogsObject.forEach((callLog) => {
-          const date = new Date(callLog.timestamp_ms);
-          const month = date.toLocaleString("default", { month: "long" });
-          const year = date.toLocaleString("default", { year: "numeric" });
-
-          const FilterObject: IDateFilterType = {
-            text: `${month}, ${year}`,
-            value: `${month}, ${year}`,
-          };
-
-          // Check if filter array already contains this object
-          const exists = filter.some(
-            (f) => f.text === FilterObject.text && f.value === FilterObject.value
-          );
-
-          if (!exists) {
-            filter.push(FilterObject);
-          }
-        });
-
-        // remove duplicate object in case user upload the same file
-        const uniqueRawCallLogsObject = rawCallLogsObject.filter(
-          (o, index, arr) =>
-            arr.findIndex((item) => JSON.stringify(item) === JSON.stringify(o)) === index
-        );
-
-        // Update date filter
-        setDateFilter(filter);
-
-        // Set raw call logs after processing all files
-        setRawCallLogs(uniqueRawCallLogsObject);
-        setRawCallLogsNotModify(uniqueRawCallLogsObject);
-      } catch (error) {
-        console.log(error);
-        messageApi.error("Failed to process the file. Please ensure it contains valid JSON.");
-      }
-    };
-
-    // Start processing files
-    processFiles();
-  }, [fileList]);
 
   // Clean data when new Raw Data is detected
   // Decode string
