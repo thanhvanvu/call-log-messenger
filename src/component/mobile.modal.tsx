@@ -28,7 +28,7 @@ function MobileModal(props: IProps) {
         }}
       >
         <p>For an optimal experience, we recommend using a PC or laptop.</p>
-        <p>Or enable "Desktop site" on your mobile browser settings.</p>
+        <p>Or enable &ldquo;Desktop site&ldquo; on your mobile browser settings.</p>
         <div className="flex justify-around mt-4 mb-4">
           <div>
             <Image

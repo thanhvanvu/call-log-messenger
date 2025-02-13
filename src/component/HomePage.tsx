@@ -5,15 +5,15 @@ import picture from "../../public/combined_stylized.jpg";
 import { Button } from "antd";
 import Link from "next/link";
 import MobileModal from "./mobile.modal";
+import { useCurrentApp } from "@/context/app.context";
 function Homepage() {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
-
   // Check screen size
   useEffect(() => {
     const handleSetMobileModal = () => {
       // Get saved data from sessionStorage
       const data = sessionStorage.getItem("mobileModal");
-      console.log(data);
+
       if (!data) {
         if (window.innerWidth < 1280) {
           setIsOpenModal(true);
