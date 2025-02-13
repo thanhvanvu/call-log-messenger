@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import picture from "@/public/combined_stylized.jpg";
+import picture from "../../public/combined_stylized.jpg";
 import { Button } from "antd";
 import Link from "next/link";
 function Homepage() {

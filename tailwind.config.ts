@@ -1,10 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: [
-    "./app/**/*.{js,ts,jsx,tsx}", // For all files inside the `app` directory
-    "./component/**/*.{js,ts,jsx,tsx}", // For all files inside the `component` directory
-  ],
+  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
       screens: {
