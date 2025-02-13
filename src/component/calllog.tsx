@@ -124,7 +124,8 @@ const CallLog = () => {
   const [filteredInfo, setFilteredInfo] = useState<Filters>({});
   const [sortedInfo, setSortedInfo] = useState<Sorts>({});
   const [isShowDeleteAction, setIsShowDeleteAction] = useState<boolean>(true);
-  const [isLoadingFileFinish, setIsLoadingFileFinish] = useState<boolean>(false);
+  const [fileList, setFileList] = useState<UploadFile[]>([]);
+  const [isLoadingTable, setIsLoadingTable] = useState<boolean>(false);
 
   const props: UploadProps = {
     name: "file",
@@ -147,97 +148,9 @@ const CallLog = () => {
       const { status } = info.file;
 
       if (allDone && status == "done") {
-        const processFiles = async () => {
-          try {
-            const rawCallLogsObject: IRawLogType[] = [];
-
-            // Process each file in the fileList
-            for (const fileItem of info.fileList) {
-              const file = fileItem.originFileObj;
-              if (file) {
-                const fileContent = await readFileAsText(file); // Read file as text
-                const jsonData = JSON.parse(fileContent); // Parse JSON data
-
-                const messages = jsonData.messages || [];
-                const participants = jsonData.participants || [];
-                const nameA = decode(participants[0]?.name || "");
-                const nameB = decode(participants[1]?.name || "");
-
-                // Set names for participants
-                if (!name1 && !name2) {
-                  setName1(nameA);
-                  setName2(nameB);
-                }
-
-                // Filter and add call logs with call duration
-                for (const item of messages) {
-                  if (item?.call_duration >= 0) {
-                    // Convert timestamp to date and hour
-                    const date = new Date(item.timestamp_ms);
-                    const formattedDate = date.toLocaleDateString("en-US", {
-                      month: "long",
-                      day: "2-digit",
-                      year: "numeric",
-                    });
-
-                    //  build date filter object
-
-                    rawCallLogsObject.push({ ...item, date: formattedDate });
-                  }
-                }
-              }
-            }
-
-            // Sort call logs by timestamp
-            rawCallLogsObject.sort(
-              (a: IRawLogType, b: IRawLogType) => a.timestamp_ms - b.timestamp_ms
-            );
-
-            // build date filter object
-            const filter: IDateFilterType[] = [];
-            rawCallLogsObject.forEach((callLog) => {
-              const date = new Date(callLog.timestamp_ms);
-              const month = date.toLocaleString("default", { month: "long" });
-              const year = date.toLocaleString("default", { year: "numeric" });
-
-              const FilterObject: IDateFilterType = {
-                text: `${month}, ${year}`,
-                value: `${month}, ${year}`,
-              };
-
-              // Check if filter array already contains this object
-              const exists = filter.some(
-                (f) => f.text === FilterObject.text && f.value === FilterObject.value
-              );
-
-              if (!exists) {
-                filter.push(FilterObject);
-              }
-            });
-
-            // remove duplicate object in case user upload the same file
-            const uniqueRawCallLogsObject = rawCallLogsObject.filter(
-              (o, index, arr) =>
-                arr.findIndex((item) => JSON.stringify(item) === JSON.stringify(o)) === index
-            );
-
-            // Update date filter
-            setDateFilter(filter);
-
-            // Set raw call logs after processing all files
-            setRawCallLogs(uniqueRawCallLogsObject);
-            setRawCallLogsNotModify(uniqueRawCallLogsObject);
-
-            // Display success message after processing is complete
-            messageApi.success(`${newFileList.length} files uploaded successfully.`);
-          } catch (error) {
-            console.log(error);
-            messageApi.error("Failed to process the file. Please ensure it contains valid JSON.");
-          }
-        };
-
-        // Start processing files
-        processFiles();
+        setIsLoadingTable(true);
+        setFileList(newFileList);
+        messageApi.success(`${newFileList.length} files uploaded successfully.`);
       } else if (status === "error") {
         messageApi.error(`${info.file.name} file upload failed.`);
       }
@@ -248,52 +161,9 @@ const CallLog = () => {
     },
 
     onRemove(file) {
-      const removeFileProcess = async () => {
-        const fileTest = file.originFileObj;
-        let rawCallLogsCopied = [...rawCallLogs];
-
-        if (fileTest) {
-          const fileContent = await readFileAsText(fileTest); // Read file as text
-          const jsonData = JSON.parse(fileContent); // Parse JSON data
-
-          const messages = jsonData.messages || [];
-
-          messages.forEach((item: ICallLogType) => {
-            const rawCallLogsFiltered = rawCallLogsCopied.filter(
-              (callLog) => callLog.timestamp_ms != item.timestamp_ms
-            );
-
-            rawCallLogsCopied = [...rawCallLogsFiltered];
-          });
-
-          // build date filter object
-          const filter: IDateFilterType[] = [];
-          rawCallLogsCopied.forEach((callLog) => {
-            const date = new Date(callLog.timestamp_ms);
-            const month = date.toLocaleString("default", { month: "long" });
-            const year = date.toLocaleString("default", { year: "numeric" });
-
-            const FilterObject: IDateFilterType = {
-              text: `${month}, ${year}`,
-              value: `${month}, ${year}`,
-            };
-
-            // Check if filter array already contains this object
-            const exists = filter.some(
-              (f) => f.text === FilterObject.text && f.value === FilterObject.value
-            );
-
-            if (!exists) {
-              filter.push(FilterObject);
-            }
-          });
-          // Update date filter
-          setDateFilter(filter);
-          setRawCallLogs(rawCallLogsCopied);
-        }
-      };
-
-      removeFileProcess();
+      setIsLoadingTable(true);
+      const fileListFiltered = fileList.filter((item) => item.uid != file.uid);
+      setFileList(fileListFiltered);
     },
   };
 
@@ -505,6 +375,95 @@ const CallLog = () => {
     }
   };
 
+  useEffect(() => {
+    const processFiles = async () => {
+      try {
+        const rawCallLogsObject: IRawLogType[] = [];
+
+        // Process each file in the fileList
+        for (const fileItem of fileList) {
+          const file = fileItem.originFileObj;
+          if (file) {
+            const fileContent = await readFileAsText(file); // Read file as text
+            const jsonData = JSON.parse(fileContent); // Parse JSON data
+
+            const messages = jsonData.messages || [];
+            const participants = jsonData.participants || [];
+            const nameA = decode(participants[0]?.name || "");
+            const nameB = decode(participants[1]?.name || "");
+
+            // Set names for participants
+            if (!name1 && !name2) {
+              setName1(nameA);
+              setName2(nameB);
+            }
+
+            // Filter and add call logs with call duration
+            for (const item of messages) {
+              if (item?.call_duration >= 0) {
+                // Convert timestamp to date and hour
+                const date = new Date(item.timestamp_ms);
+                const formattedDate = date.toLocaleDateString("en-US", {
+                  month: "long",
+                  day: "2-digit",
+                  year: "numeric",
+                });
+
+                //  build date filter object
+
+                rawCallLogsObject.push({ ...item, date: formattedDate });
+              }
+            }
+          }
+        }
+
+        // Sort call logs by timestamp
+        rawCallLogsObject.sort((a: IRawLogType, b: IRawLogType) => a.timestamp_ms - b.timestamp_ms);
+
+        // build date filter object
+        const filter: IDateFilterType[] = [];
+        rawCallLogsObject.forEach((callLog) => {
+          const date = new Date(callLog.timestamp_ms);
+          const month = date.toLocaleString("default", { month: "long" });
+          const year = date.toLocaleString("default", { year: "numeric" });
+
+          const FilterObject: IDateFilterType = {
+            text: `${month}, ${year}`,
+            value: `${month}, ${year}`,
+          };
+
+          // Check if filter array already contains this object
+          const exists = filter.some(
+            (f) => f.text === FilterObject.text && f.value === FilterObject.value
+          );
+
+          if (!exists) {
+            filter.push(FilterObject);
+          }
+        });
+
+        // remove duplicate object in case user upload the same file
+        const uniqueRawCallLogsObject = rawCallLogsObject.filter(
+          (o, index, arr) =>
+            arr.findIndex((item) => JSON.stringify(item) === JSON.stringify(o)) === index
+        );
+
+        // Update date filter
+        setDateFilter(filter);
+
+        // Set raw call logs after processing all files
+        setRawCallLogs(uniqueRawCallLogsObject);
+        setRawCallLogsNotModify(uniqueRawCallLogsObject);
+      } catch (error) {
+        console.log(error);
+        messageApi.error("Failed to process the file. Please ensure it contains valid JSON.");
+      }
+    };
+
+    // Start processing files
+    processFiles();
+  }, [fileList]);
+
   // Clean data when new Raw Data is detected
   // Decode string
   // Calculate statistic
@@ -614,7 +573,6 @@ const CallLog = () => {
     sessionStorage.setItem("name1", nameA);
     sessionStorage.setItem("name2", nameB);
 
-    setIsLoadingFileFinish(true);
     setDataToShow(modifiedCallLogs);
   }, [rawCallLogs, name1, name2]);
 
@@ -650,6 +608,7 @@ const CallLog = () => {
     };
 
     setDataHourCall({ ...dataHourCall, data: dataChartHour });
+    setIsLoadingTable(false);
   }, [dataStatistic]);
 
   return (
@@ -678,23 +637,26 @@ const CallLog = () => {
           <Collapse items={items} />
         </div>
 
-        {dataToShow && dataToShow.length > 0 && isLoadingFileFinish === true ? (
-          <Table
-            pagination={{
-              showSizeChanger: true,
-              showTotal: (total, range) => {
-                return <p>{range[0] + "-" + range[1] + " out of " + total}</p>;
-              },
-            }}
-            size="large"
-            title={() => (
-              <div className="flex items-center justify-between">
-                <div className="flex text-center items-center font-bold text-2xl py-2 ">
-                  Call logs between {name1} and {name2} on{" "}
-                  <span>
-                    <FaFacebookSquare style={{ color: "#0866FF", marginLeft: 12, fontSize: 30 }} />
-                  </span>
-                  {/* <ExportAsPdf
+        <Table
+          loading={isLoadingTable}
+          pagination={{
+            showSizeChanger: true,
+            showTotal: (total, range) => {
+              return <p>{range[0] + "-" + range[1] + " out of " + total}</p>;
+            },
+          }}
+          size="large"
+          title={() => (
+            <div className="flex items-center justify-between">
+              <div className="flex text-center items-center font-bold text-2xl py-2 ">
+                {dataToShow && dataToShow.length > 0 === true
+                  ? `Call logs between ${name1} and ${name2} on`
+                  : "This is a sample data for call logs on"}
+
+                <span>
+                  <FaFacebookSquare style={{ color: "#0866FF", marginLeft: 12, fontSize: 30 }} />
+                </span>
+                {/* <ExportAsPdf
                   data={dataToShow}
                   headers={["Date", "Sender", "Content", "Call End Time At", "Call Duration"]}
                   headerStyles={{ fillColor: "red" }}
@@ -703,65 +665,49 @@ const CallLog = () => {
                 >
                   {(props) => <button {...props}>Export as PDF</button>}
                 </ExportAsPdf> */}
-                </div>
-                <div className="hidden lg:block">
-                  <Popover
-                    placement="topRight"
-                    title={"Action"}
-                    content={
-                      <div className="flex flex-col gap-2">
-                        <Button
-                          type="primary"
-                          onClick={() => {
-                            setFilteredInfo({});
-                            setSortedInfo({});
-                            setRawCallLogs(rawCallLogsNotModify);
-                          }}
-                        >
-                          <RedoOutlined />
-                          Reset Filter
-                        </Button>
-                        <Button
-                          type="primary"
-                          danger
-                          onClick={() => setIsShowDeleteAction(!isShowDeleteAction)}
-                        >
-                          Hide/Show Delete action
-                        </Button>
-                      </div>
-                    }
-                  >
-                    <Button type="primary">
-                      <RedoOutlined />
-                      Reset Filter
-                    </Button>
-                  </Popover>
-                </div>
               </div>
-            )}
-            columns={columns}
-            onChange={handleTableChange}
-            dataSource={dataToShow}
-            className="mt-4"
-            scroll={{ x: "max-content", y: 55 * 20 }}
-            rowClassName="call-logs-table-row"
-          />
-        ) : (
-          <>
-            <Table
-              size="middle"
-              title={() => (
-                <div className="flex text-center font-bold text-2xl py-2">
-                  This is a sample data table
-                </div>
-              )}
-              columns={columns}
-              dataSource={sample}
-              className="mt-4"
-              scroll={{ x: "max-content" }}
-            />
-          </>
-        )}
+              <div className="hidden lg:block">
+                <Popover
+                  placement="topRight"
+                  title={"Action"}
+                  content={
+                    <div className="flex flex-col gap-2">
+                      <Button
+                        type="primary"
+                        onClick={() => {
+                          setFilteredInfo({});
+                          setSortedInfo({});
+                          setRawCallLogs(rawCallLogsNotModify);
+                        }}
+                      >
+                        <RedoOutlined />
+                        Reset Filter
+                      </Button>
+                      <Button
+                        type="primary"
+                        danger
+                        onClick={() => setIsShowDeleteAction(!isShowDeleteAction)}
+                      >
+                        Hide/Show Delete action
+                      </Button>
+                    </div>
+                  }
+                >
+                  <Button type="primary">
+                    <RedoOutlined />
+                    Reset Filter
+                  </Button>
+                </Popover>
+              </div>
+            </div>
+          )}
+          columns={columns}
+          onChange={handleTableChange}
+          dataSource={dataToShow && dataToShow.length > 0 === true ? dataToShow : sample}
+          className="mt-4"
+          scroll={{ x: "max-content", y: 55 * 20 }}
+          rowClassName="call-logs-table-row"
+        />
       </div>
     </>
   );
