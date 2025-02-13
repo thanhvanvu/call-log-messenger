@@ -20,15 +20,13 @@ export const metadata = {
 
 export default async function RootLayout({
   children,
-  params,
+  params: { locale },
 }: {
   children: React.ReactNode;
   params: { locale: string };
 }) {
   // Ensure that the incoming `locale` is valid
-  const { locale } = await params;
   if (!routing.locales.includes(locale as Locale)) {
-    console.log("check");
     notFound();
   }
   // Providing all messages to the client
@@ -36,24 +34,24 @@ export default async function RootLayout({
   const messages = await getMessages();
   return (
     <AppProvider>
-      <html lang={locale}>
-        <body className={inter.className}>
-          <ConfigProvider
-            theme={{
-              token: {
-                colorPrimary: "#2196F3",
-              },
-            }}
-          >
-            <NextIntlClientProvider messages={messages}>
+      <NextIntlClientProvider messages={messages}>
+        <html lang={locale}>
+          <body className={inter.className}>
+            <ConfigProvider
+              theme={{
+                token: {
+                  colorPrimary: "#2196F3",
+                },
+              }}
+            >
               <Header />
               <div className="bg-white">
                 <AntdRegistry>{children}</AntdRegistry>
               </div>
-            </NextIntlClientProvider>
-          </ConfigProvider>
-        </body>
-      </html>
+            </ConfigProvider>
+          </body>
+        </html>
+      </NextIntlClientProvider>
     </AppProvider>
   );
 }

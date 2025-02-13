@@ -41,7 +41,7 @@ function Homepage() {
   }, []);
 
   return (
-    <div className="w-[90%] mx-auto h-screen mt-4 bg-gray 3xl:w-[70%] 3xl:flex gap-20">
+    <div className="w-[90%] mx-auto h-screen mt-4 3xl:w-[70%] 3xl:flex gap-20">
       {/* Render the MobileModal only on screens smaller than 3xl */}
       <MobileModal open={isOpenModal} setOpen={setIsOpenModal} />
 
