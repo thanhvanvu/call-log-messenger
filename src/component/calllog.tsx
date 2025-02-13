@@ -128,10 +128,12 @@ const CallLog = () => {
   const [fileList, setFileList] = useState<UploadFile[]>([]);
   const [isLoadingTable, setIsLoadingTable] = useState<boolean>(false);
   const t = useTranslations();
+
   const props: UploadProps = {
     name: "file",
     multiple: true,
     accept: ".json",
+    maxCount: 5,
     beforeUpload: (file: UploadFile) => {
       const allowedTypes: string[] = ["application/json"];
       const isAllowedType = validateFileType(file, allowedTypes);

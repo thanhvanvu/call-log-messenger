@@ -131,7 +131,7 @@ const Header = () => {
           <div className="flex-end 992:hidden">
             <Select
               defaultValue={locale}
-              style={{ width: 140 }}
+              style={{ width: 120 }}
               onChange={handleChange}
               options={localeOption}
             />
