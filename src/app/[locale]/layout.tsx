@@ -42,6 +42,7 @@ export default async function LocaleLayout({
             <Header />
             <div className="">
               <AntdRegistry>{children}</AntdRegistry>
+              <SpeedInsights />
             </div>
           </body>
         </html>
