@@ -53,6 +53,10 @@
     "line1": "Para una mejor experiencia, recomendamos usar una PC o laptop.",
     "line2": "O puedes activar la opción 'Sitio de escritorio' en la configuración de tu navegador móvil."
   },
+  "float-button": {
+    "table": "Mostrar tabla de datos",
+    "statistic": "Mostrar estadísticas"
+  },
   "common": {
     "get-started": "EMPEZAR",
     "guide": "Guía sobre cómo encontrar el archivo JSON",

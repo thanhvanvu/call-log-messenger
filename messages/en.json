@@ -53,6 +53,10 @@
     "line1": "For an optimal experience, we recommend using a PC or laptop.",
     "line2": "Or enable “Desktop site“ on your mobile browser settings."
   },
+  "float-button": {
+    "table": "Show data table",
+    "statistic": "Show statistic"
+  },
   "common": {
     "get-started": "GET STARTED",
     "guide": "Guide how to find JSON file",

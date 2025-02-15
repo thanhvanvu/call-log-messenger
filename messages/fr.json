@@ -53,6 +53,10 @@
     "line1": "Pour une meilleure expérience, nous vous recommandons d'utiliser un PC ou un ordinateur portable.",
     "line2": "Ou vous pouvez activer le mode 'Site bureau' dans les paramètres de votre navigateur mobile."
   },
+  "float-button": {
+    "table": "Afficher le tableau de données",
+    "statistic": "Afficher les statistiques"
+  },
   "common": {
     "get-started": "COMMENCER",
     "guide": "Guide sur comment trouver le fichier JSON",

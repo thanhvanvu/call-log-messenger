@@ -53,6 +53,10 @@
     "line1": "Para uma melhor experiência, recomendamos usar um PC ou laptop.",
     "line2": "Ou você pode ativar o modo 'Site para desktop' nas configurações do seu navegador móvel."
   },
+  "float-button": {
+    "table": "Mostrar tabela de dados",
+    "statistic": "Mostrar estatísticas"
+  },
   "common": {
     "get-started": "COMEÇAR",
     "guide": "Guia sobre como encontrar o arquivo JSON",

@@ -130,6 +130,9 @@ const Header = () => {
         <div className="flex flex-row gap-2">
           <div className="flex-end 992:hidden">
             <Select
+              listHeight={1000}
+              listItemHeight={20}
+              popupMatchSelectWidth={false}
               defaultValue={locale}
               style={{ width: 120 }}
               onChange={handleChange}
@@ -157,6 +160,8 @@ const Header = () => {
 
         <div className=" hidden 992:flex flex-row items-center gap-4">
           <Select
+            listHeight={1000}
+            listItemHeight={20}
             defaultValue={locale}
             style={{ width: 140 }}
             onChange={handleChange}

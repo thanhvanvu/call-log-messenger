@@ -53,6 +53,10 @@
     "line1": "为了获得最佳体验，我们建议使用 PC 或笔记本电脑。",
     "line2": "或者您可以在手机浏览器设置中开启“桌面站点”模式。"
   },
+  "float-button": {
+    "table": "显示数据表",
+    "statistic": "显示统计"
+  },
   "common": {
     "get-started": "开始使用",
     "guide": "如何找到 JSON 文件",

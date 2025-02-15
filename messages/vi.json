@@ -53,6 +53,10 @@
     "line1": "Để có trải nghiệm tốt nhất, chúng tôi khuyến nghị nên sử dụng PC hoặc laptop.",
     "line2": "Hoặc có thể bật chế độ 'Desktop site' trong cài đặt của trình duyệt điện thoại."
   },
+  "float-button": {
+    "table": "Hiển thị bảng dữ liệu",
+    "statistic": "Hiển thị thống kê"
+  },
   "common": {
     "get-started": "BẮT ĐẦU",
     "guide": "Hướng dẫn tìm file JSON",

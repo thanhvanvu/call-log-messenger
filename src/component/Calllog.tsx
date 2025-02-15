@@ -1,16 +1,32 @@
 "use client";
 import Dragger from "antd/es/upload/Dragger";
-import React, { useEffect, useState } from "react";
-import { InboxOutlined } from "@ant-design/icons";
-import { Collapse, CollapseProps, message, Upload, UploadFile, UploadProps } from "antd";
-
-import Link from "next/link";
+import React, { useEffect, useRef, useState } from "react";
+import {
+  CommentOutlined,
+  CustomerServiceOutlined,
+  InboxOutlined,
+  LineChartOutlined,
+  TableOutlined,
+} from "@ant-design/icons";
+import {
+  Collapse,
+  CollapseProps,
+  FloatButton,
+  message,
+  Popover,
+  Upload,
+  UploadFile,
+  UploadProps,
+} from "antd";
 
 import { decode, readFileAsText, validateFileType } from "@/utils/helper";
 import { useTranslations } from "next-intl";
 import { useCurrentApp } from "@/context/app.context";
 import Statistic from "./Statistic";
 import DataTable from "./DataTable";
+import { Link } from "@/i18n/routing";
+import { TbTableShortcut } from "react-icons/tb";
+import { FcStatistics } from "react-icons/fc";
 
 const CallLog = () => {
   const { setParticipants, setDateFilter, setRawCallLogs, setDateRange, dateRange } =
@@ -193,6 +209,42 @@ const CallLog = () => {
           setIsLoadingTable={setIsLoadingTable}
           rawCallLogsNotModify={rawCallLogsNotModify}
         />
+      </div>
+      <div className="hidden xl:block">
+        <FloatButton.Group
+          trigger="hover"
+          type="primary"
+          style={{ insetInlineEnd: 24 }}
+          icon={<TbTableShortcut />}
+          className="hidden"
+        >
+          <Popover
+            content={<Statistic />}
+            trigger="click"
+            placement="leftTop"
+            overlayStyle={{ width: "60%" }}
+          >
+            <FloatButton
+              icon={<LineChartOutlined />}
+              tooltip={<div>{t("float-button.statistic")}</div>}
+            />
+          </Popover>
+
+          <Popover
+            content={
+              <DataTable
+                isLoadingTable={isLoadingTable}
+                setIsLoadingTable={setIsLoadingTable}
+                rawCallLogsNotModify={rawCallLogsNotModify}
+              />
+            }
+            trigger="click"
+            placement="leftTop"
+            overlayStyle={{ width: "80%" }} // Set the width of the popover content
+          >
+            <FloatButton icon={<TableOutlined />} tooltip={<div>{t("float-button.table")}</div>} />
+          </Popover>
+        </FloatButton.Group>
       </div>
     </>
   );

@@ -29,7 +29,7 @@ function DataTable(props: IProps) {
 
   const columns: any = [
     {
-      title: <span className="block font-bold text-base text-center">{t("call-logs.date")}</span>,
+      title: <span className="block text-base text-center text-white">{t("call-logs.date")}</span>,
       dataIndex: "date",
       key: "date",
       width: "15%",
@@ -43,7 +43,7 @@ function DataTable(props: IProps) {
     },
 
     {
-      title: <span className="font-bold text-base">{t("call-logs.sender")}</span>,
+      title: <span className=" text-base text-white ">{t("call-logs.sender")}</span>,
       dataIndex: "sender_name",
       key: "sender_name",
       align: "center",
@@ -52,14 +52,14 @@ function DataTable(props: IProps) {
       sorter: (a: ICallLogType, b: ICallLogType) => a.sender_name.length - b.sender_name.length,
     },
     {
-      title: <span className="font-bold text-base">{t("call-logs.content")}</span>,
+      title: <span className=" text-base text-white">{t("call-logs.content")}</span>,
       dataIndex: "content",
       key: "content",
       align: "center",
       width: "20%",
     },
     {
-      title: <span className="font-bold text-base">{t("call-logs.call-end")}</span>,
+      title: <span className=" text-base text-white">{t("call-logs.call-end")}</span>,
       dataIndex: "time",
       key: "time",
       align: "center",
@@ -67,7 +67,7 @@ function DataTable(props: IProps) {
       render: (text: string) => <p className="text-base tracking-wide">{text}</p>,
     },
     {
-      title: <span className="font-bold text-base">{t("call-logs.call-duration")}</span>,
+      title: <span className=" text-base text-white">{t("call-logs.call-duration")}</span>,
       dataIndex: "call_duration",
       key: "call_duration",
       width: "15%",
@@ -78,7 +78,7 @@ function DataTable(props: IProps) {
     },
 
     isShowDeleteAction && {
-      title: <span className="font-bold text-base">{t("call-logs.action")}</span>,
+      title: <span className="text-base text-white">{t("call-logs.action")}</span>,
       key: "action",
       align: "center",
       width: "15%",
@@ -268,9 +268,10 @@ function DataTable(props: IProps) {
       loading={isLoadingTable}
       pagination={{
         showSizeChanger: true,
+
         showTotal: (total, range) => {
           return (
-            <p>
+            <p className="hidden md:inline-block ">
               {range[0]} - {range[1]} {t("call-logs.pagination")} {total}
             </p>
           );
