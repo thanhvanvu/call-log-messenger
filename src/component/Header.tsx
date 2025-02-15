@@ -31,7 +31,7 @@ const Header = () => {
       label: (
         <div className="flex gap-2">
           <span className="fi fi-vn"></span>
-          <span>Tiếng Việt</span>
+          <span>Vietnamese</span>
         </div>
       ),
     },
@@ -68,7 +68,7 @@ const Header = () => {
       label: (
         <div className="flex gap-2">
           <span className="fi fi-fr"></span>
-          <span>French </span>
+          <span>French</span>
         </div>
       ),
     },
@@ -107,7 +107,7 @@ const Header = () => {
       label: (
         <div className="flex gap-2">
           <span className="fi fi-pk"></span>
-          <span>Pakistan</span>
+          <span>Urdu</span>
         </div>
       ),
     },

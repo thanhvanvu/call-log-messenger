@@ -29,7 +29,10 @@
     "missed": "कुल मिस्ड कॉल",
     "missed-from-A": "{nameA} से कुल मिस्ड कॉल",
     "missed-from-B": "{nameB} से कुल मिस्ड कॉल",
-    "time": "बार"
+    "time": "बार",
+    "delete": "हटाएं",
+    "delete-popConfirm-title": "इस कॉल लॉग को हटाएं",
+    "delete-popConfirm-description": "क्या आप वाकई इस कॉल लॉग को हटाना चाहते हैं?"
   },
   "json-guide": {
     "step1": "अपने फेसबुक पृष्ठ पर, ड्रॉपडाउन मेनू खोलने के लिए ऊपर दाएं कोने पर क्लिक करें।",
