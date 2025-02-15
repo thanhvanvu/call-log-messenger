@@ -10,6 +10,7 @@ import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { ConfigProvider } from "antd";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -34,17 +35,25 @@ export default async function LocaleLayout({
   // side is the easiest way to get started
   const messages = await getMessages();
   return (
-    <NextIntlClientProvider messages={messages}>
-      <AppProvider>
-        <html lang={locale}>
-          <body className={inter.className}>
-            <Header />
-            <div className="">
-              <AntdRegistry>{children}</AntdRegistry>
-            </div>
-          </body>
-        </html>
-      </AppProvider>
-    </NextIntlClientProvider>
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: "#2196F3",
+        },
+      }}
+    >
+      <NextIntlClientProvider messages={messages}>
+        <AppProvider>
+          <html lang={locale}>
+            <body className={inter.className}>
+              <Header />
+              <div className="">
+                <AntdRegistry>{children}</AntdRegistry>
+              </div>
+            </body>
+          </html>
+        </AppProvider>
+      </NextIntlClientProvider>
+    </ConfigProvider>
   );
 }
