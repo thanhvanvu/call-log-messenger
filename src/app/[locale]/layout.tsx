@@ -10,7 +10,7 @@ import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { ConfigProvider } from "antd";
+import { ConfigProvider, theme } from "antd";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -37,8 +37,10 @@ export default async function LocaleLayout({
   return (
     <ConfigProvider
       theme={{
+        algorithm: theme.defaultAlgorithm,
         token: {
           colorPrimary: "#2196F3",
+          colorBgBase: "#ffffff",
         },
       }}
     >
