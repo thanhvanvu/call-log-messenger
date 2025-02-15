@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "antd/dist/reset.css";
 import Header from "@/component/Header";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
-import { ConfigProvider } from "antd";
 import AppProvider from "@/context/app.context";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
@@ -42,7 +41,6 @@ export default async function LocaleLayout({
             <Header />
             <div className="">
               <AntdRegistry>{children}</AntdRegistry>
-              <SpeedInsights />
             </div>
           </body>
         </html>
