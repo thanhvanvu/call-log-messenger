@@ -37,10 +37,6 @@ p {
   padding-left: 0 !important;
 }
 
-.ant-btn-primary {
-  background-color: #5295ff;
-}
-
 .nav-link:focus {
   color: #5295ff !important;
 }

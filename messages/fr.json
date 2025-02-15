@@ -29,7 +29,10 @@
     "missed": "Total des appels manqués",
     "missed-from-A": "Total des appels manqués de {nameA}",
     "missed-from-B": "Total des appels manqués de {nameB}",
-    "time": "fois"
+    "time": "fois",
+    "delete": "Supprimer",
+    "delete-popConfirm-title": "Supprimer ce journal d'appel",
+    "delete-popConfirm-description": "Êtes-vous sûr de vouloir supprimer ce journal d'appel ?"
   },
   "json-guide": {
     "step1": "Sur votre page Facebook, cliquez sur l'icône en haut à droite pour ouvrir le menu déroulant.",
@@ -52,6 +55,8 @@
   },
   "common": {
     "get-started": "COMMENCER",
-    "guide": "Guide sur comment trouver le fichier JSON"
+    "guide": "Guide sur comment trouver le fichier JSON",
+    "yes": "Oui",
+    "no": "Non"
   }
 }

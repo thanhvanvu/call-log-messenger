@@ -10,6 +10,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { theme } from "antd";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -36,14 +37,22 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider messages={messages}>
       <AppProvider>
-        <html lang={locale}>
-          <body className={inter.className}>
-            <Header />
-            <div className="">
-              <AntdRegistry>{children}</AntdRegistry>
-            </div>
-          </body>
-        </html>
+        <ConfigProvider
+          theme={{
+            token: {
+              colorPrimary: "#2196F3",
+            },
+          }}
+        >
+          <html lang={locale}>
+            <body className={inter.className}>
+              <Header />
+              <div className="">
+                <AntdRegistry>{children}</AntdRegistry>
+              </div>
+            </body>
+          </html>
+        </ConfigProvider>
       </AppProvider>
     </NextIntlClientProvider>
   );

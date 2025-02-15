@@ -3,6 +3,8 @@ import React from "react";
 import android from "public/android.gif";
 import safari from "public/safari.gif";
 import Image from "next/image";
+import { IoIosInformationCircle } from "react-icons/io";
+
 import { useTranslations } from "next-intl";
 interface IProps {
   open: boolean;
@@ -15,7 +17,12 @@ function MobileModal(props: IProps) {
   return (
     <div className="w-72">
       <Modal
-        title={t("mobile-modal.title")}
+        title={
+          <div className="flex items-center gap-2">
+            <IoIosInformationCircle className="text-[#5295ff] text-lg" />
+            {t("mobile-modal.title")}
+          </div>
+        }
         style={{ top: 20 }}
         open={open}
         onOk={() => {

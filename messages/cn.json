@@ -29,7 +29,10 @@
     "missed": "总未接来电",
     "missed-from-A": "来自 {nameA} 的总未接来电",
     "missed-from-B": "来自 {nameB} 的总未接来电",
-    "time": "次"
+    "time": "次",
+    "delete": "删除",
+    "delete-popConfirm-title": "删除此通话记录",
+    "delete-popConfirm-description": "您确定要删除此通话记录吗？"
   },
   "json-guide": {
     "step1": "在您的 Facebook 页面，点击右上角的图标以打开下拉菜单。",
@@ -52,6 +55,8 @@
   },
   "common": {
     "get-started": "开始使用",
-    "guide": "如何找到 JSON 文件"
+    "guide": "如何找到 JSON 文件",
+    "yes": "是",
+    "no": "否"
   }
 }

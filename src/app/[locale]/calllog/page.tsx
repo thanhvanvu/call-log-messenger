@@ -1,5 +1,4 @@
-import CallLog from "@/component/calllog";
-
+import CallLog from "@/component/Calllog";
 import React from "react";
 
 function page() {

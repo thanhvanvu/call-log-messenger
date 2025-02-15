@@ -29,7 +29,10 @@
     "missed": "Tổng số cuộc gọi nhỡ",
     "missed-from-A": "Tổng cuộc gọi nhỡ từ {nameA}",
     "missed-from-B": "Tổng cuộc gọi nhỡ từ {nameB}",
-    "time": "lần"
+    "time": "lần",
+    "delete": "Xóa",
+    "delete-popConfirm-title": "Xóa nhật ký cuộc gọi này",
+    "delete-popConfirm-description": "Bạn có chắc chắn muốn xóa nhật ký cuộc gọi này không?"
   },
   "json-guide": {
     "step1": "Trong trang Facebook, chọn icon ở góc trên phải để xổ menu xuống.",
@@ -52,6 +55,8 @@
   },
   "common": {
     "get-started": "BẮT ĐẦU",
-    "guide": "Hướng dẫn tìm file JSON"
+    "guide": "Hướng dẫn tìm file JSON",
+    "yes": "Có",
+    "no": "Không"
   }
 }

@@ -1,11 +1,18 @@
 "use client";
+import { UploadFile } from "antd";
 import { createContext, useState, use, useEffect } from "react";
 
 interface AppContextType {
-  callLogs: string;
-  setCallLogs: (v: string) => void;
-  language: string;
-  setLanguage: (v: string) => void;
+  rawCallLogs: IRawLogType[];
+  setRawCallLogs: (v: IRawLogType[]) => void;
+  participants: IParticipant | null;
+  setParticipants: (v: IParticipant) => void;
+  dataStatistic: IDataStatistic;
+  setDataStatistic: (v: IDataStatistic) => void;
+  dateFilter: IDateFilterType[];
+  setDateFilter: (v: IDateFilterType[]) => void;
+  dateRange: IDateRange | null;
+  setDateRange: (v: IDateRange | null) => void;
 }
 
 // Create a ThemeContext
@@ -16,20 +23,43 @@ interface IAppProvideProps {
 }
 
 const AppProvider = (props: IAppProvideProps) => {
-  const [callLogs, setCallLogs] = useState<string>("test");
-  const [language, setLanguage] = useState<string>("en");
-
-  useEffect(() => {
-    localStorage.setItem("language", language);
-  }, [language]);
+  const [rawCallLogs, setRawCallLogs] = useState<IRawLogType[]>([]);
+  const [participants, setParticipants] = useState<IParticipant | null>(null);
+  const [dataStatistic, setDataStatistic] = useState<IDataStatistic>({
+    totalSuccessCall: {
+      total: 0,
+      totalDuration: "",
+    },
+    totalCallFromNameA: {
+      total: 0,
+      totalDuration: "",
+    },
+    totalCallFromNameB: {
+      total: 0,
+      totalDuration: "",
+    },
+    totalMissedCall: {
+      total: 0,
+      fromNameA: 0,
+      fromNameB: 0,
+    },
+  });
+  const [dateFilter, setDateFilter] = useState<IDateFilterType[]>([]);
+  const [dateRange, setDateRange] = useState<IDateRange | null>(null);
 
   return (
     <AppContext
       value={{
-        callLogs,
-        setCallLogs,
-        language,
-        setLanguage,
+        rawCallLogs,
+        setRawCallLogs,
+        participants,
+        setParticipants,
+        dataStatistic,
+        setDataStatistic,
+        dateFilter,
+        setDateFilter,
+        dateRange,
+        setDateRange,
       }}
     >
       {props.children}

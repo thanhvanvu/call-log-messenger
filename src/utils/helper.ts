@@ -1,3 +1,5 @@
+import { UploadFile } from "antd";
+
 // Helper function to read a file as text
 const readFileAsText = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
@@ -30,4 +32,11 @@ const convertTimeStampToDate = (number: number) => {
   return formattedDuration;
 };
 
-export { readFileAsText, convertTimeToWholeHour, decode, convertTimeStampToDate };
+const validateFileType = (file: UploadFile, allowedTypes?: string[]) => {
+  if (!allowedTypes || !file.type) {
+    return true;
+  }
+  return allowedTypes.includes(file.type);
+};
+
+export { readFileAsText, convertTimeToWholeHour, decode, convertTimeStampToDate, validateFileType };

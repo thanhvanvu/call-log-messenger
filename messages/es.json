@@ -29,7 +29,10 @@
     "missed": "Total de llamadas perdidas",
     "missed-from-A": "Total de llamadas perdidas de {nameA}",
     "missed-from-B": "Total de llamadas perdidas de {nameB}",
-    "time": "veces"
+    "time": "veces",
+    "delete": "Eliminar",
+    "delete-popConfirm-title": "Eliminar este registro de llamadas",
+    "delete-popConfirm-description": "¿Estás seguro de que deseas eliminar este registro de llamadas?"
   },
   "json-guide": {
     "step1": "En tu página de Facebook, haz clic en el icono de la esquina superior derecha para abrir el menú desplegable.",
@@ -52,6 +55,8 @@
   },
   "common": {
     "get-started": "EMPEZAR",
-    "guide": "Guía sobre cómo encontrar el archivo JSON"
+    "guide": "Guía sobre cómo encontrar el archivo JSON",
+    "yes": "Sí",
+    "no": "No"
   }
 }

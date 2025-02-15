@@ -29,7 +29,10 @@
     "missed": "Total missed call",
     "missed-from-A": "Total missed call from {nameA}",
     "missed-from-B": "Total missed call from {nameB}",
-    "time": "times"
+    "time": "times",
+    "delete": "Delete",
+    "delete-popConfirm-title": "Delete this call log",
+    "delete-popConfirm-description": "Are you sure to delete this call log?"
   },
   "json-guide": {
     "step1": "In your Facebook page, click the top-right icon to open the dropdown menu.",
@@ -52,6 +55,8 @@
   },
   "common": {
     "get-started": "GET STARTED",
-    "guide": "Guide how to find JSON file"
+    "guide": "Guide how to find JSON file",
+    "yes": "Yes",
+    "no": "No"
   }
 }
