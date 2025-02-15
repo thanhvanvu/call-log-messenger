@@ -37,23 +37,15 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider messages={messages}>
       <AppProvider>
-        <ConfigProvider
-          theme={{
-            token: {
-              colorPrimary: "#2196F3",
-            },
-          }}
-        >
-          <html lang={locale}>
-            <body className={inter.className}>
-              <Header />
-              <div className="">
-                <AntdRegistry>{children}</AntdRegistry>
-                <SpeedInsights />
-              </div>
-            </body>
-          </html>
-        </ConfigProvider>
+        <html lang={locale}>
+          <body className={inter.className}>
+            <Header />
+            <div className="">
+              <AntdRegistry>{children}</AntdRegistry>
+              <SpeedInsights />
+            </div>
+          </body>
+        </html>
       </AppProvider>
     </NextIntlClientProvider>
   );
