@@ -10,7 +10,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import { theme } from "antd";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -49,6 +49,7 @@ export default async function LocaleLayout({
               <Header />
               <div className="">
                 <AntdRegistry>{children}</AntdRegistry>
+                <SpeedInsights />
               </div>
             </body>
           </html>
