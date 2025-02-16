@@ -3,6 +3,9 @@ import { convertTimeToWholeHour } from "@/utils/helper";
 import { Card } from "antd";
 import { useTranslations } from "next-intl";
 import React, { useEffect, useState } from "react";
+import { IoMdCall } from "react-icons/io";
+import { HiOutlinePhoneMissedCall, HiPhoneMissedCall } from "react-icons/hi";
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -19,6 +22,7 @@ function Statistic() {
   const { dataStatistic, participants } = useCurrentApp();
   const [dataHourCallChart, setDataHourCallChart] = useState<any>({
     options: {
+      maintainAspectRatio: false,
       responsive: true,
       plugins: {
         legend: {
@@ -51,12 +55,12 @@ function Statistic() {
       datasets: [
         {
           label: participants?.nameA,
-          data: [totalHourFromNameA, totalSuccessCallFromNameA, totalMissedCallFromNameA],
+          data: [totalHourFromNameA, totalSuccessCallFromNameA, totalMissedCallFromNameB],
           backgroundColor: "rgba(24, 74, 182, 0.5)",
         },
         {
           label: participants?.nameB,
-          data: [totalHourFromNameB, totalSuccessCallFromNameB, totalMissedCallFromNameB],
+          data: [totalHourFromNameB, totalSuccessCallFromNameB, totalMissedCallFromNameA],
           backgroundColor: "rgba(226, 18, 167, 0.5)",
         },
       ],
@@ -67,7 +71,16 @@ function Statistic() {
   return (
     <>
       <div className="grid grid-cols-1 gap-5 xl:grid-cols-2 3xl:grid-cols-3">
-        <Card title={t("call-logs.success")} hoverable={true} className="">
+        <Card
+          title={
+            <div className="flex items-center gap-2">
+              <IoMdCall className="text-[#28a745]" />
+              {t("call-logs.success")}
+            </div>
+          }
+          hoverable={true}
+          className=""
+        >
           <div className="flex flex-col gap-y-3">
             <p>
               {dataStatistic?.totalSuccessCall?.total ? dataStatistic.totalSuccessCall.total : 0}{" "}
@@ -81,7 +94,12 @@ function Statistic() {
           </div>
         </Card>
         <Card
-          title={t("call-logs.success-from-A", { nameA: participants?.nameA })}
+          title={
+            <div className="flex items-center gap-2">
+              <IoMdCall className="text-[#28a745]" />
+              {t("call-logs.success-from-A", { nameA: participants?.nameA })}
+            </div>
+          }
           hoverable={true}
           className=""
         >
@@ -100,7 +118,12 @@ function Statistic() {
           </div>
         </Card>
         <Card
-          title={t("call-logs.success-from-B", { nameB: participants?.nameB })}
+          title={
+            <div className="flex items-center gap-2">
+              <IoMdCall className="text-[#28a745]" />
+              {t("call-logs.success-from-B", { nameB: participants?.nameB })}
+            </div>
+          }
           hoverable={true}
           className=""
         >
@@ -118,7 +141,16 @@ function Statistic() {
             </p>
           </div>
         </Card>
-        <Card title={t("call-logs.missed")} hoverable={true} className="">
+        <Card
+          title={
+            <div className="flex items-center gap-2">
+              <HiPhoneMissedCall className="text-[#f44336]" />
+              {t("call-logs.missed")}
+            </div>
+          }
+          hoverable={true}
+          className=""
+        >
           <div className="flex flex-col gap-y-3">
             <p>
               {dataStatistic?.totalMissedCall?.total ? dataStatistic.totalMissedCall.total : 0}{" "}
@@ -127,19 +159,12 @@ function Statistic() {
           </div>
         </Card>
         <Card
-          title={t("call-logs.missed-from-A", { nameA: participants?.nameA })}
-          hoverable={true}
-          className=""
-        >
-          <p>
-            {dataStatistic?.totalMissedCall?.fromNameA
-              ? dataStatistic.totalMissedCall.fromNameA
-              : 0}{" "}
-            {t("call-logs.time")}
-          </p>
-        </Card>
-        <Card
-          title={t("call-logs.missed-from-B", { nameB: participants?.nameB })}
+          title={
+            <div className="flex items-center gap-2">
+              <HiPhoneMissedCall className="text-[#f44336]" />
+              {t("call-logs.A-missed-call", { nameA: participants?.nameA })}
+            </div>
+          }
           hoverable={true}
           className=""
         >
@@ -150,9 +175,26 @@ function Statistic() {
             {t("call-logs.time")}
           </p>
         </Card>
+        <Card
+          title={
+            <div className="flex items-center gap-2">
+              <HiPhoneMissedCall className="text-[#f44336]" />
+              {t("call-logs.B-missed-call", { nameB: participants?.nameB })}
+            </div>
+          }
+          hoverable={true}
+          className=""
+        >
+          <p>
+            {dataStatistic?.totalMissedCall?.fromNameA
+              ? dataStatistic.totalMissedCall.fromNameA
+              : 0}{" "}
+            {t("call-logs.time")}
+          </p>
+        </Card>
       </div>
       <div className="flex flex-col gap-y-6 justify-evenly w-auto mt-5 lg:flex-row ">
-        <div className="w-[100%] 2xl:w-[60%]">
+        <div className="w-[100%] h-[300px] xl:h-[500px] 2xl:w-[60%] ">
           <Bar options={dataHourCallChart?.options} data={dataHourCallChart?.data} />
         </div>
       </div>

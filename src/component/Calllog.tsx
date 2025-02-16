@@ -210,7 +210,7 @@ const CallLog = () => {
           rawCallLogsNotModify={rawCallLogsNotModify}
         />
       </div>
-      <div className="hidden xl:block">
+      <div className="hidden 2xl:block">
         <FloatButton.Group
           trigger="hover"
           type="primary"
@@ -221,7 +221,7 @@ const CallLog = () => {
             content={<Statistic />}
             trigger="click"
             placement="leftTop"
-            overlayStyle={{ width: "60%" }}
+            overlayStyle={{ width: "70%" }}
           >
             <FloatButton
               icon={<LineChartOutlined />}

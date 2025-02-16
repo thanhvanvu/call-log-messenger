@@ -8,6 +8,9 @@ import { useCurrentApp } from "@/context/app.context";
 import { convertTimeStampToDate, decode } from "@/utils/helper";
 import { data } from "@/utils/dataUtils";
 import { FilterValue } from "antd/es/table/interface";
+import { TbPhoneCall } from "react-icons/tb";
+import { HiOutlinePhoneMissedCall, HiPhoneMissedCall } from "react-icons/hi";
+import { IoMdCall } from "react-icons/io";
 
 const sample = data;
 
@@ -57,6 +60,25 @@ function DataTable(props: IProps) {
       key: "content",
       align: "center",
       width: "20%",
+      render: (value: string, record: ICallLogType) => {
+        if (record?.call_duration === "00:00:00") {
+          return (
+            <div className="flex justify-center items-center gap-2">
+              <HiPhoneMissedCall className="text-[#f44336]" />
+              {value}
+            </div>
+          );
+        } else {
+          return (
+            <div className="text-center">
+              <div className="flex justify-center items-center gap-2">
+                <IoMdCall className="text-[#28a745]" />
+                {value}
+              </div>
+            </div>
+          );
+        }
+      },
     },
     {
       title: <span className=" text-base text-white">{t("call-logs.call-end")}</span>,
@@ -64,7 +86,7 @@ function DataTable(props: IProps) {
       key: "time",
       align: "center",
       width: "15%",
-      render: (text: string) => <p className="text-base tracking-wide">{text}</p>,
+      render: (text: string) => <p className="tracking-wide">{text}</p>,
     },
     {
       title: <span className=" text-base text-white">{t("call-logs.call-duration")}</span>,
@@ -74,7 +96,7 @@ function DataTable(props: IProps) {
       align: "center",
       sortOrder: sortedInfo.columnKey === "call_duration" ? sortedInfo.order : null,
       sorter: (a: ICallLogType, b: ICallLogType) => a.call_duration.localeCompare(b.call_duration),
-      render: (text: string) => <p className="font-bold text-base tracking-wide">{text}</p>,
+      render: (text: string) => <p className="font-bold  tracking-wide">{text}</p>,
     },
 
     isShowDeleteAction && {
@@ -280,26 +302,24 @@ function DataTable(props: IProps) {
       size="large"
       title={() => (
         <div className="flex items-center justify-between">
-          <div className="flex text-center items-center font-bold text-2xl py-2 ">
-            {dataToShow && dataToShow.length > 0 === true
-              ? t("call-logs.data-title", {
-                  nameA: participants?.nameA,
-                  nameB: participants?.nameB,
-                })
-              : t("call-logs.sample-data-title")}
-
-            <span>
-              <FaFacebookSquare style={{ color: "#0866FF", marginLeft: 12, fontSize: 30 }} />
-            </span>
-            {/* <ExportAsPdf
-                  data={dataToShow}
-                  headers={["Date", "Sender", "Content", "Call End Time At", "Call Duration"]}
-                  headerStyles={{ fillColor: "red" }}
-                  title="Sections List"
-                  theme="striped"
-                >
-                  {(props) => <button {...props}>Export as PDF</button>}
-                </ExportAsPdf> */}
+          <div className="text-center font-bold text-2xl py-2">
+            <p className="">
+              {dataToShow && dataToShow.length > 0 === true
+                ? t("call-logs.data-title", {
+                    nameA: participants?.nameA,
+                    nameB: participants?.nameB,
+                  })
+                : t("call-logs.sample-data-title")}
+              <FaFacebookSquare
+                style={{
+                  color: "#0866FF",
+                  fontSize: 30,
+                  display: "inline-block",
+                  marginLeft: 10,
+                  verticalAlign: "bottom",
+                }}
+              />
+            </p>
           </div>
           <div className="hidden lg:block">
             <Popover
