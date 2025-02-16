@@ -21,6 +21,10 @@ a {
   }
 }
 
+.ant-table-thead .ant-table-cell .ant-table-filter-column .ant-table-filter-trigger.active {
+  color: black !important;
+}
+
 p {
   margin: 0 !important;
 }
@@ -29,14 +33,24 @@ p {
   padding-left: 0 !important;
 }
 
-.ant-btn-primary {
-  background-color: #2196f3 !important;
-}
-
 .nav-link:focus {
   color: #5295ff !important;
 }
 
 .call-logs-table-row {
   height: 80px;
+}
+
+.ant-float-btn-group button {
+  height: 60px;
+  width: 60px;
+}
+
+.ant-float-btn-group .ant-float-btn-group-wrap {
+  bottom: 75px !important;
+}
+
+.ant-float-btn-group .ant-float-btn-icon {
+  font-size: 20px !important;
+  width: 20px !important;
 }

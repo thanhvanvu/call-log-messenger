@@ -48,7 +48,7 @@ function Homepage() {
       <div className="3xl:mt-[150px] 3xl:w-[60%]">
         <p className="text-4xl font-bold 3xl:text-6xl">
           {t.rich("homepage.title", {
-            callLogs: (chunk) => <span className="text-[#0866FF]">{chunk}</span>,
+            callLogs: (chunk) => <span className="text-[#0866ff]">{chunk}</span>,
           })}
         </p>
         <p className="mt-4">{t("homepage.description")}</p>

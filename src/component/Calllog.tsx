@@ -214,9 +214,8 @@ const CallLog = () => {
         <FloatButton.Group
           trigger="hover"
           type="primary"
-          style={{ insetInlineEnd: 24 }}
+          style={{ insetInlineEnd: 50 }}
           icon={<TbTableShortcut />}
-          className="hidden"
         >
           <Popover
             content={<Statistic />}
