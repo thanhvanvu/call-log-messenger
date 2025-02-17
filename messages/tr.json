@@ -1,0 +1,127 @@
+{
+  "homepage": {
+    "title": "<callLogs>Call Logs</callLogs> bulamıyor musunuz? Burada görüntüleyin",
+    "description": "Çağrı günlükleri ve ayrıntılı istatistiklerle iletişim desenlerinize dair kapsamlı bilgiler edinin. Arama sürelerini kolayca izleyin, kaçırılan aramaları takip edin ve iletişim etkinliğini genel olarak analiz ederek verimliliği optimize edin ve bağlantıda kalın."
+  },
+  "header": {
+    "get-started": "BAŞLAYIN",
+    "guide": "JSON dosyasını nasıl bulacağınız hakkında rehber"
+  },
+  "call-logs": {
+    "click-upload": "Yüklemek için buraya tıklayın",
+    "upload-note": "Birden fazla dosya yüklemeyi destekler. Yalnızca JSON dosyaları desteklenir",
+    "guide": "JSON dosyanız yok mu? Buradan bulmak için tıklayın",
+    "data-title": "{nameA} ve {nameB} arasındaki çağrı günlükleri",
+    "sample-data-title": "Bu, {date} tarihli çağrı günlüklerinin örnek verileridir",
+    "reset-filter": "Filtreyi sıfırla",
+    "hide-delete-action": "Silme eylemini gizle",
+    "show-delete-action": "Silme eylemini göster",
+    "hide-missed-background": "Kaçırılan aramaların arka plan rengini gizle",
+    "show-missed-background": "Kaçırılan aramaların arka plan rengini göster",
+    "date": "Tarih",
+    "sender": "Gönderen",
+    "content": "İçerik",
+    "call-end": "Arama bitiş saati",
+    "call-duration": "Arama süresi",
+    "action": "Eylem",
+    "pagination": "sayfa",
+    "statistic": "Çağrı günlüğü istatistikleri",
+    "success": "Toplam başarılı çağrı sayısı",
+    "success-from-A": "{nameA} tarafından yapılan toplam çağrı",
+    "success-from-B": "{nameB} tarafından yapılan toplam çağrı",
+    "missed": "Toplam kaçırılan çağrı sayısı",
+    "B-missed-call": "{nameB} tarafından kaçırılan çağrı sayısı",
+    "A-missed-call": "{nameA} tarafından kaçırılan çağrı sayısı",
+    "time": "kez",
+    "delete": "Sil",
+    "delete-popConfirm-title": "Bu çağrı kaydını sil",
+    "delete-popConfirm-description": "Bu çağrı kaydını silmek istediğinizden emin misiniz?"
+  },
+  "json-guide": {
+    "step1": "Facebook sayfanızda sağ üst köşedeki simgeye tıklayın.",
+    "step2": "'Ayarlar ve gizlilik' seçeneğine tıklayın.",
+    "step3": "'Verilerinizi indirin' seçeneğine tıklayın.",
+    "step4": "Facebook sizi başka bir sayfaya yönlendirecek.",
+    "step5": "'Verilerinizi indirin veya aktarın' seçeneğine tıklayın.",
+    "step6": "Facebook'u seçin ve 'İleri'ye tıklayın.",
+    "step7": "'Belirli bilgileri' seçin.",
+    "step8": "Listeye sadece 'Mesajlar'ı seçin.",
+    "step9": "Dosyanızı kaydetmek istediğiniz yeri seçin.",
+    "step10": "Önemli: **Format: JSON** ve **Medya Kalitesi: Düşük** seçin.",
+    "step11": "İndirmeyi bekleyin. Çıkarıldıktan sonra dosyanız şu şekilde görünecektir.",
+    "step12": "JSON dosyanızı bulmak için şu yolu takip edin:"
+  },
+  "mobile-modal": {
+    "title": "En iyi görüntüleme masaüstü bilgisayarda",
+    "line1": "Daha iyi bir deneyim için bir PC veya dizüstü bilgisayar kullanmanızı öneririz.",
+    "line2": "Veya mobil tarayıcı ayarlarında 'Masaüstü sitesini' etkinleştirin."
+  },
+  "float-button": {
+    "table": "Veri tablosunu göster",
+    "statistic": "İstatistikleri göster"
+  },
+  "guide-tour": {
+    "button": "REHBER TURU",
+    "upload": {
+      "title": "JSON Dosyasını Yükle",
+      "description": {
+        "line1": "Bir JSON dosyasını buraya yükleyin veya buraya sürükleyin.",
+        "line2": "Sadece JSON dosyaları desteklenir.",
+        "line3": "Bir seferde 10 dosyaya kadar yükleme yapılabilir."
+      }
+    },
+    "json-guide": {
+      "title": "JSON Rehber Sayfası",
+      "description": {
+        "line1": "JSON dosyasını nasıl bulacağınızı bilmiyorsanız, rehber için buraya tıklayın."
+      }
+    },
+    "call-statistic": {
+      "title": "Çağrı İstatistikleri",
+      "description": {
+        "line1": "Başarılı çağrılar, kaçırılan çağrılar ve toplam çağrı süresi gibi çağrı verilerini genel bir bakış sağlar.",
+        "line2": "Başarılı çağrılar, kaçırılan çağrılar ve bunların süresi gibi önemli metrikleri görüntüleyerek çağrı performansını takip etmeye yardımcı olur."
+      }
+    },
+    "statistic-chart": {
+      "title": "Çağrı İstatistikleri Grafiği",
+      "description": {
+        "line1": "İki kişi arasındaki çağrı aktivitelerini gösteren ve karşılaştıran bir çubuk grafiği.",
+        "line2": "Toplam çağrı saatlerini, başarılı ve kaçırılan çağrıları gösterir."
+      }
+    },
+    "table": {
+      "title": "Çağrı Günlüğü Tablosu",
+      "description": {
+        "line1": "İki kişi arasındaki çağrı ve video çağrı günlüklerini gösterir.",
+        "line2": "Daha iyi veri sorgulama için tarihe göre filtreleme ve gönderici veya çağrı süresine göre sıralama yapabilirsiniz."
+      }
+    },
+    "reset-button": {
+      "title": "Filtreyi sıfırla",
+      "description": {
+        "line1": "Tüm filtreleri ve sıralama seçeneklerini sıfırlayın.",
+        "line2": "Kaçırılan çağrıların arka plan rengini gizlemeyi veya göstermeyi seçebilirsiniz."
+      }
+    },
+    "float-button": {
+      "title": "Hızlı Erişim Butonu",
+      "description": {
+        "line1": "Çağrı istatistiklerine ve çağrı günlüğü tablosuna hızlı erişim sağlar, kaydırma yapmadan."
+      }
+    },
+    "language": {
+      "title": "Dil",
+      "description": {
+        "line1": "Tercih ettiğiniz dili seçin.",
+        "line2": "Şu anda uygulama, en yaygın kullanılan 10+ dili desteklemektedir."
+      }
+    }
+  },
+  "common": {
+    "get-started": "BAŞLAYIN",
+    "guide": "JSON dosyasını nasıl bulacağınız hakkında rehber",
+    "yes": "Evet",
+    "no": "Hayır"
+  }
+}

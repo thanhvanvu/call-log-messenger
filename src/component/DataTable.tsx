@@ -11,6 +11,8 @@ import { FilterValue } from "antd/es/table/interface";
 import { TbPhoneCall } from "react-icons/tb";
 import { HiOutlinePhoneMissedCall, HiPhoneMissedCall } from "react-icons/hi";
 import { IoMdCall } from "react-icons/io";
+import { IoIosColorFill } from "react-icons/io";
+import { MdDeleteForever } from "react-icons/md";
 
 const sample = data;
 
@@ -22,12 +24,20 @@ interface IProps {
 
 function DataTable(props: IProps) {
   const { isLoadingTable, setIsLoadingTable, rawCallLogsNotModify } = props;
-  const { participants, rawCallLogs, setRawCallLogs, setDataStatistic, dateFilter, setDateRange } =
-    useCurrentApp();
+  const {
+    participants,
+    rawCallLogs,
+    setRawCallLogs,
+    setDataStatistic,
+    dateFilter,
+    setDateRange,
+    tourStep,
+  } = useCurrentApp();
   const [dataToShow, setDataToShow] = useState<ICallLogType[]>([]);
   const [filteredInfo, setFilteredInfo] = useState<Filters>({});
   const [sortedInfo, setSortedInfo] = useState<Sorts>({});
   const [isShowDeleteAction, setIsShowDeleteAction] = useState<boolean>(false);
+  const [missedCallBackground, setMissedCallBackground] = useState<boolean>(false);
   const t = useTranslations();
 
   const columns: any = [
@@ -63,19 +73,17 @@ function DataTable(props: IProps) {
       render: (value: string, record: ICallLogType) => {
         if (record?.call_duration === "00:00:00") {
           return (
-            <div className="flex justify-center items-center gap-2">
-              <HiPhoneMissedCall className="text-[#f44336]" />
+            <p>
+              <HiPhoneMissedCall className="text-[#f44336] inline-block mr-2" />
               {value}
-            </div>
+            </p>
           );
         } else {
           return (
-            <div className="text-center">
-              <div className="flex justify-center items-center gap-2">
-                <IoMdCall className="text-[#28a745]" />
-                {value}
-              </div>
-            </div>
+            <p>
+              <IoMdCall className="text-[#28a745] inline-block mr-2 " />
+              {value}
+            </p>
           );
         }
       },
@@ -286,83 +294,103 @@ function DataTable(props: IProps) {
   };
 
   return (
-    <Table
-      loading={isLoadingTable}
-      pagination={{
-        showSizeChanger: true,
-
-        showTotal: (total, range) => {
-          return (
-            <p className="hidden md:inline-block ">
-              {range[0]} - {range[1]} {t("call-logs.pagination")} {total}
-            </p>
-          );
-        },
-      }}
-      size="large"
-      title={() => (
-        <div className="flex items-center justify-between">
-          <div className="text-center font-bold text-2xl py-2">
-            <p className="">
-              {dataToShow && dataToShow.length > 0 === true
-                ? t("call-logs.data-title", {
-                    nameA: participants?.nameA,
-                    nameB: participants?.nameB,
-                  })
-                : t("call-logs.sample-data-title")}
-              <FaFacebookSquare
-                style={{
-                  color: "#0866FF",
-                  fontSize: 30,
-                  display: "inline-block",
-                  marginLeft: 10,
-                  verticalAlign: "bottom",
-                }}
-              />
-            </p>
+    <div ref={tourStep.step4}>
+      <Table
+        loading={isLoadingTable}
+        pagination={{
+          defaultPageSize: 10,
+          pageSizeOptions: [10, 15, 20, 25, 30],
+          showSizeChanger: true,
+          showTotal: (total, range) => {
+            return (
+              <p className="hidden md:inline-block ">
+                {range[0]} - {range[1]} {t("call-logs.pagination")} {total}
+              </p>
+            );
+          },
+        }}
+        size="large"
+        title={() => (
+          <div className="flex items-center justify-between">
+            <div className="text-center font-bold text-2xl py-2">
+              <p className="">
+                {dataToShow && dataToShow.length > 0 === true
+                  ? t("call-logs.data-title", {
+                      nameA: participants?.nameA,
+                      nameB: participants?.nameB,
+                    })
+                  : t("call-logs.sample-data-title")}
+                <FaFacebookSquare
+                  style={{
+                    color: "#0866FF",
+                    fontSize: 30,
+                    display: "inline-block",
+                    marginLeft: 10,
+                    verticalAlign: "bottom",
+                  }}
+                />
+              </p>
+            </div>
+            <div className="hidden 992:block" ref={tourStep?.step5}>
+              <Popover
+                placement="topRight"
+                title={"Action"}
+                content={
+                  <div className="flex flex-col gap-2">
+                    <Button
+                      type="primary"
+                      onClick={() => {
+                        setFilteredInfo({});
+                        setSortedInfo({});
+                        setRawCallLogs(rawCallLogsNotModify);
+                      }}
+                    >
+                      <RedoOutlined />
+                      {t("call-logs.reset-filter")}
+                    </Button>
+                    <Button
+                      color="gold"
+                      variant="solid"
+                      onClick={() => setMissedCallBackground(!missedCallBackground)}
+                    >
+                      <IoIosColorFill />
+                      {missedCallBackground
+                        ? t("call-logs.hide-missed-background")
+                        : t("call-logs.show-missed-background")}
+                    </Button>
+                    <Button
+                      type="primary"
+                      danger
+                      onClick={() => setIsShowDeleteAction(!isShowDeleteAction)}
+                    >
+                      <MdDeleteForever />
+                      {isShowDeleteAction
+                        ? t("call-logs.hide-delete-action")
+                        : t("call-logs.show-delete-action")}
+                    </Button>
+                  </div>
+                }
+              >
+                <Button type="primary">
+                  <RedoOutlined />
+                  {t("call-logs.reset-filter")}
+                </Button>
+              </Popover>
+            </div>
           </div>
-          <div className="hidden lg:block">
-            <Popover
-              placement="topRight"
-              title={"Action"}
-              content={
-                <div className="flex flex-col gap-2">
-                  <Button
-                    type="primary"
-                    onClick={() => {
-                      setFilteredInfo({});
-                      setSortedInfo({});
-                      setRawCallLogs(rawCallLogsNotModify);
-                    }}
-                  >
-                    <RedoOutlined />
-                    {t("call-logs.reset-filter")}
-                  </Button>
-                  <Button
-                    type="primary"
-                    danger
-                    onClick={() => setIsShowDeleteAction(!isShowDeleteAction)}
-                  >
-                    {t("call-logs.delete-action")}
-                  </Button>
-                </div>
-              }
-            >
-              <Button type="primary">
-                <RedoOutlined />
-                {t("call-logs.reset-filter")}
-              </Button>
-            </Popover>
-          </div>
-        </div>
-      )}
-      columns={columns}
-      onChange={handleTableChange}
-      dataSource={dataToShow && dataToShow.length > 0 === true ? dataToShow : sample}
-      className="mt-4"
-      scroll={{ x: "max-content", y: 55 * 20 }}
-      rowClassName="call-logs-table-row"
-    />
+        )}
+        columns={columns}
+        onChange={handleTableChange}
+        dataSource={dataToShow && dataToShow.length > 0 === true ? dataToShow : sample}
+        className="mt-4"
+        scroll={{ x: "max-content", y: 55 * 20 }}
+        rowClassName={(record: ICallLogType, index) =>
+          record.call_duration === "00:00:00" && missedCallBackground
+            ? "call-logs-table-row missed-call-row"
+            : "call-logs-table-row"
+        }
+      />
+    </div>
   );
 }
 

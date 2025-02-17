@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const guide = () => {
   return (
-    <div className="w-[90%] lg:w-[70%] 2xl:w-[60%] 3xl:w-[40%] m-auto  py-5">
+    <div className="w-[90%] lg:w-[70%] 2xl:w-[60%] 3xl:w-[40%] m-auto  py-2">
       <Guide />
     </div>
   );

@@ -14,7 +14,10 @@
     "data-title": "Call logs between {nameA} and {nameB} on",
     "sample-data-title": "This is a sample data for call logs on",
     "reset-filter": "Reset Filter",
-    "delete-action": "Hide/Show Delete action",
+    "hide-delete-action": "Hide Delete action",
+    "show-delete-action": "Show Delete action",
+    "hide-missed-background": "Hide Missed Call background color",
+    "show-missed-background": "Show Missed Call background color",
     "date": "Date",
     "sender": "Sender",
     "content": "Content",
@@ -56,6 +59,64 @@
   "float-button": {
     "table": "Show data table",
     "statistic": "Show statistic"
+  },
+  "guide-tour": {
+    "button": "GUIDE TOUR",
+    "upload": {
+      "title": "Upload JSON File",
+      "description": {
+        "line1": "Upload or drag and drop a JSON file here.",
+        "line2": "Only JSON files are supported.",
+        "line3": "You can upload more than 10 files at the same time."
+      }
+    },
+    "json-guide": {
+      "title": "JSON Guide Page",
+      "description": {
+        "line1": "If you don’t know how to find a JSON file, visit this page for guidance."
+      }
+    },
+    "call-statistic": {
+      "title": "Call Statistics",
+      "description": {
+        "line1": "Provides an overview of call data, including successful calls, missed calls, and total call duration.",
+        "line2": "Helps track call performance by displaying key metrics like completed and missed calls, along with their durations."
+      }
+    },
+    "statistic-chart": {
+      "title": "Call Statistics Chart",
+      "description": {
+        "line1": "A bar chart that visualizes and compares call activities between two individuals.",
+        "line2": "Displays total call hours, successful calls, and missed calls."
+      }
+    },
+    "table": {
+      "title": "Call Logs Table",
+      "description": {
+        "line1": "Displays call and video logs between two individuals.",
+        "line2": "You can filter by date and sort by sender or call duration for better data retrieval."
+      }
+    },
+    "reset-button": {
+      "title": "Reset Filter",
+      "description": {
+        "line1": "Clears all filters and sorting options at once.",
+        "line2": "You can show or hide the background color of the missed call."
+      }
+    },
+    "float-button": {
+      "title": "Shortcut Float Button",
+      "description": {
+        "line1": "Provides quick access to Call Statistics and the Call Logs Table without scrolling."
+      }
+    },
+    "language": {
+      "title": "Language",
+      "description": {
+        "line1": "Select your preferred language.",
+        "line2": "Currently, the app supports the 10+ most commonly used languages."
+      }
+    }
   },
   "common": {
     "get-started": "GET STARTED",

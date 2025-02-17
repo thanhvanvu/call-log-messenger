@@ -64,7 +64,7 @@ function Guide() {
   ];
   return (
     <div className=" max-w-2xl bg-white mx-auto md:p-5  ">
-      <h1 className="text-2xl font-bold text-center text-blue-600 mb-6">
+      <h1 className="text-2xl font-bold text-center text-blue-600 mb-4">
         Facebook Message Download Guide
       </h1>
       {steps.map((step, index) => (

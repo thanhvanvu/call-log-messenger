@@ -4,11 +4,13 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import icon from "@/app/favicon.ico";
 import Image from "next/image";
-import { Button, Select } from "antd";
+import { Button, Select, Tour, TourProps } from "antd";
 import { useParams } from "next/navigation";
 
 import { Link, Locale, routing, usePathname, useRouter } from "@/i18n/routing";
 import { useLocale, useTranslations } from "next-intl";
+import { useCurrentApp } from "@/context/app.context";
+import { useRef } from "react";
 
 const Header = () => {
   const locale = useLocale();
@@ -16,6 +18,7 @@ const Header = () => {
   const params = useParams();
   const t = useTranslations();
 
+  const { guideTour, setGuideTour, tourStep } = useCurrentApp();
   const localeOption = [
     {
       value: "en",
@@ -111,17 +114,72 @@ const Header = () => {
         </div>
       ),
     },
+    {
+      value: "it",
+      label: (
+        <div className="flex gap-2">
+          <span className="fi fi-it"></span>
+          <span>Italian</span>
+        </div>
+      ),
+    },
+    {
+      value: "de",
+      label: (
+        <div className="flex gap-2">
+          <span className="fi fi-de"></span>
+          <span>German</span>
+        </div>
+      ),
+    },
+    {
+      value: "nl",
+      label: (
+        <div className="flex gap-2">
+          <span className="fi fi-nl"></span>
+          <span>Dutch</span>
+        </div>
+      ),
+    },
+    {
+      value: "tr",
+      label: (
+        <div className="flex gap-2">
+          <span className="fi fi-pk"></span>
+          <span>Turkish</span>
+        </div>
+      ),
+    },
+    {
+      value: "jp",
+      label: (
+        <div className="flex gap-2">
+          <span className="fi fi-jp"></span>
+          <span>Japanese</span>
+        </div>
+      ),
+    },
+    {
+      value: "kr",
+      label: (
+        <div className="flex gap-2">
+          <span className="fi fi-kr"></span>
+          <span>Korean</span>
+        </div>
+      ),
+    },
   ];
 
   const pathname = usePathname();
 
   const handleChange = (value: string) => {
+    console.log(value);
     // @ts-ignore
     router.replace({ pathname, params }, { locale: value as Locale });
   };
-
   return (
     <div className="bg-body-tertiary">
+      {/* <Tour open={guideTour} onClose={() => setGuideTour(false)} steps={steps} zIndex={10} /> */}
       <Navbar collapseOnSelect expand="lg" className=" w-[90%] mx-auto justify-between 3xl:w-[80%]">
         <Link href="/" className="navbar-brand font-bold flex gap-2">
           <Image src={icon} alt="" width={30} height={30}></Image>
@@ -131,7 +189,7 @@ const Header = () => {
           <div className="flex-end 992:hidden">
             <Select
               listHeight={1000}
-              listItemHeight={20}
+              listItemHeight={30}
               popupMatchSelectWidth={false}
               defaultValue={locale}
               style={{ width: 120 }}
@@ -144,7 +202,7 @@ const Header = () => {
 
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto ">
-            <div className="py-2">
+            <div className="py-2" ref={tourStep?.step1}>
               <Link href="/guide" className="nav-link focus:text-[#0866FF]">
                 {t("header.guide")}
               </Link>
@@ -159,20 +217,35 @@ const Header = () => {
         </Navbar.Collapse>
 
         <div className=" hidden 992:flex flex-row items-center gap-4">
-          <Select
-            listHeight={1000}
-            listItemHeight={20}
-            defaultValue={locale}
-            style={{ width: 140 }}
-            onChange={handleChange}
-            options={localeOption}
-            className="border-none"
-          />
-          <Link href={"/calllog"}>
-            <Button type="primary" size="large">
-              {t("header.get-started")}
+          <div ref={tourStep?.step7}>
+            <Select
+              listHeight={1000}
+              listItemHeight={20}
+              defaultValue={locale}
+              style={{ width: 140 }}
+              onChange={handleChange}
+              options={localeOption}
+              className="border-none"
+            />
+          </div>
+
+          {pathname === "/calllog" ? (
+            <Button
+              type="primary"
+              size="large"
+              onClickCapture={() => {
+                setGuideTour(!guideTour);
+              }}
+            >
+              {t("guide-tour.button")}
             </Button>
-          </Link>
+          ) : (
+            <Link href={"/calllog"}>
+              <Button type="primary" size="large">
+                {t("header.get-started")}
+              </Button>
+            </Link>
+          )}
         </div>
       </Navbar>
     </div>

@@ -1,0 +1,127 @@
+{
+  "homepage": {
+    "title": "Non riesci a trovare <callLogs>Call Logs</callLogs>? Visualizzali qui",
+    "description": "Ottieni approfondimenti completi sui tuoi modelli di comunicazione con registri delle chiamate e statistiche dettagliate. Monitora facilmente la durata delle chiamate, traccia le chiamate perse e analizza l'attività complessiva della comunicazione per ottimizzare l'efficienza e rimanere connesso."
+  },
+  "header": {
+    "get-started": "INIZIA",
+    "guide": "Guida su come trovare il file JSON"
+  },
+  "call-logs": {
+    "click-upload": "Clicca in quest'area per caricare",
+    "upload-note": "Supporta il caricamento multiplo. Supporta solo il file JSON",
+    "guide": "Non hai un file JSON? Vai qui per trovarlo",
+    "data-title": "Registri delle chiamate tra {nameA} e {nameB} il",
+    "sample-data-title": "Questo è un esempio di dati per i registri delle chiamate del",
+    "reset-filter": "Ripristina filtro",
+    "hide-delete-action": "Nascondi l'azione Elimina",
+    "show-delete-action": "Mostra l'azione Elimina",
+    "hide-missed-background": "Nascondi il colore di sfondo delle chiamate perse",
+    "show-missed-background": "Mostra il colore di sfondo delle chiamate perse",
+    "date": "Data",
+    "sender": "Mittente",
+    "content": "Contenuto",
+    "call-end": "Ora di fine chiamata",
+    "call-duration": "Durata chiamata",
+    "action": "Azione",
+    "pagination": "su",
+    "statistic": "Statistiche della cronologia delle chiamate",
+    "success": "Totale chiamate riuscite",
+    "success-from-A": "Totale chiamate da {nameA}",
+    "success-from-B": "Totale chiamate da {nameB}",
+    "missed": "Totale chiamate perse",
+    "B-missed-call": "Chiamate perse totali da {nameB}",
+    "A-missed-call": "Chiamate perse totali da {nameA}",
+    "time": "volte",
+    "delete": "Elimina",
+    "delete-popConfirm-title": "Elimina questo registro delle chiamate",
+    "delete-popConfirm-description": "Sei sicuro di voler eliminare questo registro delle chiamate?"
+  },
+  "json-guide": {
+    "step1": "Nella tua pagina Facebook, clicca sull'icona in alto a destra per aprire il menu a discesa.",
+    "step2": "Clicca su 'Impostazioni e privacy'.",
+    "step3": "Clicca su 'Scarica le tue informazioni'.",
+    "step4": "Facebook ti porterà su un'altra pagina.",
+    "step5": "Clicca su 'Scarica o trasferisci informazioni'.",
+    "step6": "Scegli Facebook e poi Avanti.",
+    "step7": "Clicca su 'Tipi specifici di informazioni'.",
+    "step8": "Seleziona solo 'Messaggi' dalla lista.",
+    "step9": "Scegli dove desideri salvare il file.",
+    "step10": "Importante: Scegli **Formato: JSON** e **Qualità dei media: Bassa**.",
+    "step11": "Attendi il download. Una volta estratti, i tuoi file appariranno così.",
+    "step12": "Segui questo percorso per trovare il tuo file JSON:"
+  },
+  "mobile-modal": {
+    "title": "Miglior visualizzazione su desktop",
+    "line1": "Per una migliore esperienza, ti consigliamo di usare un PC o un laptop.",
+    "line2": "Oppure abilita il 'Sito desktop' nelle impostazioni del tuo browser mobile."
+  },
+  "float-button": {
+    "table": "Mostra la tabella dei dati",
+    "statistic": "Mostra le statistiche"
+  },
+  "guide-tour": {
+    "button": "GUIDA TOUR",
+    "upload": {
+      "title": "Carica il file JSON",
+      "description": {
+        "line1": "Carica o trascina e rilascia un file JSON qui.",
+        "line2": "Sono supportati solo i file JSON.",
+        "line3": "Puoi caricare più di 10 file contemporaneamente."
+      }
+    },
+    "json-guide": {
+      "title": "Pagina Guida JSON",
+      "description": {
+        "line1": "Se non sai come trovare un file JSON, visita questa pagina per la guida."
+      }
+    },
+    "call-statistic": {
+      "title": "Statistiche delle chiamate",
+      "description": {
+        "line1": "Fornisce una panoramica dei dati delle chiamate, incluse le chiamate riuscite, le chiamate perse e la durata totale delle chiamate.",
+        "line2": "Aiuta a monitorare le prestazioni delle chiamate mostrando metriche chiave come chiamate completate e perse, insieme alla loro durata."
+      }
+    },
+    "statistic-chart": {
+      "title": "Grafico delle statistiche delle chiamate",
+      "description": {
+        "line1": "Un grafico a barre che visualizza e confronta le attività delle chiamate tra due individui.",
+        "line2": "Visualizza il totale delle ore di chiamata, le chiamate riuscite e quelle perse."
+      }
+    },
+    "table": {
+      "title": "Tabella dei registri delle chiamate",
+      "description": {
+        "line1": "Visualizza i registri delle chiamate e dei video tra due individui.",
+        "line2": "Puoi filtrare per data e ordinare per mittente o durata della chiamata per un miglior recupero dei dati."
+      }
+    },
+    "reset-button": {
+      "title": "Ripristina il filtro",
+      "description": {
+        "line1": "Cancella tutti i filtri e le opzioni di ordinamento contemporaneamente.",
+        "line2": "Puoi mostrare o nascondere il colore di sfondo delle chiamate perse."
+      }
+    },
+    "float-button": {
+      "title": "Pulsante di collegamento rapido",
+      "description": {
+        "line1": "Fornisce un accesso rapido alle statistiche delle chiamate e alla tabella dei registri delle chiamate senza dover scorrere."
+      }
+    },
+    "language": {
+      "title": "Lingua",
+      "description": {
+        "line1": "Seleziona la tua lingua preferita.",
+        "line2": "Attualmente, l'app supporta le 10+ lingue più utilizzate."
+      }
+    }
+  },
+  "common": {
+    "get-started": "INIZIA",
+    "guide": "Guida su come trovare il file JSON",
+    "yes": "Sì",
+    "no": "No"
+  }
+}

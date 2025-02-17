@@ -14,6 +14,8 @@ import {
   FloatButton,
   message,
   Popover,
+  Tour,
+  TourProps,
   Upload,
   UploadFile,
   UploadProps,
@@ -26,11 +28,17 @@ import Statistic from "./Statistic";
 import DataTable from "./DataTable";
 import { Link } from "@/i18n/routing";
 import { TbTableShortcut } from "react-icons/tb";
-import { FcStatistics } from "react-icons/fc";
 
 const CallLog = () => {
-  const { setParticipants, setDateFilter, setRawCallLogs, setDateRange, dateRange } =
-    useCurrentApp();
+  const {
+    setParticipants,
+    setDateFilter,
+    setRawCallLogs,
+    dateRange,
+    guideTour,
+    setGuideTour,
+    tourStep,
+  } = useCurrentApp();
   const [messageApi, contextHolder] = message.useMessage();
 
   const [rawCallLogsNotModify, setRawCallLogsNotModify] = useState<IRawLogType[]>([]);
@@ -38,6 +46,8 @@ const CallLog = () => {
   const [fileList, setFileList] = useState<UploadFile[]>([]);
   const [isLoadingTable, setIsLoadingTable] = useState<boolean>(false);
   const t = useTranslations();
+
+  console.log(guideTour);
 
   const props: UploadProps = {
     name: "file",
@@ -181,27 +191,30 @@ const CallLog = () => {
   return (
     <>
       {contextHolder}
+
       <div className="mt-10 w-[90%] m-auto 3xl:w-[80%] pb-14">
         <div className="mt-4">
           <Dragger className="block m-auto mt-20 lg:w-[70%] 2xl:w-[60%] 3xl:w-[40%]" {...props}>
-            <p className="ant-upload-drag-icon">
-              <InboxOutlined />
-            </p>
-            <p className="ant-upload-text">{t("call-logs.click-upload")}</p>
-            <p className="ant-upload-hint">{t("call-logs.upload-note")}</p>
-            <Link
-              href="/guide"
-              className="ant-upload-hint"
-              onClick={(e) => {
-                e.stopPropagation();
-              }}
-            >
-              {t("call-logs.guide")}
-            </Link>
+            <div className="" ref={tourStep?.step0}>
+              <p className="ant-upload-drag-icon ">
+                <InboxOutlined />
+              </p>
+              <p className="ant-upload-text">{t("call-logs.click-upload")}</p>
+              <p className="ant-upload-hint">{t("call-logs.upload-note")}</p>
+              <Link
+                href="/guide"
+                className="ant-upload-hint"
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+              >
+                {t("call-logs.guide")}
+              </Link>
+            </div>
           </Dragger>
         </div>
         <div className="flex flex-col gap-y-10 mt-5">
-          <Collapse items={items} />
+          <Collapse items={items} activeKey={tourStep.currentStep >= 2 ? 1 : undefined} />
         </div>
 
         <DataTable
@@ -209,41 +222,47 @@ const CallLog = () => {
           setIsLoadingTable={setIsLoadingTable}
           rawCallLogsNotModify={rawCallLogsNotModify}
         />
-      </div>
-      <div className="hidden 2xl:block">
-        <FloatButton.Group
-          trigger="hover"
-          type="primary"
-          style={{ insetInlineEnd: 50 }}
-          icon={<TbTableShortcut />}
-        >
-          <Popover
-            content={<Statistic />}
-            trigger="click"
-            placement="leftTop"
-            overlayStyle={{ width: "70%" }}
-          >
-            <FloatButton
-              icon={<LineChartOutlined />}
-              tooltip={<div>{t("float-button.statistic")}</div>}
-            />
-          </Popover>
 
-          <Popover
-            content={
-              <DataTable
-                isLoadingTable={isLoadingTable}
-                setIsLoadingTable={setIsLoadingTable}
-                rawCallLogsNotModify={rawCallLogsNotModify}
-              />
-            }
-            trigger="click"
-            placement="leftTop"
-            overlayStyle={{ width: "80%" }} // Set the width of the popover content
+        <div className="hidden 992:block">
+          <FloatButton.Group
+            // @ts-ignore
+            ref={tourStep?.step6}
+            trigger="hover"
+            type="primary"
+            style={{ insetInlineEnd: 50 }}
+            icon={<TbTableShortcut />}
           >
-            <FloatButton icon={<TableOutlined />} tooltip={<div>{t("float-button.table")}</div>} />
-          </Popover>
-        </FloatButton.Group>
+            <Popover
+              content={<Statistic forFloatButton={true} />}
+              trigger="click"
+              placement="leftTop"
+              overlayStyle={{ width: "70%" }}
+            >
+              <FloatButton
+                icon={<LineChartOutlined />}
+                tooltip={<div>{t("float-button.statistic")}</div>}
+              />
+            </Popover>
+
+            <Popover
+              content={
+                <DataTable
+                  isLoadingTable={isLoadingTable}
+                  setIsLoadingTable={setIsLoadingTable}
+                  rawCallLogsNotModify={rawCallLogsNotModify}
+                />
+              }
+              trigger="click"
+              placement="leftTop"
+              overlayStyle={{ width: "80%" }} // Set the width of the popover content
+            >
+              <FloatButton
+                icon={<TableOutlined />}
+                tooltip={<div>{t("float-button.table")}</div>}
+              />
+            </Popover>
+          </FloatButton.Group>
+        </div>
       </div>
     </>
   );

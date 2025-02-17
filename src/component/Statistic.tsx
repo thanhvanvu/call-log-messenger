@@ -17,9 +17,14 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 
-function Statistic() {
+interface IProps {
+  forFloatButton?: boolean;
+}
+
+function Statistic(props: IProps) {
+  const { forFloatButton } = props;
   ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
-  const { dataStatistic, participants } = useCurrentApp();
+  const { dataStatistic, participants, tourStep, dateRange } = useCurrentApp();
   const [dataHourCallChart, setDataHourCallChart] = useState<any>({
     options: {
       maintainAspectRatio: false,
@@ -68,12 +73,19 @@ function Statistic() {
 
     setDataHourCallChart({ ...dataHourCallChart, data: dataChartHour });
   }, [dataStatistic]);
+
   return (
     <>
-      <div className="grid grid-cols-1 gap-5 xl:grid-cols-2 3xl:grid-cols-3">
+      {forFloatButton && (
+        <p className="text-lg mb-3 font-bold">
+          {t("call-logs.statistic")} {dateRange ? `(${dateRange?.from} - ${dateRange?.to})` : ""}
+        </p>
+      )}
+
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3 " ref={tourStep.step2}>
         <Card
           title={
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 color-[#28a745] ">
               <IoMdCall className="text-[#28a745]" />
               {t("call-logs.success")}
             </div>
@@ -82,11 +94,11 @@ function Statistic() {
           className=""
         >
           <div className="flex flex-col gap-y-3">
-            <p>
+            <p className="text-[#28a745]">
               {dataStatistic?.totalSuccessCall?.total ? dataStatistic.totalSuccessCall.total : 0}{" "}
               {t("call-logs.time")}
             </p>
-            <p className="tracking-[.1em]">
+            <p className="tracking-[.1em] text-[#28a745]">
               {dataStatistic?.totalSuccessCall?.totalDuration
                 ? dataStatistic.totalSuccessCall.totalDuration
                 : 0}
@@ -104,13 +116,13 @@ function Statistic() {
           className=""
         >
           <div className="flex flex-col gap-y-3">
-            <p>
+            <p className="text-[#28a745]">
               {dataStatistic?.totalCallFromNameA?.total
                 ? dataStatistic.totalCallFromNameA.total
                 : 0}{" "}
               {t("call-logs.time")}
             </p>
-            <p className="tracking-[.1em]">
+            <p className="tracking-[.1em] text-[#28a745]">
               {dataStatistic?.totalCallFromNameA?.totalDuration
                 ? dataStatistic.totalCallFromNameA.totalDuration
                 : 0}
@@ -128,13 +140,13 @@ function Statistic() {
           className=""
         >
           <div className="flex flex-col gap-y-3">
-            <p>
+            <p className="text-[#28a745]">
               {dataStatistic?.totalCallFromNameB?.total
                 ? dataStatistic.totalCallFromNameB.total
                 : 0}{" "}
               {t("call-logs.time")}
             </p>
-            <p className="tracking-[.1em]">
+            <p className="tracking-[.1em] text-[#28a745]">
               {dataStatistic?.totalCallFromNameB?.totalDuration
                 ? dataStatistic.totalCallFromNameB.totalDuration
                 : 0}
@@ -152,7 +164,7 @@ function Statistic() {
           className=""
         >
           <div className="flex flex-col gap-y-3">
-            <p>
+            <p className="text-[#f44336]">
               {dataStatistic?.totalMissedCall?.total ? dataStatistic.totalMissedCall.total : 0}{" "}
               {t("call-logs.time")}
             </p>
@@ -168,7 +180,7 @@ function Statistic() {
           hoverable={true}
           className=""
         >
-          <p>
+          <p className="text-[#f44336]">
             {dataStatistic?.totalMissedCall?.fromNameB
               ? dataStatistic.totalMissedCall.fromNameB
               : 0}{" "}
@@ -185,7 +197,7 @@ function Statistic() {
           hoverable={true}
           className=""
         >
-          <p>
+          <p className="text-[#f44336]">
             {dataStatistic?.totalMissedCall?.fromNameA
               ? dataStatistic.totalMissedCall.fromNameA
               : 0}{" "}
@@ -194,7 +206,7 @@ function Statistic() {
         </Card>
       </div>
       <div className="flex flex-col gap-y-6 justify-evenly w-auto mt-5 lg:flex-row ">
-        <div className="w-[100%] h-[300px] xl:h-[500px] 2xl:w-[60%] ">
+        <div className="w-[100%] h-[300px] xl:h-[500px] 2xl:w-[60%]  " ref={tourStep.step3}>
           <Bar options={dataHourCallChart?.options} data={dataHourCallChart?.data} />
         </div>
       </div>

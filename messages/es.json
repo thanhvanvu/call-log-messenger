@@ -14,7 +14,10 @@
     "data-title": "Registros de llamadas entre {nameA} y {nameB} el",
     "sample-data-title": "Este es un ejemplo de datos de registros de llamadas el",
     "reset-filter": "Restablecer filtro",
-    "delete-action": "Ocultar/Mostrar acción de eliminar",
+    "hide-delete-action": "Ocultar acción de Eliminar",
+    "show-delete-action": "Mostrar acción de Eliminar",
+    "hide-missed-background": "Ocultar color de fondo de Llamada perdida",
+    "show-missed-background": "Mostrar color de fondo de Llamada perdida",
     "date": "Fecha",
     "sender": "Remitente",
     "content": "Contenido",
@@ -56,6 +59,64 @@
   "float-button": {
     "table": "Mostrar tabla de datos",
     "statistic": "Mostrar estadísticas"
+  },
+  "guide-tour": {
+    "button": "GUÍA DEL TOUR",
+    "upload": {
+      "title": "Subir archivo JSON",
+      "description": {
+        "line1": "Sube o arrastra un archivo JSON aquí.",
+        "line2": "Solo se admiten archivos JSON.",
+        "line3": "Puedes subir más de 10 archivos al mismo tiempo."
+      }
+    },
+    "json-guide": {
+      "title": "Página de Guía JSON",
+      "description": {
+        "line1": "Si no sabes cómo encontrar un archivo JSON, visita esta página para obtener ayuda."
+      }
+    },
+    "call-statistic": {
+      "title": "Estadísticas de Llamadas",
+      "description": {
+        "line1": "Proporciona una visión general de los datos de las llamadas, incluyendo llamadas exitosas, llamadas perdidas y la duración total de las llamadas.",
+        "line2": "Ayuda a hacer seguimiento del rendimiento de las llamadas mostrando métricas clave como llamadas completadas y perdidas, junto con su duración."
+      }
+    },
+    "statistic-chart": {
+      "title": "Gráfico de Estadísticas de Llamadas",
+      "description": {
+        "line1": "Un gráfico de barras que visualiza y compara las actividades de llamadas entre dos individuos.",
+        "line2": "Muestra el total de horas de llamadas, llamadas exitosas y llamadas perdidas."
+      }
+    },
+    "table": {
+      "title": "Tabla de Registros de Llamadas",
+      "description": {
+        "line1": "Muestra los registros de llamadas y videos entre dos individuos.",
+        "line2": "Puedes filtrar por fecha y ordenar por remitente o duración de la llamada para una mejor recuperación de datos."
+      }
+    },
+    "reset-button": {
+      "title": "Restablecer Filtros",
+      "description": {
+        "line1": "Elimina todos los filtros y opciones de ordenación de una vez.",
+        "line2": "Puedes mostrar u ocultar el color de fondo de la llamada perdida."
+      }
+    },
+    "float-button": {
+      "title": "Botón Flotante de Acceso Rápido",
+      "description": {
+        "line1": "Proporciona acceso rápido a las Estadísticas de Llamadas y la Tabla de Registros de Llamadas sin necesidad de desplazarse."
+      }
+    },
+    "language": {
+      "title": "Idioma",
+      "description": {
+        "line1": "Selecciona tu idioma preferido.",
+        "line2": "Actualmente, la aplicación soporta los 10+ idiomas más utilizados."
+      }
+    }
   },
   "common": {
     "get-started": "EMPEZAR",

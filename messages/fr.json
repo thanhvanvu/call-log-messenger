@@ -14,7 +14,10 @@
     "data-title": "Historique des appels entre {nameA} et {nameB} le",
     "sample-data-title": "Voici un exemple de données pour les journaux d'appels le",
     "reset-filter": "Réinitialiser le filtre",
-    "delete-action": "Masquer/Afficher l'action de suppression",
+    "hide-delete-action": "Masquer l'action de suppression",
+    "show-delete-action": "Afficher l'action de suppression",
+    "hide-missed-background": "Masquer la couleur de fond des appels manqués",
+    "show-missed-background": "Afficher la couleur de fond des appels manqués",
     "date": "Date",
     "sender": "Expéditeur",
     "content": "Contenu",
@@ -56,6 +59,64 @@
   "float-button": {
     "table": "Afficher le tableau de données",
     "statistic": "Afficher les statistiques"
+  },
+  "guide-tour": {
+    "button": "GUIDE DU TOUR",
+    "upload": {
+      "title": "Télécharger un fichier JSON",
+      "description": {
+        "line1": "Téléchargez ou faites glisser un fichier JSON ici.",
+        "line2": "Seuls les fichiers JSON sont pris en charge.",
+        "line3": "Vous pouvez télécharger plus de 10 fichiers en même temps."
+      }
+    },
+    "json-guide": {
+      "title": "Page Guide JSON",
+      "description": {
+        "line1": "Si vous ne savez pas comment trouver un fichier JSON, visitez cette page pour obtenir de l'aide."
+      }
+    },
+    "call-statistic": {
+      "title": "Statistiques d'Appels",
+      "description": {
+        "line1": "Fournit un aperçu des données des appels, y compris les appels réussis, les appels manqués et la durée totale des appels.",
+        "line2": "Aide à suivre la performance des appels en affichant des indicateurs clés tels que les appels réussis et les appels manqués, ainsi que leur durée."
+      }
+    },
+    "statistic-chart": {
+      "title": "Graphique des Statistiques d'Appels",
+      "description": {
+        "line1": "Un graphique en barres qui visualise et compare les activités des appels entre deux individus.",
+        "line2": "Affiche le total des heures d'appels, les appels réussis et les appels manqués."
+      }
+    },
+    "table": {
+      "title": "Tableau des Enregistrements d'Appels",
+      "description": {
+        "line1": "Affiche les enregistrements des appels et vidéos entre deux individus.",
+        "line2": "Vous pouvez filtrer par date et trier par expéditeur ou durée d'appel pour mieux récupérer les données."
+      }
+    },
+    "reset-button": {
+      "title": "Réinitialiser les Filtres",
+      "description": {
+        "line1": "Supprimez tous les filtres et options de tri en même temps.",
+        "line2": "Vous pouvez afficher ou masquer la couleur de fond des appels manqués."
+      }
+    },
+    "float-button": {
+      "title": "Bouton Flottant d'Accès Rapide",
+      "description": {
+        "line1": "Fournit un accès rapide aux Statistiques d'Appels et au Tableau des Enregistrements d'Appels sans avoir besoin de faire défiler."
+      }
+    },
+    "language": {
+      "title": "Langue",
+      "description": {
+        "line1": "Sélectionnez votre langue préférée.",
+        "line2": "Actuellement, l'application prend en charge les 10+ langues les plus courantes."
+      }
+    }
   },
   "common": {
     "get-started": "COMMENCER",

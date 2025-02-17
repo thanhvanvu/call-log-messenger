@@ -1,0 +1,127 @@
+{
+  "homepage": {
+    "title": "<callLogs>통화 기록</callLogs>을 찾을 수 없습니까? 여기에서 확인하세요",
+    "description": "상세한 통화 기록과 통계로 커뮤니케이션 패턴에 대한 포괄적인 통찰을 얻을 수 있습니다. 통화 시간을 쉽게 모니터링하고, 놓친 통화를 추적하며, 전체 커뮤니케이션 활동을 분석하여 효율성을 최적화하고 연결을 유지할 수 있습니다."
+  },
+  "header": {
+    "get-started": "시작하기",
+    "guide": "JSON 파일 찾는 방법 안내"
+  },
+  "call-logs": {
+    "click-upload": "이 영역을 클릭하여 업로드",
+    "upload-note": "여러 파일 업로드를 지원합니다. JSON 파일만 지원",
+    "guide": "JSON 파일이 없으신가요? 여기를 클릭하여 찾으세요",
+    "data-title": "{nameA}와 {nameB} 간의 통화 기록",
+    "sample-data-title": "통화 기록 샘플 데이터입니다",
+    "reset-filter": "필터 초기화",
+    "hide-delete-action": "삭제 작업 숨기기",
+    "show-delete-action": "삭제 작업 표시",
+    "hide-missed-background": "놓친 통화 배경 색상 숨기기",
+    "show-missed-background": "놓친 통화 배경 색상 표시",
+    "date": "날짜",
+    "sender": "보낸 사람",
+    "content": "내용",
+    "call-end": "통화 종료 시간",
+    "call-duration": "통화 시간",
+    "action": "작업",
+    "pagination": "중",
+    "statistic": "통화 기록 통계",
+    "success": "성공적인 통화 총 수",
+    "success-from-A": "{nameA}의 총 통화 수",
+    "success-from-B": "{nameB}의 총 통화 수",
+    "missed": "놓친 통화 총 수",
+    "B-missed-call": "{nameB}의 놓친 통화 총 수",
+    "A-missed-call": "{nameA}의 놓친 통화 총 수",
+    "time": "회",
+    "delete": "삭제",
+    "delete-popConfirm-title": "이 통화 기록 삭제",
+    "delete-popConfirm-description": "정말로 이 통화 기록을 삭제하시겠습니까?"
+  },
+  "json-guide": {
+    "step1": "Facebook 페이지에서 오른쪽 상단 아이콘을 클릭하여 드롭다운 메뉴를 엽니다.",
+    "step2": "'설정 및 개인정보'를 클릭합니다.",
+    "step3": "'정보 다운로드'를 클릭합니다.",
+    "step4": "Facebook은 다른 페이지로 이동합니다.",
+    "step5": "'정보 다운로드 또는 전송'을 클릭합니다.",
+    "step6": "Facebook을 선택한 후 다음으로 이동합니다.",
+    "step7": "'특정 유형의 정보'를 클릭합니다.",
+    "step8": "목록에서 '메시지'만 선택합니다.",
+    "step9": "파일을 저장할 위치를 선택합니다.",
+    "step10": "중요: **형식: JSON** 및 **미디어 품질: 낮음**을 선택하세요.",
+    "step11": "다운로드가 완료될 때까지 기다리세요. 추출 후 파일은 다음과 같습니다.",
+    "step12": "JSON 파일을 찾으려면 이 경로를 따라가세요:"
+  },
+  "mobile-modal": {
+    "title": "데스크톱에서 보는 것이 가장 좋습니다",
+    "line1": "최적의 경험을 위해 PC나 노트북을 사용하는 것이 좋습니다.",
+    "line2": "또는 모바일 브라우저 설정에서 '데스크톱 사이트'를 활성화하세요."
+  },
+  "float-button": {
+    "table": "데이터 테이블 표시",
+    "statistic": "통계 표시"
+  },
+  "guide-tour": {
+    "button": "가이드 투어",
+    "upload": {
+      "title": "JSON 파일 업로드",
+      "description": {
+        "line1": "여기에 JSON 파일을 업로드하거나 드래그 앤 드롭 하세요.",
+        "line2": "JSON 파일만 지원됩니다.",
+        "line3": "한 번에 10개 이상의 파일을 업로드할 수 있습니다."
+      }
+    },
+    "json-guide": {
+      "title": "JSON 가이드 페이지",
+      "description": {
+        "line1": "JSON 파일을 찾는 방법을 모를 경우 이 페이지에서 가이드를 확인하세요."
+      }
+    },
+    "call-statistic": {
+      "title": "통화 통계",
+      "description": {
+        "line1": "성공한 통화, 놓친 통화 및 총 통화 시간을 포함한 통화 데이터의 개요를 제공합니다.",
+        "line2": "성공한 통화와 놓친 통화의 주요 지표를 표시하고 이들의 통화 시간을 추적합니다."
+      }
+    },
+    "statistic-chart": {
+      "title": "통계 차트",
+      "description": {
+        "line1": "두 사람의 통화 활동을 시각화하여 비교할 수 있는 막대 차트입니다.",
+        "line2": "총 통화 시간, 성공적인 통화 및 놓친 통화를 표시합니다."
+      }
+    },
+    "table": {
+      "title": "통화 기록 테이블",
+      "description": {
+        "line1": "두 사람 간의 통화 및 영상 로그를 표시합니다.",
+        "line2": "날짜로 필터링하고 발신자 또는 통화 시간을 기준으로 데이터를 정렬하여 효율적으로 데이터를 조회할 수 있습니다."
+      }
+    },
+    "reset-button": {
+      "title": "필터 초기화",
+      "description": {
+        "line1": "모든 필터와 정렬 옵션을 한 번에 초기화합니다.",
+        "line2": "놓친 통화의 배경 색상을 표시하거나 숨길 수 있습니다."
+      }
+    },
+    "float-button": {
+      "title": "쇼트컷 플로팅 버튼",
+      "description": {
+        "line1": "스크롤하지 않고 통계 및 통화 기록 테이블에 빠르게 접근할 수 있습니다."
+      }
+    },
+    "language": {
+      "title": "언어",
+      "description": {
+        "line1": "선호하는 언어를 선택하세요.",
+        "line2": "현재 앱은 가장 일반적인 10+개 언어를 지원합니다."
+      }
+    }
+  },
+  "common": {
+    "get-started": "시작하기",
+    "guide": "JSON 파일 찾는 방법 안내",
+    "yes": "예",
+    "no": "아니오"
+  }
+}

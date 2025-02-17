@@ -1,0 +1,127 @@
+{
+  "homepage": {
+    "title": "Kann <callLogs>Call Logs</callLogs> nicht finden? Hier ansehen",
+    "description": "Erhalten Sie umfassende Einblicke in Ihre Kommunikationsmuster mit detaillierten Anrufprotokollen und Statistiken. Überwachen Sie mühelos die Anrufdauern, verfolgen Sie verpasste Anrufe und analysieren Sie die gesamte Kommunikationsaktivität, um die Effizienz zu optimieren und verbunden zu bleiben."
+  },
+  "header": {
+    "get-started": "JETZT STARTEN",
+    "guide": "Anleitung zum Finden der JSON-Datei"
+  },
+  "call-logs": {
+    "click-upload": "Klicken Sie auf diesen Bereich, um hochzuladen",
+    "upload-note": "Unterstützt das Hochladen mehrerer Dateien. Nur JSON-Dateien werden unterstützt",
+    "guide": "Haben Sie keine JSON-Datei? Gehen Sie hier, um sie zu finden",
+    "data-title": "Anrufprotokolle zwischen {nameA} und {nameB} am",
+    "sample-data-title": "Dies ist ein Beispieldatensatz für Anrufprotokolle am",
+    "reset-filter": "Filter zurücksetzen",
+    "hide-delete-action": "Löschen-Aktion ausblenden",
+    "show-delete-action": "Löschen-Aktion anzeigen",
+    "hide-missed-background": "Hintergrundfarbe von verpassten Anrufen ausblenden",
+    "show-missed-background": "Hintergrundfarbe von verpassten Anrufen anzeigen",
+    "date": "Datum",
+    "sender": "Absender",
+    "content": "Inhalt",
+    "call-end": "Anrufende Zeit",
+    "call-duration": "Anrufdauer",
+    "action": "Aktion",
+    "pagination": "von",
+    "statistic": "Anrufprotokoll-Statistiken",
+    "success": "Gesamtzahl erfolgreicher Anrufe",
+    "success-from-A": "Gesamtzahl der Anrufe von {nameA}",
+    "success-from-B": "Gesamtzahl der Anrufe von {nameB}",
+    "missed": "Gesamtzahl verpasster Anrufe",
+    "B-missed-call": "{nameB} verpasste insgesamt Anrufe",
+    "A-missed-call": "{nameA} verpasste insgesamt Anrufe",
+    "time": "Mal",
+    "delete": "Löschen",
+    "delete-popConfirm-title": "Dieses Anrufprotokoll löschen",
+    "delete-popConfirm-description": "Sind Sie sicher, dass Sie dieses Anrufprotokoll löschen möchten?"
+  },
+  "json-guide": {
+    "step1": "Klicken Sie auf Ihrer Facebook-Seite oben rechts auf das Symbol, um das Dropdown-Menü zu öffnen.",
+    "step2": "Klicken Sie auf 'Einstellungen & Datenschutz'.",
+    "step3": "Klicken Sie auf 'Ihre Informationen herunterladen'.",
+    "step4": "Facebook bringt Sie auf eine andere Seite.",
+    "step5": "Klicken Sie auf 'Informationen herunterladen oder übertragen'.",
+    "step6": "Wählen Sie Facebook und dann Weiter.",
+    "step7": "Klicken Sie auf 'Spezifische Informationen'.",
+    "step8": "Wählen Sie nur 'Nachrichten' aus der Liste.",
+    "step9": "Wählen Sie aus, wo Sie die Datei speichern möchten.",
+    "step10": "Wichtig: Wählen Sie **Format: JSON** und **Medienqualität: Niedrig**.",
+    "step11": "Warten Sie auf den Download. Sobald sie extrahiert sind, sieht Ihre Datei so aus.",
+    "step12": "Folgen Sie diesem Pfad, um Ihre JSON-Datei zu finden:"
+  },
+  "mobile-modal": {
+    "title": "Am besten auf dem Desktop ansehen",
+    "line1": "Für eine optimale Erfahrung empfehlen wir die Verwendung eines PCs oder Laptops.",
+    "line2": "Oder aktivieren Sie die 'Desktop-Website' in den Einstellungen Ihres mobilen Browsers."
+  },
+  "float-button": {
+    "table": "Daten-Tabelle anzeigen",
+    "statistic": "Statistik anzeigen"
+  },
+  "guide-tour": {
+    "button": "GUIDE TOUR",
+    "upload": {
+      "title": "JSON-Datei hochladen",
+      "description": {
+        "line1": "Laden Sie eine JSON-Datei hier hoch oder ziehen Sie sie per Drag & Drop.",
+        "line2": "Nur JSON-Dateien werden unterstützt.",
+        "line3": "Sie können bis zu 10 Dateien gleichzeitig hochladen."
+      }
+    },
+    "json-guide": {
+      "title": "JSON Guide-Seite",
+      "description": {
+        "line1": "Wenn Sie nicht wissen, wie Sie eine JSON-Datei finden, gehen Sie hier für eine Anleitung."
+      }
+    },
+    "call-statistic": {
+      "title": "Anruf-Statistik",
+      "description": {
+        "line1": "Bietet eine Übersicht über die Anrufdaten, einschließlich erfolgreicher Anrufe, verpasster Anrufe und der Gesamtanrufdauer.",
+        "line2": "Helfen Sie dabei, die Anrufleistung zu überwachen, indem Sie wichtige Metriken wie erfolgreiche und verpasste Anrufe sowie deren Dauer anzeigen."
+      }
+    },
+    "statistic-chart": {
+      "title": "Anruf-Statistik-Diagramm",
+      "description": {
+        "line1": "Ein Balkendiagramm, das die Anrufaktivitäten zwischen zwei Personen veranschaulicht und vergleicht.",
+        "line2": "Zeigt die Gesamtstunden der Anrufe sowie die erfolgreichen und verpassten Anrufe an."
+      }
+    },
+    "table": {
+      "title": "Anrufprotokoll-Tabelle",
+      "description": {
+        "line1": "Zeigt die Anrufprotokolle und Videoanrufe zwischen zwei Personen an.",
+        "line2": "Sie können nach Datum filtern und nach Absender oder Anrufdauer sortieren, um Daten besser abzurufen."
+      }
+    },
+    "reset-button": {
+      "title": "Filter zurücksetzen",
+      "description": {
+        "line1": "Setzt alle Filter und Sortieroptionen gleichzeitig zurück.",
+        "line2": "Sie können die Hintergrundfarbe für verpasste Anrufe ein- oder ausblenden."
+      }
+    },
+    "float-button": {
+      "title": "Schnellzugriffs-Schaltfläche",
+      "description": {
+        "line1": "Bietet schnellen Zugriff auf die Anrufstatistiken und die Anrufprotokoll-Tabelle, ohne scrollen zu müssen."
+      }
+    },
+    "language": {
+      "title": "Sprache",
+      "description": {
+        "line1": "Wählen Sie Ihre bevorzugte Sprache aus.",
+        "line2": "Derzeit unterstützt die App die 10+ am häufigsten verwendeten Sprachen."
+      }
+    }
+  },
+  "common": {
+    "get-started": "JETZT STARTEN",
+    "guide": "Anleitung zum Finden der JSON-Datei",
+    "yes": "Ja",
+    "no": "Nein"
+  }
+}

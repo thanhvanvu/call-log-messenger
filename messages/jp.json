@@ -1,0 +1,127 @@
+{
+  "homepage": {
+    "title": "<callLogs>通話履歴</callLogs>が見つかりませんか？ここで確認できます",
+    "description": "詳細な通話履歴と統計情報で、コミュニケーションパターンに関する包括的な洞察を得ることができます。通話の長さを簡単に監視し、missed callsを追跡し、全体的な通信活動を分析して効率を最適化し、接続を維持します。"
+  },
+  "header": {
+    "get-started": "開始する",
+    "guide": "JSONファイルの見つけ方ガイド"
+  },
+  "call-logs": {
+    "click-upload": "このエリアをクリックしてアップロード",
+    "upload-note": "複数のアップロードがサポートされています。JSONファイルのみサポート",
+    "guide": "JSONファイルがありませんか？ここで探す",
+    "data-title": "{nameA} と {nameB} の通話履歴",
+    "sample-data-title": "これは通話履歴のサンプルデータです",
+    "reset-filter": "フィルターをリセット",
+    "hide-delete-action": "削除アクションを隠す",
+    "show-delete-action": "削除アクションを表示",
+    "hide-missed-background": "missed callの背景色を隠す",
+    "show-missed-background": "missed callの背景色を表示",
+    "date": "日付",
+    "sender": "送信者",
+    "content": "コンテンツ",
+    "call-end": "通話終了時間",
+    "call-duration": "通話時間",
+    "action": "アクション",
+    "pagination": "のうち",
+    "statistic": "通話履歴統計",
+    "success": "成功した通話の合計",
+    "success-from-A": "{nameA} からの通話の合計",
+    "success-from-B": "{nameB} からの通話の合計",
+    "missed": "missed callの合計",
+    "B-missed-call": "{nameB} のmissed callの合計",
+    "A-missed-call": "{nameA} のmissed callの合計",
+    "time": "回",
+    "delete": "削除",
+    "delete-popConfirm-title": "この通話履歴を削除",
+    "delete-popConfirm-description": "本当にこの通話履歴を削除しますか？"
+  },
+  "json-guide": {
+    "step1": "Facebookページで、右上のアイコンをクリックしてドロップダウンメニューを開きます。",
+    "step2": "'設定とプライバシー'をクリックします。",
+    "step3": "'情報をダウンロード'をクリックします。",
+    "step4": "Facebookは別のページに移動します。",
+    "step5": "'情報をダウンロードまたは転送'をクリックします。",
+    "step6": "Facebookを選択し、次へ進みます。",
+    "step7": "'特定の情報タイプ'をクリックします。",
+    "step8": "リストから'メッセージ'だけを選択します。",
+    "step9": "ファイルを保存する場所を選択します。",
+    "step10": "重要：**フォーマット：JSON**と**メディア品質：低**を選択します。",
+    "step11": "ダウンロードを待ちます。抽出後、ファイルはこのようになります。",
+    "step12": "JSONファイルを見つけるにはこのパスを辿ります："
+  },
+  "mobile-modal": {
+    "title": "デスクトップでの表示が最適です",
+    "line1": "最適な体験のために、PCまたはラップトップの使用をお勧めします。",
+    "line2": "または、モバイルブラウザの設定で「デスクトップサイト」を有効にしてください。"
+  },
+  "float-button": {
+    "table": "データテーブルを表示",
+    "statistic": "統計を表示"
+  },
+  "guide-tour": {
+    "button": "ガイドツアー",
+    "upload": {
+      "title": "JSONファイルのアップロード",
+      "description": {
+        "line1": "JSONファイルをここにアップロードまたはドラッグ＆ドロップしてください。",
+        "line2": "JSONファイルのみサポートされています。",
+        "line3": "一度に10個以上のファイルをアップロードできます。"
+      }
+    },
+    "json-guide": {
+      "title": "JSONガイドページ",
+      "description": {
+        "line1": "JSONファイルの見つけ方が分からない場合は、このページでガイドを確認してください。"
+      }
+    },
+    "call-statistic": {
+      "title": "通話統計",
+      "description": {
+        "line1": "成功した通話、missed call、および通話の合計時間を含む通話データの概要を提供します。",
+        "line2": "完了した通話とmissed callの主要な指標を表示し、それらの通話時間を追跡します。"
+      }
+    },
+    "statistic-chart": {
+      "title": "通話統計チャート",
+      "description": {
+        "line1": "2人の個人の通話活動を視覚化し、比較するバーグラフ。",
+        "line2": "総通話時間、成功した通話、missed callを表示します。"
+      }
+    },
+    "table": {
+      "title": "通話履歴テーブル",
+      "description": {
+        "line1": "2人の個人間の通話およびビデオログを表示します。",
+        "line2": "日付でフィルタリングし、送信者または通話の長さでソートしてデータを効率的に取得できます。"
+      }
+    },
+    "reset-button": {
+      "title": "フィルターをリセット",
+      "description": {
+        "line1": "すべてのフィルターと並べ替えオプションを一度にクリアします。",
+        "line2": "missed callの背景色を表示または非表示にできます。"
+      }
+    },
+    "float-button": {
+      "title": "ショートカット浮動ボタン",
+      "description": {
+        "line1": "スクロールせずに通話統計と通話履歴テーブルに迅速にアクセスできます。"
+      }
+    },
+    "language": {
+      "title": "言語",
+      "description": {
+        "line1": "好みの言語を選択してください。",
+        "line2": "現在、アプリは最も一般的な10+の言語をサポートしています。"
+      }
+    }
+  },
+  "common": {
+    "get-started": "INIZIA ORA",
+    "guide": "JSONファイルの見つけ方ガイド",
+    "yes": "はい",
+    "no": "いいえ"
+  }
+}

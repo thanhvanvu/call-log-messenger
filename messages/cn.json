@@ -14,7 +14,10 @@
     "data-title": "在 {nameA} 和 {nameB} 之间的通话记录",
     "sample-data-title": "这是一个通话记录的示例数据",
     "reset-filter": "重置筛选",
-    "delete-action": "隐藏/显示删除操作",
+    "hide-delete-action": "隐藏删除操作",
+    "show-delete-action": "显示删除操作",
+    "hide-missed-background": "隐藏未接来电背景颜色",
+    "show-missed-background": "显示未接来电背景颜色",
     "date": "日期",
     "sender": "发送者",
     "content": "内容",
@@ -56,6 +59,64 @@
   "float-button": {
     "table": "显示数据表",
     "statistic": "显示统计"
+  },
+  "guide-tour": {
+    "button": "导览",
+    "upload": {
+      "title": "上传 JSON 文件",
+      "description": {
+        "line1": "在此上传或拖放 JSON 文件。",
+        "line2": "只支持 JSON 文件。",
+        "line3": "您可以同时上传超过 10 个文件。"
+      }
+    },
+    "json-guide": {
+      "title": "JSON 导航页面",
+      "description": {
+        "line1": "如果您不知道如何找到 JSON 文件，请访问此页面以获取指导。"
+      }
+    },
+    "call-statistic": {
+      "title": "通话统计",
+      "description": {
+        "line1": "提供通话数据概述，包括成功通话、错失通话和总通话时长。",
+        "line2": "通过显示关键指标，如已完成和错失的通话及其时长，帮助追踪通话表现。"
+      }
+    },
+    "statistic-chart": {
+      "title": "通话统计图表",
+      "description": {
+        "line1": "一张柱状图，展示并比较两个人之间的通话活动。",
+        "line2": "显示总通话时长、成功通话和错失通话。"
+      }
+    },
+    "table": {
+      "title": "通话记录表",
+      "description": {
+        "line1": "显示两人之间的通话和视频记录。",
+        "line2": "您可以按日期过滤，并按发送者或通话时长排序，以便更好地检索数据。"
+      }
+    },
+    "reset-button": {
+      "title": "重置筛选器",
+      "description": {
+        "line1": "一次性清除所有筛选和排序选项。",
+        "line2": "您可以显示或隐藏未接来电的背景颜色。"
+      }
+    },
+    "float-button": {
+      "title": "快捷浮动按钮",
+      "description": {
+        "line1": "提供快速访问通话统计和通话记录表的方式，无需滚动。"
+      }
+    },
+    "language": {
+      "title": "语言",
+      "description": {
+        "line1": "选择您喜欢的语言。",
+        "line2": "目前应用支持 10+ 种最常用的语言。"
+      }
+    }
   },
   "common": {
     "get-started": "开始使用",

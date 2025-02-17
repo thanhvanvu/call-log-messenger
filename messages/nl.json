@@ -1,0 +1,127 @@
+{
+  "homepage": {
+    "title": "Kun je <callLogs>Call Logs</callLogs> niet vinden? Bekijk ze hier",
+    "description": "Krijg diepgaande inzichten in je communicatiepatronen met gedetailleerde oproeplogboeken en statistieken. Houd eenvoudig de gespreksduur bij, volg gemiste oproepen en analyseer de algehele communicatieactiviteit om de efficiëntie te optimaliseren en verbonden te blijven."
+  },
+  "header": {
+    "get-started": "START NU",
+    "guide": "Gids voor het vinden van de JSON-bestand"
+  },
+  "call-logs": {
+    "click-upload": "Klik hier om te uploaden",
+    "upload-note": "Meerdere uploads worden ondersteund. Alleen JSON-bestanden worden ondersteund",
+    "guide": "Heb je geen JSON-bestand? Ga hier om het te vinden",
+    "data-title": "Oproeplogboeken tussen {nameA} en {nameB} op",
+    "sample-data-title": "Dit is een voorbeeld van oproeploggegevens van",
+    "reset-filter": "Reset filter",
+    "hide-delete-action": "Verberg verwijderactie",
+    "show-delete-action": "Toon verwijderactie",
+    "hide-missed-background": "Verberg de achtergrondkleur van gemiste oproepen",
+    "show-missed-background": "Toon de achtergrondkleur van gemiste oproepen",
+    "date": "Datum",
+    "sender": "Afzender",
+    "content": "Inhoud",
+    "call-end": "Eindtijd oproep",
+    "call-duration": "Gespreksduur",
+    "action": "Actie",
+    "pagination": "van",
+    "statistic": "Oproeplogboekstatistieken",
+    "success": "Totaal aantal succesvolle oproepen",
+    "success-from-A": "Totaal aantal oproepen van {nameA}",
+    "success-from-B": "Totaal aantal oproepen van {nameB}",
+    "missed": "Totaal aantal gemiste oproepen",
+    "B-missed-call": "Totaal gemiste oproepen van {nameB}",
+    "A-missed-call": "Totaal gemiste oproepen van {nameA}",
+    "time": "keer",
+    "delete": "Verwijderen",
+    "delete-popConfirm-title": "Verwijder dit oproeplogboek",
+    "delete-popConfirm-description": "Weet je zeker dat je dit oproeplogboek wilt verwijderen?"
+  },
+  "json-guide": {
+    "step1": "Klik op je Facebook-pagina rechtsboven op het pictogram om het vervolgkeuzemenu te openen.",
+    "step2": "Klik op 'Instellingen en privacy'.",
+    "step3": "Klik op 'Download je informatie'.",
+    "step4": "Facebook brengt je naar een andere pagina.",
+    "step5": "Klik op 'Informatie downloaden of overdragen'.",
+    "step6": "Selecteer Facebook en klik op Verder.",
+    "step7": "Klik op 'Specifieke informatie'.",
+    "step8": "Selecteer alleen 'Berichten' uit de lijst.",
+    "step9": "Kies waar je het bestand wilt opslaan.",
+    "step10": "Belangrijk: Kies **Formaat: JSON** en **Media kwaliteit: Laag**.",
+    "step11": "Wacht op de download. Zodra het bestand is uitgepakt, ziet het er als volgt uit.",
+    "step12": "Volg dit pad om je JSON-bestand te vinden:"
+  },
+  "mobile-modal": {
+    "title": "Best bekeken op desktop",
+    "line1": "Voor de beste ervaring raden we aan een pc of laptop te gebruiken.",
+    "line2": "Of schakel 'Desktop site' in de instellingen van je mobiele browser in."
+  },
+  "float-button": {
+    "table": "Toon de datatabel",
+    "statistic": "Toon de statistieken"
+  },
+  "guide-tour": {
+    "button": "GIDS TOUR",
+    "upload": {
+      "title": "Upload JSON-bestand",
+      "description": {
+        "line1": "Upload hier een JSON-bestand of sleep het hier naartoe.",
+        "line2": "Alleen JSON-bestanden worden ondersteund.",
+        "line3": "Je kunt tot 10 bestanden tegelijkertijd uploaden."
+      }
+    },
+    "json-guide": {
+      "title": "JSON Gidspagina",
+      "description": {
+        "line1": "Als je niet weet hoe je een JSON-bestand moet vinden, ga hier voor een gids."
+      }
+    },
+    "call-statistic": {
+      "title": "Oproepstatistieken",
+      "description": {
+        "line1": "Geeft een overzicht van oproepgegevens, inclusief succesvolle oproepen, gemiste oproepen en de totale gespreksduur.",
+        "line2": "Helpt bij het volgen van oproepprestaties door belangrijke statistieken zoals geslaagde oproepen, gemiste oproepen en hun duur weer te geven."
+      }
+    },
+    "statistic-chart": {
+      "title": "Oproepstatistieken grafiek",
+      "description": {
+        "line1": "Een staafdiagram dat de oproepactiviteit tussen twee personen toont en vergelijkt.",
+        "line2": "Toont het totaal aantal belminuten, geslaagde oproepen en gemiste oproepen."
+      }
+    },
+    "table": {
+      "title": "Oproeplogboek Tabel",
+      "description": {
+        "line1": "Toont oproep- en video-oproeplogs tussen twee personen.",
+        "line2": "Je kunt filteren op datum en sorteren op afzender of gespreksduur voor een betere gegevensopvraging."
+      }
+    },
+    "reset-button": {
+      "title": "Reset filter",
+      "description": {
+        "line1": "Reset alle filters en sorteermogelijkheden tegelijk.",
+        "line2": "Je kunt de achtergrondkleur voor gemiste oproepen in- of uitschakelen."
+      }
+    },
+    "float-button": {
+      "title": "Snelkoppeling knop",
+      "description": {
+        "line1": "Biedt snel toegang tot oproepstatistieken en de oproeplogboektabel zonder te scrollen."
+      }
+    },
+    "language": {
+      "title": "Taal",
+      "description": {
+        "line1": "Selecteer je voorkeurstaal.",
+        "line2": "De app ondersteunt momenteel de 10+ meest gebruikte talen."
+      }
+    }
+  },
+  "common": {
+    "get-started": "START NU",
+    "guide": "Gids voor het vinden van de JSON-bestand",
+    "yes": "Ja",
+    "no": "Nee"
+  }
+}

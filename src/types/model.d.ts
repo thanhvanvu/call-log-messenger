@@ -54,6 +54,18 @@ declare global {
     to: string;
   }
 
+  interface ITourStep {
+    currentStep: number;
+    step0: React.RefObject<HTMLDivElement | null> | null;
+    step1: React.RefObject<HTMLDivElement | null> | null;
+    step2: React.RefObject<HTMLDivElement | null> | null;
+    step3: React.RefObject<HTMLDivElement | null> | null;
+    step4: React.RefObject<HTMLDivElement | null> | null;
+    step5: React.RefObject<HTMLDivElement | null> | null;
+    step6: React.RefObject<HTMLDivElement | null> | null;
+    step7: React.RefObject<HTMLDivElement | null> | null;
+  }
+
   type OnChange = NonNullable<TableProps<ICallLogType>["onChange"]>;
   type Filters = Parameters<OnChange>[1];
 

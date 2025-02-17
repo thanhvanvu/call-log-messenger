@@ -14,7 +14,10 @@
     "data-title": "Lịch sử cuộc gọi giữa {nameA} và {nameB} trên",
     "sample-data-title": "Đây là lịch sử dữ liệu mẫu trên",
     "reset-filter": "Đặt lại bộ lọc",
-    "delete-action": "Ẩn/Hiện xóa cột thao tác",
+    "hide-delete-action": "Ẩn hành động Xóa",
+    "show-delete-action": "Hiển thị hành động Xóa",
+    "hide-missed-background": "Ẩn màu nền Cuộc gọi nhỡ",
+    "show-missed-background": "Hiển thị màu nền Cuộc gọi nhỡ",
     "date": "Ngày",
     "sender": "Người Gửi",
     "content": "Nội Dung",
@@ -56,6 +59,64 @@
   "float-button": {
     "table": "Hiển thị bảng dữ liệu",
     "statistic": "Hiển thị thống kê"
+  },
+  "guide-tour": {
+    "button": "HƯỚNG DẪN TOUR",
+    "upload": {
+      "title": "Tải lên Tệp JSON",
+      "description": {
+        "line1": "Tải lên hoặc kéo và thả tệp JSON ở đây.",
+        "line2": "Chỉ hỗ trợ tệp JSON.",
+        "line3": "Bạn có thể tải lên hơn 10 tệp cùng lúc."
+      }
+    },
+    "json-guide": {
+      "title": "Trang Hướng Dẫn JSON",
+      "description": {
+        "line1": "Nếu bạn không biết cách tìm tệp JSON, hãy truy cập trang này để được hướng dẫn."
+      }
+    },
+    "call-statistic": {
+      "title": "Thống Kê Cuộc Gọi",
+      "description": {
+        "line1": "Cung cấp cái nhìn tổng quan về dữ liệu cuộc gọi, bao gồm cuộc gọi thành công, cuộc gọi bị lỡ và tổng thời gian cuộc gọi.",
+        "line2": "Giúp theo dõi hiệu suất cuộc gọi bằng cách hiển thị các chỉ số quan trọng như cuộc gọi hoàn thành và cuộc gọi bị lỡ, cùng với thời gian của chúng."
+      }
+    },
+    "statistic-chart": {
+      "title": "Biểu Đồ Thống Kê Cuộc Gọi",
+      "description": {
+        "line1": "Biểu đồ cột hiển thị và so sánh hoạt động cuộc gọi giữa hai cá nhân.",
+        "line2": "Hiển thị tổng thời gian cuộc gọi, cuộc gọi thành công và cuộc gọi bị lỡ."
+      }
+    },
+    "table": {
+      "title": "Bảng Nhật Ký Cuộc Gọi",
+      "description": {
+        "line1": "Hiển thị nhật ký cuộc gọi và video giữa hai cá nhân.",
+        "line2": "Bạn có thể lọc theo ngày và sắp xếp theo người gửi hoặc thời gian cuộc gọi để truy xuất dữ liệu tốt hơn."
+      }
+    },
+    "reset-button": {
+      "title": "Đặt Lại Bộ Lọc",
+      "description": {
+        "line1": "Xóa tất cả bộ lọc và tùy chọn sắp xếp cùng một lúc.",
+        "line2": "Bạn có thể hiển thị hoặc ẩn màu nền của cuộc gọi nhỡ."
+      }
+    },
+    "float-button": {
+      "title": "Nút Hỗ Trợ",
+      "description": {
+        "line1": "Cung cấp quyền truy cập nhanh vào Thống Kê Cuộc Gọi và Bảng Nhật Ký Cuộc Gọi mà không cần cuộn trang."
+      }
+    },
+    "language": {
+      "title": "Ngôn Ngữ",
+      "description": {
+        "line1": "Chọn ngôn ngữ bạn ưa thích.",
+        "line2": "Hiện tại, ứng dụng hỗ trợ 10+ ngôn ngữ phổ biến nhất."
+      }
+    }
   },
   "common": {
     "get-started": "BẮT ĐẦU",
