@@ -19,7 +19,7 @@ export const routing = defineRouting({
     "nl",
     "tr",
     "jp",
-    "ko",
+    "kr",
   ],
 
   // Used when no locale matches
