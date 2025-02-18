@@ -345,7 +345,9 @@ function DataTable(props: IProps) {
             <div className="flex gap-4">
               <Tooltip
                 title={
-                  dataToShow && dataToShow.length > 0 === true ? t("common.export-pdf.tooltip") : ""
+                  dataToShow && dataToShow.length > 0 === true
+                    ? "Not working on mobile as expected. Please use it on desktop."
+                    : ""
                 }
               >
                 <Button
