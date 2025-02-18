@@ -32,6 +32,17 @@ const convertTimeStampToDate = (number: number) => {
   return formattedDuration;
 };
 
+const convertTimeStampToDateInHour = (number: number) => {
+  const hours = Math.floor(number / 3600);
+  const minutes = Math.floor((number % 3600) / 60);
+  const seconds = number % 60;
+  const formattedDuration = `${hours.toString().padStart(2, "0")} hours ${minutes
+    .toString()
+    .padStart(2, "0")} minutes ${seconds.toString().padStart(2, "0")} seconds`;
+
+  return formattedDuration;
+};
+
 const validateFileType = (file: UploadFile, allowedTypes?: string[]) => {
   if (!allowedTypes || !file.type) {
     return true;
@@ -39,4 +50,11 @@ const validateFileType = (file: UploadFile, allowedTypes?: string[]) => {
   return allowedTypes.includes(file.type);
 };
 
-export { readFileAsText, convertTimeToWholeHour, decode, convertTimeStampToDate, validateFileType };
+export {
+  readFileAsText,
+  convertTimeToWholeHour,
+  decode,
+  convertTimeStampToDate,
+  validateFileType,
+  convertTimeStampToDateInHour,
+};

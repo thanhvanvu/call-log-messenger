@@ -122,6 +122,10 @@
     "get-started": "开始使用",
     "guide": "如何找到 JSON 文件",
     "yes": "是",
-    "no": "否"
+    "no": "否",
+    "export-pdf": {
+      "button": "导出PDF",
+      "tooltip": "最好在导出PDF之前筛选数据"
+    }
   }
 }

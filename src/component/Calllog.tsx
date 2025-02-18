@@ -133,7 +133,16 @@ const CallLog = () => {
                   day: "2-digit",
                   year: "numeric",
                 });
-                rawCallLogsObject.push({ ...item, date: formattedDate });
+                const formattedDateNumber = date.toLocaleDateString("en-US", {
+                  month: "2-digit",
+                  day: "2-digit",
+                  year: "numeric",
+                });
+                rawCallLogsObject.push({
+                  ...item,
+                  date: formattedDate,
+                  dateNumber: formattedDateNumber,
+                });
               }
             }
           }

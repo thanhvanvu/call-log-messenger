@@ -122,6 +122,10 @@
     "get-started": "BAŞLAYIN",
     "guide": "JSON dosyasını nasıl bulacağınız hakkında rehber",
     "yes": "Evet",
-    "no": "Hayır"
+    "no": "Hayır",
+    "export-pdf": {
+      "button": "PDF Dışa Aktar",
+      "tooltip": "PDF dışa aktarmadan önce verileri filtrelemek en iyisidir"
+    }
   }
 }

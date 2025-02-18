@@ -5,7 +5,8 @@ declare global {
     call_duration: number;
     content: string;
     date: string;
-    sender_name: string;
+    dateNumber: string;
+    sender_name?: string;
     time: string;
     timestamp_ms: number;
   }
@@ -17,6 +18,7 @@ declare global {
     sender_name: string;
     time: string;
     timestamp_ms: number;
+    dateNumber?: string;
   }
 
   interface IDateFilterType {
@@ -28,14 +30,17 @@ declare global {
     totalSuccessCall: {
       total: number;
       totalDuration: string;
+      totalDurationInHourFormat: string;
     };
     totalCallFromNameA: {
       total: number;
       totalDuration: string;
+      totalDurationInHourFormat: string;
     };
     totalCallFromNameB: {
       total: number;
       totalDuration: string;
+      totalDurationInHourFormat: string;
     };
     totalMissedCall: {
       total: number;

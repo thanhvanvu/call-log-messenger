@@ -145,7 +145,7 @@ const Header = () => {
       value: "tr",
       label: (
         <div className="flex gap-2">
-          <span className="fi fi-pk"></span>
+          <span className="fi fi-tr"></span>
           <span>Turkish</span>
         </div>
       ),

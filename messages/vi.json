@@ -122,6 +122,10 @@
     "get-started": "BẮT ĐẦU",
     "guide": "Hướng dẫn tìm file JSON",
     "yes": "Có",
-    "no": "Không"
+    "no": "Không",
+    "export-pdf": {
+      "button": "Xuất file PDF",
+      "tooltip": "Nên lọc dữ liệu trước khi xuất file PDF"
+    }
   }
 }

@@ -58,3 +58,32 @@ p {
 .missed-call-row {
   background-color: rgba(255, 194, 194, 0.184);
 }
+
+@media print {
+  .page-break {
+    page-break-after: always; /* For older browsers */
+    break-after: page; /* Standard way */
+  }
+
+  @page {
+    padding: 50px 20px;
+  }
+
+  thead {
+    display: table-header-group; /* Ensures proper positioning */
+  }
+
+  tfoot {
+    display: table-row-group;
+  }
+
+  table {
+    break-inside: auto; /* Allows the table to break naturally */
+  }
+
+  thead,
+  tfoot {
+    break-inside: avoid;
+    break-after: avoid;
+  }
+}

@@ -34,14 +34,17 @@ const AppProvider = (props: IAppProvideProps) => {
     totalSuccessCall: {
       total: 0,
       totalDuration: "",
+      totalDurationInHourFormat: "",
     },
     totalCallFromNameA: {
       total: 0,
       totalDuration: "",
+      totalDurationInHourFormat: "",
     },
     totalCallFromNameB: {
       total: 0,
       totalDuration: "",
+      totalDurationInHourFormat: "",
     },
     totalMissedCall: {
       total: 0,

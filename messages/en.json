@@ -19,9 +19,9 @@
     "hide-missed-background": "Hide Missed Call background color",
     "show-missed-background": "Show Missed Call background color",
     "date": "Date",
-    "sender": "Sender",
-    "content": "Content",
-    "call-end": "Call End Time At",
+    "sender": "Caller Name",
+    "content": "Call Status",
+    "call-end": "End Time",
     "call-duration": "Call Duration",
     "action": "Action",
     "pagination": "out of",
@@ -122,6 +122,10 @@
     "get-started": "GET STARTED",
     "guide": "Guide how to find JSON file",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "export-pdf": {
+      "button": "Export PDF",
+      "tooltip": "It’s best to filter the data before exporting the PDF"
+    }
   }
 }

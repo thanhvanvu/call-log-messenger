@@ -1,18 +1,20 @@
 "use client";
-import { Button, Popconfirm, Popover, Table, TablePaginationConfig } from "antd";
+import { Button, Popconfirm, Popover, Table, TablePaginationConfig, Tooltip } from "antd";
 import React, { useEffect, useState } from "react";
 import { FaFacebookSquare } from "react-icons/fa";
 import { InboxOutlined, RedoOutlined } from "@ant-design/icons";
 import { useTranslations } from "next-intl";
 import { useCurrentApp } from "@/context/app.context";
-import { convertTimeStampToDate, decode } from "@/utils/helper";
+import { convertTimeStampToDate, convertTimeStampToDateInHour, decode } from "@/utils/helper";
 import { data } from "@/utils/dataUtils";
 import { FilterValue } from "antd/es/table/interface";
-import { TbPhoneCall } from "react-icons/tb";
-import { HiOutlinePhoneMissedCall, HiPhoneMissedCall } from "react-icons/hi";
+import { HiPhoneMissedCall } from "react-icons/hi";
 import { IoMdCall } from "react-icons/io";
 import { IoIosColorFill } from "react-icons/io";
 import { MdDeleteForever } from "react-icons/md";
+import { Link } from "@/i18n/routing";
+import PdfExport from "./PdfExport";
+import { FaFilePdf } from "react-icons/fa6";
 
 const sample = data;
 
@@ -38,6 +40,7 @@ function DataTable(props: IProps) {
   const [sortedInfo, setSortedInfo] = useState<Sorts>({});
   const [isShowDeleteAction, setIsShowDeleteAction] = useState<boolean>(false);
   const [missedCallBackground, setMissedCallBackground] = useState<boolean>(false);
+  const [pdfExport, setPdfExport] = useState<boolean>(false);
   const t = useTranslations();
 
   const columns: any = [
@@ -222,19 +225,27 @@ function DataTable(props: IProps) {
       .padStart(2, "0")}:${totalCallMinutes.toString().padStart(2, "0")}:${totalCallSeconds
       .toString()
       .padStart(2, "0")}`;
+    const formattedTotalCallDurationInHour = `${totalCallHours
+      .toString()
+      .padStart(2, "0")} hours ${totalCallMinutes
+      .toString()
+      .padStart(2, "0")} minutes ${totalCallSeconds.toString().padStart(2, "0")} seconds`;
 
     setDataStatistic({
       totalSuccessCall: {
         total: totalCallFromNameA + totalCallFromNameB,
         totalDuration: formattedTotalCallDuration,
+        totalDurationInHourFormat: formattedTotalCallDurationInHour,
       },
       totalCallFromNameA: {
         total: totalCallFromNameA,
         totalDuration: convertTimeStampToDate(totalCallDurationFromNameA),
+        totalDurationInHourFormat: convertTimeStampToDateInHour(totalCallDurationFromNameA),
       },
       totalCallFromNameB: {
         total: totalCallFromNameB,
         totalDuration: convertTimeStampToDate(totalCallDurationFromNameB),
+        totalDurationInHourFormat: convertTimeStampToDateInHour(totalCallDurationFromNameB),
       },
       totalMissedCall: {
         total: totalMissedCallFromNameA + totalMissedCallFromNameB,
@@ -313,7 +324,7 @@ function DataTable(props: IProps) {
         title={() => (
           <div className="flex items-center justify-between">
             <div className="text-center font-bold text-2xl py-2">
-              <p className="">
+              <p className="hidden xl:block">
                 {dataToShow && dataToShow.length > 0 === true
                   ? t("call-logs.data-title", {
                       nameA: participants?.nameA,
@@ -331,57 +342,77 @@ function DataTable(props: IProps) {
                 />
               </p>
             </div>
-            <div className="hidden 992:block" ref={tourStep?.step5}>
-              <Popover
-                placement="topRight"
-                title={"Action"}
-                content={
-                  <div className="flex flex-col gap-2">
-                    <Button
-                      type="primary"
-                      onClick={() => {
-                        setFilteredInfo({});
-                        setSortedInfo({});
-                        setRawCallLogs(rawCallLogsNotModify);
-                      }}
-                    >
-                      <RedoOutlined />
-                      {t("call-logs.reset-filter")}
-                    </Button>
-                    <Button
-                      color="gold"
-                      variant="solid"
-                      onClick={() => setMissedCallBackground(!missedCallBackground)}
-                    >
-                      <IoIosColorFill />
-                      {missedCallBackground
-                        ? t("call-logs.hide-missed-background")
-                        : t("call-logs.show-missed-background")}
-                    </Button>
-                    <Button
-                      type="primary"
-                      danger
-                      onClick={() => setIsShowDeleteAction(!isShowDeleteAction)}
-                    >
-                      <MdDeleteForever />
-                      {isShowDeleteAction
-                        ? t("call-logs.hide-delete-action")
-                        : t("call-logs.show-delete-action")}
-                    </Button>
-                  </div>
+            <div className="flex gap-4">
+              <Tooltip
+                title={
+                  dataToShow && dataToShow.length > 0 === true ? t("common.export-pdf.tooltip") : ""
                 }
               >
-                <Button type="primary">
-                  <RedoOutlined />
-                  {t("call-logs.reset-filter")}
+                <Button
+                  danger
+                  color="danger"
+                  disabled={dataToShow && dataToShow.length > 0 === true ? false : true}
+                  onClick={() => {
+                    setPdfExport(true);
+                  }}
+                >
+                  <FaFilePdf />
+                  {t("common.export-pdf.button")}
                 </Button>
-              </Popover>
+              </Tooltip>
+
+              <div className="" ref={tourStep?.step5}>
+                <Popover
+                  placement="topRight"
+                  title={"Action"}
+                  content={
+                    <div className="flex flex-col gap-2">
+                      <Button
+                        type="primary"
+                        onClick={() => {
+                          setFilteredInfo({});
+                          setSortedInfo({});
+                          setRawCallLogs(rawCallLogsNotModify);
+                        }}
+                      >
+                        <RedoOutlined />
+                        {t("call-logs.reset-filter")}
+                      </Button>
+                      <Button
+                        color="gold"
+                        variant="solid"
+                        onClick={() => setMissedCallBackground(!missedCallBackground)}
+                      >
+                        <IoIosColorFill />
+                        {missedCallBackground
+                          ? t("call-logs.hide-missed-background")
+                          : t("call-logs.show-missed-background")}
+                      </Button>
+                      <Button
+                        type="primary"
+                        danger
+                        onClick={() => setIsShowDeleteAction(!isShowDeleteAction)}
+                      >
+                        <MdDeleteForever />
+                        {isShowDeleteAction
+                          ? t("call-logs.hide-delete-action")
+                          : t("call-logs.show-delete-action")}
+                      </Button>
+                    </div>
+                  }
+                >
+                  <Button type="primary">
+                    <RedoOutlined />
+                    {t("call-logs.reset-filter")}
+                  </Button>
+                </Popover>
+              </div>
             </div>
           </div>
         )}
         columns={columns}
         onChange={handleTableChange}
-        dataSource={dataToShow && dataToShow.length > 0 === true ? dataToShow : sample}
+        dataSource={dataToShow && dataToShow.length > 0 === true ? (dataToShow as any) : sample}
         className="mt-4"
         scroll={{ x: "max-content", y: 55 * 20 }}
         rowClassName={(record: ICallLogType, index) =>
@@ -390,6 +421,10 @@ function DataTable(props: IProps) {
             : "call-logs-table-row"
         }
       />
+
+      <div className="hidden">
+        <PdfExport triggerPDFExport={pdfExport} setTriggerPDFExport={setPdfExport} />
+      </div>
     </div>
   );
 }

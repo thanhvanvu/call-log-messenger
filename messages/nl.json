@@ -122,6 +122,10 @@
     "get-started": "START NU",
     "guide": "Gids voor het vinden van de JSON-bestand",
     "yes": "Ja",
-    "no": "Nee"
+    "no": "Nee",
+    "export-pdf": {
+      "button": "Exporteer PDF",
+      "tooltip": "Het is het beste om de gegevens te filteren voordat je de PDF exporteert"
+    }
   }
 }

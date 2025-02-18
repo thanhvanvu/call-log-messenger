@@ -122,6 +122,10 @@
     "get-started": "INIZIA ORA",
     "guide": "JSONファイルの見つけ方ガイド",
     "yes": "はい",
-    "no": "いいえ"
+    "no": "いいえ",
+    "export-pdf": {
+      "button": "PDFをエクスポート",
+      "tooltip": "PDFをエクスポートする前にデータをフィルタリングするのが最適です"
+    }
   }
 }

@@ -99,8 +99,8 @@ function Statistic(props: IProps) {
               {t("call-logs.time")}
             </p>
             <p className="tracking-[.1em] text-[#28a745]">
-              {dataStatistic?.totalSuccessCall?.totalDuration
-                ? dataStatistic.totalSuccessCall.totalDuration
+              {dataStatistic?.totalSuccessCall?.totalDurationInHourFormat
+                ? dataStatistic.totalSuccessCall.totalDurationInHourFormat
                 : 0}
             </p>
           </div>
@@ -123,8 +123,8 @@ function Statistic(props: IProps) {
               {t("call-logs.time")}
             </p>
             <p className="tracking-[.1em] text-[#28a745]">
-              {dataStatistic?.totalCallFromNameA?.totalDuration
-                ? dataStatistic.totalCallFromNameA.totalDuration
+              {dataStatistic?.totalCallFromNameA?.totalDurationInHourFormat
+                ? dataStatistic.totalCallFromNameA.totalDurationInHourFormat
                 : 0}
             </p>
           </div>
@@ -147,8 +147,8 @@ function Statistic(props: IProps) {
               {t("call-logs.time")}
             </p>
             <p className="tracking-[.1em] text-[#28a745]">
-              {dataStatistic?.totalCallFromNameB?.totalDuration
-                ? dataStatistic.totalCallFromNameB.totalDuration
+              {dataStatistic?.totalCallFromNameB?.totalDurationInHourFormat
+                ? dataStatistic.totalCallFromNameB.totalDurationInHourFormat
                 : 0}
             </p>
           </div>

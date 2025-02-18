@@ -122,6 +122,10 @@
     "get-started": "EMPEZAR",
     "guide": "Guía sobre cómo encontrar el archivo JSON",
     "yes": "Sí",
-    "no": "No"
+    "no": "No",
+    "export-pdf": {
+      "button": "Exportar PDF",
+      "tooltip": "Es mejor filtrar los datos antes de exportar el PDF"
+    }
   }
 }
