@@ -15,6 +15,7 @@ import { MdDeleteForever } from "react-icons/md";
 import { Link } from "@/i18n/routing";
 import PdfExport from "./PdfExport";
 import { FaFilePdf } from "react-icons/fa6";
+import { BrowserView, MobileView } from "react-device-detect";
 
 const sample = data;
 
@@ -343,25 +344,46 @@ function DataTable(props: IProps) {
               </p>
             </div>
             <div className="flex gap-4">
-              <Tooltip
-                title={
-                  dataToShow && dataToShow.length > 0 === true
-                    ? "Not working on mobile as expected. Please use it on desktop."
-                    : ""
-                }
-              >
-                <Button
-                  danger
-                  color="danger"
-                  disabled={dataToShow && dataToShow.length > 0 === true ? false : true}
-                  onClick={() => {
-                    setPdfExport(true);
-                  }}
+              <BrowserView>
+                <Tooltip
+                  title={
+                    dataToShow && dataToShow.length > 0 === true
+                      ? t("common.export-pdf.tooltip")
+                      : ""
+                  }
                 >
-                  <FaFilePdf />
-                  {t("common.export-pdf.button")}
-                </Button>
-              </Tooltip>
+                  <Button
+                    danger
+                    color="danger"
+                    disabled={dataToShow && dataToShow.length > 0 === true ? false : true}
+                    onClick={() => {
+                      setPdfExport(true);
+                    }}
+                  >
+                    <FaFilePdf />
+                    {t("common.export-pdf.button")}
+                  </Button>
+                </Tooltip>
+              </BrowserView>
+
+              <MobileView>
+                <Tooltip
+                  title={
+                    dataToShow && dataToShow.length > 0 === true
+                      ? "Not working as expected on mobile browsers. Please use it on a desktop browser."
+                      : ""
+                  }
+                >
+                  <Button
+                    danger
+                    color="danger"
+                    onClick={() => console.log("Not working on mobile browsers")}
+                  >
+                    <FaFilePdf />
+                    {t("common.export-pdf.button")}
+                  </Button>
+                </Tooltip>
+              </MobileView>
 
               <div className="" ref={tourStep?.step5}>
                 <Popover
