@@ -10,6 +10,14 @@ const nextConfig = {
       bodySizeLimit: "10000mb",
     },
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "i.imgur.com",
+      },
+    ],
+  },
 };
 
 export default withNextIntl(nextConfig);

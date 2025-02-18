@@ -1,7 +1,5 @@
 import { Modal } from "antd";
 import React from "react";
-import android from "public/android.gif";
-import safari from "public/safari.gif";
 import Image from "next/image";
 import { IoIosInformationCircle } from "react-icons/io";
 
@@ -42,7 +40,7 @@ function MobileModal(props: IProps) {
           <div>
             <Image
               alt=""
-              src={android}
+              src="https://i.imgur.com/uHYzFH9.gif"
               height={325}
               width={150}
               objectFit="cover"
@@ -54,7 +52,7 @@ function MobileModal(props: IProps) {
           <div>
             <Image
               alt=""
-              src={safari}
+              src="https://i.imgur.com/Z9pnI4S.gif"
               height={325}
               width={150}
               className="h-[325px] w-auto object-cover border border-black"

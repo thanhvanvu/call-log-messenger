@@ -8,51 +8,51 @@ function Guide() {
   const steps = [
     {
       text: t("json-guide.step1"),
-      image: "/guide/1.jpg",
+      image: "https://i.imgur.com/DUGE6Do.jpg",
     },
     {
       text: t("json-guide.step2"),
-      image: "/guide/2.jpg",
+      image: "https://i.imgur.com/T04tZnN.jpg",
     },
     {
       text: t("json-guide.step3"),
-      image: "/guide/3.jpg",
+      image: "https://i.imgur.com/gvzzfSF.jpg",
     },
     {
       text: t("json-guide.step4"),
-      image: "/guide/4.jpg",
+      image: "https://i.imgur.com/tUaWQ4c.jpg",
     },
     {
       text: t("json-guide.step5"),
-      image: "/guide/5.jpg",
+      image: "https://i.imgur.com/qMQc7vT.jpg",
     },
     {
       text: t("json-guide.step6"),
-      image: "/guide/6.jpg",
+      image: "https://i.imgur.com/fnjf8jl.jpg",
     },
     {
       text: t("json-guide.step7"),
-      image: "/guide/7.jpg",
+      image: "https://i.imgur.com/wN5zK5e.jpg",
     },
     {
       text: t("json-guide.step8"),
-      image: "/guide/8.jpg",
+      image: "https://i.imgur.com/XDOtZof.jpg",
     },
     {
       text: t("json-guide.step9"),
-      image: "/guide/9.jpg",
+      image: "https://i.imgur.com/1Em29GA.jpg",
     },
     {
       text: t("json-guide.step10"),
-      image: "/guide/10.jpg",
+      image: "https://i.imgur.com/RD9fXDI.jpg",
     },
     {
       text: t("json-guide.step11"),
-      image: "/guide/11.jpg",
+      image: "https://i.imgur.com/rCQCjlV.jpg",
     },
     {
       text: t("json-guide.step12"),
-      image: "/guide/12.jpg",
+      image: "https://i.imgur.com/mbupw9U.jpg",
       list: [
         "/your_facebook_activity",
         "/messages",

@@ -32,7 +32,15 @@ const TourGuide = () => {
           <li>{t("guide-tour.upload.description.line3")}</li>
         </ul>
       ),
-      cover: <Image src={upload} alt="Upload JSON file" className="shadow-md" />,
+      cover: (
+        <Image
+          src="https://i.imgur.com/1vGBPk9.gif"
+          width={400}
+          height={400}
+          alt="Upload JSON file"
+          className="shadow-md"
+        />
+      ),
       target: () => step0.current,
     },
     {
@@ -42,10 +50,38 @@ const TourGuide = () => {
           <li>{t("guide-tour.json-guide.description.line1")}</li>
         </ul>
       ),
-      cover: <Image src={jsonGuide} alt="Upload JSON file" className="shadow-md" />,
+      cover: (
+        <Image
+          src="https://i.imgur.com/g4Ngozm.gif"
+          width={400}
+          height={400}
+          alt="Upload JSON file"
+          className="shadow-md"
+        />
+      ),
       target: () => step1.current,
     },
-
+    {
+      title: t("guide-tour.call-statistic.title"),
+      description: (
+        <ul className="list-disc list-inside ml-4">
+          <li>{t("guide-tour.call-statistic.description.line1")}</li>
+          <li>{t("guide-tour.call-statistic.description.line2")}</li>
+        </ul>
+      ),
+      target: () => step2.current,
+    },
+    {
+      title: t("guide-tour.statistic-chart.title"),
+      description: (
+        <ul className="list-disc list-inside ml-4">
+          <li>{t("guide-tour.statistic-chart.description.line1")}</li>
+          <li>{t("guide-tour.statistic-chart.description.line2")}</li>
+        </ul>
+      ),
+      placement: "top",
+      target: () => step3.current,
+    },
     {
       title: t("guide-tour.table.title"),
       description: (
@@ -54,7 +90,15 @@ const TourGuide = () => {
           <li>{t("guide-tour.table.description.line2")}</li>
         </ul>
       ),
-      cover: <Image src={table} alt="Upload JSON file" className="shadow-md" />,
+      cover: (
+        <Image
+          src="https://i.imgur.com/70o0en3.gif"
+          width={400}
+          height={400}
+          alt="Upload JSON file"
+          className="shadow-md"
+        />
+      ),
       target: () => step4.current,
     },
     {
@@ -66,7 +110,15 @@ const TourGuide = () => {
         </ul>
       ),
       placement: "left",
-      cover: <Image src={reset} alt="Upload JSON file" className="shadow-md" />,
+      cover: (
+        <Image
+          src="https://i.imgur.com/N6AgVXu.gif"
+          width={400}
+          height={400}
+          alt="Upload JSON file"
+          className="shadow-md"
+        />
+      ),
       target: () => step5.current,
     },
     {
@@ -79,7 +131,13 @@ const TourGuide = () => {
       placement: "leftTop",
       cover: (
         <div className="w-[30%] mx-auto ">
-          <Image src={floatButton} alt="Upload JSON file" className="shadow-md" />
+          <Image
+            src="https://i.imgur.com/TpQjJqf.gif"
+            alt="Upload JSON file"
+            className="shadow-md"
+            width={400}
+            height={400}
+          />
         </div>
       ),
       target: () => step6.current,
@@ -95,7 +153,7 @@ const TourGuide = () => {
       cover: (
         <div className="w-[30%] mx-auto ">
           <Image
-            src={language}
+            src="https://i.imgur.com/828DVUa.gif"
             alt="Upload JSON file"
             width={230}
             height={274}

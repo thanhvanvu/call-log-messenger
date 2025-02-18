@@ -223,7 +223,7 @@ const CallLog = () => {
           </Dragger>
         </div>
         <div className="flex flex-col gap-y-10 mt-5">
-          <Collapse items={items} />
+          <Collapse items={items} activeKey={tourStep.currentStep >= 2 ? 1 : undefined} />
         </div>
 
         <DataTable

@@ -11,6 +11,7 @@ import { Link, Locale, routing, usePathname, useRouter } from "@/i18n/routing";
 import { useLocale, useTranslations } from "next-intl";
 import { useCurrentApp } from "@/context/app.context";
 import { useRef } from "react";
+import { BrowserView, isBrowser } from "react-device-detect";
 
 const Header = () => {
   const locale = useLocale();
@@ -230,15 +231,17 @@ const Header = () => {
           </div>
 
           {pathname === "/calllog" ? (
-            <Button
-              type="primary"
-              size="large"
-              onClickCapture={() => {
-                setGuideTour(!guideTour);
-              }}
-            >
-              {t("guide-tour.button")}
-            </Button>
+            <BrowserView>
+              <Button
+                type="primary"
+                size="large"
+                onClickCapture={() => {
+                  setGuideTour(!guideTour);
+                }}
+              >
+                {t("guide-tour.button")}
+              </Button>
+            </BrowserView>
           ) : (
             <Link href={"/calllog"}>
               <Button type="primary" size="large">
