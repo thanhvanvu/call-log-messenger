@@ -213,7 +213,7 @@ const Header = () => {
               options={localeOption}
             />
           </div>
-          <div className="hidden sm:block">
+          <div className="hidden sm:block 992:hidden">
             <Select
               listHeight={1000}
               listItemHeight={30}
