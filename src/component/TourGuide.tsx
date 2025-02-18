@@ -45,27 +45,7 @@ const TourGuide = () => {
       cover: <Image src={jsonGuide} alt="Upload JSON file" className="shadow-md" />,
       target: () => step1.current,
     },
-    {
-      title: t("guide-tour.call-statistic.title"),
-      description: (
-        <ul className="list-disc list-inside ml-4">
-          <li>{t("guide-tour.call-statistic.description.line1")}</li>
-          <li>{t("guide-tour.call-statistic.description.line2")}</li>
-        </ul>
-      ),
-      target: () => step2.current,
-    },
-    {
-      title: t("guide-tour.statistic-chart.title"),
-      description: (
-        <ul className="list-disc list-inside ml-4">
-          <li>{t("guide-tour.statistic-chart.description.line1")}</li>
-          <li>{t("guide-tour.statistic-chart.description.line2")}</li>
-        </ul>
-      ),
-      placement: "top",
-      target: () => step3.current,
-    },
+
     {
       title: t("guide-tour.table.title"),
       description: (

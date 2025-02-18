@@ -183,7 +183,7 @@ const Header = () => {
       <Navbar collapseOnSelect expand="lg" className=" w-[90%] mx-auto justify-between 3xl:w-[80%]">
         <Link href="/" className="navbar-brand font-bold flex gap-2">
           <Image src={icon} alt="" width={30} height={30}></Image>
-          Call-Logs
+          Call-Tracker
         </Link>
         <div className="flex flex-row gap-2">
           <div className="flex-end 992:hidden">
