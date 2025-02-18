@@ -10,7 +10,6 @@ import { useParams } from "next/navigation";
 import { Link, Locale, routing, usePathname, useRouter } from "@/i18n/routing";
 import { useLocale, useTranslations } from "next-intl";
 import { useCurrentApp } from "@/context/app.context";
-import { useRef } from "react";
 import { BrowserView, isBrowser } from "react-device-detect";
 
 const Header = () => {
@@ -26,7 +25,8 @@ const Header = () => {
       label: (
         <div className="flex gap-2">
           <span className="fi fi-us"></span>
-          <span>English</span>
+          <span className="hidden sm:block">English</span>
+          <span className="block sm:hidden">EN</span>
         </div>
       ),
     },
@@ -35,7 +35,8 @@ const Header = () => {
       label: (
         <div className="flex gap-2">
           <span className="fi fi-vn"></span>
-          <span>Vietnamese</span>
+          <span className="hidden sm:block">Vietnamese</span>
+          <span className="block sm:hidden">VI</span>
         </div>
       ),
     },
@@ -44,7 +45,8 @@ const Header = () => {
       label: (
         <div className="flex gap-2">
           <span className="fi fi-es"></span>
-          <span>Spanish</span>
+          <span className="hidden sm:block">Spanish</span>
+          <span className="block sm:hidden">ES</span>
         </div>
       ),
     },
@@ -53,7 +55,8 @@ const Header = () => {
       label: (
         <div className="flex gap-2">
           <span className="fi fi-cn"></span>
-          <span>Chinese</span>
+          <span className="hidden sm:block">Chinese</span>
+          <span className="block sm:hidden">CN</span>
         </div>
       ),
     },
@@ -62,7 +65,8 @@ const Header = () => {
       label: (
         <div className="flex gap-2">
           <span className="fi fi-in"></span>
-          <span>Hindi</span>
+          <span className="hidden sm:block">Hindi</span>
+          <span className="block sm:hidden">IN</span>
         </div>
       ),
     },
@@ -72,7 +76,8 @@ const Header = () => {
       label: (
         <div className="flex gap-2">
           <span className="fi fi-fr"></span>
-          <span>French</span>
+          <span className="hidden sm:block">French</span>
+          <span className="block sm:hidden">FR</span>
         </div>
       ),
     },
@@ -81,7 +86,8 @@ const Header = () => {
       label: (
         <div className="flex gap-2">
           <span className="fi fi-sa"></span>
-          <span>Arabic</span>
+          <span className="hidden sm:block">Arabic</span>
+          <span className="block sm:hidden">SA</span>
         </div>
       ),
     },
@@ -91,7 +97,8 @@ const Header = () => {
       label: (
         <div className="flex gap-2">
           <span className="fi fi-pt"></span>
-          <span>Portuguese</span>
+          <span className="hidden sm:block">Portuguese</span>
+          <span className="block sm:hidden">PT</span>
         </div>
       ),
     },
@@ -101,7 +108,8 @@ const Header = () => {
       label: (
         <div className="flex gap-2">
           <span className="fi fi-ru"></span>
-          <span>Russian</span>
+          <span className="hidden sm:block">Russian</span>
+          <span className="block sm:hidden">RU</span>
         </div>
       ),
     },
@@ -111,7 +119,8 @@ const Header = () => {
       label: (
         <div className="flex gap-2">
           <span className="fi fi-pk"></span>
-          <span>Urdu</span>
+          <span className="hidden sm:block">Urdu</span>
+          <span className="block sm:hidden">PK</span>
         </div>
       ),
     },
@@ -120,7 +129,8 @@ const Header = () => {
       label: (
         <div className="flex gap-2">
           <span className="fi fi-it"></span>
-          <span>Italian</span>
+          <span className="hidden sm:block">Italian</span>
+          <span className="block sm:hidden">IT</span>
         </div>
       ),
     },
@@ -129,7 +139,8 @@ const Header = () => {
       label: (
         <div className="flex gap-2">
           <span className="fi fi-de"></span>
-          <span>German</span>
+          <span className="hidden sm:block">German</span>
+          <span className="block sm:hidden">DE</span>
         </div>
       ),
     },
@@ -138,7 +149,8 @@ const Header = () => {
       label: (
         <div className="flex gap-2">
           <span className="fi fi-nl"></span>
-          <span>Dutch</span>
+          <span className="hidden sm:block">Dutch</span>
+          <span className="block sm:hidden">NL</span>
         </div>
       ),
     },
@@ -147,7 +159,8 @@ const Header = () => {
       label: (
         <div className="flex gap-2">
           <span className="fi fi-tr"></span>
-          <span>Turkish</span>
+          <span className="hidden sm:block">Turkish</span>
+          <span className="block sm:hidden">TR</span>
         </div>
       ),
     },
@@ -156,7 +169,8 @@ const Header = () => {
       label: (
         <div className="flex gap-2">
           <span className="fi fi-jp"></span>
-          <span>Japanese</span>
+          <span className="hidden sm:block">Japanese</span>
+          <span className="block sm:hidden">JP</span>
         </div>
       ),
     },
@@ -165,7 +179,8 @@ const Header = () => {
       label: (
         <div className="flex gap-2">
           <span className="fi fi-kr"></span>
-          <span>Korean</span>
+          <span className="hidden sm:block">Korean</span>
+          <span className="block sm:hidden">KR</span>
         </div>
       ),
     },
@@ -187,13 +202,24 @@ const Header = () => {
           Call-Tracker
         </Link>
         <div className="flex flex-row gap-2">
-          <div className="flex-end 992:hidden">
+          <div className="flex-end sm:hidden">
             <Select
               listHeight={1000}
               listItemHeight={30}
               popupMatchSelectWidth={false}
               defaultValue={locale}
-              style={{ width: 120 }}
+              style={{ width: 80 }}
+              onChange={handleChange}
+              options={localeOption}
+            />
+          </div>
+          <div className="hidden sm:block">
+            <Select
+              listHeight={1000}
+              listItemHeight={30}
+              popupMatchSelectWidth={false}
+              defaultValue={locale}
+              style={{ width: 140 }}
               onChange={handleChange}
               options={localeOption}
             />
