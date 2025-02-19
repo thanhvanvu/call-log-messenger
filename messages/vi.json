@@ -118,6 +118,20 @@
       }
     }
   },
+  "pdf-setting": {
+    "check-all": "Chọn tất cả",
+    "option1": "Chọn tháng để xuất file PDF",
+    "option2": "Bao gồm 'Thống kê Chi Tiết Nhật ký Cuộc gọi'? (tùy chọn)",
+    "option3": "Thêm màu nền cho cuộc gọi nhỡ? (tùy chọn)",
+    "export": "Xuất PDF",
+    "cancel": "Hủy"
+  },
+  "pdf-warning": {
+    "title": "Không được hỗ trợ trên trình duyệt di động",
+    "line1": "Xuất PDF không khả dụng trên trình duyệt di động.",
+    "line2": "Vui lòng sử dụng trình duyệt máy tính để truy cập tính năng này và xuất PDF theo định dạng được thiết kế.",
+    "line3": "Xin lỗi vì sự bất tiện này."
+  },
   "common": {
     "get-started": "BẮT ĐẦU",
     "guide": "Hướng dẫn tìm file JSON",

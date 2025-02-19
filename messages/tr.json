@@ -118,6 +118,20 @@
       }
     }
   },
+  "pdf-setting": {
+    "check-all": "Tüm ayları seç",
+    "option1": "PDF dışa aktarımına dahil edilecek ayları seçin",
+    "option2": "'Ayrıntılı Arama Kaydı İstatistiği'ni dahil et? (isteğe bağlı)",
+    "option3": "Kaçırılan arama satırlarını vurgula? (isteğe bağlı)",
+    "export": "PDF'i Dışa Aktar",
+    "cancel": "İptal"
+  },
+  "pdf-warning": {
+    "title": "Mobil Tarayıcıda Desteklenmiyor",
+    "line1": "PDF dışa aktarımı mobil tarayıcılarda kullanılamaz.",
+    "line2": "Tasarlanan biçimdeki PDF'i dışa aktarmak için bu özelliğe erişmek üzere lütfen bir masaüstü tarayıcı kullanın.",
+    "line3": "Bu rahatsızlıktan dolayı özür dileriz."
+  },
   "common": {
     "get-started": "BAŞLAYIN",
     "guide": "JSON dosyasını nasıl bulacağınız hakkında rehber",

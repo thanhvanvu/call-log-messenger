@@ -118,6 +118,20 @@
       }
     }
   },
+  "pdf-setting": {
+    "check-all": "Selecionar todos os meses",
+    "option1": "Selecione os meses para incluir na exportação em PDF",
+    "option2": "Incluir as 'Estatísticas Detalhadas do Registro de Chamadas'? (opcional)",
+    "option3": "Destacar as linhas de chamadas perdidas? (opcional)",
+    "export": "Exportar PDF",
+    "cancel": "Cancelar"
+  },
+  "pdf-warning": {
+    "title": "Não suportado em navegadores móveis",
+    "line1": "A exportação em PDF não está disponível em navegadores móveis.",
+    "line2": "Use um navegador de computador para acessar este recurso e exportar o PDF no formato desejado.",
+    "line3": "Desculpe o inconveniente."
+  },
   "common": {
     "get-started": "COMEÇAR",
     "guide": "Guia sobre como encontrar o arquivo JSON",

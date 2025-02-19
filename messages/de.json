@@ -118,6 +118,20 @@
       }
     }
   },
+  "pdf-setting": {
+    "check-all": "Alle Monate auswählen",
+    "option1": "Wählen Sie die Monate aus, die in den PDF-Export aufgenommen werden sollen",
+    "option2": "Die 'Detaillierte Anrufprotokollstatistik' einbeziehen? (optional)",
+    "option3": "Verpasste Anrufzeilen hervorheben? (optional)",
+    "export": "PDF exportieren",
+    "cancel": "Abbrechen"
+  },
+  "pdf-warning": {
+    "title": "Nicht auf mobilen Browsern unterstützt",
+    "line1": "Der PDF-Export ist auf mobilen Browsern nicht verfügbar.",
+    "line2": "Bitte verwenden Sie einen Desktop-Browser, um auf diese Funktion zuzugreifen und das PDF im gewünschten Format zu exportieren.",
+    "line3": "Entschuldigen Sie die Unannehmlichkeiten."
+  },
   "common": {
     "get-started": "JETZT STARTEN",
     "guide": "Anleitung zum Finden der JSON-Datei",

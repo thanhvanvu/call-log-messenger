@@ -167,6 +167,7 @@ const CallLog = () => {
           const FilterObject: IDateFilterType = {
             text: `${month}, ${year}`,
             value: `${month}, ${year}`,
+            label: `${month}, ${year}`,
           };
 
           // Check if filter array already contains this object
@@ -191,8 +192,6 @@ const CallLog = () => {
         // Set raw call logs after processing all files
         setRawCallLogs(uniqueRawCallLogsObject);
         setRawCallLogsNotModify(uniqueRawCallLogsObject);
-
-        console.log(uniqueRawCallLogsObject);
       } catch (error) {
         console.log(error);
         messageApi.error("Failed to process the file. Please ensure it contains valid JSON.");
@@ -361,6 +360,7 @@ const CallLog = () => {
         dataStatisticPdf.totalMissedCall.fromNameB = totalMissedCallFromNameB;
 
         dataPdfModified.push({
+          monthYear: date,
           dateRange: dateRangePdf,
           callLogToShow: modifiedCallLogsPdf,
           statistic: dataStatisticPdf,

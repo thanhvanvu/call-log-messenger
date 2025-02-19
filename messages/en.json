@@ -118,13 +118,29 @@
       }
     }
   },
+
+  "pdf-setting": {
+    "check-all": "Select all months",
+    "option1": "Select the months to include in the PDF export",
+    "option2": "Include the 'Detailed Call Log Statistic'? (optional)",
+    "option3": "Highlight missed call rows? (optional)",
+    "export": "Export PDF",
+    "cancel": "Cancel"
+  },
+
+  "pdf-warning": {
+    "title": "Not Supported on Mobile Browser",
+    "line1": "PDF export is not available on mobile browsers.",
+    "line2": "Please use a desktop browser to access this feature to export the designed-format PDF.",
+    "line3": "Sorry for this inconvenience."
+  },
   "common": {
     "get-started": "GET STARTED",
     "guide": "Guide how to find JSON file",
     "yes": "Yes",
     "no": "No",
     "export-pdf": {
-      "button": "Export PDF",
+      "button": "Export PDF Setting",
       "tooltip": "It’s best to filter the data before exporting the PDF"
     }
   }

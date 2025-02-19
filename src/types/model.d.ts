@@ -24,6 +24,7 @@ declare global {
   interface IDateFilterType {
     text: string;
     value: string;
+    label: string;
   }
 
   interface IDataStatistic {
@@ -60,6 +61,7 @@ declare global {
   }
 
   interface IDataPdf {
+    monthYear: string;
     statistic: IDataStatistic;
     callLogToShow: ICallLogType[];
     dateRange: IDateRange;

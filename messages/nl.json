@@ -118,6 +118,20 @@
       }
     }
   },
+  "pdf-setting": {
+    "check-all": "Selecteer alle maanden",
+    "option1": "Selecteer de maanden die u wilt opnemen in de PDF-export",
+    "option2": "De 'Gedetailleerde statistieken van het oproeplogboek' toevoegen? (optioneel)",
+    "option3": "Markeer de rijen met gemiste oproepen? (optioneel)",
+    "export": "Exporteer PDF",
+    "cancel": "Annuleren"
+  },
+  "pdf-warning": {
+    "title": "Niet ondersteund op mobiele browsers",
+    "line1": "PDF-export is niet beschikbaar op mobiele browsers.",
+    "line2": "Gebruik een desktopbrowser om toegang te krijgen tot deze functie en de PDF in het gewenste formaat te exporteren.",
+    "line3": "Onze excuses voor dit ongemak."
+  },
   "common": {
     "get-started": "START NU",
     "guide": "Gids voor het vinden van de JSON-bestand",

@@ -2,7 +2,7 @@
 import { Button, Popconfirm, Popover, Table, TablePaginationConfig, Tooltip } from "antd";
 import React, { useEffect, useRef, useState } from "react";
 import { FaFacebookSquare } from "react-icons/fa";
-import { InboxOutlined, RedoOutlined } from "@ant-design/icons";
+import { InboxOutlined, RedoOutlined, SettingOutlined } from "@ant-design/icons";
 import { useTranslations } from "next-intl";
 import { useCurrentApp } from "@/context/app.context";
 import { convertTimeStampToDate, convertTimeStampToDateInHour, decode } from "@/utils/helper";
@@ -17,6 +17,8 @@ import PdfExport from "./PdfExport";
 import { FaFilePdf } from "react-icons/fa6";
 import { BrowserView, MobileView } from "react-device-detect";
 import { useReactToPrint } from "react-to-print";
+import PdfSettingModal from "./PdfSetting.modal";
+import PdfWarningModal from "./PdfWarning.modal";
 
 const sample = data;
 
@@ -42,16 +44,9 @@ function DataTable(props: IProps) {
   const [sortedInfo, setSortedInfo] = useState<Sorts>({});
   const [isShowDeleteAction, setIsShowDeleteAction] = useState<boolean>(false);
   const [missedCallBackground, setMissedCallBackground] = useState<boolean>(false);
-  const [pdfExport, setPdfExport] = useState<boolean>(false);
+  const [isShowPdfSetting, setIsShowPdfSetting] = useState<boolean>(false);
+  const [isShowPdfWaring, setIsShowPdfWarning] = useState<boolean>(false);
   const t = useTranslations();
-
-  // pdf
-  const contentRef = useRef<HTMLDivElement>(null);
-  const reactToPrintFn = useReactToPrint({
-    contentRef,
-    documentTitle: "Call-logs",
-    // onAfterPrint: () => setTriggerPDFExport(false),
-  });
 
   const columns: any = [
     {
@@ -355,40 +350,27 @@ function DataTable(props: IProps) {
               </p>
             </div>
             <div className="flex gap-4">
-              <Tooltip
-                title={
-                  dataToShow && dataToShow.length > 0 === true ? t("common.export-pdf.tooltip") : ""
-                }
-              >
+              <BrowserView>
                 <Button
                   danger
                   color="danger"
                   disabled={dataToShow && dataToShow.length > 0 === true ? false : true}
-                  onClick={() => {
-                    reactToPrintFn();
-                  }}
+                  // onClick={() => {
+                  //   reactToPrintFn();
+                  // }}
+                  onClick={() => setIsShowPdfSetting(true)}
                 >
-                  <FaFilePdf />
+                  <SettingOutlined />
                   {t("common.export-pdf.button")}
                 </Button>
-              </Tooltip>
+              </BrowserView>
 
-              {/* <MobileView>
-                <Tooltip
-                  title={
-                    "Not working as expected on mobile browsers. Please use it on a desktop browser."
-                  }
-                >
-                  <Button
-                    danger
-                    color="danger"
-                    onClick={() => console.log("Not working on mobile browsers")}
-                  >
-                    <FaFilePdf />
-                    {t("common.export-pdf.button")}
-                  </Button>
-                </Tooltip>
-              </MobileView> */}
+              <MobileView>
+                <Button danger color="danger" onClick={() => setIsShowPdfWarning(true)}>
+                  <SettingOutlined />
+                  {t("common.export-pdf.button")}
+                </Button>
+              </MobileView>
 
               <div className="" ref={tourStep?.step5}>
                 <Popover
@@ -451,9 +433,8 @@ function DataTable(props: IProps) {
         }
       />
 
-      <div className="hidden">
-        <PdfExport contentRef={contentRef} />
-      </div>
+      <PdfSettingModal isShowModal={isShowPdfSetting} setIsShowModal={setIsShowPdfSetting} />
+      <PdfWarningModal open={isShowPdfWaring} setOpen={setIsShowPdfWarning} />
     </div>
   );
 }

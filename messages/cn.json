@@ -118,6 +118,20 @@
       }
     }
   },
+  "pdf-setting": {
+    "check-all": "选择所有月份",
+    "option1": "选择要包含在PDF导出中的月份",
+    "option2": "包含“详细通话记录统计信息”？（可选）",
+    "option3": "突出显示未接来电行？（可选）",
+    "export": "导出PDF",
+    "cancel": "取消"
+  },
+  "pdf-warning": {
+    "title": "移动浏览器不支持",
+    "line1": "移动浏览器无法使用PDF导出功能。",
+    "line2": "请使用桌面浏览器访问此功能以导出设计格式的PDF。",
+    "line3": "由此给您带来的不便，敬请谅解。"
+  },
   "common": {
     "get-started": "开始使用",
     "guide": "如何找到 JSON 文件",

@@ -118,6 +118,20 @@
       }
     }
   },
+  "pdf-setting": {
+    "check-all": "Sélectionner tous les mois",
+    "option1": "Sélectionner les mois à inclure dans l'exportation PDF",
+    "option2": "Inclure les 'Statistiques détaillées du journal d'appels' ? (facultatif)",
+    "option3": "Mettre en évidence les lignes d'appels manqués ? (facultatif)",
+    "export": "Exporter PDF",
+    "cancel": "Annuler"
+  },
+  "pdf-warning": {
+    "title": "Non pris en charge sur les navigateurs mobiles",
+    "line1": "L'exportation PDF n'est pas disponible sur les navigateurs mobiles.",
+    "line2": "Veuillez utiliser un navigateur de bureau pour accéder à cette fonctionnalité afin d'exporter le PDF au format souhaité.",
+    "line3": "Nous sommes désolés pour ce désagrément."
+  },
   "common": {
     "get-started": "COMMENCER",
     "guide": "Guide sur comment trouver le fichier JSON",
