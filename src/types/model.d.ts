@@ -59,6 +59,12 @@ declare global {
     to: string;
   }
 
+  interface IDataPdf {
+    statistic: IDataStatistic;
+    callLogToShow: ICallLogType[];
+    dateRange: IDateRange;
+  }
+
   interface ITourStep {
     currentStep: number;
     step0: React.RefObject<HTMLDivElement | null> | null;

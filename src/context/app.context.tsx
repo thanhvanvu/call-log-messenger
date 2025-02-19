@@ -18,6 +18,8 @@ interface AppContextType {
   setGuideTour: (v: boolean) => void;
   tourStep: ITourStep;
   setTourStep: (v: ITourStep) => void;
+  dataPdf: IDataPdf[];
+  setDataPdf: (v: IDataPdf[]) => void;
 }
 
 // Create a ThemeContext
@@ -68,6 +70,8 @@ const AppProvider = (props: IAppProvideProps) => {
     step7: null,
   });
 
+  const [dataPdf, setDataPdf] = useState<IDataPdf[]>([]);
+
   return (
     <AppContext
       value={{
@@ -85,6 +89,8 @@ const AppProvider = (props: IAppProvideProps) => {
         setGuideTour,
         tourStep,
         setTourStep,
+        dataPdf,
+        setDataPdf,
       }}
     >
       <TourGuide />

@@ -1,6 +1,6 @@
 "use client";
 import { Button, Popconfirm, Popover, Table, TablePaginationConfig, Tooltip } from "antd";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaFacebookSquare } from "react-icons/fa";
 import { InboxOutlined, RedoOutlined } from "@ant-design/icons";
 import { useTranslations } from "next-intl";
@@ -16,6 +16,7 @@ import { Link } from "@/i18n/routing";
 import PdfExport from "./PdfExport";
 import { FaFilePdf } from "react-icons/fa6";
 import { BrowserView, MobileView } from "react-device-detect";
+import { useReactToPrint } from "react-to-print";
 
 const sample = data;
 
@@ -43,6 +44,14 @@ function DataTable(props: IProps) {
   const [missedCallBackground, setMissedCallBackground] = useState<boolean>(false);
   const [pdfExport, setPdfExport] = useState<boolean>(false);
   const t = useTranslations();
+
+  // pdf
+  const contentRef = useRef<HTMLDivElement>(null);
+  const reactToPrintFn = useReactToPrint({
+    contentRef,
+    documentTitle: "Call-logs",
+    // onAfterPrint: () => setTriggerPDFExport(false),
+  });
 
   const columns: any = [
     {
@@ -272,6 +281,8 @@ function DataTable(props: IProps) {
   ) => {
     setFilteredInfo(filters);
     setSortedInfo(sorter as Sorts);
+
+    console.log(filters);
     if (filters && filters.date) {
       const filterCallLogs: IRawLogType[] = [];
 
@@ -344,34 +355,28 @@ function DataTable(props: IProps) {
               </p>
             </div>
             <div className="flex gap-4">
-              <BrowserView>
-                <Tooltip
-                  title={
-                    dataToShow && dataToShow.length > 0 === true
-                      ? t("common.export-pdf.tooltip")
-                      : ""
-                  }
+              <Tooltip
+                title={
+                  dataToShow && dataToShow.length > 0 === true ? t("common.export-pdf.tooltip") : ""
+                }
+              >
+                <Button
+                  danger
+                  color="danger"
+                  disabled={dataToShow && dataToShow.length > 0 === true ? false : true}
+                  onClick={() => {
+                    reactToPrintFn();
+                  }}
                 >
-                  <Button
-                    danger
-                    color="danger"
-                    disabled={dataToShow && dataToShow.length > 0 === true ? false : true}
-                    onClick={() => {
-                      setPdfExport(true);
-                    }}
-                  >
-                    <FaFilePdf />
-                    {t("common.export-pdf.button")}
-                  </Button>
-                </Tooltip>
-              </BrowserView>
+                  <FaFilePdf />
+                  {t("common.export-pdf.button")}
+                </Button>
+              </Tooltip>
 
-              <MobileView>
+              {/* <MobileView>
                 <Tooltip
                   title={
-                    dataToShow && dataToShow.length > 0 === true
-                      ? "Not working as expected on mobile browsers. Please use it on a desktop browser."
-                      : ""
+                    "Not working as expected on mobile browsers. Please use it on a desktop browser."
                   }
                 >
                   <Button
@@ -383,7 +388,7 @@ function DataTable(props: IProps) {
                     {t("common.export-pdf.button")}
                   </Button>
                 </Tooltip>
-              </MobileView>
+              </MobileView> */}
 
               <div className="" ref={tourStep?.step5}>
                 <Popover
@@ -447,7 +452,7 @@ function DataTable(props: IProps) {
       />
 
       <div className="hidden">
-        <PdfExport triggerPDFExport={pdfExport} setTriggerPDFExport={setPdfExport} />
+        <PdfExport contentRef={contentRef} />
       </div>
     </div>
   );

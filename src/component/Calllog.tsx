@@ -21,7 +21,13 @@ import {
   UploadProps,
 } from "antd";
 
-import { decode, readFileAsText, validateFileType } from "@/utils/helper";
+import {
+  convertTimeStampToDate,
+  convertTimeStampToDateInHour,
+  decode,
+  readFileAsText,
+  validateFileType,
+} from "@/utils/helper";
 import { useTranslations } from "next-intl";
 import { useCurrentApp } from "@/context/app.context";
 import Statistic from "./Statistic";
@@ -34,10 +40,12 @@ const CallLog = () => {
     setParticipants,
     setDateFilter,
     setRawCallLogs,
+    setDataPdf,
+    participants,
     dateRange,
     guideTour,
-    setGuideTour,
     tourStep,
+    dateFilter,
   } = useCurrentApp();
   const [messageApi, contextHolder] = message.useMessage();
 
@@ -46,8 +54,6 @@ const CallLog = () => {
   const [fileList, setFileList] = useState<UploadFile[]>([]);
   const [isLoadingTable, setIsLoadingTable] = useState<boolean>(false);
   const t = useTranslations();
-
-  console.log(guideTour);
 
   const props: UploadProps = {
     name: "file",
@@ -196,6 +202,173 @@ const CallLog = () => {
     // Start processing files
     processFiles();
   }, [fileList]);
+
+  // build array data based on filter
+  useEffect(() => {
+    const dataPdfModified: IDataPdf[] = [];
+
+    if (dateFilter) {
+      dateFilter.forEach((item) => {
+        const date = item?.text;
+        const splitDate = date.split(",");
+        const month = splitDate[0];
+        const year = splitDate[1];
+
+        // filter data by date
+        const filterRawLogs = rawCallLogsNotModify.filter((item) => {
+          return item?.date.includes(month) && item?.date.includes(year);
+        });
+
+        let totalCallDuration = 0;
+        let totalCallFromNameA = 0;
+        let totalCallDurationFromNameA = 0;
+        let totalCallFromNameB = 0;
+        let totalCallDurationFromNameB = 0;
+        let totalMissedCallFromNameA = 0;
+        let totalMissedCallFromNameB = 0;
+
+        const modifiedCallLogsPdf = filterRawLogs.map((item: IRawLogType) => {
+          const sender = decode(item.sender_name || "");
+          const content = decode(item.content || "");
+
+          // calculate total call hour
+          totalCallDuration = totalCallDuration + item.call_duration;
+
+          // calculate total missed called from name A
+          if (sender === participants?.nameA && item.call_duration === 0) {
+            totalMissedCallFromNameA += 1;
+          }
+
+          // calculate total called from name A
+          if (sender === participants?.nameA && item.call_duration > 0) {
+            totalCallFromNameA += 1;
+            totalCallDurationFromNameA += item.call_duration;
+          }
+
+          // calculate total missed called from name B
+          if (sender === participants?.nameB && item.call_duration === 0) {
+            totalMissedCallFromNameB += 1;
+          }
+
+          // calculate total called from name A
+          if (sender === participants?.nameB && item.call_duration > 0) {
+            totalCallFromNameB += 1;
+            totalCallDurationFromNameB += item.call_duration;
+          }
+
+          // convert timestamp to date and hour
+          const date = new Date(item.timestamp_ms);
+
+          const formattedTime = date.toLocaleTimeString("en-US", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: true,
+          });
+
+          const duration = item.call_duration || 0;
+          const hours = Math.floor(duration / 3600);
+          const minutes = Math.floor((duration % 3600) / 60);
+          const seconds = duration % 60;
+          const formattedDuration = `${hours.toString().padStart(2, "0")}:${minutes
+            .toString()
+            .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+
+          return {
+            ...item,
+            sender_name: sender,
+            content: content,
+            time: formattedTime,
+            call_duration: formattedDuration,
+          };
+        });
+
+        // set dateRange
+        let dateRangePdf: IDateRange = {
+          from: "",
+          to: "",
+        };
+        if (modifiedCallLogsPdf.length > 0) {
+          dateRangePdf.from = modifiedCallLogsPdf[0]?.date;
+          dateRangePdf.to = modifiedCallLogsPdf[modifiedCallLogsPdf.length - 1]?.date;
+        }
+
+        // convert total call duration
+        const totalCallHours = Math.floor(totalCallDuration / 3600);
+        const totalCallMinutes = Math.floor((totalCallDuration % 3600) / 60);
+        const totalCallSeconds = totalCallDuration % 60;
+        const formattedTotalCallDuration = `${totalCallHours
+          .toString()
+          .padStart(2, "0")}:${totalCallMinutes.toString().padStart(2, "0")}:${totalCallSeconds
+          .toString()
+          .padStart(2, "0")}`;
+        const formattedTotalCallDurationInHour = `${totalCallHours
+          .toString()
+          .padStart(2, "0")} hours ${totalCallMinutes
+          .toString()
+          .padStart(2, "0")} minutes ${totalCallSeconds.toString().padStart(2, "0")} seconds`;
+
+        // set data statistic
+        let dataStatisticPdf: IDataStatistic = {
+          totalSuccessCall: {
+            total: 0,
+            totalDuration: "",
+            totalDurationInHourFormat: "",
+          },
+          totalCallFromNameA: {
+            total: 0,
+            totalDuration: "",
+            totalDurationInHourFormat: "",
+          },
+          totalCallFromNameB: {
+            total: 0,
+            totalDuration: "",
+            totalDurationInHourFormat: "",
+          },
+          totalMissedCall: {
+            total: 0,
+            fromNameA: 0,
+            fromNameB: 0,
+          },
+        };
+
+        // total success call
+        dataStatisticPdf.totalSuccessCall.total = totalCallFromNameA + totalCallFromNameB;
+        dataStatisticPdf.totalSuccessCall.totalDuration = formattedTotalCallDuration;
+        dataStatisticPdf.totalSuccessCall.totalDurationInHourFormat =
+          formattedTotalCallDurationInHour;
+
+        // total call from A
+        dataStatisticPdf.totalCallFromNameA.total = totalCallFromNameA;
+        dataStatisticPdf.totalCallFromNameA.totalDuration = convertTimeStampToDate(
+          totalCallDurationFromNameA
+        );
+        dataStatisticPdf.totalCallFromNameA.totalDurationInHourFormat =
+          convertTimeStampToDateInHour(totalCallDurationFromNameA);
+
+        // total call from B
+        dataStatisticPdf.totalCallFromNameB.total = totalCallFromNameB;
+        dataStatisticPdf.totalCallFromNameB.totalDuration = convertTimeStampToDate(
+          totalCallDurationFromNameB
+        );
+        dataStatisticPdf.totalCallFromNameB.totalDurationInHourFormat =
+          convertTimeStampToDateInHour(totalCallDurationFromNameB);
+
+        // total missed call
+        dataStatisticPdf.totalMissedCall.total =
+          totalMissedCallFromNameA + totalMissedCallFromNameB;
+        dataStatisticPdf.totalMissedCall.fromNameA = totalMissedCallFromNameA;
+        dataStatisticPdf.totalMissedCall.fromNameB = totalMissedCallFromNameB;
+
+        dataPdfModified.push({
+          dateRange: dateRangePdf,
+          callLogToShow: modifiedCallLogsPdf,
+          statistic: dataStatisticPdf,
+        });
+      });
+    }
+    setDataPdf(dataPdfModified);
+  }, [rawCallLogsNotModify]);
 
   return (
     <>
