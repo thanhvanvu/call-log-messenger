@@ -66,6 +66,7 @@ function Homepage() {
           </Link>
         </div>
       </div>
+
       <div className="mt-5">
         <Image src={picture} alt="" className="shadow-lg" />
       </div>

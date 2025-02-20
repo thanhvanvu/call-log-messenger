@@ -29,6 +29,7 @@ function PdfWarningModal(props: IProps) {
         onCancel={() => {
           setOpen(false);
         }}
+        cancelButtonProps={{ style: { display: "none" } }}
       >
         <ul className="list-disc list-inside mt-3">
           <li>{t("pdf-warning.line1")}</li>

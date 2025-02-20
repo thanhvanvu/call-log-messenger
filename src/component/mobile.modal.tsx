@@ -33,6 +33,7 @@ function MobileModal(props: IProps) {
           // Save data to sessionStorage
           sessionStorage.setItem("mobileModal", "false");
         }}
+        cancelButtonProps={{ style: { display: "none" } }}
       >
         <p>{t("mobile-modal.line1")}</p>
         <p>{t("mobile-modal.line2")}</p>

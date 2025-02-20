@@ -15,7 +15,7 @@ import { MdDeleteForever } from "react-icons/md";
 import { Link } from "@/i18n/routing";
 import PdfExport from "./PdfExport";
 import { FaFilePdf } from "react-icons/fa6";
-import { BrowserView, MobileView } from "react-device-detect";
+import { BrowserView, isMobileOnly, isTablet, MobileView } from "react-device-detect";
 import { useReactToPrint } from "react-to-print";
 import PdfSettingModal from "./PdfSetting.modal";
 import PdfWarningModal from "./PdfWarning.modal";
@@ -327,7 +327,7 @@ function DataTable(props: IProps) {
             );
           },
         }}
-        size="large"
+        size={isMobileOnly ? "small" : isTablet ? "middle" : "large"}
         title={() => (
           <div className="flex items-center justify-between">
             <div className="text-center font-bold text-2xl py-2">

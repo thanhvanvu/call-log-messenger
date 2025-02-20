@@ -1,0 +1,149 @@
+{
+  "homepage": {
+    "title": "Hindi Makita ang <callLogs>Call Logs</callLogs>? Tingnan Dito",
+    "description": "Makakuha ng komprehensibong pananaw sa iyong mga pattern ng komunikasyon gamit ang detalyadong mga call log at istatistika. Madaling subaybayan ang tagal ng tawag, subaybayan ang mga hindi nasagot na tawag, at suriin ang pangkalahatang aktibidad ng komunikasyon upang ma-optimize ang kahusayan at manatiling konektado."
+  },
+  "header": {
+    "get-started": "MAGSIMULA",
+    "guide": "Gabay kung paano mahanap ang JSON file"
+  },
+  "call-logs": {
+    "click-upload": "Mag-click sa lugar na ito upang mag-upload",
+    "upload-note": "Suporta para sa maramihang pag-upload. Suportahan lamang ang JSON file",
+    "guide": "Wala kang JSON file? Pumunta dito para hanapin ito",
+    "data-title": "Mga call log sa pagitan nina {nameA} at {nameB} noong",
+    "sample-data-title": "Ito ay isang sample data para sa mga call log noong",
+    "reset-filter": "I-reset ang Filter",
+    "hide-delete-action": "Itago ang Delete action",
+    "show-delete-action": "Ipakita ang Delete action",
+    "hide-missed-background": "Itago ang kulay ng background ng Missed Call",
+    "show-missed-background": "Ipakita ang kulay ng background ng Missed Call",
+    "date": "Petsa",
+    "sender": "Pangalan ng Tumawag",
+    "content": "Katayuan ng Tawag",
+    "call-end": "Oras ng Pagtatapos",
+    "call-duration": "Tagal ng Tawag",
+    "action": "Aksyon",
+    "pagination": "mula sa",
+    "statistic": "Mga istatistika ng kasaysayan ng call log",
+    "success": "Kabuuang matagumpay na tawag",
+    "success-from-A": "Kabuuang tawag mula kay {nameA}",
+    "success-from-B": "Kabuuang tawag mula kay {nameB}",
+    "missed": "Kabuuang hindi nasagot na tawag",
+    "B-missed-call": "Hindi nasagot ni {nameB} ang kabuuang tawag na",
+    "A-missed-call": "Hindi nasagot ni {nameA} ang kabuuang tawag na",
+    "time": "beses",
+    "delete": "Burahin",
+    "delete-popConfirm-title": "Burahin ang call log na ito",
+    "delete-popConfirm-description": "Sigurado ka bang buburahin ang call log na ito?"
+  },
+  "json-guide": {
+    "step1": "Sa iyong Facebook page, i-click ang icon sa kanang itaas upang buksan ang dropdown menu.",
+    "step2": "I-click ang 'Settings & Privacy'.",
+    "step3": "I-click ang 'I-download ang iyong impormasyon'.",
+    "step4": "Dadalhin ka ng Facebook sa ibang page.",
+    "step5": "I-click ang 'I-download o ilipat ang impormasyon'.",
+    "step6": "Piliin ang Facebook at pagkatapos ay Next.",
+    "step7": "I-click ang 'Mga partikular na uri ng impormasyon'.",
+    "step8": "Piliin lamang ang 'Mga Mensahe' mula sa listahan.",
+    "step9": "Piliin kung saan mo gustong i-save ang file.",
+    "step10": "Mahalaga: Piliin ang **Format: JSON** at **Kalidad ng media: Mababa**.",
+    "step11": "Hintayin ang pag-download. Kapag na-extract na, magmumukhang ganito ang iyong mga file.",
+    "step12": "Sundin ang path na ito para mahanap ang iyong JSON file:"
+  },
+  "mobile-modal": {
+    "title": "Pinakamahusay na Tiningnan sa Desktop",
+    "line1": "Para sa isang pinakamainam na karanasan, inirerekumenda namin ang paggamit ng PC o laptop.",
+    "line2": "O paganahin ang “Desktop site“ sa mga setting ng iyong mobile browser."
+  },
+  "float-button": {
+    "table": "Ipakita ang data table",
+    "statistic": "Ipakita ang istatistika"
+  },
+  "guide-tour": {
+    "button": "GABAY SA TOUR",
+    "upload": {
+      "title": "Mag-upload ng JSON File",
+      "description": {
+        "line1": "Mag-upload o mag-drag and drop ng JSON file dito.",
+        "line2": "Mga JSON file lamang ang sinusuportahan.",
+        "line3": "Maaari kang mag-upload ng higit sa 10 file nang sabay-sabay."
+      }
+    },
+    "json-guide": {
+      "title": "Pahina ng Gabay sa JSON",
+      "description": {
+        "line1": "Kung hindi mo alam kung paano maghanap ng JSON file, bisitahin ang pahinang ito para sa gabay."
+      }
+    },
+    "call-statistic": {
+      "title": "Mga Istatistika ng Tawag",
+      "description": {
+        "line1": "Nagbibigay ng pangkalahatang-ideya ng data ng tawag, kabilang ang mga matagumpay na tawag, hindi nasagot na tawag, at kabuuang tagal ng tawag.",
+        "line2": "Tumutulong na subaybayan ang pagganap ng tawag sa pamamagitan ng pagpapakita ng mga pangunahing sukatan tulad ng mga nakumpleto at hindi nasagot na tawag, kasama ang kanilang mga tagal."
+      }
+    },
+    "statistic-chart": {
+      "title": "Tsart ng Mga Istatistika ng Tawag",
+      "description": {
+        "line1": "Isang bar chart na nagpapakita at naghahambing ng mga aktibidad ng tawag sa pagitan ng dalawang indibidwal.",
+        "line2": "Ipinapakita ang kabuuang oras ng tawag, matagumpay na tawag, at hindi nasagot na tawag."
+      }
+    },
+    "table": {
+      "title": "Talaan ng Mga Call Log",
+      "description": {
+        "line1": "Ipinapakita ang mga call at video log sa pagitan ng dalawang indibidwal.",
+        "line2": "Maaari kang mag-filter ayon sa petsa at mag-sort ayon sa nagpadala o tagal ng tawag para sa mas mahusay na pagkuha ng data."
+      }
+    },
+    "reset-button": {
+      "title": "I-reset ang Filter",
+      "description": {
+        "line1": "I-clear ang lahat ng filter at opsyon sa pag-sort nang sabay-sabay.",
+        "line2": "Maaari mong ipakita o itago ang kulay ng background ng hindi nasagot na tawag."
+      }
+    },
+    "float-button": {
+      "title": "Shortcut Float Button",
+      "description": {
+        "line1": "Nagbibigay ng mabilis na access sa Mga Istatistika ng Tawag at Talaan ng Mga Call Log nang walang pag-scroll."
+      }
+    },
+    "language": {
+      "title": "Wika",
+      "description": {
+        "line1": "Piliin ang iyong ginustong wika.",
+        "line2": "Sa kasalukuyan, sinusuportahan ng app ang 10+ pinakakaraniwang ginagamit na wika."
+      }
+    }
+  },
+
+  "pdf-setting": {
+    "check-all": "Piliin ang lahat ng buwan",
+    "current-table": "O kasalukuyang talahanayan sa labas ng setting na ito?",
+    "option1": "Piliin ang mga buwan na isasama sa PDF export",
+    "option2": "Itago ang hindi nasagot na hilera? (Opsyonal)",
+    "option3": "Isama ang 'Detalyadong Istatistika ng Call Log'? (Opsyonal)",
+    "option4": "I-highlight ang mga hilera ng tawag? (berde: matagumpay na tawag, pula: hindi nasagot na tawag)",
+    "export": "I-export ang PDF",
+    "cancel": "Kanselahin"
+  },
+
+  "pdf-warning": {
+    "title": "Hindi Sinusuportahan sa Mobile Browser",
+    "line1": "Ang PDF export ay hindi magagamit sa mga mobile browser.",
+    "line2": "Mangyaring gumamit ng desktop browser upang ma-access ang feature na ito para ma-export ang PDF na may disenyo.",
+    "line3": "Paumanhin sa abala na ito."
+  },
+  "common": {
+    "get-started": "MAGSIMULA",
+    "guide": "Gabay kung paano mahanap ang JSON file",
+    "yes": "Oo",
+    "no": "Hindi",
+    "export-pdf": {
+      "button": "I-export ang Setting ng PDF",
+      "tooltip": "Pinakamabuting i-filter ang data bago i-export ang PDF"
+    }
+  }
+}

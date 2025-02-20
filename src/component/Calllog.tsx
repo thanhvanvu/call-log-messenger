@@ -417,7 +417,7 @@ const CallLog = () => {
             <Popover
               content={<Statistic forFloatButton={true} />}
               trigger="click"
-              placement="leftTop"
+              placement="left"
               overlayStyle={{ width: "70%" }}
             >
               <FloatButton
@@ -435,7 +435,7 @@ const CallLog = () => {
                 />
               }
               trigger="click"
-              placement="leftTop"
+              placement="left"
               overlayStyle={{ width: "80%" }} // Set the width of the popover content
             >
               <FloatButton

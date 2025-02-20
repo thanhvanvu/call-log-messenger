@@ -51,12 +51,12 @@ const Header = () => {
       ),
     },
     {
-      value: "cn",
+      value: "ph",
       label: (
         <div className="flex gap-2">
-          <span className="fi fi-cn"></span>
-          <span className="hidden sm:block">Chinese</span>
-          <span className="block sm:hidden">CN</span>
+          <span className="fi fi-ph"></span>
+          <span className="hidden sm:block">Filipino</span>
+          <span className="block sm:hidden">PH</span>
         </div>
       ),
     },
@@ -70,7 +70,16 @@ const Header = () => {
         </div>
       ),
     },
-
+    {
+      value: "cn",
+      label: (
+        <div className="flex gap-2">
+          <span className="fi fi-cn"></span>
+          <span className="hidden sm:block">Chinese</span>
+          <span className="block sm:hidden">CN</span>
+        </div>
+      ),
+    },
     {
       value: "fr",
       label: (

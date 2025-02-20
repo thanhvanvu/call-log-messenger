@@ -82,7 +82,10 @@ function Statistic(props: IProps) {
         </p>
       )}
 
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3 " ref={tourStep.step2}>
+      <div
+        className="grid grid-cols-1 gap-5 md:hidden xl:grid xl:grid-cols-3 "
+        ref={tourStep.step2}
+      >
         <Card
           title={
             <div className="flex items-center gap-2 color-[#28a745] ">
@@ -187,6 +190,138 @@ function Statistic(props: IProps) {
             {t("call-logs.time")}
           </p>
         </Card>
+        <Card
+          title={
+            <div className="flex items-center gap-2">
+              <HiPhoneMissedCall className="text-[#f44336]" />
+              {t("call-logs.B-missed-call", { nameB: participants?.nameB })}
+            </div>
+          }
+          hoverable={true}
+          className=""
+        >
+          <p className="text-[#f44336]">
+            {dataStatistic?.totalMissedCall?.fromNameA
+              ? dataStatistic.totalMissedCall.fromNameA
+              : 0}{" "}
+            {t("call-logs.time")}
+          </p>
+        </Card>
+      </div>
+
+      <div
+        className="hidden  md:grid-cols-2 md:grid grid-cols-1 gap-5 xl:hidden "
+        ref={tourStep.step2}
+      >
+        <Card
+          title={
+            <div className="flex items-center gap-2 color-[#28a745] ">
+              <IoMdCall className="text-[#28a745]" />
+              {t("call-logs.success")}
+            </div>
+          }
+          hoverable={true}
+          className=""
+        >
+          <div className="flex flex-col gap-y-3">
+            <p className="text-[#28a745]">
+              {dataStatistic?.totalSuccessCall?.total ? dataStatistic.totalSuccessCall.total : 0}{" "}
+              {t("call-logs.time")}
+            </p>
+            <p className="tracking-[.1em] text-[#28a745]">
+              {dataStatistic?.totalSuccessCall?.totalDurationInHourFormat
+                ? dataStatistic.totalSuccessCall.totalDurationInHourFormat
+                : 0}
+            </p>
+          </div>
+        </Card>
+
+        <Card
+          title={
+            <div className="flex items-center gap-2">
+              <HiPhoneMissedCall className="text-[#f44336]" />
+              {t("call-logs.missed")}
+            </div>
+          }
+          hoverable={true}
+          className=""
+        >
+          <div className="flex flex-col gap-y-3">
+            <p className="text-[#f44336]">
+              {dataStatistic?.totalMissedCall?.total ? dataStatistic.totalMissedCall.total : 0}{" "}
+              {t("call-logs.time")}
+            </p>
+          </div>
+        </Card>
+
+        <Card
+          title={
+            <div className="flex items-center gap-2">
+              <IoMdCall className="text-[#28a745]" />
+              {t("call-logs.success-from-A", { nameA: participants?.nameA })}
+            </div>
+          }
+          hoverable={true}
+          className=""
+        >
+          <div className="flex flex-col gap-y-3">
+            <p className="text-[#28a745]">
+              {dataStatistic?.totalCallFromNameA?.total
+                ? dataStatistic.totalCallFromNameA.total
+                : 0}{" "}
+              {t("call-logs.time")}
+            </p>
+            <p className="tracking-[.1em] text-[#28a745]">
+              {dataStatistic?.totalCallFromNameA?.totalDurationInHourFormat
+                ? dataStatistic.totalCallFromNameA.totalDurationInHourFormat
+                : 0}
+            </p>
+          </div>
+        </Card>
+
+        <Card
+          title={
+            <div className="flex items-center gap-2">
+              <HiPhoneMissedCall className="text-[#f44336]" />
+              {t("call-logs.A-missed-call", { nameA: participants?.nameA })}
+            </div>
+          }
+          hoverable={true}
+          className=""
+        >
+          <p className="text-[#f44336]">
+            {dataStatistic?.totalMissedCall?.fromNameB
+              ? dataStatistic.totalMissedCall.fromNameB
+              : 0}{" "}
+            {t("call-logs.time")}
+          </p>
+        </Card>
+
+        <Card
+          title={
+            <div className="flex items-center gap-2">
+              <IoMdCall className="text-[#28a745]" />
+              {t("call-logs.success-from-B", { nameB: participants?.nameB })}
+            </div>
+          }
+          hoverable={true}
+          className=""
+        >
+          <div className="flex flex-col gap-y-3">
+            <p className="text-[#28a745]">
+              {dataStatistic?.totalCallFromNameB?.total
+                ? dataStatistic.totalCallFromNameB.total
+                : 0}{" "}
+              {t("call-logs.time")}
+            </p>
+            <p className="tracking-[.1em] text-[#28a745]">
+              {dataStatistic?.totalCallFromNameB?.totalDurationInHourFormat
+                ? dataStatistic.totalCallFromNameB.totalDurationInHourFormat
+                : 0}
+            </p>
+          </div>
+        </Card>
+
         <Card
           title={
             <div className="flex items-center gap-2">
