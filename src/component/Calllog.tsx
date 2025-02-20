@@ -140,7 +140,7 @@ const CallLog = () => {
                   year: "numeric",
                 });
                 const formattedDateNumber = date.toLocaleDateString("en-US", {
-                  month: "2-digit",
+                  month: "short",
                   day: "2-digit",
                   year: "numeric",
                 });

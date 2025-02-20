@@ -120,9 +120,11 @@
   },
   "pdf-setting": {
     "check-all": "Selecteer alle maanden",
+    "current-table": "Of huidige tabel buiten deze instelling?",
     "option1": "Selecteer de maanden die u wilt opnemen in de PDF-export",
-    "option2": "De 'Gedetailleerde statistieken van het oproeplogboek' toevoegen? (optioneel)",
-    "option3": "Markeer de rijen met gemiste oproepen? (optioneel)",
+    "option2": "Verberg gemiste rij? (Optioneel)",
+    "option3": "De 'Gedetailleerde statistieken van het oproeplogboek' toevoegen? (Optioneel)",
+    "option4": "Oproeprijen markeren? (groen: succesvolle oproep, rood: gemiste oproep)",
     "export": "Exporteer PDF",
     "cancel": "Annuleren"
   },

@@ -10,11 +10,13 @@ interface IProps {
   contentRef: any;
   isShowStatistic?: boolean;
   dataPDFToPrint: IDataPdf[];
-  isShowHighlightMissedCall: boolean;
+  highlightCallData: IHighlightCallData;
+  isHideMissedCall: boolean;
 }
 
 const PdfExport = (props: IProps) => {
-  const { contentRef, isShowStatistic, dataPDFToPrint, isShowHighlightMissedCall } = props;
+  const { contentRef, isShowStatistic, dataPDFToPrint, highlightCallData, isHideMissedCall } =
+    props;
   const { participants } = useCurrentApp();
 
   const columns: any = [
@@ -22,7 +24,7 @@ const PdfExport = (props: IProps) => {
       title: <span className="block text-base text-center text-white">Date</span>,
       dataIndex: "dateNumber",
       key: "dateNumber",
-      width: "5%",
+      width: "10%",
       align: "center",
     },
 
@@ -62,14 +64,14 @@ const PdfExport = (props: IProps) => {
       dataIndex: "time",
       key: "time",
       align: "center",
-      width: "8%",
+      width: "7%",
       render: (text: string) => <p className="tracking-wide">{text}</p>,
     },
     {
       title: <span className=" text-base text-white">Call Duration</span>,
       dataIndex: "call_duration",
       key: "call_duration",
-      width: "8%",
+      width: "5%",
       align: "center",
       render: (text: string) => <p className="font-bold  tracking-wide">{text}</p>,
     },
@@ -103,7 +105,7 @@ const PdfExport = (props: IProps) => {
               </p>
 
               <div className="w-fit mx-auto">
-                <p className="text-left mt-3 ">
+                <p className="text-left mt-3 text-xl ">
                   <span className="font-bold ">Period:</span> {dateRange?.from} - {dateRange?.to}
                 </p>
 
@@ -113,8 +115,10 @@ const PdfExport = (props: IProps) => {
                   <>
                     <p className="text-left mt-3 ">
                       <span className="font-bold ">Total:</span>{" "}
-                      {dataStatistic?.totalMissedCall?.total +
-                        dataStatistic?.totalSuccessCall?.total}{" "}
+                      {isHideMissedCall
+                        ? dataStatistic?.totalSuccessCall?.total
+                        : dataStatistic?.totalMissedCall?.total +
+                          dataStatistic?.totalSuccessCall?.total}{" "}
                       records
                     </p>
                     <p className="text-left mt-3 ">
@@ -147,10 +151,17 @@ const PdfExport = (props: IProps) => {
                 <>
                   <div className="font-bold mt-[40px] text-xl ml-1">
                     Detailed Call Log Statistics:{" "}
-                    {dataStatistic?.totalMissedCall?.total + dataStatistic?.totalSuccessCall?.total}{" "}
+                    {isHideMissedCall
+                      ? dataStatistic?.totalSuccessCall?.total
+                      : dataStatistic?.totalMissedCall?.total +
+                        dataStatistic?.totalSuccessCall?.total}{" "}
                     records
                   </div>
-                  <div className="grid grid-cols-2 gap-4 mt-[15px] page-break">
+                  <div
+                    className={`grid ${
+                      isHideMissedCall ? "grid-cols-1" : "grid-cols-2"
+                    } gap-4 mt-[15px] page-break`}
+                  >
                     <Card
                       title={
                         <div className="flex items-center gap-2 color-[#28a745] ">
@@ -174,24 +185,26 @@ const PdfExport = (props: IProps) => {
                         </p>
                       </div>
                     </Card>
-                    <Card
-                      title={
-                        <div className="flex items-center gap-2">
-                          <HiPhoneMissedCall className="text-[#f44336]" />
-                          Total missed calls
+                    {isHideMissedCall === false && (
+                      <Card
+                        title={
+                          <div className="flex items-center gap-2">
+                            <HiPhoneMissedCall className="text-[#f44336]" />
+                            Total missed calls
+                          </div>
+                        }
+                        className="shadow-md"
+                      >
+                        <div className="flex flex-col gap-y-3">
+                          <p className="text-[#f44336]">
+                            {dataStatistic?.totalMissedCall?.total
+                              ? dataStatistic.totalMissedCall.total
+                              : 0}{" "}
+                            times
+                          </p>
                         </div>
-                      }
-                      className="shadow-md"
-                    >
-                      <div className="flex flex-col gap-y-3">
-                        <p className="text-[#f44336]">
-                          {dataStatistic?.totalMissedCall?.total
-                            ? dataStatistic.totalMissedCall.total
-                            : 0}{" "}
-                          times
-                        </p>
-                      </div>
-                    </Card>
+                      </Card>
+                    )}
 
                     <Card
                       title={
@@ -217,22 +230,24 @@ const PdfExport = (props: IProps) => {
                       </div>
                     </Card>
 
-                    <Card
-                      title={
-                        <div className="flex items-center gap-2">
-                          <HiPhoneMissedCall className="text-[#f44336]" />
-                          {participants?.nameA} missed total of calls
-                        </div>
-                      }
-                      className="shadow-md"
-                    >
-                      <p className="text-[#f44336]">
-                        {dataStatistic?.totalMissedCall?.fromNameB
-                          ? dataStatistic.totalMissedCall.fromNameB
-                          : 0}{" "}
-                        times
-                      </p>
-                    </Card>
+                    {isHideMissedCall === false && (
+                      <Card
+                        title={
+                          <div className="flex items-center gap-2">
+                            <HiPhoneMissedCall className="text-[#f44336]" />
+                            {participants?.nameA} missed total of calls
+                          </div>
+                        }
+                        className="shadow-md"
+                      >
+                        <p className="text-[#f44336]">
+                          {dataStatistic?.totalMissedCall?.fromNameB
+                            ? dataStatistic.totalMissedCall.fromNameB
+                            : 0}{" "}
+                          times
+                        </p>
+                      </Card>
+                    )}
 
                     <Card
                       title={
@@ -258,22 +273,24 @@ const PdfExport = (props: IProps) => {
                       </div>
                     </Card>
 
-                    <Card
-                      title={
-                        <div className="flex items-center gap-2">
-                          <HiPhoneMissedCall className="text-[#f44336]" />
-                          {participants?.nameB} missed total of calls
-                        </div>
-                      }
-                      className="shadow-md"
-                    >
-                      <p className="text-[#f44336]">
-                        {dataStatistic?.totalMissedCall?.fromNameA
-                          ? dataStatistic.totalMissedCall.fromNameA
-                          : 0}{" "}
-                        times
-                      </p>
-                    </Card>
+                    {isHideMissedCall === false && (
+                      <Card
+                        title={
+                          <div className="flex items-center gap-2">
+                            <HiPhoneMissedCall className="text-[#f44336]" />
+                            {participants?.nameB} missed total of calls
+                          </div>
+                        }
+                        className="shadow-md"
+                      >
+                        <p className="text-[#f44336]">
+                          {dataStatistic?.totalMissedCall?.fromNameA
+                            ? dataStatistic.totalMissedCall.fromNameA
+                            : 0}{" "}
+                          times
+                        </p>
+                      </Card>
+                    )}
                   </div>
                 </>
               )}
@@ -303,9 +320,15 @@ const PdfExport = (props: IProps) => {
                 dataSource={dataToPrint}
                 className={isShowStatistic ? "page-break" : "page-break mt-4"}
                 rowClassName={(record) =>
-                  record?.call_duration === "00:00:00" && isShowHighlightMissedCall
+                  record?.call_duration === "00:00:00" &&
+                  highlightCallData?.missedCall &&
+                  isHideMissedCall === false
                     ? "call-logs-table-row-pdf missed-call-row"
-                    : "call-logs-table-row-pdf"
+                    : record?.call_duration !== "00:00:00" && highlightCallData?.successCall
+                    ? "call-logs-table-row-pdf success-call-row"
+                    : record?.call_duration === "00:00:00" && isHideMissedCall
+                    ? "hidden"
+                    : "call-logs-table-row-pdf "
                 }
               />
             </div>

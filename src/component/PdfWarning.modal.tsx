@@ -1,7 +1,7 @@
 import { Modal } from "antd";
 import React from "react";
 import Image from "next/image";
-import { IoIosInformationCircle, IoIosWarning } from "react-icons/io";
+import { IoIosWarning } from "react-icons/io";
 
 import { useTranslations } from "next-intl";
 interface IProps {

@@ -121,9 +121,11 @@
 
   "pdf-setting": {
     "check-all": "Select all months",
+    "current-table": "Or current table outside this setting ?",
     "option1": "Select the months to include in the PDF export",
-    "option2": "Include the 'Detailed Call Log Statistic'? (optional)",
-    "option3": "Highlight missed call rows? (optional)",
+    "option2": "Hide missed row ? (Optional)",
+    "option3": "Include the 'Detailed Call Log Statistic' ? (Optional)",
+    "option4": "Highlight call rows? (green: success call, red: missed call)",
     "export": "Export PDF",
     "cancel": "Cancel"
   },

@@ -9,7 +9,7 @@ import { convertTimeStampToDate, convertTimeStampToDateInHour, decode } from "@/
 import { data } from "@/utils/dataUtils";
 import { FilterValue } from "antd/es/table/interface";
 import { HiPhoneMissedCall } from "react-icons/hi";
-import { IoMdCall } from "react-icons/io";
+import { IoIosWarning, IoMdCall } from "react-icons/io";
 import { IoIosColorFill } from "react-icons/io";
 import { MdDeleteForever } from "react-icons/md";
 import { Link } from "@/i18n/routing";
@@ -355,9 +355,6 @@ function DataTable(props: IProps) {
                   danger
                   color="danger"
                   disabled={dataToShow && dataToShow.length > 0 === true ? false : true}
-                  // onClick={() => {
-                  //   reactToPrintFn();
-                  // }}
                   onClick={() => setIsShowPdfSetting(true)}
                 >
                   <SettingOutlined />
@@ -366,8 +363,8 @@ function DataTable(props: IProps) {
               </BrowserView>
 
               <MobileView>
-                <Button danger color="danger" onClick={() => setIsShowPdfWarning(true)}>
-                  <SettingOutlined />
+                <Button color="orange" variant="outlined" onClick={() => setIsShowPdfWarning(true)}>
+                  <IoIosWarning className="text-[orange]" />
                   {t("common.export-pdf.button")}
                 </Button>
               </MobileView>

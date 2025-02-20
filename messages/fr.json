@@ -120,9 +120,11 @@
   },
   "pdf-setting": {
     "check-all": "Sélectionner tous les mois",
+    "current-table": "Ou le tableau actuel en dehors de ce paramètre ?",
     "option1": "Sélectionner les mois à inclure dans l'exportation PDF",
-    "option2": "Inclure les 'Statistiques détaillées du journal d'appels' ? (facultatif)",
-    "option3": "Mettre en évidence les lignes d'appels manqués ? (facultatif)",
+    "option2": "Masquer la ligne d'appels manqués ? (Facultatif)",
+    "option3": "Inclure les 'Statistiques détaillées du journal d'appels' ? (Facultatif)",
+    "option4": "Mettre en évidence les lignes d'appels ? (vert : appel réussi, rouge : appel manqué)",
     "export": "Exporter PDF",
     "cancel": "Annuler"
   },

@@ -120,9 +120,11 @@
   },
   "pdf-setting": {
     "check-all": "Alle Monate auswählen",
+    "current-table": "Oder aktuelle Tabelle außerhalb dieser Einstellung?",
     "option1": "Wählen Sie die Monate aus, die in den PDF-Export aufgenommen werden sollen",
-    "option2": "Die 'Detaillierte Anrufprotokollstatistik' einbeziehen? (optional)",
-    "option3": "Verpasste Anrufzeilen hervorheben? (optional)",
+    "option2": "Verpasste Anrufzeile ausblenden? (Optional)",
+    "option3": "Die 'Detaillierte Anrufprotokollstatistik' einbeziehen? (Optional)",
+    "option4": "Anrufzeilen hervorheben? (grün: erfolgreicher Anruf, rot: verpasster Anruf)",
     "export": "PDF exportieren",
     "cancel": "Abbrechen"
   },

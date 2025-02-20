@@ -61,10 +61,15 @@ declare global {
   }
 
   interface IDataPdf {
-    monthYear: string;
+    monthYear?: string;
     statistic: IDataStatistic;
     callLogToShow: ICallLogType[];
     dateRange: IDateRange;
+  }
+
+  interface IHighlightCallData {
+    missedCall: boolean;
+    successCall: boolean;
   }
 
   interface ITourStep {

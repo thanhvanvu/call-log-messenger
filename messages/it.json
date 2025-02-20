@@ -120,9 +120,11 @@
   },
   "pdf-setting": {
     "check-all": "Seleziona tutti i mesi",
+    "current-table": "O tabella corrente al di fuori di questa impostazione?",
     "option1": "Seleziona i mesi da includere nell'esportazione PDF",
-    "option2": "Includere le 'Statistiche dettagliate del registro chiamate'? (opzionale)",
-    "option3": "Evidenziare le righe delle chiamate perse? (opzionale)",
+    "option2": "Nascondere la riga delle chiamate perse? (Opzionale)",
+    "option3": "Includere le 'Statistiche dettagliate del registro chiamate'? (Opzionale)",
+    "option4": "Evidenziare le righe delle chiamate? (verde: chiamata riuscita, rosso: chiamata persa)",
     "export": "Esporta PDF",
     "cancel": "Annulla"
   },

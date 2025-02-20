@@ -120,9 +120,11 @@
   },
   "pdf-setting": {
     "check-all": "Seleccionar todos los meses",
+    "current-table": "¿O la tabla actual fuera de esta configuración?",
     "option1": "Seleccionar los meses para incluir en la exportación PDF",
-    "option2": "¿Incluir las 'Estadísticas Detalladas del Registro de Llamadas'? (opcional)",
-    "option3": "¿Resaltar las filas de llamadas perdidas? (opcional)",
+    "option2": "¿Ocultar la fila de llamadas perdidas? (Opcional)",
+    "option3": "¿Incluir las 'Estadísticas Detalladas del Registro de Llamadas'? (Opcional)",
+    "option4": "¿Resaltar las filas de llamadas? (verde: llamada exitosa, rojo: llamada perdida)",
     "export": "Exportar PDF",
     "cancel": "Cancelar"
   },

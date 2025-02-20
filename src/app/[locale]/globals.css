@@ -68,6 +68,10 @@ p {
   background-color: rgba(255, 194, 194, 0.184);
 }
 
+.success-call-row {
+  background-color: #c8ffc88f;
+}
+
 @media print {
   .page-break {
     page-break-after: always; /* For older browsers */

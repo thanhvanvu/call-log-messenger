@@ -120,9 +120,11 @@
   },
   "pdf-setting": {
     "check-all": "Chọn tất cả",
+    "current-table": "Hoặc bảng lịch sử cuộc gọi hiện tại bên ngoài cài đặt ?",
     "option1": "Chọn tháng để xuất file PDF",
-    "option2": "Bao gồm 'Thống kê Chi Tiết Nhật ký Cuộc gọi'? (tùy chọn)",
-    "option3": "Thêm màu nền cho cuộc gọi nhỡ? (tùy chọn)",
+    "option2": "Ẩn cuộc gọi nhỡ ? (Tùy chọn)",
+    "option3": "Bao gồm 'Thống kê Chi Tiết Nhật ký Cuộc gọi' ? (Tùy chọn)",
+    "option4": "Thêm màu nền cho cuộc gọi ? (Xanh: Cuộc gọi thành công, Đỏ: Cuộc gọi nhỡ)",
     "export": "Xuất PDF",
     "cancel": "Hủy"
   },

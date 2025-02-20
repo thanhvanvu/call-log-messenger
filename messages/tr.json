@@ -120,9 +120,11 @@
   },
   "pdf-setting": {
     "check-all": "Tüm ayları seç",
+    "current-table": "Veya bu ayarın dışındaki geçerli tablo?",
     "option1": "PDF dışa aktarımına dahil edilecek ayları seçin",
-    "option2": "'Ayrıntılı Arama Kaydı İstatistiği'ni dahil et? (isteğe bağlı)",
-    "option3": "Kaçırılan arama satırlarını vurgula? (isteğe bağlı)",
+    "option2": "Kaçırılan arama satırını gizle? (İsteğe bağlı)",
+    "option3": "'Ayrıntılı Arama Kaydı İstatistiği'ni dahil et? (İsteğe bağlı)",
+    "option4": "Arama satırlarını vurgula? (yeşil: başarılı arama, kırmızı: cevapsız arama)",
     "export": "PDF'i Dışa Aktar",
     "cancel": "İptal"
   },
