@@ -38,6 +38,7 @@
     "delete-popConfirm-description": "Bu çağrı kaydını silmek istediğinizden emin misiniz?"
   },
   "json-guide": {
+    "step0": "<aTag>Buraya tıklayın</aTag> Facebook Hesap Merkezi sayfasına gitmek için",
     "step1": "Facebook sayfanızda sağ üst köşedeki simgeye tıklayın.",
     "step2": "'Ayarlar ve gizlilik' seçeneğine tıklayın.",
     "step3": "'Verilerinizi indirin' seçeneğine tıklayın.",

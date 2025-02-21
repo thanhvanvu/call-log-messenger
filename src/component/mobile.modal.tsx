@@ -40,7 +40,7 @@ function MobileModal(props: IProps) {
         <div className="flex justify-around mt-4 mb-4">
           <div>
             <Image
-              alt=""
+              alt="how to enable desktop site on android browser"
               src="https://i.imgur.com/uHYzFH9.gif"
               height={325}
               width={150}
@@ -52,7 +52,7 @@ function MobileModal(props: IProps) {
 
           <div>
             <Image
-              alt=""
+              alt="how to enable desktop site on safari browser"
               src="https://i.imgur.com/Z9pnI4S.gif"
               height={325}
               width={150}

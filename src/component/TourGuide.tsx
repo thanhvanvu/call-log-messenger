@@ -55,7 +55,7 @@ const TourGuide = () => {
           src="https://i.imgur.com/g4Ngozm.gif"
           width={400}
           height={400}
-          alt="Upload JSON file"
+          alt="Go to page how to find json file"
           className="shadow-md"
         />
       ),
@@ -95,7 +95,7 @@ const TourGuide = () => {
           src="https://i.imgur.com/70o0en3.gif"
           width={400}
           height={400}
-          alt="Upload JSON file"
+          alt="data table"
           className="shadow-md"
         />
       ),
@@ -115,7 +115,7 @@ const TourGuide = () => {
           src="https://i.imgur.com/N6AgVXu.gif"
           width={400}
           height={400}
-          alt="Upload JSON file"
+          alt="refresh button"
           className="shadow-md"
         />
       ),
@@ -133,7 +133,7 @@ const TourGuide = () => {
         <div className="w-[30%] mx-auto ">
           <Image
             src="https://i.imgur.com/TpQjJqf.gif"
-            alt="Upload JSON file"
+            alt="float button"
             className="shadow-md"
             width={400}
             height={400}
@@ -154,7 +154,7 @@ const TourGuide = () => {
         <div className="w-[30%] mx-auto ">
           <Image
             src="https://i.imgur.com/828DVUa.gif"
-            alt="Upload JSON file"
+            alt="language picker"
             width={230}
             height={274}
             className="shadow-md"

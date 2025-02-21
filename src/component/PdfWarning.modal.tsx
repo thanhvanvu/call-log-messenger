@@ -40,7 +40,7 @@ function PdfWarningModal(props: IProps) {
         <div className="flex justify-around mt-4 mb-4 shadow-sm">
           <div>
             <Image
-              alt=""
+              alt="how to use export data on desktop"
               src="https://i.imgur.com/iK8CcPs.gif"
               height={250}
               width={100}

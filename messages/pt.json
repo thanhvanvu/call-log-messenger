@@ -38,6 +38,7 @@
     "delete-popConfirm-description": "Tem certeza de que deseja excluir este registro de chamadas?"
   },
   "json-guide": {
+    "step0": "<aTag>Clique aqui</aTag> para ir para a página da Central de Contas do Facebook",
     "step1": "Na sua página do Facebook, clique no ícone no canto superior direito para abrir o menu suspenso.",
     "step2": "Clique em 'Configurações e Privacidade'.",
     "step3": "Clique em 'Baixar suas informações'.",

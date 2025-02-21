@@ -38,6 +38,7 @@
     "delete-popConfirm-description": "Bạn có chắc chắn muốn xóa nhật ký cuộc gọi này không?"
   },
   "json-guide": {
+    "step0": "<aTag>Nhấp vào đây</aTag> để đến trang Trung tâm Tài khoản Facebook",
     "step1": "Trong trang Facebook, chọn icon ở góc trên phải để xổ menu xuống.",
     "step2": "Chọn 'Settings & Privacy'.",
     "step3": "Chọn 'Download your information'.",

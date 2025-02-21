@@ -38,6 +38,7 @@
     "delete-popConfirm-description": "Weet je zeker dat je dit oproeplogboek wilt verwijderen?"
   },
   "json-guide": {
+    "step0": "<aTag>Klik hier</aTag> om naar de Facebook Accountcentrum pagina te gaan",
     "step1": "Klik op je Facebook-pagina rechtsboven op het pictogram om het vervolgkeuzemenu te openen.",
     "step2": "Klik op 'Instellingen en privacy'.",
     "step3": "Klik op 'Download je informatie'.",

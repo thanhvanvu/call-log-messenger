@@ -331,7 +331,7 @@ function DataTable(props: IProps) {
         title={() => (
           <div className="flex items-center justify-between">
             <div className="text-center font-bold text-2xl py-2">
-              <p className="hidden xl:block">
+              <h1 className="hidden xl:block">
                 {dataToShow && dataToShow.length > 0 === true
                   ? t("call-logs.data-title", {
                       nameA: participants?.nameA,
@@ -347,7 +347,7 @@ function DataTable(props: IProps) {
                     verticalAlign: "bottom",
                   }}
                 />
-              </p>
+              </h1>
             </div>
             <div className="flex gap-4">
               <BrowserView>

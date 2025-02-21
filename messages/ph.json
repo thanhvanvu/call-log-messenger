@@ -38,6 +38,7 @@
     "delete-popConfirm-description": "Sigurado ka bang buburahin ang call log na ito?"
   },
   "json-guide": {
+    "step0": "<aTag>Mag-click dito</aTag> para pumunta sa Facebook Account Centre page",
     "step1": "Sa iyong Facebook page, i-click ang icon sa kanang itaas upang buksan ang dropdown menu.",
     "step2": "I-click ang 'Settings & Privacy'.",
     "step3": "I-click ang 'I-download ang iyong impormasyon'.",

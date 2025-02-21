@@ -46,11 +46,11 @@ function Homepage() {
       <MobileModal open={isOpenModal} setOpen={setIsOpenModal} />
 
       <div className="3xl:mt-[150px] 3xl:w-[60%]">
-        <p className="text-4xl font-bold 3xl:text-6xl">
+        <h1 className="text-4xl font-bold 3xl:text-6xl">
           {t.rich("homepage.title", {
             callLogs: (chunk) => <span className="text-[#0866ff]">{chunk}</span>,
           })}
-        </p>
+        </h1>
         <p className="mt-4">{t("homepage.description")}</p>
         <div className="mt-4 gap-4 flex flex-col sm:flex-row sm:gap-5">
           <Link href={"/calllog"}>

@@ -1,21 +1,13 @@
 "use client";
 import Dragger from "antd/es/upload/Dragger";
 import React, { useEffect, useRef, useState } from "react";
-import {
-  CommentOutlined,
-  CustomerServiceOutlined,
-  InboxOutlined,
-  LineChartOutlined,
-  TableOutlined,
-} from "@ant-design/icons";
+import { InboxOutlined, LineChartOutlined, TableOutlined } from "@ant-design/icons";
 import {
   Collapse,
   CollapseProps,
   FloatButton,
   message,
   Popover,
-  Tour,
-  TourProps,
   Upload,
   UploadFile,
   UploadProps,

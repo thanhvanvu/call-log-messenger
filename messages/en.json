@@ -38,6 +38,7 @@
     "delete-popConfirm-description": "Are you sure to delete this call log?"
   },
   "json-guide": {
+    "step0": "<aTag>Click here</aTag> to go to Facebook Account Centre page",
     "step1": "In your Facebook page, click the top-right icon to open the dropdown menu.",
     "step2": "Click on 'Settings & Privacy'.",
     "step3": "Click on 'Download your information'.",

@@ -38,6 +38,7 @@
     "delete-popConfirm-description": "您确定要删除此通话记录吗？"
   },
   "json-guide": {
+    "step0": "<aTag>点击这里</aTag> 前往 Facebook 账户中心页面",
     "step1": "在您的 Facebook 页面，点击右上角的图标以打开下拉菜单。",
     "step2": "点击“设置与隐私”。",
     "step3": "点击“下载您的信息”。",

@@ -209,10 +209,7 @@ function Statistic(props: IProps) {
         </Card>
       </div>
 
-      <div
-        className="hidden  md:grid-cols-2 md:grid grid-cols-1 gap-5 xl:hidden "
-        ref={tourStep.step2}
-      >
+      <div className="hidden  md:grid-cols-2 md:grid grid-cols-1 gap-5 xl:hidden ">
         <Card
           title={
             <div className="flex items-center gap-2 color-[#28a745] ">

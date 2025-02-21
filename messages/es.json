@@ -38,6 +38,7 @@
     "delete-popConfirm-description": "¿Estás seguro de que deseas eliminar este registro de llamadas?"
   },
   "json-guide": {
+    "step0": "<aTag>Haz clic aquí</aTag> para ir a la página del Centro de cuentas de Facebook",
     "step1": "En tu página de Facebook, haz clic en el icono de la esquina superior derecha para abrir el menú desplegable.",
     "step2": "Haz clic en 'Configuración y privacidad'.",
     "step3": "Haz clic en 'Descargar tu información'.",

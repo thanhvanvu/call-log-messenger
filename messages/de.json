@@ -38,6 +38,7 @@
     "delete-popConfirm-description": "Sind Sie sicher, dass Sie dieses Anrufprotokoll löschen möchten?"
   },
   "json-guide": {
+    "step0": "<aTag>Klicke hier</aTag>, um zur Facebook-Kontenübersicht zu gelangen",
     "step1": "Klicken Sie auf Ihrer Facebook-Seite oben rechts auf das Symbol, um das Dropdown-Menü zu öffnen.",
     "step2": "Klicken Sie auf 'Einstellungen & Datenschutz'.",
     "step3": "Klicken Sie auf 'Ihre Informationen herunterladen'.",
