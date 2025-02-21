@@ -396,7 +396,7 @@ function DataTable(props: IProps) {
                           ? t("call-logs.hide-missed-background")
                           : t("call-logs.show-missed-background")}
                       </Button>
-                      <Button
+                      {/* <Button
                         type="primary"
                         danger
                         onClick={() => setIsShowDeleteAction(!isShowDeleteAction)}
@@ -405,7 +405,7 @@ function DataTable(props: IProps) {
                         {isShowDeleteAction
                           ? t("call-logs.hide-delete-action")
                           : t("call-logs.show-delete-action")}
-                      </Button>
+                      </Button> */}
                     </div>
                   }
                 >
