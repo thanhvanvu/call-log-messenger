@@ -71,7 +71,7 @@ const PdfExport = (props: IProps) => {
       title: <span className=" text-base text-white">Call Duration</span>,
       dataIndex: "call_duration",
       key: "call_duration",
-      width: "5%",
+      width: "7%",
       align: "center",
       render: (text: string) => <p className="font-bold  tracking-wide">{text}</p>,
     },
