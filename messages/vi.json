@@ -138,6 +138,8 @@
   "common": {
     "get-started": "BẮT ĐẦU",
     "guide": "Hướng dẫn tìm file JSON",
+    "demo-json": "Tải mẫu file JSON",
+    "demo-pdf": "Tải mẫu file PDF",
     "yes": "Có",
     "no": "Không",
     "export-pdf": {

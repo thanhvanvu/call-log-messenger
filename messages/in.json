@@ -138,6 +138,8 @@
   "common": {
     "get-started": "शुरू करें",
     "guide": "JSON फ़ाइल कैसे ढूंढें",
+    "demo-json": "नमूना JSON फ़ाइल डाउनलोड करें",
+    "demo-pdf": "नमूना PDF डाउनलोड करें",
     "yes": "हाँ",
     "no": "नहीं ",
     "export-pdf": {

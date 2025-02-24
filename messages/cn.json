@@ -138,6 +138,8 @@
   "common": {
     "get-started": "开始使用",
     "guide": "如何找到 JSON 文件",
+    "demo-json": "下载示例JSON文件",
+    "demo-pdf": "下载示例PDF",
     "yes": "是",
     "no": "否",
     "export-pdf": {

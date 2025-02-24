@@ -138,6 +138,8 @@
   "common": {
     "get-started": "START NU",
     "guide": "Gids voor het vinden van de JSON-bestand",
+    "demo-json": "Voorbeeld JSON-bestand downloaden",
+    "demo-pdf": "Voorbeeld PDF downloaden",
     "yes": "Ja",
     "no": "Nee",
     "export-pdf": {

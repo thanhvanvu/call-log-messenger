@@ -138,6 +138,8 @@
   "common": {
     "get-started": "ابدأ الآن",
     "guide": "دليل كيفية العثور على ملف JSON",
+    "demo-json": "تنزيل ملف JSON عينة",
+    "demo-pdf": "تنزيل ملف PDF عينة",
     "yes": "نعم",
     "no": "لا",
     "export-pdf": {

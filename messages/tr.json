@@ -138,6 +138,8 @@
   "common": {
     "get-started": "BAŞLAYIN",
     "guide": "JSON dosyasını nasıl bulacağınız hakkında rehber",
+    "demo-json": "Örnek JSON dosyası indir",
+    "demo-pdf": "Örnek PDF indir",
     "yes": "Evet",
     "no": "Hayır",
     "export-pdf": {

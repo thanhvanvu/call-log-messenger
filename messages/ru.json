@@ -139,6 +139,8 @@
   "common": {
     "get-started": "НАЧАТЬ",
     "guide": "Руководство по поиску JSON файла",
+    "demo-json": "Скачать образец JSON-файла",
+    "demo-pdf": "Скачать образец PDF",
     "yes": "Да",
     "no": "Нет",
     "export-pdf": {

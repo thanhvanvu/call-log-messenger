@@ -2,10 +2,16 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import picture from "../../public/combined_stylized.jpg";
-import { Button, Popover } from "antd";
+import { Button } from "antd";
 import MobileModal from "./mobile.modal";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
+import { DownloadOutlined } from "@ant-design/icons";
+import { FaFilePdf } from "react-icons/fa";
+import { RiGuideFill } from "react-icons/ri";
+import { BsArrowRight } from "react-icons/bs";
+import demoPDF from "public/Call-logs.pdf";
+
 function Homepage() {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const t = useTranslations();
@@ -52,18 +58,48 @@ function Homepage() {
           })}
         </h1>
         <p className="mt-4">{t("homepage.description")}</p>
-        <div className="mt-4 gap-4 flex flex-col sm:flex-row sm:gap-5">
+        <div className="mt-4 gap-4 flex flex-col sm:flex-row sm:gap-5 xl:w-[70%] 3xl:w-full">
           <Link href={"/calllog"}>
-            <Button className="shadow-sm" type="primary" size="large">
+            <Button className="shadow-sm w-full sm:min-w-[250px]" type="primary" size="large">
               {t("common.get-started")}
+              <BsArrowRight />
             </Button>
           </Link>
 
+          <Button
+            icon={<FaFilePdf />}
+            className="shadow-sm w-full sm:min-w-[250px]"
+            type="primary"
+            size="large"
+            danger
+          >
+            <a href="/Call-logs.pdf" target="_blank">
+              {t("common.demo-pdf")}
+            </a>
+          </Button>
+        </div>
+        <div className="mt-4 gap-4 flex flex-col sm:flex-row sm:gap-5 xl:w-[70%] 3xl:w-full">
           <Link href={"/guide"}>
-            <Button className="shadow-sm" type="dashed" size="large">
+            <Button
+              className="shadow-sm w-full sm:min-w-[250px]"
+              variant="solid"
+              size="large"
+              icon={<RiGuideFill />}
+            >
               {t("common.guide")}
             </Button>
           </Link>
+
+          <Button
+            icon={<DownloadOutlined />}
+            className="shadow-sm w-full sm:min-w-[250px]"
+            type="dashed"
+            size="large"
+          >
+            <a href="/message_1.json" download="message_1">
+              {t("common.demo-json")}
+            </a>
+          </Button>
         </div>
       </div>
 

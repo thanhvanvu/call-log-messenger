@@ -140,6 +140,8 @@
   "common": {
     "get-started": "GET STARTED",
     "guide": "Guide how to find JSON file",
+    "demo-json": "Download sample JSON file",
+    "demo-pdf": "Download sample PDF",
     "yes": "Yes",
     "no": "No",
     "export-pdf": {

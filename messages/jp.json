@@ -138,6 +138,8 @@
   "common": {
     "get-started": "INIZIA ORA",
     "guide": "JSONファイルの見つけ方ガイド",
+    "demo-json": "サンプルJSONファイルをダウンロード",
+    "demo-pdf": "サンプルPDFをダウンロード",
     "yes": "はい",
     "no": "いいえ",
     "export-pdf": {

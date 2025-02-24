@@ -140,6 +140,8 @@
   "common": {
     "get-started": "MAGSIMULA",
     "guide": "Gabay kung paano mahanap ang JSON file",
+    "demo-json": "Mag-download ng sample na JSON file",
+    "demo-pdf": "Mag-download ng sample na PDF",
     "yes": "Oo",
     "no": "Hindi",
     "export-pdf": {
