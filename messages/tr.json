@@ -135,6 +135,12 @@
     "line2": "Tasarlanan biçimdeki PDF'i dışa aktarmak için bu özelliğe erişmek üzere lütfen bir masaüstü tarayıcı kullanın.",
     "line3": "Bu rahatsızlıktan dolayı özür dileriz."
   },
+  "disclaimer": {
+    "line1": "Disclaimer: Gizlilik ve Veri Güvenliği Taahhüdü",
+    "line2": "Call-Log-Messenger, Facebook veri dosyalarına erişmez veya bunları depolamaz. Tüm dosyalar kullanıcının cihazında kalır, bu da tam kontrol ve gizlilik sağlar.",
+    "line3": "Yalnızca temel ayrıntılar — Messenger takma adı, arayanın takma adı, arama tarihi ve süresi — arama geçmişi ifadeleri oluşturmak için kullanılır, asla üçüncü taraflarla paylaşılmaz. Ek güvenlik için, kullanımdan sonra Facebook veri dosyasını silmeyi düşünün.",
+    "line4": "Call-Log-Messenger, kullanıcı verilerini korumak için gizliliğe öncelik verir."
+  },
   "common": {
     "get-started": "BAŞLAYIN",
     "guide": "JSON dosyasını nasıl bulacağınız hakkında rehber",

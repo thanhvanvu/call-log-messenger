@@ -135,6 +135,12 @@
     "line2": "Use um navegador de computador para acessar este recurso e exportar o PDF no formato desejado.",
     "line3": "Desculpe o inconveniente."
   },
+  "disclaimer": {
+    "line1": "Disclaimer: Compromisso de Privacidade e Segurança de Dados",
+    "line2": "Call-Log-Messenger não acessa ou armazena arquivos de dados do Facebook. Todos os arquivos permanecem no dispositivo do usuário, garantindo controle total e privacidade.",
+    "line3": "Apenas os detalhes essenciais — apelido do Messenger, apelido do chamador, data e duração da chamada — são usados para gerar declarações de histórico de chamadas, nunca compartilhadas com terceiros. Para maior segurança, considere excluir o arquivo de dados do Facebook após o uso.",
+    "line4": "Call-Log-Messenger prioriza a privacidade para proteger os dados do usuário."
+  },
   "common": {
     "get-started": "COMEÇAR",
     "guide": "Guia sobre como encontrar o arquivo JSON",

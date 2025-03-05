@@ -135,6 +135,12 @@
     "line2": "Gebruik een desktopbrowser om toegang te krijgen tot deze functie en de PDF in het gewenste formaat te exporteren.",
     "line3": "Onze excuses voor dit ongemak."
   },
+  "disclaimer": {
+    "line1": "Disclaimer: Toewijding aan privacy en gegevensbeveiliging",
+    "line2": "Call-Log-Messenger opent of bewaart geen Facebook-gegevensbestanden. Alle bestanden blijven op het apparaat van de gebruiker, waardoor volledige controle en privacy worden gewaarborgd.",
+    "line3": "Alleen essentiële details — Messenger-bijnaam, bijnaam van de beller, datum en duur van het gesprek — worden gebruikt om gespreksgeschiedenisoverzichten te genereren, die nooit met derden worden gedeeld. Overweeg voor extra veiligheid het Facebook-gegevensbestand na gebruik te verwijderen.",
+    "line4": "Call-Log-Messenger geeft prioriteit aan privacy om gebruikersgegevens te beschermen."
+  },
   "common": {
     "get-started": "START NU",
     "guide": "Gids voor het vinden van de JSON-bestand",

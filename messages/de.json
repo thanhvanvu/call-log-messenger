@@ -135,6 +135,12 @@
     "line2": "Bitte verwenden Sie einen Desktop-Browser, um auf diese Funktion zuzugreifen und das PDF im gewünschten Format zu exportieren.",
     "line3": "Entschuldigen Sie die Unannehmlichkeiten."
   },
+  "disclaimer": {
+    "line1": "Disclaimer: Verpflichtung zum Datenschutz und zur Datensicherheit",
+    "line2": "Call-Log-Messenger greift nicht auf Facebook-Datendateien zu oder speichert diese. Alle Dateien verbleiben auf dem Gerät des Benutzers, wodurch vollständige Kontrolle und Privatsphäre gewährleistet werden.",
+    "line3": "Nur wesentliche Details — Messenger-Nickname, Anrufer-Nickname, Anrufdatum und -dauer — werden verwendet, um Anruflisten-Auszüge zu generieren, die niemals an Dritte weitergegeben werden. Für zusätzliche Sicherheit sollten Sie erwägen, die Facebook-Datendatei nach der Verwendung zu löschen.",
+    "line4": "Call-Log-Messenger priorisiert den Datenschutz, um Benutzerdaten zu schützen."
+  },
   "common": {
     "get-started": "JETZT STARTEN",
     "guide": "Anleitung zum Finden der JSON-Datei",

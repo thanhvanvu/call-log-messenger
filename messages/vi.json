@@ -135,6 +135,12 @@
     "line2": "Vui lòng sử dụng trình duyệt máy tính để truy cập tính năng này và xuất PDF theo định dạng được thiết kế.",
     "line3": "Xin lỗi vì sự bất tiện này."
   },
+  "disclaimer": {
+    "line1": "Disclaimer: Cam kết Bảo mật & An toàn Dữ liệu",
+    "line2": "Call-Log-Messenger không truy cập hoặc lưu trữ các tệp dữ liệu của Facebook. Tất cả các tệp đều nằm trên thiết bị của người dùng, đảm bảo toàn quyền kiểm soát và quyền riêng tư.",
+    "line3": "Chỉ các chi tiết cần thiết — biệt danh Messenger, biệt danh người gọi, ngày gọi và thời lượng — được sử dụng để tạo báo cáo lịch sử cuộc gọi, không bao giờ chia sẻ với bên thứ ba. Để tăng cường bảo mật, hãy cân nhắc xóa tệp dữ liệu Facebook sau khi sử dụng.",
+    "line4": "Call-Log-Messenger ưu tiên quyền riêng tư để bảo vệ dữ liệu người dùng."
+  },
   "common": {
     "get-started": "BẮT ĐẦU",
     "guide": "Hướng dẫn tìm file JSON",

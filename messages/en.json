@@ -137,6 +137,12 @@
     "line2": "Please use a desktop browser to access this feature to export the designed-format PDF.",
     "line3": "Sorry for this inconvenience."
   },
+  "disclaimer": {
+    "line1": "Disclaimer: Privacy & Data Security Commitment",
+    "line2": "Call-Log-Messenger does not access or store Facebook data files. All files remain on the user's device, ensuring full control and privacy.",
+    "line3": "Only essential details — Messenger nickname, caller's nickname, call date, and duration — are used to generate call history statements, never shared with third parties. For added security, consider deleting the Facebook data file after use.",
+    "line4": "Call-Log-Messenger prioritizes privacy to protect user data."
+  },
   "common": {
     "get-started": "GET STARTED",
     "guide": "Guide how to find JSON file",

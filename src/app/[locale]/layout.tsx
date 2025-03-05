@@ -14,6 +14,7 @@ import { Analytics } from "@vercel/analytics/next";
 
 import { ConfigProvider, theme } from "antd";
 import { Metadata } from "next";
+import { Footer } from "@/component/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -82,13 +83,14 @@ export default async function LocaleLayout({
       <NextIntlClientProvider messages={messages}>
         <AppProvider>
           <html lang={locale}>
-            <body className={inter.className}>
+            <body className="flex flex-col">
               <Header />
-              <div className="">
+              <div className="flex-1 pb-3">
                 <AntdRegistry>{children}</AntdRegistry>
                 <Analytics />
                 <SpeedInsights />
               </div>
+              <Footer />
             </body>
           </html>
         </AppProvider>

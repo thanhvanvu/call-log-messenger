@@ -137,6 +137,12 @@
     "line2": "Mangyaring gumamit ng desktop browser upang ma-access ang feature na ito para ma-export ang PDF na may disenyo.",
     "line3": "Paumanhin sa abala na ito."
   },
+  "disclaimer": {
+    "line1": "Disclaimer: Pangako sa Privacy at Seguridad ng Data",
+    "line2": "Hindi ina-access o iniimbak ng Call-Log-Messenger ang mga file ng data ng Facebook. Ang lahat ng mga file ay nananatili sa device ng user, na tinitiyak ang ganap na kontrol at privacy.",
+    "line3": "Ang mga mahahalagang detalye lamang — palayaw ng Messenger, palayaw ng tumatawag, petsa at tagal ng tawag — ang ginagamit upang makabuo ng mga pahayag ng kasaysayan ng tawag, na hindi kailanman ibinabahagi sa mga third party. Para sa karagdagang seguridad, isaalang-alang ang pagtanggal ng file ng data ng Facebook pagkatapos gamitin.",
+    "line4": "Inuuna ng Call-Log-Messenger ang privacy upang protektahan ang data ng user."
+  },
   "common": {
     "get-started": "MAGSIMULA",
     "guide": "Gabay kung paano mahanap ang JSON file",

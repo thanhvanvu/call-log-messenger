@@ -386,6 +386,12 @@ const CallLog = () => {
               </Link>
             </div>
           </Dragger>
+          <div className="lg:w-[70%] 2xl:w-[60%] 3xl:w-[40%] m-auto border rounded-md text-[rgb(183,181,181)] p-3 mt-4 text-xs flex flex-col gap-3 ">
+            <p className="font-bold">{t("disclaimer.line1")}</p>
+            <p>{t("disclaimer.line2")}</p>
+            <p>{t("disclaimer.line3")}</p>
+            <p>{t("disclaimer.line4")}</p>
+          </div>
         </div>
         <div className="flex flex-col gap-y-10 mt-5">
           <Collapse items={items} activeKey={tourStep.currentStep >= 2 ? 1 : undefined} />

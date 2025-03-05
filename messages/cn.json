@@ -135,6 +135,12 @@
     "line2": "请使用桌面浏览器访问此功能以导出设计格式的PDF。",
     "line3": "由此给您带来的不便，敬请谅解。"
   },
+  "disclaimer": {
+    "line1": "Disclaimer: 隐私和数据安全承诺",
+    "line2": "Call-Log-Messenger 不访问或存储 Facebook 数据文件。所有文件都保留在用户设备上，确保完全控制和隐私。",
+    "line3": "仅使用必要的详细信息 — Messenger 昵称、来电者昵称、通话日期和时长 — 生成通话历史记录报表，绝不与第三方共享。为了增加安全性，请考虑在使用后删除 Facebook 数据文件。",
+    "line4": "Call-Log-Messenger 优先考虑隐私以保护用户数据。"
+  },
   "common": {
     "get-started": "开始使用",
     "guide": "如何找到 JSON 文件",
