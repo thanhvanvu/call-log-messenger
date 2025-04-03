@@ -3,6 +3,9 @@ import type { Config } from "tailwindcss";
 const config: Config = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
+    colors: {
+      blue: "#2196F3",
+    },
     extend: {
       screens: {
         sm: "640px",

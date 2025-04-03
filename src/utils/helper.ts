@@ -10,6 +10,15 @@ const readFileAsText = (file: File): Promise<string> => {
   });
 };
 
+const readFileAsImage = (file: File): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = (error) => reject(error);
+  });
+};
+
 const convertTimeToWholeHour = (timeString: string) => {
   const [hours, minutes, seconds] = timeString.split(":").map(Number);
   return hours + minutes / 60 + seconds / 3600;
@@ -57,4 +66,5 @@ export {
   convertTimeStampToDate,
   validateFileType,
   convertTimeStampToDateInHour,
+  readFileAsImage,
 };

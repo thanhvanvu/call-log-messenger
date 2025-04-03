@@ -69,6 +69,11 @@ p {
   background-color: #c8ffc88f;
 }
 
+.disabled {
+  pointer-events: none; /* Prevents clicks and interactions */
+  opacity: 0.4; /* Makes it look disabled */
+}
+
 @media print {
   .page-break {
     page-break-after: always; /* For older browsers */
@@ -77,6 +82,16 @@ p {
 
   @page {
     padding: 50px 20px;
+  }
+
+  /* Specific styling for pages containing .chatLogPrintPage */
+  .chatLogPrintPage {
+    page: chatLogPage;
+  }
+
+  @page chatLogPage {
+    padding: 30px;
+    margin: 0;
   }
 
   thead {

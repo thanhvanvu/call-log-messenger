@@ -20,6 +20,8 @@ interface AppContextType {
   setTourStep: (v: ITourStep) => void;
   dataPdf: IDataPdf[];
   setDataPdf: (v: IDataPdf[]) => void;
+  chatLogImages: IChatLog[];
+  setChatLogImages: (v: IChatLog[]) => void;
 }
 
 // Create a ThemeContext
@@ -72,6 +74,8 @@ const AppProvider = (props: IAppProvideProps) => {
 
   const [dataPdf, setDataPdf] = useState<IDataPdf[]>([]);
 
+  const [chatLogImages, setChatLogImages] = useState<IChatLog[]>([]);
+
   return (
     <AppContext
       value={{
@@ -91,6 +95,8 @@ const AppProvider = (props: IAppProvideProps) => {
         setTourStep,
         dataPdf,
         setDataPdf,
+        chatLogImages,
+        setChatLogImages,
       }}
     >
       <TourGuide />

@@ -89,4 +89,10 @@ declare global {
 
   type GetSingle<T> = T extends (infer U)[] ? U : never;
   type Sorts = GetSingle<Parameters<OnChange>[2]>;
+
+  interface IChatLog {
+    id: number;
+    imageUrl: string;
+    note: string; // Allow both string and number
+  }
 }

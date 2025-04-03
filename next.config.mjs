@@ -9,7 +9,13 @@ const nextConfig = {
     serverActions: {
       bodySizeLimit: "10000mb",
     },
+    turbo: {
+      resolveAlias: {
+        canvas: "./empty-module.ts",
+      },
+    },
   },
+  swcMinify: false,
   images: {
     remotePatterns: [
       {

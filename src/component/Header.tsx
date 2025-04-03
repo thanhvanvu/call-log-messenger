@@ -11,6 +11,7 @@ import { Link, Locale, routing, usePathname, useRouter } from "@/i18n/routing";
 import { useLocale, useTranslations } from "next-intl";
 import { useCurrentApp } from "@/context/app.context";
 import { BrowserView, isBrowser } from "react-device-detect";
+import newGif from "public/new-star.gif";
 
 const Header = () => {
   const locale = useLocale();
@@ -204,7 +205,6 @@ const Header = () => {
   };
   return (
     <div className="bg-body-tertiary">
-      {/* <Tour open={guideTour} onClose={() => setGuideTour(false)} steps={steps} zIndex={10} /> */}
       <Navbar collapseOnSelect expand="lg" className=" w-[90%] mx-auto justify-between 3xl:w-[80%]">
         <Link href="/" className="navbar-brand font-bold flex gap-2">
           <Image src={icon} alt="" width={30} height={30}></Image>
@@ -238,6 +238,16 @@ const Header = () => {
 
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto ">
+            <div className="py-2  992:mx-8">
+              <div className="relative w-fit">
+                <span className="absolute right-[-30px] top-[-20px]">
+                  <Image src={newGif} alt="" width={50}></Image>
+                </span>
+                <Link href="/chat-log" className="nav-link focus:text-[#0866FF]">
+                  Chat Log Generator
+                </Link>
+              </div>
+            </div>
             <div className="py-2" ref={tourStep?.step1}>
               <Link href="/guide" className="nav-link focus:text-[#0866FF]">
                 {t("header.guide")}
