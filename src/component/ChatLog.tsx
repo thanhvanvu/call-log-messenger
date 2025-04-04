@@ -238,7 +238,7 @@ const ChatLog = () => {
     <>
       {contextHolder}
 
-      {isMobile && isTablet ? (
+      {isMobile || isTablet ? (
         <ChatLogMobile />
       ) : (
         <div className="mt-10 w-[90%] m-auto 3xl:w-[80%] pb-14 h-full">
