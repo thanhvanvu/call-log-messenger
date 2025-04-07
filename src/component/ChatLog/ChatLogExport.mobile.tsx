@@ -27,7 +27,7 @@ const ChatLogExportMobile = (props: IProps) => {
   }, [chatLogImages]);
   return (
     <>
-      <div className="w-[8.5in] mx-auto bg-white p-4" id="element-to-capture">
+      <div className=" mx-auto bg-white" id="element-to-capture">
         {chatLogPdfSetting?.title && (
           <h1
             className="text-xl font-bold border text-center h-[45px]"

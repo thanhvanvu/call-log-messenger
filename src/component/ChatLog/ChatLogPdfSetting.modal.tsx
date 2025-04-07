@@ -16,6 +16,7 @@ import { useTranslations } from "next-intl";
 import ChatLogExport from "./ChatLogExport";
 import { isDesktop, isMobile } from "react-device-detect";
 import ChatLogExportMobile from "./ChatLogExport.mobile";
+import jsPDF from "jspdf"; // Ensure you have jsPDF installed
 
 interface IProps {
   isShowModal: boolean;
@@ -50,8 +51,48 @@ const ChatLogPdfSetting = (props: IProps) => {
   const handleExportChatLog = async () => {
     setIsloading(true);
 
-    if (isDesktop) {
-      setTriggerPrint(true);
+    if (isMobile) {
+      const element = document.getElementById("element-to-capture");
+
+      if (!element) {
+        console.error("Element not found!");
+        return;
+      }
+
+      try {
+        // Use html2canvas to capture the element as an image
+        const canvas = await html2canvas(element, {
+          scale: 2, // Use higher scale for better quality
+          useCORS: true,
+          backgroundColor: "#ffffff", // Set white background if required
+        });
+
+        // Convert the canvas to an image URL
+        const imgData = canvas.toDataURL("image/jpeg", 1); // Convert canvas to JPG image data
+
+        // Create a new jsPDF instance with Letter size (215.9 x 279.4 mm)
+        const doc = new jsPDF({
+          unit: "mm", // Set unit to millimeters (default is mm)
+          format: [215.9, 279.4], // Letter size in mm (8.5 x 11 inches)
+        });
+
+        // Add the image to the PDF (adjust the position and size based on the Letter size)
+        // Assuming you want to fit the image inside the Letter page size
+        const pageWidth = doc.internal.pageSize.width; // Width of the Letter size page
+        const pageHeight = doc.internal.pageSize.height; // Height of the Letter size page
+        const imageWidth = pageWidth - 16; // Leave some margin (10mm on each side)
+        const imageHeight = (canvas.height * imageWidth) / canvas.width; // Maintain aspect ratio
+
+        doc.addImage(imgData, "JPEG", 10, 5, imageWidth, imageHeight);
+
+        // Save the PDF
+        doc.save("exported-image.pdf"); // Save with the desired file name
+      } catch (error) {
+        console.error("Error generating PDF:", error);
+      } finally {
+        // Make sure to stop loading state after completion
+        setIsloading(false);
+      }
     }
 
     if (isMobile) {
@@ -62,32 +103,31 @@ const ChatLogPdfSetting = (props: IProps) => {
         return;
       }
 
-      // Use high scale for better image quality
-      html2canvas(element, {
-        scale: 2, // or 3 for even higher DPI
-        useCORS: true,
-        backgroundColor: "#ffffff", // if you want a white background
-      }).then((canvas) => {
-        canvas.toBlob(
-          (blob) => {
-            if (!blob) {
-              console.error("Blob generation failed!");
-              return;
-            }
+      try {
+        // Use html2canvas to capture the element as an image
+        const canvas = await html2canvas(element, {
+          scale: 2, // Use higher scale for better quality
+          useCORS: true,
+          backgroundColor: "#ffffff", // Set white background if required
+        });
 
-            const link = document.createElement("a");
-            link.download = "exported-image.jpg";
-            link.href = URL.createObjectURL(blob);
-            link.click();
+        // Convert the canvas to an image URL
+        const imgData = canvas.toDataURL("image/jpeg", 1); // Convert canvas to JPG image data
 
-            // Optional cleanup
-            URL.revokeObjectURL(link.href);
-          },
-          "image/jpeg",
-          0.95
-        ); // 0.95 = image quality
-      });
-      setIsloading(false);
+        // Create a new jsPDF instance
+        const doc = new jsPDF();
+
+        // Add the image to the PDF (you can adjust the image position and size)
+        doc.addImage(imgData, "JPEG", 0, 0, 180, 160); // (imgData, format, x, y, width, height)
+
+        // Save the PDF
+        doc.save("exported-image.pdf"); // Save with the desired file name
+      } catch (error) {
+        console.error("Error generating PDF:", error);
+      } finally {
+        // Make sure to stop loading state after completion
+        setIsloading(false);
+      }
     }
   };
 
@@ -98,10 +138,6 @@ const ChatLogPdfSetting = (props: IProps) => {
       reactToPrintFn();
     }
   }, [triggerPrint]);
-
-  const onChangeShowTitle: CheckboxProps["onChange"] = (e) => {
-    console.log(`checked = ${e.target.checked}`);
-  };
 
   return (
     <Modal
