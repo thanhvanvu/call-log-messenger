@@ -236,7 +236,14 @@ const PdfSettingModal = (props: IProps) => {
         </div>
       </div>
 
-      <div className="hidden">
+      <div
+        style={{
+          position: "absolute",
+          top: "-9999px",
+          left: "-9999px",
+          pointerEvents: "none",
+        }}
+      >
         <PdfExport
           contentRef={contentRef}
           isShowStatistic={isShowStatistic}

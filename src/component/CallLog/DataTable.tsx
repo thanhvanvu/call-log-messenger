@@ -2,7 +2,7 @@
 import { Button, Popconfirm, Popover, Table, TablePaginationConfig, Tooltip } from "antd";
 import React, { useEffect, useRef, useState } from "react";
 import { FaFacebookSquare } from "react-icons/fa";
-import { InboxOutlined, RedoOutlined, SettingOutlined } from "@ant-design/icons";
+import { RedoOutlined, SettingOutlined } from "@ant-design/icons";
 import { useTranslations } from "next-intl";
 import { useCurrentApp } from "@/context/app.context";
 import { convertTimeStampToDate, convertTimeStampToDateInHour, decode } from "@/utils/helper";
@@ -11,12 +11,7 @@ import { FilterValue } from "antd/es/table/interface";
 import { HiPhoneMissedCall } from "react-icons/hi";
 import { IoIosWarning, IoMdCall } from "react-icons/io";
 import { IoIosColorFill } from "react-icons/io";
-import { MdDeleteForever } from "react-icons/md";
-import { Link } from "@/i18n/routing";
-import PdfExport from "./PdfExport";
-import { FaFilePdf } from "react-icons/fa6";
 import { BrowserView, isMobileOnly, isTablet, MobileView } from "react-device-detect";
-import { useReactToPrint } from "react-to-print";
 import PdfSettingModal from "./PdfSetting.modal";
 import PdfWarningModal from "./PdfWarning.modal";
 
@@ -350,24 +345,24 @@ function DataTable(props: IProps) {
               </h1>
             </div>
             <div className="flex gap-4">
-              <BrowserView>
-                <Button
-                  danger
-                  color="danger"
-                  disabled={dataToShow && dataToShow.length > 0 === true ? false : true}
-                  onClick={() => setIsShowPdfSetting(true)}
-                >
-                  <SettingOutlined />
-                  {t("common.export-pdf.button")}
-                </Button>
-              </BrowserView>
+              <BrowserView></BrowserView>
 
+              <Button
+                danger
+                color="danger"
+                disabled={dataToShow && dataToShow.length > 0 === true ? false : true}
+                onClick={() => setIsShowPdfSetting(true)}
+              >
+                <SettingOutlined />
+                {t("common.export-pdf.button")}
+              </Button>
+              {/* 
               <MobileView>
                 <Button color="orange" variant="outlined" onClick={() => setIsShowPdfWarning(true)}>
                   <IoIosWarning className="text-[orange]" />
                   {t("common.export-pdf.button")}
                 </Button>
-              </MobileView>
+              </MobileView> */}
 
               <div className="" ref={tourStep?.step5}>
                 <Popover

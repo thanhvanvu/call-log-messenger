@@ -1,4 +1,4 @@
-import CallLog from "@/component/Calllog";
+import CallLog from "@/component/CallLog/Calllog";
 import { Metadata } from "next";
 import React from "react";
 

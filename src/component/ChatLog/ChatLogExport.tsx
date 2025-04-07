@@ -28,10 +28,10 @@ const ChatLogExport = (props: IProps) => {
   }, [chatLogImages]);
   return (
     <>
-      <div className="w-[8.5in] mx-auto bg-white p-4" ref={contentRef} id="element-to-capture">
+      <div className="w-[8.5in] mx-auto bg-white chatLogPrintPage" ref={contentRef}>
         {chatLogPdfSetting?.title && (
           <h1
-            className="text-xl font-bold border text-center h-[45px]"
+            className="text-2xl font-bold text-center border"
             style={{
               backgroundColor: chatLogPdfSetting.backgroundColor,
               color: chatLogPdfSetting.titleColor,

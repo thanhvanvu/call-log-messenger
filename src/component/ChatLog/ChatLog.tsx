@@ -1,28 +1,32 @@
 "use client";
 // https://www.youtube.com/watch?v=dL5SOdgMbRY&ab_channel=CodeComplete (guide how to use drag)
 import { readFileAsImage, validateFileType } from "@/utils/helper";
-import {
-  Button,
-  Collapse,
-  CollapseProps,
-  Image,
-  message,
-  Upload,
-  UploadFile,
-  UploadProps,
-} from "antd";
+import { Button, Image, message, Upload, UploadFile, UploadProps } from "antd";
 import Dragger from "antd/es/upload/Dragger";
 import { useTranslations } from "next-intl";
 import { InboxOutlined, SettingOutlined } from "@ant-design/icons";
 import React, { useEffect, useRef, useState } from "react";
 import { useCurrentApp } from "@/context/app.context";
-import { closestCorners, DndContext } from "@dnd-kit/core";
-import { arrayMove, rectSortingStrategy, SortableContext } from "@dnd-kit/sortable";
+import {
+  closestCorners,
+  DndContext,
+  KeyboardSensor,
+  PointerSensor,
+  TouchSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  rectSortingStrategy,
+  SortableContext,
+  sortableKeyboardCoordinates,
+} from "@dnd-kit/sortable";
 import ImageInformation from "./ImageInformation";
 import { useReactToPrint } from "react-to-print";
 import { RiDragMove2Fill } from "react-icons/ri";
 import ChatLogPdfSetting from "./ChatLogPdfSetting.modal";
-import ChatLogMobile from "./ChatLog.Mobile";
+import ChatLogGuide from "./ChatLogGuide";
 import { isMobile, isTablet } from "react-device-detect";
 
 const ChatLog = () => {
@@ -141,100 +145,7 @@ const ChatLog = () => {
     });
   };
 
-  const items: CollapseProps["items"] = [
-    {
-      key: "1",
-      label: "How to upload images",
-      children: (
-        <div>
-          <ul className="992:list-disc list-inside  text-gray-700 mt-2 flex flex-col gap-3">
-            <li>
-              <div className="inline-block">
-                <p className="">
-                  <span className="font-bold underline mr-2">Step 1:</span> Screenshot messenger
-                  chat log from your mobile phone and transfer those to laptop or computer.
-                </p>
-              </div>
-              <div className="flex justify-center gap-5 mt-2">
-                <Image
-                  alt=""
-                  src="/demo-chat-log/1.jpg"
-                  width={100}
-                  className="border shadow-md"
-                ></Image>
-                <Image
-                  alt=""
-                  src="/demo-chat-log/2.jpg"
-                  width={100}
-                  className="border shadow-md"
-                ></Image>
-                <Image
-                  alt=""
-                  src="/demo-chat-log/3.jpg"
-                  width={100}
-                  className="border shadow-md"
-                ></Image>
-              </div>
-            </li>
-
-            <li>
-              <div className="inline-block">
-                <p className="">
-                  <span className="font-bold underline mr-2">Step 2:</span>
-                  Click this
-                  <InboxOutlined className="text-2xl mx-2" style={{ color: "#2196F3" }} /> in the
-                  box above to upload your images (hold <kbd className="mx-2">CTRL</kbd> to select
-                  multiple images).
-                </p>
-              </div>
-            </li>
-
-            <li>
-              <div className="inline-block">
-                <p className="">
-                  <span className="font-bold underline mr-2">Step 3:</span>
-                  Click and hold the
-                  <Button
-                    type="primary"
-                    icon={<RiDragMove2Fill className="" />}
-                    size="small"
-                    className="mx-2"
-                  >
-                    Drag
-                  </Button>
-                  button, then drag to rearrange your images if needed.
-                </p>
-              </div>
-            </li>
-
-            <li>
-              <div className="inline-block">
-                <p className="">
-                  <span className="font-bold underline mr-2">Step 4:</span>
-                  Add a note for each image if necessary.
-                </p>
-              </div>
-            </li>
-
-            <li>
-              <div className="inline-block">
-                <p className="">
-                  <span className="font-bold underline mr-2">Step 5:</span>
-                  Click this
-                  <Button danger color="danger" size="small" className="mx-2">
-                    <SettingOutlined />
-                    {t("common.export-pdf.button")}
-                  </Button>{" "}
-                  button to export a PDF file.
-                </p>
-              </div>
-            </li>
-          </ul>
-        </div>
-      ),
-    },
-  ];
-
+  const sensors = useSensors(useSensor(PointerSensor), useSensor(TouchSensor));
   return (
     <>
       {contextHolder}
@@ -254,7 +165,7 @@ const ChatLog = () => {
         </div>
 
         <div className="flex justify-center mt-4 w-[100%]">
-          <Collapse items={items} className="w-[100%] lg:w-[85%] 2xl:w-[60%] 3xl:w-[40%]" />
+          <ChatLogGuide />
         </div>
 
         {fileList && fileList.length > 0 ? (
@@ -291,7 +202,11 @@ const ChatLog = () => {
               button to change the order of pictures below
             </div>
 
-            <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCorners}
+              onDragEnd={handleDragEnd}
+            >
               <div className="grid gap-x-14 gap-y-10 m-auto mt-4 992:grid-cols-2 ">
                 <SortableContext items={chatLogImages} strategy={rectSortingStrategy}>
                   {chatLogImages &&
@@ -313,7 +228,24 @@ const ChatLog = () => {
           <div className="h-screen flex flex-col justify-center items-center mt-4">
             <div className="w-[100%] lg:w-[85%] 2xl:w-[60%] h-screen">
               <h1 className="font-bold text-2xl py-2">Demo Chat Logs PDF:</h1>
-              <iframe src="/chatLogExample.pdf" className="w-full h-full border-none"></iframe>
+              {isMobile || isTablet ? (
+                <div className="lg:flex gap-5 ">
+                  <Image
+                    src="/demo-chat-log/chatLog.jpg"
+                    alt="chat-log"
+                    preview={false}
+                    className="lg:border"
+                  ></Image>
+                  <Image
+                    src="/demo-chat-log/billLog.jpg"
+                    alt="chat-log"
+                    preview={false}
+                    className="lg:border"
+                  ></Image>
+                </div>
+              ) : (
+                <iframe src="/chatLogExample.pdf" className="w-full h-full border-none"></iframe>
+              )}
             </div>
           </div>
         )}

@@ -23,9 +23,10 @@ import {
 import { useTranslations } from "next-intl";
 import { useCurrentApp } from "@/context/app.context";
 import Statistic from "./Statistic";
-import DataTable from "./DataTable";
+
 import { Link } from "@/i18n/routing";
 import { TbTableShortcut } from "react-icons/tb";
+import DataTable from "./DataTable";
 
 const CallLog = () => {
   const {

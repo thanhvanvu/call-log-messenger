@@ -15,7 +15,7 @@ import {
 } from "antd";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
-import PdfExport from "./PdfExport";
+import PdfExport from "../CallLog/PdfExport";
 import Image from "next/image";
 import { FaFilePdf, FaStarOfLife } from "react-icons/fa";
 import { MdRectangle } from "react-icons/md";

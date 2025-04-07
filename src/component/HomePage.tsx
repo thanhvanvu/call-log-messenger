@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import picture from "../../public/combined_stylized.jpg";
 import { Button } from "antd";
-import MobileModal from "./mobile.modal";
+import MobileModal from "./CallLog/mobile.modal";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { DownloadOutlined } from "@ant-design/icons";
