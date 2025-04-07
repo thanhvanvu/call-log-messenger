@@ -1,6 +1,6 @@
 "use client";
 import { Button, Popconfirm, Popover, Table, TablePaginationConfig, Tooltip } from "antd";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaFacebookSquare } from "react-icons/fa";
 import { RedoOutlined, SettingOutlined } from "@ant-design/icons";
 import { useTranslations } from "next-intl";
@@ -345,24 +345,24 @@ function DataTable(props: IProps) {
               </h1>
             </div>
             <div className="flex gap-4">
-              <BrowserView></BrowserView>
+              <BrowserView>
+                <Button
+                  danger
+                  color="danger"
+                  disabled={dataToShow && dataToShow.length > 0 === true ? false : true}
+                  onClick={() => setIsShowPdfSetting(true)}
+                >
+                  <SettingOutlined />
+                  {t("common.export-pdf.button")}
+                </Button>
+              </BrowserView>
 
-              <Button
-                danger
-                color="danger"
-                disabled={dataToShow && dataToShow.length > 0 === true ? false : true}
-                onClick={() => setIsShowPdfSetting(true)}
-              >
-                <SettingOutlined />
-                {t("common.export-pdf.button")}
-              </Button>
-              {/* 
               <MobileView>
                 <Button color="orange" variant="outlined" onClick={() => setIsShowPdfWarning(true)}>
                   <IoIosWarning className="text-[orange]" />
                   {t("common.export-pdf.button")}
                 </Button>
-              </MobileView> */}
+              </MobileView>
 
               <div className="" ref={tourStep?.step5}>
                 <Popover

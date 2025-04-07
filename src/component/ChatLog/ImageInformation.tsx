@@ -40,7 +40,7 @@ const ImageInformation = (props: IProps) => {
       <Image alt="" width={100} src={image.imageUrl} preview={true} />
       <TextArea
         showCount
-        placeholder={`Image note:\nLimit 40 characters\nFirst messenger chat, First date... (Optional)`}
+        placeholder={`Image note:\nLimit 30 characters\nFirst messenger chat, First date... (Optional)`}
         rows={4}
         maxLength={30}
         value={image.note} // ✅ Use bracket notation

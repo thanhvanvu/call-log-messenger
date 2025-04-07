@@ -238,7 +238,7 @@ const Header = () => {
 
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto ">
-            <div className="py-2  992:mx-8">
+            <div className="py-2  992:mx-8 font-bold">
               <div className="relative w-fit">
                 <span className="absolute right-[-30px] top-[-20px]">
                   <Image src={newGif} alt="" width={50}></Image>
@@ -248,7 +248,14 @@ const Header = () => {
                 </Link>
               </div>
             </div>
-            <div className="py-2" ref={tourStep?.step1}>
+
+            <div className="py-2 font-bold 992:mx-10">
+              <Link href="/calllog" className="nav-link focus:text-[#0866FF]">
+                Call Log Generator
+              </Link>
+            </div>
+
+            <div className="py-2 font-bold" ref={tourStep?.step1}>
               <Link href="/guide" className="nav-link focus:text-[#0866FF]">
                 {t("header.guide")}
               </Link>
@@ -288,11 +295,7 @@ const Header = () => {
               </Button>
             </BrowserView>
           ) : (
-            <Link href={"/calllog"}>
-              <Button type="primary" size="large">
-                {t("header.get-started")}
-              </Button>
-            </Link>
+            <></>
           )}
         </div>
       </Navbar>

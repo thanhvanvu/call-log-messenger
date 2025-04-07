@@ -14,6 +14,8 @@ import { useReactToPrint } from "react-to-print";
 import { FaFilePdf, FaStarOfLife } from "react-icons/fa";
 import { useTranslations } from "next-intl";
 import ChatLogExport from "./ChatLogExport";
+import { isDesktop, isMobile } from "react-device-detect";
+import ChatLogExportMobile from "./ChatLogExport.mobile";
 
 interface IProps {
   isShowModal: boolean;
@@ -45,48 +47,51 @@ const ChatLogPdfSetting = (props: IProps) => {
     },
   });
 
-  const handleExportPdf = async () => {
+  const handleExportChatLog = async () => {
     setIsloading(true);
-    // set state, make sure filter function is completely before print
-    setTriggerPrint(true);
-    setIsloading(true);
-  };
 
-  const handleExportImage = async () => {
-    const element = document.getElementById("element-to-capture");
-
-    if (!element) {
-      console.error("Element not found!");
-      return;
+    if (isDesktop) {
+      setTriggerPrint(true);
     }
 
-    // Use high scale for better image quality
-    html2canvas(element, {
-      scale: 2, // or 3 for even higher DPI
-      useCORS: true,
-      backgroundColor: "#ffffff", // if you want a white background
-    }).then((canvas) => {
-      canvas.toBlob(
-        (blob) => {
-          if (!blob) {
-            console.error("Blob generation failed!");
-            return;
-          }
+    if (isMobile) {
+      const element = document.getElementById("element-to-capture");
 
-          const link = document.createElement("a");
-          link.download = "exported-image.jpg";
-          link.href = URL.createObjectURL(blob);
-          link.click();
+      if (!element) {
+        console.error("Element not found!");
+        return;
+      }
 
-          // Optional cleanup
-          URL.revokeObjectURL(link.href);
-          // setIsloading(false);
-        },
-        "image/jpeg",
-        0.95
-      ); // 0.95 = image quality
-    });
+      // Use high scale for better image quality
+      html2canvas(element, {
+        scale: 2, // or 3 for even higher DPI
+        useCORS: true,
+        backgroundColor: "#ffffff", // if you want a white background
+      }).then((canvas) => {
+        canvas.toBlob(
+          (blob) => {
+            if (!blob) {
+              console.error("Blob generation failed!");
+              return;
+            }
+
+            const link = document.createElement("a");
+            link.download = "exported-image.jpg";
+            link.href = URL.createObjectURL(blob);
+            link.click();
+
+            // Optional cleanup
+            URL.revokeObjectURL(link.href);
+          },
+          "image/jpeg",
+          0.95
+        ); // 0.95 = image quality
+      });
+      setIsloading(false);
+    }
   };
+
+  const handleExportImage = async () => {};
 
   useEffect(() => {
     if (triggerPrint) {
@@ -105,12 +110,17 @@ const ChatLogPdfSetting = (props: IProps) => {
         <Button key="back" onClick={() => setIsShowModal(false)}>
           {t("pdf-setting.cancel")}
         </Button>,
-        <Button loading={isLoading} key="submit" type="primary" danger onClick={handleExportPdf}>
+        <Button
+          loading={isLoading}
+          key="submit"
+          type="primary"
+          danger
+          onClick={handleExportChatLog}
+        >
           <FaFilePdf />
-          {t("pdf-setting.export")}
+          Export Chat Log
         </Button>,
       ]}
-      onOk={handleExportPdf}
       open={isShowModal}
       styles={{ body: { overflowY: "auto", maxHeight: "calc(100vh - 300px)" } }}
       onCancel={() => {
@@ -180,8 +190,10 @@ const ChatLogPdfSetting = (props: IProps) => {
           left: "-9999px",
           pointerEvents: "none",
         }}
-      ></div>
-      <ChatLogExport contentRef={componentRef} chatLogPdfSetting={chatLogPdfSetting} />
+      >
+        <ChatLogExport contentRef={componentRef} chatLogPdfSetting={chatLogPdfSetting} />
+        <ChatLogExportMobile chatLogPdfSetting={chatLogPdfSetting} />
+      </div>
     </Modal>
   );
 };

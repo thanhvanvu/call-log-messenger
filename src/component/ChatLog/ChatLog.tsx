@@ -1,7 +1,7 @@
 "use client";
 // https://www.youtube.com/watch?v=dL5SOdgMbRY&ab_channel=CodeComplete (guide how to use drag)
 import { readFileAsImage, validateFileType } from "@/utils/helper";
-import { Button, Image, message, Upload, UploadFile, UploadProps } from "antd";
+import { Alert, Button, Image, message, Upload, UploadFile, UploadProps } from "antd";
 import Dragger from "antd/es/upload/Dragger";
 import { useTranslations } from "next-intl";
 import { InboxOutlined, SettingOutlined } from "@ant-design/icons";
@@ -27,7 +27,7 @@ import { useReactToPrint } from "react-to-print";
 import { RiDragMove2Fill } from "react-icons/ri";
 import ChatLogPdfSetting from "./ChatLogPdfSetting.modal";
 import ChatLogGuide from "./ChatLogGuide";
-import { isMobile, isTablet } from "react-device-detect";
+import { BrowserView, isMobile, isTablet, MobileView } from "react-device-detect";
 
 const ChatLog = () => {
   const { chatLogImages, setChatLogImages } = useCurrentApp();
@@ -58,6 +58,7 @@ const ChatLog = () => {
     name: "file",
     multiple: true,
     accept: ".jpg",
+    maxCount: isMobile ? 6 : 100000,
 
     beforeUpload: (file: UploadFile) => {
       const allowedTypes: string[] = [
@@ -150,6 +151,22 @@ const ChatLog = () => {
     <>
       {contextHolder}
       <div className="mt-10 w-[90%] m-auto 3xl:w-[80%] pb-14 h-full">
+        <MobileView>
+          <Alert
+            className="mt-2"
+            message="Warning"
+            type="warning"
+            showIcon
+            description={
+              <div className="text-justify">
+                Due to limitations in mobile browsers, only 1-6 pictures can be displayed at a time.
+                To import more pictures, please use a desktop or laptop for a better experience.
+              </div>
+            }
+            closable
+          />
+        </MobileView>
+
         <div className="mt-4">
           <Dragger className="block m-auto mt-20 lg:w-[70%] 2xl:w-[60%] 3xl:w-[40%]" {...props}>
             <div className="">
@@ -169,23 +186,38 @@ const ChatLog = () => {
         </div>
 
         {fileList && fileList.length > 0 ? (
-          <div className="  w-[100%] lg:w-[85%] 2xl:w-[60%] m-auto mt-5">
+          <div className="  w-[100%] lg:w-[85%] 2xl:w-[60%] m-auto mt-4">
             <div className="flex items-center justify-between">
               <div className=" font-bold text-2xl py-2">
                 <h1 className="hidden md:block">These are chat log images:</h1>
               </div>
               <div className="flex gap-4">
-                <Button
-                  danger
-                  color="danger"
-                  onClick={() => {
-                    console.log(chatLogImages);
-                    setIsShowModal(true);
-                  }}
-                >
-                  <SettingOutlined />
-                  {t("common.export-pdf.button")}
-                </Button>
+                <MobileView>
+                  <Button
+                    danger
+                    color="danger"
+                    onClick={() => {
+                      console.log(chatLogImages);
+                      setIsShowModal(true);
+                    }}
+                  >
+                    <SettingOutlined />
+                    Export Image Setting
+                  </Button>
+                </MobileView>
+                <BrowserView>
+                  <Button
+                    danger
+                    color="danger"
+                    onClick={() => {
+                      console.log(chatLogImages);
+                      setIsShowModal(true);
+                    }}
+                  >
+                    <SettingOutlined />
+                    {t("common.export-pdf.button")}
+                  </Button>
+                </BrowserView>
               </div>
             </div>
 
