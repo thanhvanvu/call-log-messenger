@@ -25,7 +25,7 @@ const ImageInformation = (props: IProps) => {
   };
   return (
     <div className="flex gap-4" ref={setNodeRef} style={style}>
-      <div className="flex justify-center items-center">{index + 1}</div>
+      <div className="hidden md:flex justify-center items-center">{index + 1}</div>
       <Button className="h-auto" type="primary" {...attributes} {...listeners}>
         <div className="flex flex-col items-center">
           <RiDragMove2Fill className="text-xl" /> <p>Drag</p>

@@ -1,4 +1,5 @@
 import { useCurrentApp } from "@/context/app.context";
+import html2canvas from "html2canvas"; // Import html2canvas
 import {
   Button,
   Checkbox,
@@ -21,6 +22,7 @@ import { MdRectangle } from "react-icons/md";
 import { useTranslations } from "next-intl";
 import { decode } from "@/utils/helper";
 import ChatLogExport from "./ChatLogExport";
+import { scales } from "chart.js";
 
 interface IProps {
   isShowModal: boolean;
@@ -53,11 +55,47 @@ const ChatLogPdfSetting = (props: IProps) => {
     },
   });
 
-  const handleExportPdf = () => {
+  const handleExportPdf = async () => {
     setIsloading(true);
-
     // set state, make sure filter function is completely before print
     setTriggerPrint(true);
+    setIsloading(true);
+  };
+
+  const handleExportImage = async () => {
+    const element = document.getElementById("element-to-capture");
+
+    if (!element) {
+      console.error("Element not found!");
+      return;
+    }
+
+    // Use high scale for better image quality
+    html2canvas(element, {
+      scale: 2, // or 3 for even higher DPI
+      useCORS: true,
+      backgroundColor: "#ffffff", // if you want a white background
+    }).then((canvas) => {
+      canvas.toBlob(
+        (blob) => {
+          if (!blob) {
+            console.error("Blob generation failed!");
+            return;
+          }
+
+          const link = document.createElement("a");
+          link.download = "exported-image.jpg";
+          link.href = URL.createObjectURL(blob);
+          link.click();
+
+          // Optional cleanup
+          URL.revokeObjectURL(link.href);
+          // setIsloading(false);
+        },
+        "image/jpeg",
+        0.95
+      ); // 0.95 = image quality
+    });
   };
 
   useEffect(() => {
@@ -84,7 +122,6 @@ const ChatLogPdfSetting = (props: IProps) => {
       ]}
       onOk={handleExportPdf}
       open={isShowModal}
-      width={"30%"}
       styles={{ body: { overflowY: "auto", maxHeight: "calc(100vh - 300px)" } }}
       onCancel={() => {
         setIsShowModal(false);
@@ -99,7 +136,7 @@ const ChatLogPdfSetting = (props: IProps) => {
       </Checkbox>
 
       <div className="hidden"></div>
-      <div className={`mt-3 flex flex-col gap-3 ${chatLogPdfSetting.title ? "" : "disabled"}`}>
+      <div className={`mt-3 flex flex-col gap-3  ${chatLogPdfSetting.title ? "" : "disabled"}`}>
         <div className="flex gap-2 items-center">
           Title name:{" "}
           <Input
@@ -146,7 +183,14 @@ const ChatLogPdfSetting = (props: IProps) => {
         </h1>
       </div>
 
-      <div className="hidden">
+      <div
+        style={{
+          position: "absolute",
+          top: "-9999px",
+          left: "-9999px",
+          pointerEvents: "none",
+        }}
+      >
         <ChatLogExport contentRef={contentRef} chatLogPdfSetting={chatLogPdfSetting} />
       </div>
     </Modal>

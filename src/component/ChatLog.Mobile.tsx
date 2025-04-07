@@ -1,7 +1,5 @@
 import { Alert, Image } from "antd";
 import React from "react";
-import chatLog from "public/demo-chat-log/chatLog.jpg";
-import billLog from "public/demo-chat-log/billLog.jpg";
 
 const ChatLogMobile = () => {
   return (

@@ -147,10 +147,10 @@ const ChatLog = () => {
       label: "How to upload images",
       children: (
         <div>
-          <ul className="list-disc list-inside ml-4 text-gray-700 mt-2 flex flex-col gap-3">
+          <ul className="992:list-disc list-inside  text-gray-700 mt-2 flex flex-col gap-3">
             <li>
               <div className="inline-block">
-                <p className="flex items-center">
+                <p className="">
                   <span className="font-bold underline mr-2">Step 1:</span> Screenshot messenger
                   chat log from your mobile phone and transfer those to laptop or computer.
                 </p>
@@ -179,7 +179,7 @@ const ChatLog = () => {
 
             <li>
               <div className="inline-block">
-                <p className="flex items-center">
+                <p className="">
                   <span className="font-bold underline mr-2">Step 2:</span>
                   Click this
                   <InboxOutlined className="text-2xl mx-2" style={{ color: "#2196F3" }} /> in the
@@ -188,9 +188,10 @@ const ChatLog = () => {
                 </p>
               </div>
             </li>
+
             <li>
               <div className="inline-block">
-                <p className="flex items-center">
+                <p className="">
                   <span className="font-bold underline mr-2">Step 3:</span>
                   Click and hold the
                   <Button
@@ -208,7 +209,7 @@ const ChatLog = () => {
 
             <li>
               <div className="inline-block">
-                <p className="flex items-center">
+                <p className="">
                   <span className="font-bold underline mr-2">Step 4:</span>
                   Add a note for each image if necessary.
                 </p>
@@ -217,7 +218,7 @@ const ChatLog = () => {
 
             <li>
               <div className="inline-block">
-                <p className="flex items-center">
+                <p className="">
                   <span className="font-bold underline mr-2">Step 5:</span>
                   Click this
                   <Button danger color="danger" size="small" className="mx-2">
@@ -237,88 +238,90 @@ const ChatLog = () => {
   return (
     <>
       {contextHolder}
-
-      {isMobile || isTablet ? (
-        <ChatLogMobile />
-      ) : (
-        <div className="mt-10 w-[90%] m-auto 3xl:w-[80%] pb-14 h-full">
-          <div className="mt-4">
-            <Dragger className="block m-auto mt-20 lg:w-[70%] 2xl:w-[60%] 3xl:w-[40%]" {...props}>
-              <div className="">
-                <p className="ant-upload-drag-icon ">
-                  <InboxOutlined />
-                </p>
-                <p className="ant-upload-text">Click to this area to upload images</p>
-                <p className="ant-upload-hint">
-                  Support for a multiple upload. Only support images file (JPG, PNG)
-                </p>
-              </div>
-            </Dragger>
-          </div>
-
-          <div className="flex justify-center mt-4 w-[100%]">
-            <Collapse items={items} className="w-[100%] lg:w-[85%] 2xl:w-[60%] 3xl:w-[40%]" />
-          </div>
-
-          {fileList && fileList.length > 0 ? (
-            <div className="  w-[100%] lg:w-[85%] 2xl:w-[60%] m-auto mt-5">
-              <div className="flex items-center justify-between">
-                <div className="text-center font-bold text-2xl py-2">
-                  <h1 className="">These are chat log images:</h1>
-                </div>
-                <div className="flex gap-4">
-                  <Button
-                    danger
-                    color="danger"
-                    onClick={() => {
-                      console.log(chatLogImages);
-                      setIsShowModal(true);
-                    }}
-                  >
-                    <SettingOutlined />
-                    {t("common.export-pdf.button")}
-                  </Button>
-                </div>
-              </div>
-
-              <div className="italic flex items-center gap-2">
-                Hold mouse on
-                <Button type="primary" icon={<RiDragMove2Fill className="" />} size="middle">
-                  Drag
-                </Button>
-                button to change the order of pictures below
-              </div>
-
-              <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
-                <div className="grid gap-x-14 gap-y-10 m-auto mt-5 992:grid-cols-2 ">
-                  <SortableContext items={chatLogImages} strategy={rectSortingStrategy}>
-                    {chatLogImages &&
-                      chatLogImages.map((image, index) => {
-                        return (
-                          <ImageInformation
-                            id={image.id}
-                            image={image}
-                            key={image.id}
-                            index={index}
-                          />
-                        );
-                      })}
-                  </SortableContext>
-                </div>
-              </DndContext>
+      <div className="mt-10 w-[90%] m-auto 3xl:w-[80%] pb-14 h-full">
+        <div className="mt-4">
+          <Dragger className="block m-auto mt-20 lg:w-[70%] 2xl:w-[60%] 3xl:w-[40%]" {...props}>
+            <div className="">
+              <p className="ant-upload-drag-icon ">
+                <InboxOutlined />
+              </p>
+              <p className="ant-upload-text">Click to this area to upload images</p>
+              <p className="ant-upload-hint">
+                Support for a multiple upload. Only support images file (JPG, PNG)
+              </p>
             </div>
-          ) : (
-            <div className="h-screen flex flex-col justify-center items-center mt-4">
-              <div className="w-[100%] lg:w-[85%] 2xl:w-[60%] h-screen">
-                <h1 className="font-bold text-2xl py-2">Demo Chat Logs PDF:</h1>
-                <iframe src="/chatLogExample.pdf" className="w-full h-full border-none"></iframe>
-              </div>
-            </div>
-          )}
+          </Dragger>
         </div>
-      )}
 
-      <ChatLogPdfSetting isShowModal={isShowModal} setIsShowModal={setIsShowModal} />
+        <div className="flex justify-center mt-4 w-[100%]">
+          <Collapse items={items} className="w-[100%] lg:w-[85%] 2xl:w-[60%] 3xl:w-[40%]" />
+        </div>
+
+        {fileList && fileList.length > 0 ? (
+          <div className="  w-[100%] lg:w-[85%] 2xl:w-[60%] m-auto mt-5">
+            <div className="flex items-center justify-between">
+              <div className=" font-bold text-2xl py-2">
+                <h1 className="hidden md:block">These are chat log images:</h1>
+              </div>
+              <div className="flex gap-4">
+                <Button
+                  danger
+                  color="danger"
+                  onClick={() => {
+                    console.log(chatLogImages);
+                    setIsShowModal(true);
+                  }}
+                >
+                  <SettingOutlined />
+                  {t("common.export-pdf.button")}
+                </Button>
+              </div>
+            </div>
+
+            <div className="italic mt-3">
+              Hold mouse on
+              <Button
+                type="primary"
+                icon={<RiDragMove2Fill />}
+                size="middle"
+                style={{ marginLeft: "10px", marginRight: "10px" }}
+              >
+                Drag
+              </Button>
+              button to change the order of pictures below
+            </div>
+
+            <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
+              <div className="grid gap-x-14 gap-y-10 m-auto mt-4 992:grid-cols-2 ">
+                <SortableContext items={chatLogImages} strategy={rectSortingStrategy}>
+                  {chatLogImages &&
+                    chatLogImages.map((image, index) => {
+                      return (
+                        <ImageInformation
+                          id={image.id}
+                          image={image}
+                          key={image.id}
+                          index={index}
+                        />
+                      );
+                    })}
+                </SortableContext>
+              </div>
+            </DndContext>
+          </div>
+        ) : (
+          <div className="h-screen flex flex-col justify-center items-center mt-4">
+            <div className="w-[100%] lg:w-[85%] 2xl:w-[60%] h-screen">
+              <h1 className="font-bold text-2xl py-2">Demo Chat Logs PDF:</h1>
+              <iframe src="/chatLogExample.pdf" className="w-full h-full border-none"></iframe>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="w-[50%]">
+        <ChatLogPdfSetting isShowModal={isShowModal} setIsShowModal={setIsShowModal} />
+      </div>
     </>
   );
 };
