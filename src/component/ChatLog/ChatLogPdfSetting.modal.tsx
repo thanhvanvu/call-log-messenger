@@ -1,28 +1,19 @@
-import { useCurrentApp } from "@/context/app.context";
 import html2canvas from "html2canvas"; // Import html2canvas
 import {
   Button,
   Checkbox,
   CheckboxProps,
-  Col,
   ColorPicker,
   ColorPickerProps,
-  Divider,
   GetProp,
   Input,
   Modal,
-  Row,
 } from "antd";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
-import PdfExport from "../CallLog/PdfExport";
-import Image from "next/image";
 import { FaFilePdf, FaStarOfLife } from "react-icons/fa";
-import { MdRectangle } from "react-icons/md";
 import { useTranslations } from "next-intl";
-import { decode } from "@/utils/helper";
 import ChatLogExport from "./ChatLogExport";
-import { scales } from "chart.js";
 
 interface IProps {
   isShowModal: boolean;
@@ -32,7 +23,6 @@ interface IProps {
 type Color = GetProp<ColorPickerProps, "value">;
 
 const ChatLogPdfSetting = (props: IProps) => {
-  const { dataPdf, dataStatistic, rawCallLogs, dateRange } = useCurrentApp();
   const { isShowModal, setIsShowModal } = props;
   const [chatLogPdfSetting, setChatLogPdfSetting] = useState({
     title: false,
@@ -44,9 +34,9 @@ const ChatLogPdfSetting = (props: IProps) => {
   const [isLoading, setIsloading] = useState<boolean>(false);
   const t = useTranslations();
 
-  const contentRef = useRef<HTMLDivElement>(null);
+  const componentRef = React.useRef<HTMLDivElement>(null);
   const reactToPrintFn = useReactToPrint({
-    contentRef,
+    contentRef: componentRef,
     documentTitle: "Chat-logs",
 
     onAfterPrint: () => {
@@ -190,9 +180,8 @@ const ChatLogPdfSetting = (props: IProps) => {
           left: "-9999px",
           pointerEvents: "none",
         }}
-      >
-        <ChatLogExport contentRef={contentRef} chatLogPdfSetting={chatLogPdfSetting} />
-      </div>
+      ></div>
+      <ChatLogExport contentRef={componentRef} chatLogPdfSetting={chatLogPdfSetting} />
     </Modal>
   );
 };
