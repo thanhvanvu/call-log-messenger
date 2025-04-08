@@ -6,6 +6,7 @@ import {
   ColorPicker,
   ColorPickerProps,
   GetProp,
+  Image,
   Input,
   Modal,
 } from "antd";
@@ -35,6 +36,7 @@ const ChatLogPdfSetting = (props: IProps) => {
   });
   const [triggerPrint, setTriggerPrint] = useState<boolean>(false);
   const [isLoading, setIsloading] = useState<boolean>(false);
+  const [image, setImage] = useState<string>("");
   const t = useTranslations();
 
   const componentRef = React.useRef<HTMLDivElement>(null);
@@ -70,6 +72,8 @@ const ChatLogPdfSetting = (props: IProps) => {
         // Convert the canvas to an image URL
         const imgData = canvas.toDataURL("image/jpeg", 1); // Convert canvas to JPG image data
 
+        setImage(imgData);
+
         // Create a new jsPDF instance with Letter size (215.9 x 279.4 mm)
         const doc = new jsPDF({
           unit: "mm", // Set unit to millimeters (default is mm)
@@ -83,7 +87,7 @@ const ChatLogPdfSetting = (props: IProps) => {
         const imageWidth = pageWidth - 16; // Leave some margin (10mm on each side)
         const imageHeight = (canvas.height * imageWidth) / canvas.width; // Maintain aspect ratio
 
-        doc.addImage(imgData, "JPEG", 10, 5, imageWidth, 250);
+        doc.addImage(imgData, "JPEG", 10, 10, imageWidth, 200);
 
         // Save the PDF
         doc.save("exported-image.pdf"); // Save with the desired file name
@@ -219,6 +223,7 @@ const ChatLogPdfSetting = (props: IProps) => {
         </h1>
       </div>
 
+      <Image src={image} alt="" />
       <div
         style={{
           position: "absolute",
