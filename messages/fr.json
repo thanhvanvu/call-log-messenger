@@ -152,5 +152,75 @@
       "button": "Exporter le PDF",
       "tooltip": "Il est préférable de filtrer les données avant d'exporter le PDF"
     }
+  },
+  "chat-log": {
+    "warning-title": "Avertissement",
+    "warning": "En raison des limitations des navigateurs mobiles, seulement 1 à 6 images peuvent être affichées à la fois. Pour importer plus d'images, veuillez utiliser un ordinateur de bureau ou un ordinateur portable pour une meilleure expérience.",
+    "upload": "Cliquez sur cette zone pour télécharger des images",
+    "upload-note": "Prise en charge du téléchargement multiple. Prend en charge uniquement les fichiers image (JPG, PNG)",
+    "image-list-title": "Voici les images du journal de chat :",
+    "upload-guide-mobile": {
+      "title": "Comment télécharger des images",
+      "step1": {
+        "step": "Étape 1 :",
+        "content": "Capturez des captures d'écran du journal de chat Messenger depuis votre téléphone mobile. Voici quelques exemples parfaits ci-dessous."
+      },
+      "step2": {
+        "step": "Étape 2 :",
+        "content": "Appuyez sur cette <icon></icon> dans la boîte ci-dessus pour télécharger vos images."
+      },
+      "step3": {
+        "step": "Étape 3 :",
+        "content": "Appuyez longuement sur le bouton <icon></icon>, puis faites glisser pour réorganiser vos images si nécessaire."
+      },
+      "step4": {
+        "step": "Étape 4 :",
+        "content": "Ajoutez une note pour chaque image si nécessaire."
+      },
+      "step5": {
+        "step": "Étape 5 :",
+        "content": "Appuyez sur ce bouton <icon></icon> pour exporter l'image."
+      },
+      "step6": {
+        "step": "Étape 6 :",
+        "content": "Pour obtenir la meilleure qualité d'impression, choisissez le format de page 'Lettre'."
+      }
+    },
+    "upload-guide-desktop": {
+      "title": "Comment télécharger des images",
+      "step1": {
+        "step": "Étape 1 :",
+        "content": "Capturez des captures d'écran du journal de chat Messenger depuis votre téléphone mobile. Voici quelques exemples parfaits ci-dessous."
+      },
+      "step2": {
+        "step": "Étape 2 :",
+        "content": "Cliquez sur cette <icon></icon> dans la boîte ci-dessus pour télécharger vos images."
+      },
+      "step3": {
+        "step": "Étape 3 :",
+        "content": "Cliquez et maintenez le bouton <icon></icon>, puis faites glisser pour réorganiser vos images si nécessaire."
+      },
+      "step4": {
+        "step": "Étape 4 :",
+        "content": "Ajoutez une note pour chaque image si nécessaire."
+      },
+      "step5": {
+        "step": "Étape 5 :",
+        "content": "Cliquez sur ce bouton <icon></icon> pour exporter l'image."
+      },
+      "step6": {
+        "step": "Étape 6 :",
+        "content": "Pour obtenir la meilleure qualité d'impression, choisissez le format de page 'Lettre'."
+      }
+    },
+    "demo-title": "Exemple de PDF des journaux de chat :",
+    "export-setting": {
+      "button": "Paramètre d'exportation PDF",
+      "title-header": "Inclure l'en-tête du titre ?",
+      "title-name": "Nom du titre :",
+      "title-color": "Couleur du titre :",
+      "background-color": "Couleur de l'arrière-plan :"
+    },
+    "drag-guide": "Maintenez la souris sur le bouton <icon></icon> pour changer l'ordre des images ci-dessous."
   }
 }

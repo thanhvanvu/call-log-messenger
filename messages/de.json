@@ -152,5 +152,75 @@
       "button": "PDF exportieren",
       "tooltip": "Es ist am besten, die Daten vor dem Export des PDFs zu filtern"
     }
+  },
+  "chat-log": {
+    "warning-title": "Warnung",
+    "warning": "Aufgrund von Einschränkungen in mobilen Browsern können nur 1-6 Bilder gleichzeitig angezeigt werden. Um weitere Bilder zu importieren, verwenden Sie bitte einen Desktop oder Laptop für eine bessere Erfahrung.",
+    "upload": "Klicken Sie auf diesen Bereich, um Bilder hochzuladen",
+    "upload-note": "Unterstützung für Mehrfach-Upload. Unterstützt nur Bilddateien (JPG, PNG)",
+    "image-list-title": "Dies sind Chatprotokollbilder:",
+    "upload-guide-mobile": {
+      "title": "So laden Sie Bilder hoch",
+      "step1": {
+        "step": "Schritt 1:",
+        "content": "Machen Sie einen Screenshot des Messenger-Chatprotokolls von Ihrem Mobiltelefon. Hier sind einige perfekte Beispiele unten."
+      },
+      "step2": {
+        "step": "Schritt 2:",
+        "content": "Tippen Sie auf dieses <icon></icon> im Feld oben, um Ihre Bilder hochzuladen."
+      },
+      "step3": {
+        "step": "Schritt 3:",
+        "content": "Tippen und halten Sie die <icon></icon>-Taste und ziehen Sie, um Ihre Bilder bei Bedarf neu anzuordnen."
+      },
+      "step4": {
+        "step": "Schritt 4:",
+        "content": "Fügen Sie bei Bedarf eine Notiz für jedes Bild hinzu."
+      },
+      "step5": {
+        "step": "Schritt 5:",
+        "content": "Tippen Sie auf diese <icon></icon>-Taste, um das Bild zu exportieren."
+      },
+      "step6": {
+        "step": "Schritt 6:",
+        "content": "Wählen Sie für die beste Druckqualität das Seitenformat 'Letter'."
+      }
+    },
+    "upload-guide-desktop": {
+      "title": "So laden Sie Bilder hoch",
+      "step1": {
+        "step": "Schritt 1:",
+        "content": "Machen Sie einen Screenshot des Messenger-Chatprotokolls von Ihrem Mobiltelefon. Hier sind einige perfekte Beispiele unten."
+      },
+      "step2": {
+        "step": "Schritt 2:",
+        "content": "Klicken Sie auf dieses <icon></icon> im Feld oben, um Ihre Bilder hochzuladen."
+      },
+      "step3": {
+        "step": "Schritt 3:",
+        "content": "Klicken und halten Sie die <icon></icon>-Taste und ziehen Sie, um Ihre Bilder bei Bedarf neu anzuordnen."
+      },
+      "step4": {
+        "step": "Schritt 4:",
+        "content": "Fügen Sie bei Bedarf eine Notiz für jedes Bild hinzu."
+      },
+      "step5": {
+        "step": "Schritt 5:",
+        "content": "Klicken Sie auf diese <icon></icon>-Taste, um das Bild zu exportieren."
+      },
+      "step6": {
+        "step": "Schritt 6:",
+        "content": "Wählen Sie für die beste Druckqualität das Seitenformat 'Letter'."
+      }
+    },
+    "demo-title": "Demo-Chatprotokoll-PDF:",
+    "export-setting": {
+      "button": "PDF-Export-Einstellungen",
+      "title-header": "Titelkopfzeile einschließen?",
+      "title-name": "Titelname:",
+      "title-color": "Titelfarbe:",
+      "background-color": "Hintergrundfarbe:"
+    },
+    "drag-guide": "Halten Sie die Maus über die <icon></icon>-Taste, um die Reihenfolge der Bilder unten zu ändern."
   }
 }

@@ -152,5 +152,75 @@
       "button": "Exportar PDF",
       "tooltip": "É melhor filtrar os dados antes de exportar o PDF"
     }
+  },
+  "chat-log": {
+    "warning-title": "Aviso",
+    "warning": "Devido a limitações nos navegadores móveis, apenas 1-6 imagens podem ser exibidas por vez. Para importar mais imagens, use um desktop ou laptop para uma melhor experiência.",
+    "upload": "Clique nesta área para carregar imagens",
+    "upload-note": "Suporte para upload múltiplo. Suporte apenas arquivos de imagem (JPG, PNG)",
+    "image-list-title": "Estas são imagens de registro de bate-papo:",
+    "upload-guide-mobile": {
+      "title": "Como carregar imagens",
+      "step1": {
+        "step": "Passo 1:",
+        "content": "Capture a tela do registro de bate-papo do Messenger do seu celular. Aqui estão alguns exemplos perfeitos abaixo."
+      },
+      "step2": {
+        "step": "Passo 2:",
+        "content": "Toque neste <icon></icon> na caixa acima para carregar suas imagens."
+      },
+      "step3": {
+        "step": "Passo 3:",
+        "content": "Toque e segure o botão <icon></icon> e arraste para reorganizar suas imagens, se necessário."
+      },
+      "step4": {
+        "step": "Passo 4:",
+        "content": "Adicione uma nota para cada imagem, se necessário."
+      },
+      "step5": {
+        "step": "Passo 5:",
+        "content": "Toque neste botão <icon></icon> para exportar a imagem."
+      },
+      "step6": {
+        "step": "Passo 6:",
+        "content": "Para obter a melhor qualidade de impressão, escolha o tamanho de página 'Carta'."
+      }
+    },
+    "upload-guide-desktop": {
+      "title": "Como carregar imagens",
+      "step1": {
+        "step": "Passo 1:",
+        "content": "Capture a tela do registro de bate-papo do Messenger do seu celular. Aqui estão alguns exemplos perfeitos abaixo."
+      },
+      "step2": {
+        "step": "Passo 2:",
+        "content": "Clique neste <icon></icon> na caixa acima para carregar suas imagens."
+      },
+      "step3": {
+        "step": "Passo 3:",
+        "content": "Clique e segure o botão <icon></icon> e arraste para reorganizar suas imagens, se necessário."
+      },
+      "step4": {
+        "step": "Passo 4:",
+        "content": "Adicione uma nota para cada imagem, se necessário."
+      },
+      "step5": {
+        "step": "Passo 5:",
+        "content": "Clique neste botão <icon></icon> para exportar a imagem."
+      },
+      "step6": {
+        "step": "Passo 6:",
+        "content": "Para obter a melhor qualidade de impressão, escolha o tamanho de página 'Carta'."
+      }
+    },
+    "demo-title": "PDF de Registros de Bate-papo de Demonstração:",
+    "export-setting": {
+      "button": "Configurações de Exportação de PDF",
+      "title-header": "Incluir cabeçalho de título?",
+      "title-name": "Nome do título:",
+      "title-color": "Cor do título:",
+      "background-color": "Cor de fundo:"
+    },
+    "drag-guide": "Mantenha o mouse sobre o botão <icon></icon> para alterar a ordem das imagens abaixo."
   }
 }

@@ -152,5 +152,75 @@
       "button": "Exporteer PDF",
       "tooltip": "Het is het beste om de gegevens te filteren voordat je de PDF exporteert"
     }
+  },
+  "chat-log": {
+    "warning-title": "Waarschuwing",
+    "warning": "Vanwege beperkingen in mobiele browsers kunnen er slechts 1-6 afbeeldingen tegelijk worden weergegeven. Gebruik een desktop of laptop voor een betere ervaring om meer afbeeldingen te importeren.",
+    "upload": "Klik op dit gebied om afbeeldingen te uploaden",
+    "upload-note": "Ondersteuning voor meervoudig uploaden. Ondersteunt alleen afbeeldingsbestanden (JPG, PNG)",
+    "image-list-title": "Dit zijn chatlogafbeeldingen:",
+    "upload-guide-mobile": {
+      "title": "Afbeeldingen uploaden",
+      "step1": {
+        "step": "Stap 1:",
+        "content": "Maak een screenshot van het Messenger-chatlog vanaf uw mobiele telefoon. Hier zijn enkele perfecte voorbeelden hieronder."
+      },
+      "step2": {
+        "step": "Stap 2:",
+        "content": "Tik op dit <icon></icon> in het vak hierboven om uw afbeeldingen te uploaden."
+      },
+      "step3": {
+        "step": "Stap 3:",
+        "content": "Tik en houd de <icon></icon>-knop vast en sleep om uw afbeeldingen indien nodig opnieuw te rangschikken."
+      },
+      "step4": {
+        "step": "Stap 4:",
+        "content": "Voeg indien nodig een notitie toe voor elke afbeelding."
+      },
+      "step5": {
+        "step": "Stap 5:",
+        "content": "Tik op deze <icon></icon>-knop om de afbeelding te exporteren."
+      },
+      "step6": {
+        "step": "Stap 6:",
+        "content": "Kies voor de beste afdrukkwaliteit het paginaformaat 'Letter'."
+      }
+    },
+    "upload-guide-desktop": {
+      "title": "Afbeeldingen uploaden",
+      "step1": {
+        "step": "Stap 1:",
+        "content": "Maak een screenshot van het Messenger-chatlog vanaf uw mobiele telefoon. Hier zijn enkele perfecte voorbeelden hieronder."
+      },
+      "step2": {
+        "step": "Stap 2:",
+        "content": "Klik op dit <icon></icon> in het vak hierboven om uw afbeeldingen te uploaden."
+      },
+      "step3": {
+        "step": "Stap 3:",
+        "content": "Klik en houd de <icon></icon>-knop vast en sleep om uw afbeeldingen indien nodig opnieuw te rangschikken."
+      },
+      "step4": {
+        "step": "Stap 4:",
+        "content": "Voeg indien nodig een notitie toe voor elke afbeelding."
+      },
+      "step5": {
+        "step": "Stap 5:",
+        "content": "Klik op deze <icon></icon>-knop om de afbeelding te exporteren."
+      },
+      "step6": {
+        "step": "Stap 6:",
+        "content": "Kies voor de beste afdrukkwaliteit het paginaformaat 'Letter'."
+      }
+    },
+    "demo-title": "Demo Chatlogs PDF:",
+    "export-setting": {
+      "button": "PDF-exportinstellingen",
+      "title-header": "Titelkop toevoegen?",
+      "title-name": "Titelnaam:",
+      "title-color": "Titelkleur:",
+      "background-color": "Achtergrondkleur:"
+    },
+    "drag-guide": "Houd de muis op de <icon></icon>-knop om de volgorde van de onderstaande afbeeldingen te wijzigen."
   }
 }

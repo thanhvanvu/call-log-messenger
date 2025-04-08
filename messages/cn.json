@@ -152,5 +152,75 @@
       "button": "导出PDF",
       "tooltip": "最好在导出PDF之前筛选数据"
     }
+  },
+  "chat-log": {
+    "warning-title": "警告",
+    "warning": "由于移动浏览器的限制，一次只能显示1-6张图片。要导入更多图片，请使用台式机或笔记本电脑以获得更好的体验。",
+    "upload": "点击此区域上传图片",
+    "upload-note": "支持多文件上传。仅支持图片文件（JPG，PNG）",
+    "image-list-title": "以下是聊天记录图片：",
+    "upload-guide-mobile": {
+      "title": "如何上传图片",
+      "step1": {
+        "step": "步骤1：",
+        "content": "从您的手机截取Messenger聊天记录的屏幕截图。以下是一些完美的示例。"
+      },
+      "step2": {
+        "step": "步骤2：",
+        "content": "点击上方框中的<icon></icon>以上传您的图片。"
+      },
+      "step3": {
+        "step": "步骤3：",
+        "content": "长按<icon></icon>按钮，然后拖动以重新排列您的图片（如果需要）。"
+      },
+      "step4": {
+        "step": "步骤4：",
+        "content": "如有必要，为每张图片添加备注。"
+      },
+      "step5": {
+        "step": "步骤5：",
+        "content": "点击此<icon></icon>按钮以导出图片。"
+      },
+      "step6": {
+        "step": "步骤6：",
+        "content": "为了获得最佳的打印质量，请选择“Letter”纸张尺寸。"
+      }
+    },
+    "upload-guide-desktop": {
+      "title": "如何上传图片",
+      "step1": {
+        "step": "步骤1：",
+        "content": "从您的手机截取Messenger聊天记录的屏幕截图。以下是一些完美的示例。"
+      },
+      "step2": {
+        "step": "步骤2：",
+        "content": "点击上方框中的<icon></icon>以上传您的图片。"
+      },
+      "step3": {
+        "step": "步骤3：",
+        "content": "点击并按住<icon></icon>按钮，然后拖动以重新排列您的图片（如果需要）。"
+      },
+      "step4": {
+        "step": "步骤4：",
+        "content": "如有必要，为每张图片添加备注。"
+      },
+      "step5": {
+        "step": "步骤5：",
+        "content": "点击此<icon></icon>按钮以导出图片。"
+      },
+      "step6": {
+        "step": "步骤6：",
+        "content": "为了获得最佳的打印质量，请选择“Letter”纸张尺寸。"
+      }
+    },
+    "demo-title": "聊天记录PDF示例：",
+    "export-setting": {
+      "button": "导出PDF设置",
+      "title-header": "包含标题头？",
+      "title-name": "标题名称：",
+      "title-color": "标题颜色：",
+      "background-color": "背景颜色："
+    },
+    "drag-guide": "按住<icon></icon>按钮以更改下方图片的顺序。"
   }
 }

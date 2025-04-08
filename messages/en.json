@@ -154,5 +154,77 @@
       "button": "Export PDF Setting",
       "tooltip": "It’s best to filter the data before exporting the PDF"
     }
+  },
+
+  "chat-log": {
+    "warning-title": "Warning",
+    "warning": "Due to limitations in mobile browsers, only 1-6 pictures can be displayed at a time. To import more pictures, please use a desktop or laptop for a better experience.",
+    "upload": "Click to this area to upload images",
+    "upload-note": "Support for a multiple upload. Only support images file (JPG, PNG)",
+    "image-list-title": "These are chat log images:",
+    "upload-guide-mobile": {
+      "title": "How to upload images",
+      "step1": {
+        "step": "Step 1:",
+        "content": "Screenshot messenger chat log from your mobile phone. Here are some perfect examples below."
+      },
+      "step2": {
+        "step": "Step 2:",
+        "content": "Tap this <icon></icon> in the box above to upload your images."
+      },
+      "step3": {
+        "step": "Step 3:",
+        "content": "Tap and hold the <icon></icon> button, then drag to rearrange your images if needed."
+      },
+      "step4": {
+        "step": "Step 4:",
+        "content": "Add a note for each image if necessary."
+      },
+      "step5": {
+        "step": "Step 5:",
+        "content": "Tap this <icon></icon> button to export image."
+      },
+      "step6": {
+        "step": "Step 6:",
+        "content": "To get the best print quality, choose the 'Letter' page size."
+      }
+    },
+
+    "upload-guide-desktop": {
+      "title": "How to upload images",
+      "step1": {
+        "step": "Step 1:",
+        "content": "Screenshot messenger chat log from your mobile phone. Here are some perfect examples below."
+      },
+      "step2": {
+        "step": "Step 2:",
+        "content": "Click this <icon></icon> in the box above to upload your images."
+      },
+      "step3": {
+        "step": "Step 3:",
+        "content": "Click and hold the <icon></icon> button, then drag to rearrange your images if needed."
+      },
+      "step4": {
+        "step": "Step 4:",
+        "content": "Add a note for each image if necessary."
+      },
+      "step5": {
+        "step": "Step 5:",
+        "content": "Click this <icon></icon> button to export image."
+      },
+      "step6": {
+        "step": "Step 6:",
+        "content": "To get the best print quality, choose the 'Letter' page size."
+      }
+    },
+    "demo-title": "Demo Chat Logs PDF:",
+    "export-setting": {
+      "button": "Export PDF Setting",
+      "title-header": "Include title header ?",
+      "title-name": "Title name:",
+      "title-color": "Title color:",
+      "background-color": "Background color:"
+    },
+    "drag-guide": "Hold mouse on <icon></icon> button to change the order of pictures below."
   }
 }

@@ -152,5 +152,75 @@
       "button": "PDF Dışa Aktar",
       "tooltip": "PDF dışa aktarmadan önce verileri filtrelemek en iyisidir"
     }
+  },
+  "chat-log": {
+    "warning-title": "Uyarı",
+    "warning": "Mobil tarayıcılardaki sınırlamalar nedeniyle, aynı anda yalnızca 1-6 resim görüntülenebilir. Daha fazla resim içe aktarmak için, daha iyi bir deneyim için lütfen bir masaüstü veya dizüstü bilgisayar kullanın.",
+    "upload": "Resimleri yüklemek için bu alana tıklayın",
+    "upload-note": "Çoklu yükleme desteği. Yalnızca resim dosyalarını (JPG, PNG) destekler",
+    "image-list-title": "Bunlar sohbet günlüğü resimleridir:",
+    "upload-guide-mobile": {
+      "title": "Resimler nasıl yüklenir",
+      "step1": {
+        "step": "Adım 1:",
+        "content": "Cep telefonunuzdan Messenger sohbet günlüğünün ekran görüntüsünü alın. Aşağıda bazı mükemmel örnekler verilmiştir."
+      },
+      "step2": {
+        "step": "Adım 2:",
+        "content": "Resimlerinizi yüklemek için yukarıdaki kutudaki bu <icon></icon> öğesine dokunun."
+      },
+      "step3": {
+        "step": "Adım 3:",
+        "content": "Gerekirse resimlerinizi yeniden düzenlemek için <icon></icon> düğmesine dokunun ve basılı tutun, ardından sürükleyin."
+      },
+      "step4": {
+        "step": "Adım 4:",
+        "content": "Gerekirse her resim için bir not ekleyin."
+      },
+      "step5": {
+        "step": "Adım 5:",
+        "content": "Resmi dışa aktarmak için bu <icon></icon> düğmesine dokunun."
+      },
+      "step6": {
+        "step": "Adım 6:",
+        "content": "En iyi baskı kalitesini elde etmek için 'Letter' sayfa boyutunu seçin."
+      }
+    },
+    "upload-guide-desktop": {
+      "title": "Resimler nasıl yüklenir",
+      "step1": {
+        "step": "Adım 1:",
+        "content": "Cep telefonunuzdan Messenger sohbet günlüğünün ekran görüntüsünü alın. Aşağıda bazı mükemmel örnekler verilmiştir."
+      },
+      "step2": {
+        "step": "Adım 2:",
+        "content": "Resimlerinizi yüklemek için yukarıdaki kutudaki bu <icon></icon> öğesine tıklayın."
+      },
+      "step3": {
+        "step": "Adım 3:",
+        "content": "Gerekirse resimlerinizi yeniden düzenlemek için <icon></icon> düğmesine tıklayın ve basılı tutun, ardından sürükleyin."
+      },
+      "step4": {
+        "step": "Adım 4:",
+        "content": "Gerekirse her resim için bir not ekleyin."
+      },
+      "step5": {
+        "step": "Adım 5:",
+        "content": "Resmi dışa aktarmak için bu <icon></icon> düğmesine tıklayın."
+      },
+      "step6": {
+        "step": "Adım 6:",
+        "content": "En iyi baskı kalitesini elde etmek için 'Letter' sayfa boyutunu seçin."
+      }
+    },
+    "demo-title": "Demo Sohbet Günlükleri PDF:",
+    "export-setting": {
+      "button": "PDF Dışa Aktarma Ayarları",
+      "title-header": "Başlık üstbilgisi dahil edilsin mi?",
+      "title-name": "Başlık adı:",
+      "title-color": "Başlık rengi:",
+      "background-color": "Arka plan rengi:"
+    },
+    "drag-guide": "Aşağıdaki resimlerin sırasını değiştirmek için fareyi <icon></icon> düğmesinin üzerinde tutun."
   }
 }

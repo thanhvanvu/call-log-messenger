@@ -98,45 +98,11 @@ const ChatLogPdfSetting = (props: IProps) => {
         // Make sure to stop loading state after completion
         setIsloading(false);
       }
+    } else {
+      // set state, make sure filter function is completely before print
+      setTriggerPrint(true);
     }
-
-    // if (isMobile) {
-    //   const element = document.getElementById("element-to-capture");
-
-    //   if (!element) {
-    //     console.error("Element not found!");
-    //     return;
-    //   }
-
-    //   try {
-    //     // Use html2canvas to capture the element as an image
-    //     const canvas = await html2canvas(element, {
-    //       scale: 2, // Use higher scale for better quality
-    //       useCORS: true,
-    //       backgroundColor: "#ffffff", // Set white background if required
-    //     });
-
-    //     // Convert the canvas to an image URL
-    //     const imgData = canvas.toDataURL("image/jpeg", 1); // Convert canvas to JPG image data
-
-    //     // Create a new jsPDF instance
-    //     const doc = new jsPDF();
-
-    //     // Add the image to the PDF (you can adjust the image position and size)
-    //     doc.addImage(imgData, "JPEG", 0, 0, 180, 160); // (imgData, format, x, y, width, height)
-
-    //     // Save the PDF
-    //     doc.save("exported-image.pdf"); // Save with the desired file name
-    //   } catch (error) {
-    //     console.error("Error generating PDF:", error);
-    //   } finally {
-    //     // Make sure to stop loading state after completion
-    //     setIsloading(false);
-    //   }
-    // }
   };
-
-  const handleExportImage = async () => {};
 
   useEffect(() => {
     if (triggerPrint) {
@@ -173,13 +139,13 @@ const ChatLogPdfSetting = (props: IProps) => {
           setChatLogPdfSetting({ ...chatLogPdfSetting, title: e.target.checked });
         }}
       >
-        Include title header ?
+        {t("chat-log.export-setting.title-header")}
       </Checkbox>
 
       <div className="hidden"></div>
       <div className={`mt-3 flex flex-col gap-3  ${chatLogPdfSetting.title ? "" : "disabled"}`}>
         <div className="flex gap-2 items-center">
-          Title name:{" "}
+          {t("chat-log.export-setting.title-name")}
           <Input
             placeholder="July 4th 2025..."
             style={{ width: "50%" }}
@@ -191,7 +157,7 @@ const ChatLogPdfSetting = (props: IProps) => {
           />
         </div>
         <div className="flex gap-2 items-center">
-          Title color:
+          {t("chat-log.export-setting.title-color")}
           <ColorPicker
             showText
             value={chatLogPdfSetting.titleColor}
@@ -203,7 +169,7 @@ const ChatLogPdfSetting = (props: IProps) => {
         </div>
 
         <div className="flex gap-2 items-center">
-          Background color:
+          {t("chat-log.export-setting.background-color")}
           <ColorPicker
             showText
             value={chatLogPdfSetting.backgroundColor}

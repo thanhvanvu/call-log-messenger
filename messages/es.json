@@ -152,5 +152,75 @@
       "button": "Exportar PDF",
       "tooltip": "Es mejor filtrar los datos antes de exportar el PDF"
     }
+  },
+  "chat-log": {
+    "warning-title": "Advertencia",
+    "warning": "Debido a limitaciones en los navegadores móviles, solo se pueden mostrar de 1 a 6 imágenes a la vez. Para importar más imágenes, utilice una computadora de escritorio o portátil para una mejor experiencia.",
+    "upload": "Haga clic en esta área para cargar imágenes",
+    "upload-note": "Soporte para carga múltiple. Solo se admiten archivos de imagen (JPG, PNG)",
+    "image-list-title": "Estas son imágenes del registro de chat:",
+    "upload-guide-mobile": {
+      "title": "Cómo cargar imágenes",
+      "step1": {
+        "step": "Paso 1:",
+        "content": "Captura de pantalla del registro de chat de Messenger desde tu teléfono móvil. Aquí hay algunos ejemplos perfectos a continuación."
+      },
+      "step2": {
+        "step": "Paso 2:",
+        "content": "Toca este <icon></icon> en el cuadro de arriba para cargar tus imágenes."
+      },
+      "step3": {
+        "step": "Paso 3:",
+        "content": "Mantén pulsado el botón <icon></icon> y luego arrastra para reorganizar tus imágenes si es necesario."
+      },
+      "step4": {
+        "step": "Paso 4:",
+        "content": "Agrega una nota para cada imagen si es necesario."
+      },
+      "step5": {
+        "step": "Paso 5:",
+        "content": "Toca este botón <icon></icon> para exportar la imagen."
+      },
+      "step6": {
+        "step": "Paso 6:",
+        "content": "Para obtener la mejor calidad de impresión, elige el tamaño de página 'Carta'."
+      }
+    },
+    "upload-guide-desktop": {
+      "title": "Cómo cargar imágenes",
+      "step1": {
+        "step": "Paso 1:",
+        "content": "Captura de pantalla del registro de chat de Messenger desde tu teléfono móvil. Aquí hay algunos ejemplos perfectos a continuación."
+      },
+      "step2": {
+        "step": "Paso 2:",
+        "content": "Haz clic en este <icon></icon> en el cuadro de arriba para cargar tus imágenes."
+      },
+      "step3": {
+        "step": "Paso 3:",
+        "content": "Haz clic y mantén pulsado el botón <icon></icon>, luego arrastra para reorganizar tus imágenes si es necesario."
+      },
+      "step4": {
+        "step": "Paso 4:",
+        "content": "Agrega una nota para cada imagen si es necesario."
+      },
+      "step5": {
+        "step": "Paso 5:",
+        "content": "Haz clic en este botón <icon></icon> para exportar la imagen."
+      },
+      "step6": {
+        "step": "Paso 6:",
+        "content": "Para obtener la mejor calidad de impresión, elige el tamaño de página 'Carta'."
+      }
+    },
+    "demo-title": "PDF de Registros de Chat de Demostración:",
+    "export-setting": {
+      "button": "Configuración de Exportación de PDF",
+      "title-header": "¿Incluir encabezado de título?",
+      "title-name": "Nombre del título:",
+      "title-color": "Color del título:",
+      "background-color": "Color de fondo:"
+    },
+    "drag-guide": "Mantén el ratón sobre el botón <icon></icon> para cambiar el orden de las imágenes a continuación."
   }
 }

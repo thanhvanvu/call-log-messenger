@@ -152,5 +152,76 @@
       "button": "Xuất file PDF",
       "tooltip": "Nên lọc dữ liệu trước khi xuất file PDF"
     }
+  },
+
+  "chat-log": {
+    "warning-title": "Lưu ý",
+    "warning": "Do hạn chế của trình duyệt di động, chỉ có thể hiển thị 1-6 hình ảnh cùng một lúc. Để nhập nhiều hình ảnh hơn, vui lòng sử dụng máy tính để bàn hoặc laptop để có trải nghiệm tốt hơn.",
+    "upload": "Nhấp vào khu vực này để tải lên hình ảnh",
+    "upload-note": "Hỗ trợ tải lên nhiều tệp. Chỉ hỗ trợ tệp hình ảnh (JPG, PNG)",
+    "image-list-title": "Đây là các hình ảnh nhật ký trò chuyện:",
+    "upload-guide-mobile": {
+      "title": "Cách tải lên hình ảnh",
+      "step1": {
+        "step": "Bước 1:",
+        "content": "Chụp màn hình nhật ký trò chuyện messenger từ điện thoại di động của bạn. Dưới đây là một số ví dụ hoàn hảo."
+      },
+      "step2": {
+        "step": "Bước 2:",
+        "content": "Nhấn vào biểu tượng <icon></icon> trong hộp phía trên để tải lên hình ảnh của bạn."
+      },
+      "step3": {
+        "step": "Bước 3:",
+        "content": "Nhấn và giữ nút <icon></icon>, sau đó kéo để sắp xếp lại hình ảnh của bạn nếu cần."
+      },
+      "step4": {
+        "step": "Bước 4:",
+        "content": "Thêm ghi chú cho mỗi hình ảnh nếu cần thiết."
+      },
+      "step5": {
+        "step": "Bước 5:",
+        "content": "Nhấn vào nút <icon></icon> này để xuất hình ảnh."
+      },
+      "step6": {
+        "step": "Bước 6:",
+        "content": "Để có chất lượng in tốt nhất, chọn kích thước trang 'Letter'."
+      }
+    },
+    "upload-guide-desktop": {
+      "title": "Cách tải lên hình ảnh",
+      "step1": {
+        "step": "Bước 1:",
+        "content": "Chụp màn hình nhật ký trò chuyện messenger từ điện thoại di động của bạn. Dưới đây là một số ví dụ hoàn hảo."
+      },
+      "step2": {
+        "step": "Bước 2:",
+        "content": "Nhấp vào biểu tượng <icon></icon> trong hộp phía trên để tải lên hình ảnh của bạn."
+      },
+      "step3": {
+        "step": "Bước 3:",
+        "content": "Nhấp và giữ nút <icon></icon>, sau đó kéo để sắp xếp lại hình ảnh của bạn nếu cần."
+      },
+      "step4": {
+        "step": "Bước 4:",
+        "content": "Thêm ghi chú cho mỗi hình ảnh nếu cần thiết."
+      },
+      "step5": {
+        "step": "Bước 5:",
+        "content": "Nhấp vào nút <icon></icon> này để xuất hình ảnh."
+      },
+      "step6": {
+        "step": "Bước 6:",
+        "content": "Để có chất lượng in tốt nhất, chọn kích thước trang 'Letter'."
+      }
+    },
+    "demo-title": "Bản demo PDF nhật ký trò chuyện:",
+    "export-setting": {
+      "button": "Cài đặt xuất PDF",
+      "title-header": "Bao gồm tiêu đề?",
+      "title-name": "Tên tiêu đề:",
+      "title-color": "Màu tiêu đề:",
+      "background-color": "Màu nền:"
+    },
+    "drag-guide": "Giữ chuột trên nút <icon></icon> để thay đổi thứ tự của các hình ảnh bên dưới."
   }
 }

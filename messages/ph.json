@@ -154,5 +154,75 @@
       "button": "I-export ang Setting ng PDF",
       "tooltip": "Pinakamabuting i-filter ang data bago i-export ang PDF"
     }
+  },
+  "chat-log": {
+    "warning-title": "Babala",
+    "warning": "Dahil sa mga limitasyon sa mga mobile browser, 1-6 na larawan lamang ang maaaring ipakita sa isang pagkakataon. Upang mag-import ng higit pang mga larawan, mangyaring gumamit ng desktop o laptop para sa mas mahusay na karanasan.",
+    "upload": "I-click ang lugar na ito upang mag-upload ng mga larawan",
+    "upload-note": "Suporta para sa maramihang pag-upload. Mga file ng imahe lamang ang sinusuportahan (JPG, PNG)",
+    "image-list-title": "Ito ang mga larawan ng log ng chat:",
+    "upload-guide-mobile": {
+      "title": "Paano mag-upload ng mga larawan",
+      "step1": {
+        "step": "Hakbang 1:",
+        "content": "Kumuha ng screenshot ng log ng chat ng messenger mula sa iyong mobile phone. Narito ang ilang perpektong halimbawa sa ibaba."
+      },
+      "step2": {
+        "step": "Hakbang 2:",
+        "content": "I-tap ang <icon></icon> na ito sa kahon sa itaas upang i-upload ang iyong mga larawan."
+      },
+      "step3": {
+        "step": "Hakbang 3:",
+        "content": "I-tap at i-hold ang <icon></icon> na button, pagkatapos ay i-drag upang muling ayusin ang iyong mga larawan kung kinakailangan."
+      },
+      "step4": {
+        "step": "Hakbang 4:",
+        "content": "Magdagdag ng tala para sa bawat larawan kung kinakailangan."
+      },
+      "step5": {
+        "step": "Hakbang 5:",
+        "content": "I-tap ang <icon></icon> na button na ito upang i-export ang larawan."
+      },
+      "step6": {
+        "step": "Hakbang 6:",
+        "content": "Upang makuha ang pinakamahusay na kalidad ng pag-print, piliin ang laki ng pahina na 'Letter'."
+      }
+    },
+    "upload-guide-desktop": {
+      "title": "Paano mag-upload ng mga larawan",
+      "step1": {
+        "step": "Hakbang 1:",
+        "content": "Kumuha ng screenshot ng log ng chat ng messenger mula sa iyong mobile phone. Narito ang ilang perpektong halimbawa sa ibaba."
+      },
+      "step2": {
+        "step": "Hakbang 2:",
+        "content": "I-click ang <icon></icon> na ito sa kahon sa itaas upang i-upload ang iyong mga larawan."
+      },
+      "step3": {
+        "step": "Hakbang 3:",
+        "content": "I-click at i-hold ang <icon></icon> na button, pagkatapos ay i-drag upang muling ayusin ang iyong mga larawan kung kinakailangan."
+      },
+      "step4": {
+        "step": "Hakbang 4:",
+        "content": "Magdagdag ng tala para sa bawat larawan kung kinakailangan."
+      },
+      "step5": {
+        "step": "Hakbang 5:",
+        "content": "I-click ang <icon></icon> na button na ito upang i-export ang larawan."
+      },
+      "step6": {
+        "step": "Hakbang 6:",
+        "content": "Upang makuha ang pinakamahusay na kalidad ng pag-print, piliin ang laki ng pahina na 'Letter'."
+      }
+    },
+    "demo-title": "Demo Chat Logs PDF:",
+    "export-setting": {
+      "button": "Mga Setting ng Pag-export ng PDF",
+      "title-header": "Isama ang header ng pamagat?",
+      "title-name": "Pangalan ng pamagat:",
+      "title-color": "Kulay ng pamagat:",
+      "background-color": "Kulay ng background:"
+    },
+    "drag-guide": "I-hold ang mouse sa <icon></icon> na button upang baguhin ang pagkakasunud-sunod ng mga larawan sa ibaba."
   }
 }

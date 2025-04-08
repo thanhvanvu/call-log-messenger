@@ -154,15 +154,10 @@ const ChatLog = () => {
         <MobileView>
           <Alert
             className="mt-2"
-            message="Warning"
+            message={t("chat-log.warning-title")}
             type="warning"
             showIcon
-            description={
-              <div className="text-justify">
-                Due to limitations in mobile browsers, only 1-6 pictures can be displayed at a time.
-                To import more pictures, please use a desktop or laptop for a better experience.
-              </div>
-            }
+            description={<div className="">{t("chat-log.warning")}</div>}
             closable
           />
         </MobileView>
@@ -173,10 +168,8 @@ const ChatLog = () => {
               <p className="ant-upload-drag-icon ">
                 <InboxOutlined />
               </p>
-              <p className="ant-upload-text">Click to this area to upload images</p>
-              <p className="ant-upload-hint">
-                Support for a multiple upload. Only support images file (JPG, PNG)
-              </p>
+              <p className="ant-upload-text">{t("chat-log.upload")}</p>
+              <p className="ant-upload-hint">{t("chat-log.upload-note")}</p>
             </div>
           </Dragger>
         </div>
@@ -189,7 +182,7 @@ const ChatLog = () => {
           <div className="  w-[100%] lg:w-[85%] 2xl:w-[60%] m-auto mt-4">
             <div className="flex items-center justify-between">
               <div className=" font-bold text-2xl py-2">
-                <h1 className="hidden md:block">These are chat log images:</h1>
+                <h1 className="hidden md:block">{t("chat-log.image-list-title")}</h1>
               </div>
               <div className="flex gap-4">
                 <MobileView>
@@ -202,7 +195,7 @@ const ChatLog = () => {
                     }}
                   >
                     <SettingOutlined />
-                    Export Image Setting
+                    {t("chat-log.export-setting.button")}
                   </Button>
                 </MobileView>
                 <BrowserView>
@@ -222,16 +215,18 @@ const ChatLog = () => {
             </div>
 
             <div className="italic mt-3">
-              Hold mouse on
-              <Button
-                type="primary"
-                icon={<RiDragMove2Fill />}
-                size="middle"
-                style={{ marginLeft: "10px", marginRight: "10px" }}
-              >
-                Drag
-              </Button>
-              button to change the order of pictures below
+              {t.rich("chat-log.drag-guide", {
+                icon: (chunk) => (
+                  <Button
+                    type="primary"
+                    icon={<RiDragMove2Fill />}
+                    size="middle"
+                    style={{ marginLeft: "10px", marginRight: "10px" }}
+                  >
+                    Drag
+                  </Button>
+                ),
+              })}
             </div>
 
             <DndContext
@@ -259,7 +254,7 @@ const ChatLog = () => {
         ) : (
           <div className="h-screen flex flex-col justify-center items-center mt-4">
             <div className="w-[100%] lg:w-[85%] 2xl:w-[60%] h-screen">
-              <h1 className="font-bold text-2xl py-2">Demo Chat Logs PDF:</h1>
+              <h1 className="font-bold text-2xl py-2"> {t("chat-log.demo-title")}</h1>
               {isMobile || isTablet ? (
                 <div className="lg:flex gap-5 ">
                   <Image
