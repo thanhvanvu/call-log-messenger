@@ -27,7 +27,7 @@ const ChatLogExportMobile = (props: IProps) => {
   }, [chatLogImages]);
   return (
     <>
-      <div className=" mx-auto bg-white" id="element-to-capture">
+      <div className="mx-auto bg-white" id="element-to-capture" style={{ overflow: "visible" }}>
         {chatLogPdfSetting?.title && (
           <h1
             className="text-xl font-bold border text-center h-[45px]"
@@ -45,9 +45,9 @@ const ChatLogExportMobile = (props: IProps) => {
           chatLogExport.map((pageChatLog: IChatLog[], index: number) => {
             return (
               <div
-                className={`grid grid-cols-3 justify-items-center gap-y-5  ${
+                className={`grid grid-cols-3 justify-items-center gap-y-5 ${
                   index >= 1 ? "pt-10" : "mt-4"
-                } `}
+                } pb-8`}
                 key={index}
               >
                 {pageChatLog.map((chatLog: IChatLog, index: number) => {
@@ -55,7 +55,9 @@ const ChatLogExportMobile = (props: IProps) => {
                     <>
                       <div key={index} className={`flex flex-col justify-center items-center`}>
                         <Image alt="" src={chatLog.imageUrl} width={210} className="border" />
-                        <p className="text-center">{chatLog.note ? chatLog.note : "\u00A0"}</p>
+                        <p className="text-center min-h-[24px] leading-snug break-words px-1">
+                          {chatLog.note ? chatLog.note : "\u00A0"}
+                        </p>
                       </div>
                     </>
                   );

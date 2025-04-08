@@ -67,6 +67,7 @@ const ChatLogPdfSetting = (props: IProps) => {
           scale: 2, // Use higher scale for better quality
           useCORS: true,
           backgroundColor: "#ffffff", // Set white background if required
+          scrollY: -window.scrollY, // fix scroll offset if needed
         });
 
         // Convert the canvas to an image URL
@@ -84,10 +85,10 @@ const ChatLogPdfSetting = (props: IProps) => {
         // Assuming you want to fit the image inside the Letter page size
         const pageWidth = doc.internal.pageSize.width; // Width of the Letter size page
         const pageHeight = doc.internal.pageSize.height; // Height of the Letter size page
-        const imageWidth = pageWidth - 20; // Leave some margin (10mm on each side)
+        const imageWidth = pageWidth - 16; // Leave some margin (10mm on each side)
         const imageHeight = (canvas.height * imageWidth) / canvas.width; // Maintain aspect ratio
 
-        doc.addImage(imgData, "JPEG", 10, 10, imageWidth, 240);
+        doc.addImage(imgData, "JPEG", 10, 10, imageWidth, imageHeight);
 
         // Save the PDF
         doc.save("exported-image.pdf"); // Save with the desired file name
@@ -223,7 +224,6 @@ const ChatLogPdfSetting = (props: IProps) => {
         </h1>
       </div>
 
-      <Image src={image} alt="" />
       <div
         style={{
           position: "absolute",
