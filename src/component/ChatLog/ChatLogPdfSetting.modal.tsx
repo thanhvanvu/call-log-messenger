@@ -83,7 +83,7 @@ const ChatLogPdfSetting = (props: IProps) => {
         const imageWidth = pageWidth - 16; // Leave some margin (10mm on each side)
         const imageHeight = (canvas.height * imageWidth) / canvas.width; // Maintain aspect ratio
 
-        doc.addImage(imgData, "JPEG", 10, 10, imageWidth, imageHeight);
+        doc.addImage(imgData, "JPEG", 10, 8, imageWidth, imageHeight);
 
         // Save the PDF
         doc.save("exported-image.pdf"); // Save with the desired file name
