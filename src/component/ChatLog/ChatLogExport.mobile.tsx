@@ -28,7 +28,7 @@ const ChatLogExportMobile = (props: IProps) => {
   return (
     <>
       <div className="mx-auto bg-white" id="element-to-capture" style={{ overflow: "visible" }}>
-        {chatLogPdfSetting?.title && (
+        {chatLogPdfSetting?.title ? (
           <h1
             className="text-xl font-bold border text-center h-[45px]"
             style={{
@@ -38,6 +38,8 @@ const ChatLogExportMobile = (props: IProps) => {
           >
             {chatLogPdfSetting.titleContent}
           </h1>
+        ) : (
+          <h1 className=" h-[15px]"></h1>
         )}
 
         {chatLogExport &&
