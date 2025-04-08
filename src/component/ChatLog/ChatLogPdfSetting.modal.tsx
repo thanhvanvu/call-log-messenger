@@ -73,7 +73,7 @@ const ChatLogPdfSetting = (props: IProps) => {
         // Create a new jsPDF instance with Letter size (215.9 x 279.4 mm)
         const doc = new jsPDF({
           unit: "mm", // Set unit to millimeters (default is mm)
-          format: [215.9, 285], // Letter size in mm (8.5 x 11 inches)
+          format: [215.9, 279.4], // Letter size in mm (8.5 x 11 inches)
         });
 
         // Add the image to the PDF (adjust the position and size based on the Letter size)
@@ -83,7 +83,7 @@ const ChatLogPdfSetting = (props: IProps) => {
         const imageWidth = pageWidth - 16; // Leave some margin (10mm on each side)
         const imageHeight = (canvas.height * imageWidth) / canvas.width; // Maintain aspect ratio
 
-        doc.addImage(imgData, "JPEG", 10, 8, imageWidth, imageHeight);
+        doc.addImage(imgData, "JPEG", 10, 5, imageWidth, 250);
 
         // Save the PDF
         doc.save("exported-image.pdf"); // Save with the desired file name
@@ -95,40 +95,40 @@ const ChatLogPdfSetting = (props: IProps) => {
       }
     }
 
-    if (isMobile) {
-      const element = document.getElementById("element-to-capture");
+    // if (isMobile) {
+    //   const element = document.getElementById("element-to-capture");
 
-      if (!element) {
-        console.error("Element not found!");
-        return;
-      }
+    //   if (!element) {
+    //     console.error("Element not found!");
+    //     return;
+    //   }
 
-      try {
-        // Use html2canvas to capture the element as an image
-        const canvas = await html2canvas(element, {
-          scale: 2, // Use higher scale for better quality
-          useCORS: true,
-          backgroundColor: "#ffffff", // Set white background if required
-        });
+    //   try {
+    //     // Use html2canvas to capture the element as an image
+    //     const canvas = await html2canvas(element, {
+    //       scale: 2, // Use higher scale for better quality
+    //       useCORS: true,
+    //       backgroundColor: "#ffffff", // Set white background if required
+    //     });
 
-        // Convert the canvas to an image URL
-        const imgData = canvas.toDataURL("image/jpeg", 1); // Convert canvas to JPG image data
+    //     // Convert the canvas to an image URL
+    //     const imgData = canvas.toDataURL("image/jpeg", 1); // Convert canvas to JPG image data
 
-        // Create a new jsPDF instance
-        const doc = new jsPDF();
+    //     // Create a new jsPDF instance
+    //     const doc = new jsPDF();
 
-        // Add the image to the PDF (you can adjust the image position and size)
-        doc.addImage(imgData, "JPEG", 0, 0, 180, 160); // (imgData, format, x, y, width, height)
+    //     // Add the image to the PDF (you can adjust the image position and size)
+    //     doc.addImage(imgData, "JPEG", 0, 0, 180, 160); // (imgData, format, x, y, width, height)
 
-        // Save the PDF
-        doc.save("exported-image.pdf"); // Save with the desired file name
-      } catch (error) {
-        console.error("Error generating PDF:", error);
-      } finally {
-        // Make sure to stop loading state after completion
-        setIsloading(false);
-      }
-    }
+    //     // Save the PDF
+    //     doc.save("exported-image.pdf"); // Save with the desired file name
+    //   } catch (error) {
+    //     console.error("Error generating PDF:", error);
+    //   } finally {
+    //     // Make sure to stop loading state after completion
+    //     setIsloading(false);
+    //   }
+    // }
   };
 
   const handleExportImage = async () => {};
