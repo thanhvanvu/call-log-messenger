@@ -73,7 +73,7 @@ const ChatLogPdfSetting = (props: IProps) => {
         // Create a new jsPDF instance with Letter size (215.9 x 279.4 mm)
         const doc = new jsPDF({
           unit: "mm", // Set unit to millimeters (default is mm)
-          format: [215.9, 279.4], // Letter size in mm (8.5 x 11 inches)
+          format: [215.9, 285], // Letter size in mm (8.5 x 11 inches)
         });
 
         // Add the image to the PDF (adjust the position and size based on the Letter size)
