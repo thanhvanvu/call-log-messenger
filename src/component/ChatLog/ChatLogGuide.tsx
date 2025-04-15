@@ -133,6 +133,15 @@ const ChatLogGuide = () => {
       label: t("chat-log.upload-guide-mobile.title"),
       children: (
         <div>
+          <iframe
+            src="https://www.youtube.com/embed/Lr_KP_vGQAY"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            className="w-full"
+            height={350}
+          ></iframe>
           <ul className="992:list-disc list-inside  text-gray-700 mt-2 flex flex-col gap-3">
             <li>
               <div className="inline-block">

@@ -57,7 +57,7 @@ const ChatLog = () => {
   const props: UploadProps = {
     name: "file",
     multiple: true,
-    accept: ".jpg",
+    accept: ".jpg,.jpeg,.png,.svg,.webp,.gif",
     maxCount: isMobile ? 6 : 100000,
 
     beforeUpload: (file: UploadFile) => {
@@ -67,7 +67,6 @@ const ChatLog = () => {
         "image/svg+xml",
         "image/webp",
         "image/gif",
-        "image/apng",
       ];
       const isAllowedType = validateFileType(file, allowedTypes);
       if (!isAllowedType) {
@@ -76,6 +75,29 @@ const ChatLog = () => {
       }
       return true;
     },
+
+    // onChange(info) {
+    //   console.log(info);
+    //   const newFileList = info.fileList.map((file) => {
+    //     // If uploaded, mark as done
+    //     if (file.status === "done" && file.originFileObj) {
+    //       return { ...file, status: "done" };
+    //     }
+    //     return file;
+    //   });
+
+    //   // @ts-ignore
+    //   setFileList(newFileList);
+
+    //   const allDone = newFileList.every((file) => file.status === "done");
+    //   const { status } = info.file;
+
+    //   if (allDone && status === "done") {
+    //     messageApi.success(`${newFileList.length} files uploaded successfully.`);
+    //   } else if (status === "error") {
+    //     messageApi.error(`${info.file.name} file upload failed.`);
+    //   }
+    // },
 
     onChange(info) {
       const newFileList = [...info.fileList];
@@ -105,12 +127,14 @@ const ChatLog = () => {
   useEffect(() => {
     const processFiles = async () => {
       const chatLogArray: IChatLog[] = [];
+
       for (let index = 0; index < fileList.length; index++) {
         const file = fileList[index].originFileObj;
         if (file) {
           const fileContent = await readFileAsImage(file); // Read file as text
-
+          console.log(file);
           chatLogArray.push({
+            uid: file.uid,
             id: index,
             imageUrl: fileContent,
             note: "",
@@ -239,12 +263,25 @@ const ChatLog = () => {
                   {chatLogImages &&
                     chatLogImages.map((image, index) => {
                       return (
-                        <ImageInformation
-                          id={image.id}
-                          image={image}
-                          key={image.id}
-                          index={index}
-                        />
+                        <>
+                          <ImageInformation
+                            id={image.id}
+                            image={image}
+                            key={image.id}
+                            index={index}
+                          />
+                          {/* <Button
+                            onClick={() => {
+                              console.log(image);
+                              const fileListFiltered = fileList.filter(
+                                (item) => item.uid != image.uid
+                              );
+                              setFileList(fileListFiltered);
+                            }}
+                          >
+                            X
+                          </Button> */}
+                        </>
                       );
                     })}
                 </SortableContext>

@@ -91,6 +91,7 @@ declare global {
   type Sorts = GetSingle<Parameters<OnChange>[2]>;
 
   interface IChatLog {
+    uid: string;
     id: number;
     imageUrl: string;
     note: string; // Allow both string and number
