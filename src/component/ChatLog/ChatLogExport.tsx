@@ -31,7 +31,7 @@ const ChatLogExport = (props: IProps) => {
       <div className="w-[8.5in] mx-auto bg-white chatLogPrintPage" ref={contentRef}>
         {chatLogPdfSetting?.title && (
           <h1
-            className="text-2xl font-bold text-center border"
+            className="text-xl font-bold text-center border"
             style={{
               backgroundColor: chatLogPdfSetting.backgroundColor,
               color: chatLogPdfSetting.titleColor,
@@ -54,10 +54,13 @@ const ChatLogExport = (props: IProps) => {
                 {pageChatLog.map((chatLog: IChatLog, index: number) => {
                   return (
                     <>
-                      <div key={index} className={`flex flex-col justify-center items-center p-1`}>
-                        <div className="border border-black p-[1px]">
-                          <Image alt="" src={chatLog.imageUrl} width={210} />
-                        </div>
+                      <div key={index} className={`flex flex-col justify-center items-center`}>
+                        <Image
+                          alt=""
+                          src={chatLog.imageUrl}
+                          width={210}
+                          className="border border-black p-[1px]"
+                        />
 
                         <p className="text-center">{chatLog.note ? chatLog.note : "\u00A0"}</p>
                       </div>
