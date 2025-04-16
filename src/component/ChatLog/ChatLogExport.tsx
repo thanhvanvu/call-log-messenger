@@ -54,8 +54,11 @@ const ChatLogExport = (props: IProps) => {
                 {pageChatLog.map((chatLog: IChatLog, index: number) => {
                   return (
                     <>
-                      <div key={index} className={`flex flex-col justify-center items-center`}>
-                        <Image alt="" src={chatLog.imageUrl} width={210} className="border" />
+                      <div key={index} className={`flex flex-col justify-center items-center p-1`}>
+                        <div className="border border-black p-[1px]">
+                          <Image alt="" src={chatLog.imageUrl} width={210} />
+                        </div>
+
                         <p className="text-center">{chatLog.note ? chatLog.note : "\u00A0"}</p>
                       </div>
                     </>

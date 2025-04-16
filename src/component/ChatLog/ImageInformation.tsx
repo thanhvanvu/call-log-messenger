@@ -1,6 +1,6 @@
 import { useCurrentApp } from "@/context/app.context";
 import { useSortable } from "@dnd-kit/sortable";
-import { Button, Image, Modal } from "antd";
+import { Button, Image, Modal, UploadFile } from "antd";
 import { CSS } from "@dnd-kit/utilities";
 import TextArea from "antd/es/input/TextArea";
 import React, { useState } from "react";
@@ -10,12 +10,14 @@ interface IProps {
   id: number;
   image: IChatLog;
   index: number;
+  fileList: UploadFile[];
+  setFileList: (files: UploadFile[]) => void;
 }
 
 const ImageInformation = (props: IProps) => {
   const { chatLogImages, setChatLogImages } = useCurrentApp();
 
-  const { id, image, index } = props;
+  const { id, image, index, fileList, setFileList } = props;
 
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
 
@@ -38,18 +40,30 @@ const ImageInformation = (props: IProps) => {
         </div>
       </Button>
       <Image alt="" width={100} src={image.imageUrl} preview={true} />
-      <TextArea
-        showCount
-        placeholder={`Image note:\nLimit 30 characters\nFirst messenger chat, First date... (Optional)`}
-        rows={4}
-        maxLength={30}
-        value={image.note} // ✅ Use bracket notation
-        onChange={(e) => {
-          const newChatLogList = [...chatLogImages];
-          newChatLogList[index].note = e.target.value;
-          setChatLogImages(newChatLogList);
-        }}
-      />
+      <div className="h-full w-full flex gap-2">
+        <TextArea
+          className="h-full"
+          showCount
+          placeholder={`Image note:\nLimit 30 characters\nFirst messenger chat, First date... (Optional)`}
+          rows={4}
+          maxLength={30}
+          value={image.note} // ✅ Use bracket notation
+          onChange={(e) => {
+            const newChatLogList = [...chatLogImages];
+            newChatLogList[index].note = e.target.value;
+            setChatLogImages(newChatLogList);
+          }}
+        />
+        <Button
+          size="small"
+          onClick={() => {
+            const fileListFiltered = fileList.filter((item) => item.uid != image.uid);
+            setFileList(fileListFiltered);
+          }}
+        >
+          X
+        </Button>
+      </div>
     </div>
   );
 };

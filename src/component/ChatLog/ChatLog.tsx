@@ -28,12 +28,14 @@ import { RiDragMove2Fill } from "react-icons/ri";
 import ChatLogPdfSetting from "./ChatLogPdfSetting.modal";
 import ChatLogGuide from "./ChatLogGuide";
 import { BrowserView, isMobile, isTablet, MobileView } from "react-device-detect";
+import { MdDelete } from "react-icons/md";
 
 const ChatLog = () => {
   const { chatLogImages, setChatLogImages } = useCurrentApp();
   const [triggerPrint, setTriggerPrint] = useState<boolean>(false);
   const [messageApi, contextHolder] = message.useMessage();
   const [fileList, setFileList] = useState<UploadFile[]>([]);
+  const [isUploadSuccess, setIsUploadSuccess] = useState<boolean>(false);
   const [isShowModal, setIsShowModal] = useState<boolean>(false);
 
   const t = useTranslations();
@@ -76,72 +78,72 @@ const ChatLog = () => {
       return true;
     },
 
-    // onChange(info) {
-    //   console.log(info);
-    //   const newFileList = info.fileList.map((file) => {
-    //     // If uploaded, mark as done
-    //     if (file.status === "done" && file.originFileObj) {
-    //       return { ...file, status: "done" };
-    //     }
-    //     return file;
-    //   });
-
-    //   // @ts-ignore
-    //   setFileList(newFileList);
-
-    //   const allDone = newFileList.every((file) => file.status === "done");
-    //   const { status } = info.file;
-
-    //   if (allDone && status === "done") {
-    //     messageApi.success(`${newFileList.length} files uploaded successfully.`);
-    //   } else if (status === "error") {
-    //     messageApi.error(`${info.file.name} file upload failed.`);
-    //   }
-    // },
-
     onChange(info) {
-      const newFileList = [...info.fileList];
-
-      // Check if all files are uploaded
+      const newFileList = info.fileList.map((file) => {
+        // If uploaded, mark as done
+        if (file.status === "done" && file.originFileObj) {
+          return { ...file, status: "done" };
+        }
+        return file;
+      });
+      // @ts-ignore
+      setFileList(newFileList);
       const allDone = newFileList.every((file) => file.status === "done");
       const { status } = info.file;
 
-      if (allDone && status == "done") {
-        setFileList(newFileList);
+      if (allDone && status === "done") {
+        setIsUploadSuccess(true);
         messageApi.success(`${newFileList.length} files uploaded successfully.`);
       } else if (status === "error") {
         messageApi.error(`${info.file.name} file upload failed.`);
       }
     },
 
+    // onChange(info) {
+    //   const newFileList = [...info.fileList];
+
+    //   // Check if all files are uploaded
+    //   const allDone = newFileList.every((file) => file.status === "done");
+    //   const { status } = info.file;
+
+    //   if (allDone && status == "done") {
+    //     setFileList(newFileList);
+    //     messageApi.success(`${newFileList.length} files uploaded successfully.`);
+    //   } else if (status === "error") {
+    //     messageApi.error(`${info.file.name} file upload failed.`);
+    //   }
+    // },
+
     onDrop(e) {
       console.log("Dropped files", e.dataTransfer.files);
     },
 
     onRemove(file) {
-      const fileListFiltered = fileList.filter((item) => item.uid != file.uid);
-      setFileList(fileListFiltered);
+      if (fileList && fileList.length > 0) {
+        const fileListFiltered = fileList.filter((item) => item.uid != file.uid);
+        setFileList(fileListFiltered);
+      }
     },
   };
 
   useEffect(() => {
     const processFiles = async () => {
-      const chatLogArray: IChatLog[] = [];
-
-      for (let index = 0; index < fileList.length; index++) {
-        const file = fileList[index].originFileObj;
-        if (file) {
-          const fileContent = await readFileAsImage(file); // Read file as text
-          console.log(file);
-          chatLogArray.push({
-            uid: file.uid,
-            id: index,
-            imageUrl: fileContent,
-            note: "",
-          });
+      if (fileList && fileList.length > 0) {
+        const chatLogArray: IChatLog[] = [];
+        for (let index = 0; index < fileList.length; index++) {
+          const file = fileList[index].originFileObj;
+          if (file) {
+            const fileContent = await readFileAsImage(file); // Read file as text
+            chatLogArray.push({
+              uid: file.uid,
+              id: index,
+              imageUrl: fileContent,
+              note: "",
+            });
+          }
         }
+        setChatLogImages(chatLogArray);
       }
-      setChatLogImages(chatLogArray);
     };
 
     try {
@@ -151,6 +153,11 @@ const ChatLog = () => {
     }
     // Start processing files
     processFiles();
+
+    // for UX bug
+    if (fileList.length === 0) {
+      setIsUploadSuccess(false);
+    }
   }, [fileList]);
 
   const getImageInformationPos = (id: number) => {
@@ -187,7 +194,11 @@ const ChatLog = () => {
         </MobileView>
 
         <div className="mt-4">
-          <Dragger className="block m-auto mt-20 lg:w-[70%] 2xl:w-[60%] 3xl:w-[40%]" {...props}>
+          <Dragger
+            className="block m-auto mt-20 lg:w-[70%] 2xl:w-[60%] 3xl:w-[40%]"
+            {...props}
+            fileList={fileList}
+          >
             <div className="">
               <p className="ant-upload-drag-icon ">
                 <InboxOutlined />
@@ -202,7 +213,7 @@ const ChatLog = () => {
           <ChatLogGuide />
         </div>
 
-        {fileList && fileList.length > 0 ? (
+        {isUploadSuccess === true && fileList && fileList.length > 0 ? (
           <div className="  w-[100%] lg:w-[85%] 2xl:w-[60%] m-auto mt-4">
             <div className="flex items-center justify-between">
               <div className=" font-bold text-2xl py-2">
@@ -238,19 +249,21 @@ const ChatLog = () => {
               </div>
             </div>
 
-            <div className="italic mt-3">
-              {t.rich("chat-log.drag-guide", {
-                icon: (chunk) => (
-                  <Button
-                    type="primary"
-                    icon={<RiDragMove2Fill />}
-                    size="middle"
-                    style={{ marginLeft: "10px", marginRight: "10px" }}
-                  >
-                    Drag
-                  </Button>
-                ),
-              })}
+            <div className="italic mt-3 flex justify-between">
+              <span>
+                {t.rich("chat-log.drag-guide", {
+                  icon: (chunk) => (
+                    <Button
+                      type="primary"
+                      icon={<RiDragMove2Fill />}
+                      size="middle"
+                      style={{ marginLeft: "10px", marginRight: "10px" }}
+                    >
+                      Drag
+                    </Button>
+                  ),
+                })}
+              </span>
             </div>
 
             <DndContext
@@ -258,6 +271,18 @@ const ChatLog = () => {
               collisionDetection={closestCorners}
               onDragEnd={handleDragEnd}
             >
+              <div className="text-right mt-2">
+                <Button
+                  icon={<MdDelete />}
+                  type="primary"
+                  danger
+                  onClick={() => {
+                    setFileList([]);
+                  }}
+                >
+                  Delete all images
+                </Button>
+              </div>
               <div className="grid gap-x-14 gap-y-10 m-auto mt-4 992:grid-cols-2 ">
                 <SortableContext items={chatLogImages} strategy={rectSortingStrategy}>
                   {chatLogImages &&
@@ -265,22 +290,13 @@ const ChatLog = () => {
                       return (
                         <>
                           <ImageInformation
+                            fileList={fileList}
+                            setFileList={setFileList}
                             id={image.id}
                             image={image}
                             key={image.id}
                             index={index}
                           />
-                          {/* <Button
-                            onClick={() => {
-                              console.log(image);
-                              const fileListFiltered = fileList.filter(
-                                (item) => item.uid != image.uid
-                              );
-                              setFileList(fileListFiltered);
-                            }}
-                          >
-                            X
-                          </Button> */}
                         </>
                       );
                     })}
