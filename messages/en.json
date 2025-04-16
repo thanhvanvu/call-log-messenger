@@ -162,6 +162,7 @@
     "upload": "Click to this area to upload images",
     "upload-note": "Support for a multiple upload. Only support images file (JPG, PNG)",
     "image-list-title": "These are chat log images:",
+    "delete-all": "Delete all images",
     "upload-guide-mobile": {
       "title": "How to upload images",
       "step1": {

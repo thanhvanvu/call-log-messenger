@@ -159,6 +159,7 @@
     "upload": "Haga clic en esta área para cargar imágenes",
     "upload-note": "Soporte para carga múltiple. Solo se admiten archivos de imagen (JPG, PNG)",
     "image-list-title": "Estas son imágenes del registro de chat:",
+    "delete-all": "Eliminar todas las imágenes",
     "upload-guide-mobile": {
       "title": "Cómo cargar imágenes",
       "step1": {

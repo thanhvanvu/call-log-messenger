@@ -159,6 +159,7 @@
     "upload": "この領域をクリックして画像をアップロードします",
     "upload-note": "複数アップロードをサポートします。画像ファイル（JPG、PNG）のみをサポートします",
     "image-list-title": "これらはチャットログ画像です：",
+    "delete-all": "すべての画像を削除",
     "upload-guide-mobile": {
       "title": "画像をアップロードする方法",
       "step1": {

@@ -159,6 +159,7 @@
     "upload": "Resimleri yüklemek için bu alana tıklayın",
     "upload-note": "Çoklu yükleme desteği. Yalnızca resim dosyalarını (JPG, PNG) destekler",
     "image-list-title": "Bunlar sohbet günlüğü resimleridir:",
+    "delete-all": "Tüm resimleri sil",
     "upload-guide-mobile": {
       "title": "Resimler nasıl yüklenir",
       "step1": {

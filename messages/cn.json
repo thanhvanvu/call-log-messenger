@@ -159,6 +159,7 @@
     "upload": "点击此区域上传图片",
     "upload-note": "支持多文件上传。仅支持图片文件（JPG，PNG）",
     "image-list-title": "以下是聊天记录图片：",
+    "delete-all": "删除所有图片",
     "upload-guide-mobile": {
       "title": "如何上传图片",
       "step1": {

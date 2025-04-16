@@ -159,6 +159,7 @@
     "upload": "Klik op dit gebied om afbeeldingen te uploaden",
     "upload-note": "Ondersteuning voor meervoudig uploaden. Ondersteunt alleen afbeeldingsbestanden (JPG, PNG)",
     "image-list-title": "Dit zijn chatlogafbeeldingen:",
+    "delete-all": "Alle afbeeldingen verwijderen",
     "upload-guide-mobile": {
       "title": "Afbeeldingen uploaden",
       "step1": {

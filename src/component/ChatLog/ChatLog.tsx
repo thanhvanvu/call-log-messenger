@@ -280,7 +280,7 @@ const ChatLog = () => {
                     setFileList([]);
                   }}
                 >
-                  Delete all images
+                  {t("chat-log.delete-all")}
                 </Button>
               </div>
               <div className="grid gap-x-14 gap-y-10 m-auto mt-4 992:grid-cols-2 ">

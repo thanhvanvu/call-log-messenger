@@ -1,10 +1,11 @@
 import { useCurrentApp } from "@/context/app.context";
 import { useSortable } from "@dnd-kit/sortable";
-import { Button, Image, Modal, UploadFile } from "antd";
+import { Button, Image, Modal, Tooltip, UploadFile } from "antd";
 import { CSS } from "@dnd-kit/utilities";
 import TextArea from "antd/es/input/TextArea";
 import React, { useState } from "react";
 import { RiDragMove2Fill } from "react-icons/ri";
+import { AiOutlineDelete } from "react-icons/ai";
 
 interface IProps {
   id: number;
@@ -54,15 +55,15 @@ const ImageInformation = (props: IProps) => {
             setChatLogImages(newChatLogList);
           }}
         />
-        <Button
-          size="small"
+
+        <AiOutlineDelete
+          className="cursor-pointer text-lg"
+          color="red"
           onClick={() => {
             const fileListFiltered = fileList.filter((item) => item.uid != image.uid);
             setFileList(fileListFiltered);
           }}
-        >
-          X
-        </Button>
+        />
       </div>
     </div>
   );

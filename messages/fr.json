@@ -159,6 +159,7 @@
     "upload": "Cliquez sur cette zone pour télécharger des images",
     "upload-note": "Prise en charge du téléchargement multiple. Prend en charge uniquement les fichiers image (JPG, PNG)",
     "image-list-title": "Voici les images du journal de chat :",
+    "delete-all": "Supprimer toutes les images",
     "upload-guide-mobile": {
       "title": "Comment télécharger des images",
       "step1": {

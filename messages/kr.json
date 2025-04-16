@@ -159,6 +159,7 @@
     "upload": "이미지를 업로드하려면 이 영역을 클릭하십시오.",
     "upload-note": "다중 업로드 지원. 이미지 파일 (JPG, PNG) 만 지원",
     "image-list-title": "다음은 채팅 로그 이미지입니다:",
+    "delete-all": "모든 이미지 삭제",
     "upload-guide-mobile": {
       "title": "이미지를 업로드하는 방법",
       "step1": {

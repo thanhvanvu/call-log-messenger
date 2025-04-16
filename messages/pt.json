@@ -159,6 +159,7 @@
     "upload": "Clique nesta área para carregar imagens",
     "upload-note": "Suporte para upload múltiplo. Suporte apenas arquivos de imagem (JPG, PNG)",
     "image-list-title": "Estas são imagens de registro de bate-papo:",
+    "delete-all": "Apagar todas as imagens",
     "upload-guide-mobile": {
       "title": "Como carregar imagens",
       "step1": {
