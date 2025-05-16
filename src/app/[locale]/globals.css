@@ -74,6 +74,14 @@ p {
   opacity: 0.4; /* Makes it look disabled */
 }
 
+.messenger-float-button .ant-float-btn-icon {
+  text-align: center;
+  margin: auto;
+  width: 30px !important;
+  font-size: 25px;
+  line-height: 1;
+}
+
 @media print {
   .page-break {
     page-break-after: always; /* For older browsers */

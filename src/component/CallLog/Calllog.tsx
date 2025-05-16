@@ -404,7 +404,7 @@ const CallLog = () => {
           rawCallLogsNotModify={rawCallLogsNotModify}
         />
 
-        <div className="hidden 992:block">
+        {/* <div className="hidden 992:block">
           <FloatButton.Group
             // @ts-ignore
             ref={tourStep?.step6}
@@ -443,7 +443,7 @@ const CallLog = () => {
               />
             </Popover>
           </FloatButton.Group>
-        </div>
+        </div> */}
       </div>
     </>
   );

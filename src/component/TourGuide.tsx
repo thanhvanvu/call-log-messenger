@@ -121,27 +121,27 @@ const TourGuide = () => {
       ),
       target: () => step5.current,
     },
-    {
-      title: t("guide-tour.float-button.title"),
-      description: (
-        <ul className="list-disc list-inside ml-4">
-          <li>{t("guide-tour.float-button.description.line1")}</li>
-        </ul>
-      ),
-      placement: "leftTop",
-      cover: (
-        <div className="w-[30%] mx-auto ">
-          <Image
-            src="https://i.imgur.com/TpQjJqf.gif"
-            alt="float button"
-            className="shadow-md"
-            width={400}
-            height={400}
-          />
-        </div>
-      ),
-      target: () => step6.current,
-    },
+    // {
+    //   title: t("guide-tour.float-button.title"),
+    //   description: (
+    //     <ul className="list-disc list-inside ml-4">
+    //       <li>{t("guide-tour.float-button.description.line1")}</li>
+    //     </ul>
+    //   ),
+    //   placement: "leftTop",
+    //   cover: (
+    //     <div className="w-[30%] mx-auto ">
+    //       <Image
+    //         src="https://i.imgur.com/TpQjJqf.gif"
+    //         alt="float button"
+    //         className="shadow-md"
+    //         width={400}
+    //         height={400}
+    //       />
+    //     </div>
+    //   ),
+    //   target: () => step6.current,
+    // },
     {
       title: t("guide-tour.language.title"),
       description: (
@@ -174,7 +174,7 @@ const TourGuide = () => {
       step3: step3,
       step4: step4,
       step5: step5,
-      step6: step6,
+      // step6: step6,
       step7: step7,
     });
   }, []);

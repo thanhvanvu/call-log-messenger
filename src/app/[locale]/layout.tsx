@@ -11,11 +11,10 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
-
 import { ConfigProvider, theme } from "antd";
 import { Metadata } from "next";
 import { Footer } from "@/component/Footer";
-const inter = Inter({ subsets: ["latin"] });
+import MessengerFloatButton from "@/component/MessengerFloatButton";
 
 export const metadata: Metadata = {
   title: "Call Logs & Stats - Export, Analyze, and Track",
@@ -89,6 +88,7 @@ export default async function LocaleLayout({
                 <AntdRegistry>{children}</AntdRegistry>
                 <Analytics />
                 <SpeedInsights />
+                <MessengerFloatButton />
               </div>
               <Footer />
             </body>
