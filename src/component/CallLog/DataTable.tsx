@@ -425,6 +425,15 @@ function DataTable(props: IProps) {
         }
       />
 
+      {dataToShow && dataToShow.length > 0 === true ? (
+        <></>
+      ) : (
+        <div className="h-screen  mt-4">
+          <h1 className="font-bold text-2xl py-2"> {t("call-logs.sample-pdf-title")}</h1>
+          <iframe src="/Call-logs.pdf" className="w-full h-full border-none"></iframe>
+        </div>
+      )}
+
       <PdfSettingModal isShowModal={isShowPdfSetting} setIsShowModal={setIsShowPdfSetting} />
       <PdfWarningModal open={isShowPdfWaring} setOpen={setIsShowPdfWarning} />
     </div>

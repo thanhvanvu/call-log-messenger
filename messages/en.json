@@ -11,8 +11,10 @@
     "click-upload": "Click to this area to upload",
     "upload-note": "Support for a multiple upload. Only support JSON file",
     "guide": "Do not have JSON file? Go here to find it",
+    "guide-upload-json": "How to upload JSON file",
     "data-title": "Call logs between {nameA} and {nameB} on",
     "sample-data-title": "This is a sample data for call logs on",
+    "sample-pdf-title": "This is a sample PDF for call logs",
     "reset-filter": "Reset Filter",
     "hide-delete-action": "Hide Delete action",
     "show-delete-action": "Show Delete action",
@@ -137,12 +139,14 @@
     "line2": "Please use a desktop browser to access this feature to export the designed-format PDF.",
     "line3": "Sorry for this inconvenience."
   },
+
   "disclaimer": {
     "line1": "Disclaimer: Privacy & Data Security Commitment",
     "line2": "Call-Log-Messenger does not access or store Facebook data files. All files remain on the user's device, ensuring full control and privacy.",
     "line3": "Only essential details — Messenger nickname, caller's nickname, call date, and duration — are used to generate call history statements, never shared with third parties. For added security, consider deleting the Facebook data file after use.",
     "line4": "Call-Log-Messenger prioritizes privacy to protect user data."
   },
+
   "common": {
     "get-started": "GET STARTED",
     "guide": "Guide how to find JSON file",

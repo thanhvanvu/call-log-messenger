@@ -27,6 +27,7 @@ import Statistic from "./Statistic";
 import { Link } from "@/i18n/routing";
 import { TbTableShortcut } from "react-icons/tb";
 import DataTable from "./DataTable";
+import CallLogGuide from "./CallLogGuide";
 
 const CallLog = () => {
   const {
@@ -387,11 +388,17 @@ const CallLog = () => {
               </Link>
             </div>
           </Dragger>
+
+          {/* Disclaimer */}
           <div className="lg:w-[70%] 2xl:w-[60%] 3xl:w-[40%] m-auto border rounded-md text-[rgb(183,181,181)] p-3 mt-4 text-xs flex flex-col gap-3 ">
             <p className="font-bold">{t("disclaimer.line1")}</p>
             <p>{t("disclaimer.line2")}</p>
             <p>{t("disclaimer.line3")}</p>
             <p>{t("disclaimer.line4")}</p>
+          </div>
+
+          <div className="flex justify-center mt-4 w-[100%]">
+            <CallLogGuide />
           </div>
         </div>
         <div className="flex flex-col gap-y-10 mt-5">

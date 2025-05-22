@@ -68,7 +68,18 @@ function Guide() {
       <h1 className="text-2xl font-bold text-center text-blue-600 mb-4">
         Facebook Message Download Guide
       </h1>
-      <div className="mb-6 border-b pb-4 last:border-none">
+
+      <div className="relative w-full aspect-video shadow-md border">
+        <iframe
+          src="https://www.youtube.com/embed/6LyeqSbzqp8"
+          title="YouTube video player"
+          frameBorder="0"
+          allowFullScreen
+          className="absolute top-0 left-0 w-full h-full"
+        ></iframe>
+      </div>
+
+      <div className="mt-4 mb-6 border-b pb-4 last:border-none">
         <p className="font-medium text-lg">
           1.{" "}
           {t.rich("json-guide.step0", {
@@ -76,12 +87,13 @@ function Guide() {
               <Link
                 target="_blank"
                 href="https://accountscenter.facebook.com/info_and_permissions/dyi/?entry_point=download_your_information&referrer=yfi_settings&target_id"
-                className="text-blue-600 underline inline"
+                className=" underline inline font-bold"
               >
-                {chunk}
+                <span className="text-blue">{chunk}</span>
               </Link>
             ),
           })}
+          .
         </p>
       </div>
       {steps.map((step, index) => (

@@ -10,7 +10,6 @@ import { DownloadOutlined } from "@ant-design/icons";
 import { FaFilePdf } from "react-icons/fa";
 import { RiGuideFill } from "react-icons/ri";
 import { BsArrowRight } from "react-icons/bs";
-import demoPDF from "public/Call-logs.pdf";
 
 function Homepage() {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);

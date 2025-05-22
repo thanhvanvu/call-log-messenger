@@ -2,12 +2,6 @@ import { Tour, TourProps } from "antd";
 import Image from "next/image";
 import React, { useEffect, useRef } from "react";
 import { useCurrentApp } from "@/context/app.context";
-import upload from "public/tour-gif/upload.gif";
-import jsonGuide from "public/tour-gif/json-guide.gif";
-import language from "public/tour-gif/language.gif";
-import floatButton from "public/tour-gif/float-button.gif";
-import table from "public/tour-gif/table.gif";
-import reset from "public/tour-gif/reset.gif";
 import { useTranslations } from "next-intl";
 
 const TourGuide = () => {

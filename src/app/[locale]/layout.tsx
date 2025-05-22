@@ -17,9 +17,9 @@ import { Footer } from "@/component/Footer";
 import MessengerFloatButton from "@/component/MessengerFloatButton";
 
 export const metadata: Metadata = {
-  title: "Call Logs & Stats - Export, Analyze, and Track",
+  title: "Facebook Messenger Call Logs & Stats - Export, Analyze, and Track",
   description:
-    "Easily manage, analyze, and export call logs in a designed PDF format, supporting over 10 languages.",
+    "Easily manage, analyze, and export your Facebook messenger call logs in a designed PDF format, supporting over 10 languages.",
   keywords: [
     "call logs",
     "call statistics",
@@ -28,11 +28,18 @@ export const metadata: Metadata = {
     "analytics",
     "PDF export",
     "multilingual support",
+    "facebook call history export",
+    "messenger call logs",
+    "messenger analytics",
+    "PDF call report",
+    "multilingual support",
+    "analyze facebook data",
+    "messenger video call stats",
   ],
   openGraph: {
-    title: "Call Logs & Stats - Export, Analyze, and Track",
+    title: "Facebook Messenger Call Logs & Stats - Export, Analyze, and Track",
     description:
-      "Easily manage, analyze, and export call logs in a designed PDF format, supporting over 10 languages.",
+      "Easily manage, analyze, and export your Facebook messenger call logs in a designed PDF format, supporting over 10 languages.",
     url: "https://call-log-messenger.vercel.app/",
     type: "website",
     images: [
@@ -40,16 +47,19 @@ export const metadata: Metadata = {
         url: "https://i.imgur.com/aK0TH1w.jpg",
         width: 1200,
         height: 630,
-        alt: "Call logs and statistics dashboard",
+        alt: "Facebook Messenger call log dashboard showing call durations and statistics",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Call Logs & Stats - Export, Analyze, and Track",
+    title: "Facebook Messenger Call Logs & Stats - Export, Analyze, and Track",
     description:
-      "Easily manage, analyze, and export call logs in a designed PDF format, supporting over 10 languages.",
+      "Easily manage, analyze, and export your Facebook messenger call logs in a designed PDF format, supporting over 10 languages.",
     images: ["https://i.imgur.com/mheSIaQ.jpg"],
+  },
+  alternates: {
+    canonical: "https://call-log-messenger.vercel.app/",
   },
 };
 

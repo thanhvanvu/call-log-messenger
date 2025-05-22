@@ -12,117 +12,129 @@ const ChatLogGuide = () => {
       key: "1",
       label: t("chat-log.upload-guide-desktop.title"),
       children: (
-        <div>
-          <ul className="992:list-disc list-inside  text-gray-700 mt-2 flex flex-col gap-3">
-            <li>
-              <div className="inline-block">
-                <p className="">
-                  <span className="font-bold underline mr-2">
-                    {t("chat-log.upload-guide-desktop.step1.step")}
-                  </span>{" "}
-                  {t("chat-log.upload-guide-desktop.step1.content")}
-                </p>
-              </div>
-              <div className="flex justify-center gap-5 mt-2 ">
-                <Image
-                  alt=""
-                  src="/demo-chat-log/1.jpg"
-                  width={100}
-                  className="border shadow-md"
-                ></Image>
-                <Image
-                  alt=""
-                  src="/demo-chat-log/2.jpg"
-                  width={100}
-                  className="border shadow-md"
-                ></Image>
-                <Image
-                  alt=""
-                  src="/demo-chat-log/3.jpg"
-                  width={100}
-                  className="border shadow-md"
-                ></Image>
-              </div>
-            </li>
+        <>
+          <div>
+            <div className="relative w-4/5 mx-auto aspect-video shadow-md border">
+              <iframe
+                src="https://www.youtube.com/embed/ML8yCvf0STw"
+                title="YouTube video player"
+                frameBorder="0"
+                allowFullScreen
+                className="absolute top-0 left-0 w-full h-full"
+              ></iframe>
+            </div>
 
-            <li>
-              <div className="inline-block">
-                <p className="">
-                  <span className="font-bold underline mr-2">
-                    {t("chat-log.upload-guide-desktop.step2.step")}
-                  </span>
-                  {t.rich("chat-log.upload-guide-desktop.step2.content", {
-                    icon: (chunk) => (
-                      <InboxOutlined className="text-2xl mx-2" style={{ color: "#2196F3" }} />
-                    ),
-                  })}
-                </p>
-              </div>
-            </li>
+            <ul className="992:list-disc list-inside  text-gray-700 mt-3 flex flex-col gap-3">
+              <li>
+                <div className="inline-block">
+                  <p className="">
+                    <span className="font-bold underline mr-2">
+                      {t("chat-log.upload-guide-desktop.step1.step")}
+                    </span>{" "}
+                    {t("chat-log.upload-guide-desktop.step1.content")}
+                  </p>
+                </div>
+                <div className="flex justify-center gap-5 mt-2 ">
+                  <Image
+                    alt=""
+                    src="/demo-chat-log/1.jpg"
+                    width={100}
+                    className="border shadow-md"
+                  ></Image>
+                  <Image
+                    alt=""
+                    src="/demo-chat-log/2.jpg"
+                    width={100}
+                    className="border shadow-md"
+                  ></Image>
+                  <Image
+                    alt=""
+                    src="/demo-chat-log/3.jpg"
+                    width={100}
+                    className="border shadow-md"
+                  ></Image>
+                </div>
+              </li>
 
-            <li>
-              <div className="inline-block">
-                <p className="">
-                  <span className="font-bold underline mr-2">
-                    {t("chat-log.upload-guide-desktop.step3.step")}
-                  </span>
-                  {t.rich("chat-log.upload-guide-desktop.step3.content", {
-                    icon: (chunk) => (
-                      <Button
-                        type="primary"
-                        icon={<RiDragMove2Fill className="" />}
-                        size="small"
-                        className="mx-2"
-                      >
-                        Drag
-                      </Button>
-                    ),
-                  })}
-                </p>
-              </div>
-            </li>
+              <li>
+                <div className="inline-block">
+                  <p className="">
+                    <span className="font-bold underline mr-2">
+                      {t("chat-log.upload-guide-desktop.step2.step")}
+                    </span>
+                    {t.rich("chat-log.upload-guide-desktop.step2.content", {
+                      icon: (chunk) => (
+                        <InboxOutlined className="text-2xl mx-2" style={{ color: "#2196F3" }} />
+                      ),
+                    })}
+                  </p>
+                </div>
+              </li>
 
-            <li>
-              <div className="inline-block">
-                <p className="">
-                  <span className="font-bold underline mr-2">
-                    {t("chat-log.upload-guide-desktop.step4.step")}
-                  </span>
-                  {t("chat-log.upload-guide-desktop.step4.content")}
-                </p>
-              </div>
-            </li>
+              <li>
+                <div className="inline-block">
+                  <p className="">
+                    <span className="font-bold underline mr-2">
+                      {t("chat-log.upload-guide-desktop.step3.step")}
+                    </span>
+                    {t.rich("chat-log.upload-guide-desktop.step3.content", {
+                      icon: (chunk) => (
+                        <Button
+                          type="primary"
+                          icon={<RiDragMove2Fill className="" />}
+                          size="small"
+                          className="mx-2"
+                        >
+                          Drag
+                        </Button>
+                      ),
+                    })}
+                  </p>
+                </div>
+              </li>
 
-            <li>
-              <div className="inline-block">
-                <p className="">
-                  <span className="font-bold underline mr-2">
-                    {t("chat-log.upload-guide-desktop.step5.step")}
-                  </span>
-                  {t.rich("chat-log.upload-guide-desktop.step5.content", {
-                    icon: (chunk) => (
-                      <Button danger color="danger" size="small" className="mx-2">
-                        <SettingOutlined />
-                        {t("common.export-pdf.button")}
-                      </Button>
-                    ),
-                  })}
-                </p>
-              </div>
-            </li>
+              <li>
+                <div className="inline-block">
+                  <p className="">
+                    <span className="font-bold underline mr-2">
+                      {t("chat-log.upload-guide-desktop.step4.step")}
+                    </span>
+                    {t("chat-log.upload-guide-desktop.step4.content")}
+                  </p>
+                </div>
+              </li>
 
-            <li>
-              <div className="inline-block">
-                <p className="">
-                  <span className="font-bold underline mr-2">
-                    {t("chat-log.upload-guide-desktop.step6.step")}
-                  </span>
-                  {t("chat-log.upload-guide-desktop.step6.content")}
-                </p>
-              </div>
-            </li>
-          </ul>
-        </div>
+              <li>
+                <div className="inline-block">
+                  <p className="">
+                    <span className="font-bold underline mr-2">
+                      {t("chat-log.upload-guide-desktop.step5.step")}
+                    </span>
+                    {t.rich("chat-log.upload-guide-desktop.step5.content", {
+                      icon: (chunk) => (
+                        <Button danger color="danger" size="small" className="mx-2">
+                          <SettingOutlined />
+                          {t("common.export-pdf.button")}
+                        </Button>
+                      ),
+                    })}
+                  </p>
+                </div>
+              </li>
+
+              <li>
+                <div className="inline-block">
+                  <p className="">
+                    <span className="font-bold underline mr-2">
+                      {t("chat-log.upload-guide-desktop.step6.step")}
+                    </span>
+                    {t("chat-log.upload-guide-desktop.step6.content")}
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </>
       ),
     },
   ];
@@ -133,16 +145,17 @@ const ChatLogGuide = () => {
       label: t("chat-log.upload-guide-mobile.title"),
       children: (
         <div>
-          <iframe
-            src="https://www.youtube.com/embed/Lr_KP_vGQAY"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-            className="w-full"
-            height={350}
-          ></iframe>
-          <ul className="992:list-disc list-inside  text-gray-700 mt-2 flex flex-col gap-3">
+          <div className="relative w-full aspect-video shadow-md border">
+            <iframe
+              src="https://www.youtube.com/embed/Lr_KP_vGQAY"
+              title="YouTube video player"
+              frameBorder="0"
+              allowFullScreen
+              className="absolute top-0 left-0 w-full h-full"
+            ></iframe>
+          </div>
+
+          <ul className="992:list-disc list-inside  text-gray-700 mt-3 flex flex-col gap-3">
             <li>
               <div className="inline-block">
                 <p className="">
@@ -257,6 +270,7 @@ const ChatLogGuide = () => {
   ];
   return (
     <Collapse
+      defaultActiveKey={[1]}
       items={isMobile ? itemsMobile : itemsDesktop}
       className="w-[100%] lg:w-[85%] 2xl:w-[60%] 3xl:w-[40%]"
     />
