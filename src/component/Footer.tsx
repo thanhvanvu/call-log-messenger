@@ -1,5 +1,4 @@
 import React from "react";
-import { FaHeart } from "react-icons/fa6";
 
 export const Footer = () => {
   return (

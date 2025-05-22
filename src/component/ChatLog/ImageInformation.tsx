@@ -1,6 +1,6 @@
 import { useCurrentApp } from "@/context/app.context";
 import { useSortable } from "@dnd-kit/sortable";
-import { Button, Image, Modal, Tooltip, UploadFile } from "antd";
+import { Button, Image, UploadFile } from "antd";
 import { CSS } from "@dnd-kit/utilities";
 import TextArea from "antd/es/input/TextArea";
 import React, { useState } from "react";

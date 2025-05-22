@@ -2,13 +2,13 @@ import { Modal } from "antd";
 import React from "react";
 import Image from "next/image";
 import { IoIosInformationCircle } from "react-icons/io";
-
 import { useTranslations } from "next-intl";
+
 interface IProps {
   open: boolean;
   setOpen: (open: boolean) => void;
 }
-// onOk={handleOk} onCancel={handleCancel}
+
 function MobileModal(props: IProps) {
   const { open, setOpen } = props;
   const t = useTranslations();

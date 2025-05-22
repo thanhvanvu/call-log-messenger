@@ -1,18 +1,8 @@
 "use client";
 import Dragger from "antd/es/upload/Dragger";
-import React, { useEffect, useRef, useState } from "react";
-import { InboxOutlined, LineChartOutlined, TableOutlined } from "@ant-design/icons";
-import {
-  Collapse,
-  CollapseProps,
-  FloatButton,
-  message,
-  Popover,
-  Upload,
-  UploadFile,
-  UploadProps,
-} from "antd";
-
+import React, { useEffect, useState } from "react";
+import { InboxOutlined } from "@ant-design/icons";
+import { Collapse, CollapseProps, message, Upload, UploadFile, UploadProps } from "antd";
 import {
   convertTimeStampToDate,
   convertTimeStampToDateInHour,
@@ -23,9 +13,7 @@ import {
 import { useTranslations } from "next-intl";
 import { useCurrentApp } from "@/context/app.context";
 import Statistic from "./Statistic";
-
 import { Link } from "@/i18n/routing";
-import { TbTableShortcut } from "react-icons/tb";
 import DataTable from "./DataTable";
 import CallLogGuide from "./CallLogGuide";
 
@@ -37,7 +25,6 @@ const CallLog = () => {
     setDataPdf,
     participants,
     dateRange,
-    guideTour,
     tourStep,
     dateFilter,
   } = useCurrentApp();

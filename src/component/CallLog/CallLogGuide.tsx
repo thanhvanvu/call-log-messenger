@@ -1,11 +1,11 @@
-import { Button, Collapse, CollapseProps, Image } from "antd";
+import { Collapse, CollapseProps } from "antd";
 import React from "react";
-import { RiDragMove2Fill } from "react-icons/ri";
-import { InboxOutlined, SettingOutlined } from "@ant-design/icons";
 import { useTranslations } from "next-intl";
-import { isMobile } from "react-device-detect";
+import { useCurrentApp } from "@/context/app.context";
 
 const CallLogGuide = () => {
+  const { language } = useCurrentApp();
+  console.log(language);
   const t = useTranslations();
   const itemsDesktop: CollapseProps["items"] = [
     {
@@ -15,7 +15,11 @@ const CallLogGuide = () => {
         <>
           <div className="relative w-4/5 mx-auto aspect-video shadow-md border">
             <iframe
-              src="https://www.youtube.com/embed/goFfnTL5rVs"
+              src={
+                language === "vi"
+                  ? "https://www.youtube.com/embed/FEJjb3dqUho"
+                  : "https://www.youtube.com/embed/goFfnTL5rVs"
+              }
               title="YouTube video player"
               frameBorder="0"
               allowFullScreen

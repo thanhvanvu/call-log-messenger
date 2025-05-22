@@ -1,5 +1,5 @@
 "use client";
-import { Button, Popconfirm, Popover, Table, TablePaginationConfig, Tooltip } from "antd";
+import { Button, Popconfirm, Popover, Table, TablePaginationConfig } from "antd";
 import React, { useEffect, useState } from "react";
 import { FaFacebookSquare } from "react-icons/fa";
 import { RedoOutlined, SettingOutlined } from "@ant-design/icons";

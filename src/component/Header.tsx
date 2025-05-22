@@ -4,10 +4,10 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import icon from "@/app/favicon.ico";
 import Image from "next/image";
-import { Button, Select, Tour, TourProps } from "antd";
+import { Button, Select } from "antd";
 import { useParams } from "next/navigation";
 
-import { Link, Locale, routing, usePathname, useRouter } from "@/i18n/routing";
+import { Link, Locale, usePathname, useRouter } from "@/i18n/routing";
 import { useLocale, useTranslations } from "next-intl";
 import { useCurrentApp } from "@/context/app.context";
 import { BrowserView, isBrowser } from "react-device-detect";
@@ -18,6 +18,7 @@ const Header = () => {
   const router = useRouter();
   const params = useParams();
   const t = useTranslations();
+  const { setLanguage } = useCurrentApp();
 
   const { guideTour, setGuideTour, tourStep } = useCurrentApp();
   const localeOption = [
@@ -200,6 +201,11 @@ const Header = () => {
 
   const handleChange = (value: string) => {
     console.log(value);
+    setLanguage(value);
+
+    // Save data to sessionStorage
+    sessionStorage.setItem("language", value);
+
     // @ts-ignore
     router.replace({ pathname, params }, { locale: value as Locale });
   };

@@ -4,9 +4,11 @@ import { RiDragMove2Fill } from "react-icons/ri";
 import { InboxOutlined, SettingOutlined } from "@ant-design/icons";
 import { useTranslations } from "next-intl";
 import { isMobile } from "react-device-detect";
+import { useCurrentApp } from "@/context/app.context";
 
 const ChatLogGuide = () => {
   const t = useTranslations();
+  const { language } = useCurrentApp();
   const itemsDesktop: CollapseProps["items"] = [
     {
       key: "1",
@@ -16,7 +18,11 @@ const ChatLogGuide = () => {
           <div>
             <div className="relative w-4/5 mx-auto aspect-video shadow-md border">
               <iframe
-                src="https://www.youtube.com/embed/ML8yCvf0STw"
+                src={
+                  language === "vi"
+                    ? "https://www.youtube.com/embed/ZfzWcd8pXhA"
+                    : "https://www.youtube.com/embed/ML8yCvf0STw"
+                }
                 title="YouTube video player"
                 frameBorder="0"
                 allowFullScreen

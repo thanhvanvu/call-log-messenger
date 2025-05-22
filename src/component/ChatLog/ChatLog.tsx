@@ -10,18 +10,12 @@ import { useCurrentApp } from "@/context/app.context";
 import {
   closestCorners,
   DndContext,
-  KeyboardSensor,
   PointerSensor,
   TouchSensor,
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import {
-  arrayMove,
-  rectSortingStrategy,
-  SortableContext,
-  sortableKeyboardCoordinates,
-} from "@dnd-kit/sortable";
+import { arrayMove, rectSortingStrategy, SortableContext } from "@dnd-kit/sortable";
 import ImageInformation from "./ImageInformation";
 import { useReactToPrint } from "react-to-print";
 import { RiDragMove2Fill } from "react-icons/ri";

@@ -22,6 +22,8 @@ interface AppContextType {
   setDataPdf: (v: IDataPdf[]) => void;
   chatLogImages: IChatLog[];
   setChatLogImages: (v: IChatLog[]) => void;
+  language: string;
+  setLanguage: (v: string) => void;
 }
 
 // Create a ThemeContext
@@ -76,6 +78,16 @@ const AppProvider = (props: IAppProvideProps) => {
 
   const [chatLogImages, setChatLogImages] = useState<IChatLog[]>([]);
 
+  const [language, setLanguage] = useState<string>("");
+
+  // Read language from sessionStorage on mount
+  useEffect(() => {
+    const storedLanguage = sessionStorage.getItem("language");
+    if (storedLanguage) {
+      setLanguage(storedLanguage);
+    }
+  }, []);
+
   return (
     <AppContext
       value={{
@@ -97,6 +109,8 @@ const AppProvider = (props: IAppProvideProps) => {
         setDataPdf,
         chatLogImages,
         setChatLogImages,
+        language,
+        setLanguage,
       }}
     >
       <TourGuide />

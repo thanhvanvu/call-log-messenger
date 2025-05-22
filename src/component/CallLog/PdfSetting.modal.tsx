@@ -1,11 +1,10 @@
 import { useCurrentApp } from "@/context/app.context";
-import { Button, Checkbox, CheckboxProps, Col, Divider, Modal, Row } from "antd";
+import { Button, Checkbox, CheckboxProps, Divider, Modal } from "antd";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
 import PdfExport from "./PdfExport";
 import Image from "next/image";
 import { FaFilePdf, FaStarOfLife } from "react-icons/fa";
-import { MdRectangle } from "react-icons/md";
 import { useTranslations } from "next-intl";
 import { decode } from "@/utils/helper";
 

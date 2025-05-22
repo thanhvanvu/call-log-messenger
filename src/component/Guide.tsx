@@ -1,11 +1,13 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { useCurrentApp } from "@/context/app.context";
 
 function Guide() {
   const t = useTranslations();
-
+  const { language } = useCurrentApp();
   const steps = [
     // {
     //   text: t("json-guide.step1"),
@@ -71,7 +73,11 @@ function Guide() {
 
       <div className="relative w-full aspect-video shadow-md border">
         <iframe
-          src="https://www.youtube.com/embed/6LyeqSbzqp8"
+          src={
+            language === "vi"
+              ? "https://www.youtube.com/embed/XkVhQjZsO1A"
+              : "https://www.youtube.com/embed/6LyeqSbzqp8"
+          }
           title="YouTube video player"
           frameBorder="0"
           allowFullScreen

@@ -1,21 +1,11 @@
 import html2canvas from "html2canvas"; // Import html2canvas
-import {
-  Button,
-  Checkbox,
-  CheckboxProps,
-  ColorPicker,
-  ColorPickerProps,
-  GetProp,
-  Image,
-  Input,
-  Modal,
-} from "antd";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import { Button, Checkbox, ColorPicker, ColorPickerProps, GetProp, Input, Modal } from "antd";
+import React, { useEffect, useState } from "react";
 import { useReactToPrint } from "react-to-print";
-import { FaFilePdf, FaStarOfLife } from "react-icons/fa";
+import { FaFilePdf } from "react-icons/fa";
 import { useTranslations } from "next-intl";
 import ChatLogExport from "./ChatLogExport";
-import { isDesktop, isMobile } from "react-device-detect";
+import { isMobile } from "react-device-detect";
 import ChatLogExportMobile from "./ChatLogExport.mobile";
 import jsPDF from "jspdf"; // Ensure you have jsPDF installed
 
