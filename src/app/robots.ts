@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "call-log-messenger.vercel.app/sitemap.xml",
+    sitemap: "https://call-log-messenger.vercel.app/sitemap.xml",
   };
 }
