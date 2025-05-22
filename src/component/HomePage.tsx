@@ -103,7 +103,7 @@ function Homepage() {
       </div>
 
       <div className="mt-5">
-        <Image src={picture} alt="" className="shadow-lg" />
+        <Image src={picture} alt="call logs features" className="shadow-lg" />
       </div>
     </div>
   );

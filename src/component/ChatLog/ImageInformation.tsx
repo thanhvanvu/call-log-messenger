@@ -40,7 +40,7 @@ const ImageInformation = (props: IProps) => {
           <RiDragMove2Fill className="text-xl" /> <p>Drag</p>
         </div>
       </Button>
-      <Image alt="" width={100} src={image.imageUrl} preview={true} />
+      <Image alt="mobile screenshot image" width={100} src={image.imageUrl} preview={true} />
       <div className="h-full w-full flex gap-2">
         <TextArea
           className="h-full"

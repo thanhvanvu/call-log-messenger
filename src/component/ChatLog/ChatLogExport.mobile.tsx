@@ -56,7 +56,12 @@ const ChatLogExportMobile = (props: IProps) => {
                   return (
                     <>
                       <div key={index} className={`flex flex-col justify-center items-center`}>
-                        <Image alt="" src={chatLog.imageUrl} width={210} className="border" />
+                        <Image
+                          alt="mobile screenshot image"
+                          src={chatLog.imageUrl}
+                          width={210}
+                          className="border"
+                        />
                         <p className="text-center min-h-[24px] leading-snug break-words px-1">
                           {chatLog.note ? chatLog.note : "\u00A0"}
                         </p>

@@ -56,7 +56,7 @@ const ChatLogExport = (props: IProps) => {
                     <>
                       <div key={index} className={`flex flex-col justify-center items-center`}>
                         <Image
-                          alt=""
+                          alt="mobile screenshot image"
                           src={chatLog.imageUrl}
                           width={210}
                           className="border border-black p-[1px]"

@@ -36,19 +36,19 @@ const ChatLogGuide = () => {
                 </div>
                 <div className="flex justify-center gap-5 mt-2 ">
                   <Image
-                    alt=""
+                    alt="demo mobile screenshot image"
                     src="/demo-chat-log/1.jpg"
                     width={100}
                     className="border shadow-md"
                   ></Image>
                   <Image
-                    alt=""
+                    alt="demo mobile screenshot image"
                     src="/demo-chat-log/2.jpg"
                     width={100}
                     className="border shadow-md"
                   ></Image>
                   <Image
-                    alt=""
+                    alt="demo mobile screenshot image"
                     src="/demo-chat-log/3.jpg"
                     width={100}
                     className="border shadow-md"
@@ -167,19 +167,19 @@ const ChatLogGuide = () => {
               </div>
               <div className="flex justify-center gap-5 mt-2 ">
                 <Image
-                  alt=""
+                  alt="demo mobile screenshot image"
                   src="/demo-chat-log/1.jpg"
                   width={100}
                   className="border shadow-md"
                 ></Image>
                 <Image
-                  alt=""
+                  alt="demo mobile screenshot image"
                   src="/demo-chat-log/2.jpg"
                   width={100}
                   className="border shadow-md"
                 ></Image>
                 <Image
-                  alt=""
+                  alt="demo mobile screenshot image"
                   src="/demo-chat-log/3.jpg"
                   width={100}
                   className="border shadow-md"

@@ -21,13 +21,13 @@ const ChatLogMobile = () => {
         <div className="lg:flex gap-5 ">
           <Image
             src="/demo-chat-log/chatLog.jpg"
-            alt="chat-log"
+            alt="demo chat log"
             preview={false}
             className="lg:border"
           ></Image>
           <Image
             src="/demo-chat-log/billLog.jpg"
-            alt="chat-log"
+            alt="demo bill transaction"
             preview={false}
             className="lg:border"
           ></Image>

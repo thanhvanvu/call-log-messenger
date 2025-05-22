@@ -207,7 +207,7 @@ const Header = () => {
     <div className="bg-body-tertiary">
       <Navbar collapseOnSelect expand="lg" className=" w-[90%] mx-auto justify-between 3xl:w-[80%]">
         <Link href="/" className="navbar-brand font-bold flex gap-2">
-          <Image src={icon} alt="" width={30} height={30}></Image>
+          <Image src={icon} alt="icon call tracker" width={30} height={30}></Image>
           Call-Tracker
         </Link>
         <div className="flex flex-row gap-2">
@@ -241,7 +241,7 @@ const Header = () => {
             <div className="py-2  992:mx-8 font-bold">
               <div className="relative w-fit">
                 <span className="absolute right-[-30px] top-[-20px]">
-                  <Image src={newGif} alt="" width={50}></Image>
+                  <Image src={newGif} alt="new gif icon" width={50}></Image>
                 </span>
                 <Link href="/chat-log" className="nav-link focus:text-[#0866FF]">
                   Chat Log Generator
