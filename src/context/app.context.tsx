@@ -82,7 +82,7 @@ const AppProvider = (props: IAppProvideProps) => {
 
   // Read language from sessionStorage on mount
   useEffect(() => {
-    const storedLanguage = sessionStorage.getItem("language");
+    const storedLanguage = localStorage.getItem("language");
     if (storedLanguage) {
       setLanguage(storedLanguage);
     }

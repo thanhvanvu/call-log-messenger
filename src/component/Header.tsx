@@ -204,7 +204,7 @@ const Header = () => {
     setLanguage(value);
 
     // Save data to sessionStorage
-    sessionStorage.setItem("language", value);
+    localStorage.setItem("language", value);
 
     // @ts-ignore
     router.replace({ pathname, params }, { locale: value as Locale });
