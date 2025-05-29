@@ -240,14 +240,7 @@ const PdfSettingModal = (props: IProps) => {
         </div>
       </div>
 
-      <div
-        style={{
-          position: "absolute",
-          top: "-9999px",
-          left: "-9999px",
-          pointerEvents: "none",
-        }}
-      >
+      <div>
         <PdfExport
           contentRef={contentRef}
           isShowStatistic={isShowStatistic}
