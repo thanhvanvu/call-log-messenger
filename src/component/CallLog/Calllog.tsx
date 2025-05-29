@@ -16,6 +16,8 @@ import Statistic from "./Statistic";
 import { Link } from "@/i18n/routing";
 import DataTable from "./DataTable";
 import CallLogGuide from "./CallLogGuide";
+import ErrorAnnouncement from "../ErrorAnnouncement";
+import { isDesktop } from "react-device-detect";
 
 const CallLog = () => {
   const {
@@ -356,6 +358,12 @@ const CallLog = () => {
       {contextHolder}
 
       <div className="mt-10 w-[90%] m-auto 3xl:w-[80%] pb-14">
+        {isDesktop && (
+          <div className="mt-2">
+            <ErrorAnnouncement />
+          </div>
+        )}
+
         <div className="mt-4">
           <Dragger className="block m-auto mt-20 lg:w-[70%] 2xl:w-[60%] 3xl:w-[40%]" {...props}>
             <div className="" ref={tourStep?.step0}>
