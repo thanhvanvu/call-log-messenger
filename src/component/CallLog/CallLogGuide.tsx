@@ -5,7 +5,6 @@ import { useCurrentApp } from "@/context/app.context";
 
 const CallLogGuide = () => {
   const { language } = useCurrentApp();
-  console.log(language);
   const t = useTranslations();
   const itemsDesktop: CollapseProps["items"] = [
     {

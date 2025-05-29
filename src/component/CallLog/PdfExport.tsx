@@ -81,7 +81,6 @@ const PdfExport = (props: IProps) => {
     <>
       <div className="w-[8.5in] mx-auto px-8  bg-white " ref={contentRef}>
         {dataPDFToPrint.map((data, index) => {
-          console.log(data);
           const dateRange = data?.dateRange;
           const dataStatistic = data?.statistic;
           const dataToPrint = data?.callLogToShow;

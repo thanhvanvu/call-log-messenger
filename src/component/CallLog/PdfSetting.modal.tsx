@@ -14,9 +14,8 @@ interface IProps {
 }
 
 const PdfSettingModal = (props: IProps) => {
-  const { dataPdf, dataStatistic, rawCallLogs, dateRange } = useCurrentApp();
+  const { dataPdf, dataStatistic, rawCallLogs, dateRange, dateFilter } = useCurrentApp();
   const { isShowModal, setIsShowModal } = props;
-  const { dateFilter } = useCurrentApp();
   const [filterPdf, setFilterPdf] = useState<string[]>([]);
   const [checkedList, setCheckedList] = useState<string[]>([]);
   const [dataPDFToPrint, setDataPDFToPrint] = useState<IDataPdf[]>([]);
@@ -85,10 +84,16 @@ const PdfSettingModal = (props: IProps) => {
       );
       setDataPDFToPrint(filteredDataPdf);
     }
-
-    // set state, make sure filter function is completely before print
-    setTriggerPrint(true);
   };
+
+  useEffect(() => {
+    if (dataPDFToPrint.length > 0) {
+      const timeout = setTimeout(() => {
+        setTriggerPrint(true);
+      }, 1000); // You can tweak this if needed
+      return () => clearTimeout(timeout);
+    }
+  }, [dataPDFToPrint]);
 
   useEffect(() => {
     const filter = dateFilter.map((item) => item?.text);
@@ -235,7 +240,14 @@ const PdfSettingModal = (props: IProps) => {
         </div>
       </div>
 
-      <div className="hidden">
+      <div
+        style={{
+          position: "absolute",
+          top: "-9999px",
+          left: "-9999px",
+          pointerEvents: "none",
+        }}
+      >
         <PdfExport
           contentRef={contentRef}
           isShowStatistic={isShowStatistic}
