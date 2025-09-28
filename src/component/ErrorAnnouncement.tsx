@@ -11,12 +11,12 @@ const content = (
 
 const ErrorAnnouncement = () => {
   return (
-    <Popover placement="bottom" content={content}>
-      <Alert
-        type="warning"
-        showIcon
-        closable
-        description={
+    <Alert
+      type="warning"
+      showIcon
+      closable
+      description={
+        <Popover placement="bottom" content={content}>
           <div className="text-justify">
             I have identified bugs that may occur when using the browser in languages other than
             English to process JSON file data. To ensure avoid potential issues, please set your
@@ -31,9 +31,9 @@ const ErrorAnnouncement = () => {
             </a>{" "}
             !
           </div>
-        }
-      />
-    </Popover>
+        </Popover>
+      }
+    />
   );
 };
 

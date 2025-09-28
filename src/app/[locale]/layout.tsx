@@ -15,6 +15,7 @@ import { ConfigProvider, theme } from "antd";
 import { Metadata } from "next";
 import { Footer } from "@/component/Footer";
 import MessengerFloatButton from "@/component/MessengerFloatButton";
+import NProgressProvider from "../lib/nprogress.wrapper";
 
 export const metadata: Metadata = {
   title: "Facebook Messenger Call Logs & Stats - Export, Analyze, and Track",
@@ -93,14 +94,16 @@ export default async function LocaleLayout({
         <AppProvider>
           <html lang={locale}>
             <body className="flex flex-col">
-              <Header />
-              <div className="flex-1 pb-3">
-                <AntdRegistry>{children}</AntdRegistry>
-                <Analytics />
-                <SpeedInsights />
-                <MessengerFloatButton />
-              </div>
-              <Footer />
+              <NProgressProvider>
+                <Header />
+                <div className="flex-1 pb-3">
+                  <AntdRegistry>{children}</AntdRegistry>
+                  <Analytics />
+                  <SpeedInsights />
+                  <MessengerFloatButton />
+                </div>
+                <Footer />
+              </NProgressProvider>
             </body>
           </html>
         </AppProvider>
