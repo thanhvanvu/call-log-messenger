@@ -14,6 +14,7 @@ import { IoIosColorFill } from "react-icons/io";
 import { BrowserView, isMobileOnly, isTablet, MobileView } from "react-device-detect";
 import PdfSettingModal from "./PdfSetting.modal";
 import PdfWarningModal from "./PdfWarning.modal";
+import { MdDeleteForever } from "react-icons/md";
 
 const sample = data;
 
@@ -312,7 +313,7 @@ function DataTable(props: IProps) {
         loading={isLoadingTable}
         pagination={{
           defaultPageSize: 10,
-          pageSizeOptions: [10, 15, 20, 25, 30],
+          pageSizeOptions: [10, 15, 20, 25, 30, 50, 100],
           showSizeChanger: true,
           showTotal: (total, range) => {
             return (
@@ -391,7 +392,7 @@ function DataTable(props: IProps) {
                           ? t("call-logs.hide-missed-background")
                           : t("call-logs.show-missed-background")}
                       </Button>
-                      {/* <Button
+                      <Button
                         type="primary"
                         danger
                         onClick={() => setIsShowDeleteAction(!isShowDeleteAction)}
@@ -400,7 +401,7 @@ function DataTable(props: IProps) {
                         {isShowDeleteAction
                           ? t("call-logs.hide-delete-action")
                           : t("call-logs.show-delete-action")}
-                      </Button> */}
+                      </Button>
                     </div>
                   }
                 >

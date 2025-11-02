@@ -156,7 +156,7 @@ const PdfSettingModal = (props: IProps) => {
         </div>
       </Checkbox.Group>
 
-      {/* <Checkbox
+      <Checkbox
         onChange={(e) => {
           setCheckedList([]);
           setCurrentTableToPrint(!currentTableToPrint);
@@ -166,9 +166,9 @@ const PdfSettingModal = (props: IProps) => {
         className="mt-4"
       >
         {t("pdf-setting.current-table")}
-      </Checkbox> */}
+      </Checkbox>
 
-      {/* <Divider />
+      <Divider />
       <div className="w-full ">
         <div className="border-b mb-2 font-bold flex justify-between">
           {t("pdf-setting.option2")}
@@ -183,7 +183,7 @@ const PdfSettingModal = (props: IProps) => {
             style={{ width: "100%", height: "auto" }}
           />
         </Checkbox>
-      </div> */}
+      </div>
 
       <Divider />
       <div className="w-full ">
